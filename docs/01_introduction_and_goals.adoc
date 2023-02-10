@@ -3,10 +3,13 @@
 
 [role="arc42help"]
 ****
-Alonso Antuña Gómez-UO282834  
-Javier Novella Tomás-UO282944  
-Sergio Moro Muñiz - UO284622  
+Ruben Diaz Zapico - UO283204  
 
+Alonso Antuña Gómez-UO282834  
+
+Javier Novella Tomás-UO282944  
+
+Sergio Moro Muñiz - UO284622  
 
 
 Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
