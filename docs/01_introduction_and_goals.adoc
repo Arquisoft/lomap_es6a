@@ -2,6 +2,9 @@
 
 LoMap es un proyecto de ASW que consiste en la creacion de un sistema en el que los ciudadanos dispongan de un mapa personalizado con lugares, negocios... de la ciudad de Bruselas. Los miembros son:
 
+[role="arc42help"]
+**** 
+
 * Ruben Diaz Zapico - UO283204  
 
 * Alonso Antuña Gómez-UO282834  
