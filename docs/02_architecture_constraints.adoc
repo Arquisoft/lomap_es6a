@@ -1,19 +1,33 @@
-[[section-architecture-constraints]]
-== Architecture Constraints
+=== 
 
+|===
+|Arquitectura|Explicación
+|React|Usamos React para el front-end, para la interfaz gráfica de usuario.
+|SOLID|Con SOLID,este es un requisito sobre las tecnologías que usar, los usuarios guardaran su información usando PODs. De esta forma, pueden permitir o rechazar la solicitud de acceso a los datos.
+|Docker|La aplicación usará docker.
+|GitHub|Usaremos github para el control de versiones y comunicarnos.
+|TypeScrypt|TypeScript para escribir el back-end, TS es una evolución de javascript con tipos.
+|Node.js|Framework de javascript usado para el back-end.
+|===
 
-[role="arc42help"]
-****
-.Contents
-Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
+=== Organización del equipo
 
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
+|===
+|Organización|Explicación
+|Reuniones|Es la primera vez que trabajamos juntos en un proyecto de estas dimensiones, tanto por complejidad en el software como por sus tecnologías.
+Somos un equipo de 5 personas.
+|Tiempo|Tiene un tiempo de entrega corto, ya que el desarrollo completo debe hacerse en unos 4 meses.
+|Fechas Límite|Dependiendo el mes y la semana, debemos ir entregando versiones del producto final, hasta que la entrega final llegue.
+|===
 
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
-****
+=== Puntos a tener en cuenta
+
+|===
+|Estetica y uso|La interfaz gráfica debe ser facil de usar, ademas de tener un alto grado de accesibilidad y usabilidad.
+|Documentación|Usamos Arc42 para la documentación.
+|Solid|La aplicación sigue los principios SOLID.
+|TypeScript|Usamos los lenguajes TypeScript/JavaScript y alguno de sus frameworks.
+|MVC|Usaremos el modelo vista-controlador.
+|W3C AAA|Nuestra aplicación seguira el convenio del W3C triple AAA, es decir, será tanto accesible como usable para cualquier tipo de público.
+|===
+
