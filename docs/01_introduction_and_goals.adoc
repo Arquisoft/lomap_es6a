@@ -1,44 +1,41 @@
-[[section-introduction-and-goals]]
 == Introduction and Goals
 
-[role="arc42help"]
-****
-Ruben Diaz Zapico - UO283204  
+LoMap es un proyecto de ASW que consiste en la creacion de un sistema en el que los ciudadanos dispongan de un mapa personalizado con lugares, negocios... de la ciudad de Bruselas. Los miembros son:
 
-Alonso Antuña Gómez-UO282834  
+* Ruben Diaz Zapico - UO283204  
 
-Javier Novella Tomás-UO282944  
+* Alonso Antuña Gómez-UO282834  
 
-Sergio Moro Muñiz - UO284622  
+* Javier Novella Tomás-UO282944  
 
+* Sergio Moro Muñiz - UO284622  
 
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
+* Pablo Fernandez Diaz-UO271116
 
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
-****
+=== Resumen de Requisitos 
 
-=== Requirements Overview
+La aplicación se ejecutará en el servidor, y la información del usuario se almacenará en su pod. Asi mismo, habra una base de datos centralizada cuya informacion solo contendra lo necesario para acceder al pod de cada usuario. Todos estos requisitos son compatibles con el proyecto SOLID, ya que la información de los usuarios no se almacena de forma centralizada. 
 
-[role="arc42help"]
+.Requisitos de alto nivel:
+* Los usuarios pueden añadir lugares en categorías diferentes: tiendas, bares, restaurantes, paisajes, monumentos, etc.
+* Los usuarios serán capaces de mostrar lugares en una ventana tipo mapa.
+* Los usuarios pueden asociar puntuaciones, comentarios, fotos, etc. sobre los lugares añadidos.
+* Se podrán gestionar desde la aplicación los accesos a la información que comparten con otros usuarios, como sus amigos o grupos de amigos.
+* La información sobre un lugar almacenada por cada usuario no deberá estar centralizada, sino que se almacenará en el pod de cada usuario.
+* Si fuese necesario, se podría almacenar alguna información de forma centralizada por razones de rendimiento tratando de respetar la privacidad de los usuarios en la medida que sea posible.
+* El sistema permitirá a los usuarios ver lugares e información sobre dichos lugares tomada de sus amigos.
+* El sistema permitirá visualizar el mapa incorporando filtros, por ejemplo, por categoría, amigos, etc.
 
-****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
-
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
-
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
-
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
-****
+.Caracteristicas opcionales: 
+* Permitir a los usuarios crear rutas (por ejemplo, rutas para hacer compras o tomar algo)
+* Permitir a los usuarios comparar mapas, por ejemplo, comparar ciertas categorías como sólo restaurantes.
+* Permitir a los establecimientos (restaurantes, tiendas, bares, etc. ) crear su propio pod para que otras personas puedan conectarse a ellos.
+* Crear un boletín de noticias (newsfeed) a partir de los lugares conectados.
+* Añadir características de gamificación (recoger información de lugares, descubrir nuevos lugares, etc. )
+* Crear múltiples mapas entre grupos de usuarios (por ejemplo, mapas de familia, de compañeros de viaje, ...)
+* Conectar con el libro de direcciones para chequear información sobre lugares o realizar recomendaciones de lugares
+* Añadir roles (ciudadano, turista, dueño de negocio,...)
+* Oportunidades para dueños de negocios, por ejemplo, crear un mapa con lugares recomendados cerca de un establecimiento, bares para tomar algo después de realizar la compra, etc. 
 
 === Quality Goals
 
