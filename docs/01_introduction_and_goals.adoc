@@ -37,20 +37,17 @@ La aplicación se ejecutará en el servidor, y la información del usuario se al
 * Añadir roles (ciudadano, turista, dueño de negocio,...)
 * Oportunidades para dueños de negocios, por ejemplo, crear un mapa con lugares recomendados cerca de un establecimiento, bares para tomar algo después de realizar la compra, etc. 
 
-=== Quality Goals
+=== Objetivos de calidad
 
-[role="arc42help"]
-****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
-
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
-
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
-****
+[options="header",cols="1,2,2"]
+|===
+|Objetivos de calidad|Motivación|Importancia
+| Seguridad | Garantizar la seguridad de los datos del cliente para aumentar su confianza y mantener a salvo su privacidad | Alta
+| Robustez | Buen manejo de excepciones para mejorar la experiencia del usuario | Alta
+| Usabilidad | La aplicación ha de ser intuitiva y de fácil manejo para gente de todo tipo de nivel | Alta
+| Transparencia | Todo el proyecto sera visible | Bajo
+| Eficiencia | La aplicación sera lo más eficiente posible usando los menores recursos posibles | Media
+|===
 
 === Stakeholders
 
