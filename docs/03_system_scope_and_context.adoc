@@ -32,24 +32,15 @@ se sigue teniendo una base de datos central pero solo se usa para guardar inform
 :imagesdir: images/
 image:diagrama contexto empresarial.png[Punto3:DCE]
 
-=== Technical Context
+=== Contexto tecnico
 
-[role="arc42help"]
-****
-.Contents
-Technical interfaces (channels and transmission media) linking your system to its environment. In addition a mapping of domain specific input/output to the channels, i.e. an explanation with I/O uses which channel.
+Nuestra aplicación LoMap sigue los principios de descentralización de datos personales SOLID al almacenar datos personales en el POD independiente de cada usuario.  
+El front-end se desarrolla utilizando el framework React, el cual implementa componentes propios diseñados o creados, el lenguaje utilizado para desarrollar diversas funciones en pantalla es TypeScript.   
+Para el back-end, usando Node.js express, hacemos todas las transacciones con la base de datos.  
+La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usaremos una API externa.  
 
-.Motivation
-Many stakeholders make architectural decision based on the technical interfaces between the system and its context. Especially infrastructure or hardware designers decide these technical interfaces.
 
-.Form
-E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels and input/output.
+El siguiente diagrama muestra los componentes de la aplicación afectados por cada tecnología.
 
-****
-
-**<Diagram or Table>**
-
-**<optionally: Explanation of technical interfaces>**
-
-**<Mapping Input/Output to Channels>**
+:imagesdir: images/
+image:03-documentacion2.png[Punto 3:DT]
