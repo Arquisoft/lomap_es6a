@@ -60,29 +60,26 @@ A table with quality goals and concrete scenarios, ordered by priorities
 
 === Stakeholders
 
-[role="arc42help"]
-****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
-
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
-
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
-
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
-****
 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| _Profesores_ | _-Jose Emilio Labra
+
+-Cristian Augusto Alonso
+
+-Irene Cid Rico
+
+-Pablo González_ | _Puesta en practica de los conocimientos y explicaciones realizadas en clase para la realización del proyecto_
+| _Clientes_ | _Clientes_ | _Aplicación sencilla, con una buena usabilidad, con todas las funcionalidades requeridas y que protega/asegure los datos introducidos_
+| _Administrador_ | _Administrador_ | Manejar una aplicación robusta, bien hecha y eficiente que permita solucionar futuros problemas/errores
+| _Equipo_ | _-Javier Novella Tomás
+
+-Ruben Díaz Zapico
+
+-Pablo Fernádez Díaz
+
+-Sergio Moro Muñiz
+
+-Alonso Antuña Gómez_ | Mejorar la técnica de trabajo y cooperación en un equipo de desarrollo
 |===
