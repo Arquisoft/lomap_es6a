@@ -1,7 +1,6 @@
 
 
-|===
-|Arquitectura|Explicación
+Explicación sobre la Arquitectura
 |React|Usamos React para el front-end, para la interfaz gráfica de usuario.
 |SOLID|Con SOLID,este es un requisito sobre las tecnologías que usar, los usuarios guardaran su información usando PODs. De esta forma, pueden permitir o rechazar la solicitud de acceso a los datos.
 |Docker|La aplicación usará docker.
