@@ -1,6 +1,7 @@
 == Introduction and Goals
 
-LoMap es un proyecto de ASW que consiste en la creacion de un sistema en el que los ciudadanos dispongan de un mapa personalizado con lugares, negocios... de la ciudad de Bruselas. Los miembros son:
+LoMap es un proyecto de ASW que consiste en la creacion de un sistema en el que los ciudadanos dispongan de un mapa personalizado con lugares, negocios... de la ciudad de Bruselas. Los miembros son: 
+
 
 * Ruben Diaz Zapico - UO283204  
 
@@ -37,46 +38,61 @@ La aplicación se ejecutará en el servidor, y la información del usuario se al
 * Añadir roles (ciudadano, turista, dueño de negocio,...)
 * Oportunidades para dueños de negocios, por ejemplo, crear un mapa con lugares recomendados cerca de un establecimiento, bares para tomar algo después de realizar la compra, etc. 
 
-=== Quality Goals
+=== Objetivos de calidad
 
-[role="arc42help"]
-****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
+[options="header",cols="1,2,2"]
+|===
+|Objetivos de calidad|Motivación|Importancia
+| Seguridad | Garantizar la seguridad de los datos del cliente para aumentar su confianza y mantener a salvo su privacidad | Alta
+| Robustez | Buen manejo de excepciones para mejorar la experiencia del usuario | Alta
+| Usabilidad | La aplicación ha de ser intuitiva y de fácil manejo para gente de todo tipo de nivel | Alta
+| Transparencia | Todo el proyecto sera visible | Bajo
+| Eficiencia | La aplicación sera lo más eficiente posible usando los menores recursos posibles | Media
+|===
 
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
+.Requisitos de alto nivel:
+* Los usuarios pueden añadir lugares en categorías diferentes: tiendas, bares, restaurantes, paisajes, monumentos, etc.
+* Los usuarios serán capaces de mostrar lugares en una ventana tipo mapa.
+* Los usuarios pueden asociar puntuaciones, comentarios, fotos, etc. sobre los lugares añadidos.
+* Se podrán gestionar desde la aplicación los accesos a la información que comparten con otros usuarios, como sus amigos o grupos de amigos.
+* La información sobre un lugar almacenada por cada usuario no deberá estar centralizada, sino que se almacenará en el pod de cada usuario.
+* Si fuese necesario, se podría almacenar alguna información de forma centralizada por razones de rendimiento tratando de respetar la privacidad de los usuarios en la medida que sea posible.
+* El sistema permitirá a los usuarios ver lugares e información sobre dichos lugares tomada de sus amigos.
+* El sistema permitirá visualizar el mapa incorporando filtros, por ejemplo, por categoría, amigos, etc.
 
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
-****
+.Caracteristicas opcionales: 
+* Permitir a los usuarios crear rutas (por ejemplo, rutas para hacer compras o tomar algo)
+* Permitir a los usuarios comparar mapas, por ejemplo, comparar ciertas categorías como sólo restaurantes.
+* Permitir a los establecimientos (restaurantes, tiendas, bares, etc. ) crear su propio pod para que otras personas puedan conectarse a ellos.
+* Crear un boletín de noticias (newsfeed) a partir de los lugares conectados.
+* Añadir características de gamificación (recoger información de lugares, descubrir nuevos lugares, etc. )
+* Crear múltiples mapas entre grupos de usuarios (por ejemplo, mapas de familia, de compañeros de viaje, ...)
+* Conectar con el libro de direcciones para chequear información sobre lugares o realizar recomendaciones de lugares
+* Añadir roles (ciudadano, turista, dueño de negocio,...)
+* Oportunidades para dueños de negocios, por ejemplo, crear un mapa con lugares recomendados cerca de un establecimiento, bares para tomar algo después de realizar la compra, etc. 
 
 === Stakeholders
 
-[role="arc42help"]
-****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
-
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
-
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
-
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
-****
 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| _Profesores_ | _-Jose Emilio Labra
+
+-Cristian Augusto Alonso
+
+-Irene Cid Rico
+
+-Pablo González_ | _Puesta en practica de los conocimientos y explicaciones realizadas en clase para la realización del proyecto_
+| _Clientes_ | _Clientes_ | _Aplicación sencilla, con una buena usabilidad, con todas las funcionalidades requeridas y que protega/asegure los datos introducidos_
+| _Administrador_ | _Administrador_ | Manejar una aplicación robusta, bien hecha y eficiente que permita solucionar futuros problemas/errores
+| _Equipo_ | _-Javier Novella Tomás
+
+-Ruben Díaz Zapico
+
+-Pablo Fernádez Díaz
+
+-Sergio Moro Muñiz
+
+-Alonso Antuña Gómez_ | Mejorar la técnica de trabajo y cooperación en un equipo de desarrollo
 |===

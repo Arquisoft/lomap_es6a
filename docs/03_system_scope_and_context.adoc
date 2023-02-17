@@ -25,42 +25,22 @@ Various options:
 
 [role="arc42help"]
 ****
-.Contents
-Specification of *all* communication partners (users, IT-systems, ...) with explanations of domain specific inputs and outputs or interfaces.
-Optionally you can add domain specific formats or communication protocols.
-
-.Motivation
-All stakeholders should understand which data are exchanged with the environment of the system.
-
-.Form
-All kinds of diagrams that show the system as a black box and specify the domain interfaces to communication partners.
-
-Alternatively (or additionally) you can use a table.
-The title of the table is the name of your system, the three columns contain the name of the communication partner, the inputs, and the outputs.
+Nustra app es una red social con la infraestructura "dispersa" en pods que pertenecen al usuario(uno por usuario) en vez de una base de datos centralizada en los servidores de la empresa
+se sigue teniendo una base de datos central pero solo se usa para guardar informacion basica del usuario tambien la app hara uso de apis externas
 ****
 
-**<Diagram or Table>**
+:imagesdir: images/
+image:diagrama contexto empresarial.png[Punto3:DCE]
 
-**<optionally: Explanation of external domain interfaces>**
+=== Contexto tecnico
 
-=== Technical Context
+Nuestra aplicación LoMap sigue los principios de descentralización de datos personales SOLID al almacenar datos personales en el POD independiente de cada usuario.  
+El front-end se desarrolla utilizando el framework React, el cual implementa componentes propios diseñados o creados, el lenguaje utilizado para desarrollar diversas funciones en pantalla es TypeScript.   
+Para el back-end, usando Node.js express, hacemos todas las transacciones con la base de datos.  
+La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usaremos una API externa.  
 
-[role="arc42help"]
-****
-.Contents
-Technical interfaces (channels and transmission media) linking your system to its environment. In addition a mapping of domain specific input/output to the channels, i.e. an explanation with I/O uses which channel.
 
-.Motivation
-Many stakeholders make architectural decision based on the technical interfaces between the system and its context. Especially infrastructure or hardware designers decide these technical interfaces.
+El siguiente diagrama muestra los componentes de la aplicación afectados por cada tecnología.
 
-.Form
-E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels and input/output.
-
-****
-
-**<Diagram or Table>**
-
-**<optionally: Explanation of technical interfaces>**
-
-**<Mapping Input/Output to Channels>**
+:imagesdir: images/
+image:03-documentacion2.png[Punto 3:DT]
