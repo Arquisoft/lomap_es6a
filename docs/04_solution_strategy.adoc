@@ -1,24 +1,30 @@
 [[section-solution-strategy]]
-== Solution Strategy
-
+== Soluciones Estratégicas
+Para la reaalización de LoMap hemos tomado la decisión de desarrollarlo en TypeScript. TypeScript es un superconjunto de JavaScript cuyo punto más resaltable es el uso de tipado.
 
 [role="arc42help"]
 ****
-.Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. These include
+.Restricciones tecnológicas
+* Pods Solid: para mejorar la seguridad y privacidad de los datos de los usuarios, se ha impuesto como una condición necesaria el uso de los pods (no una base de datos centralizada). Los pods almacenan independientemente la información de cada usuario.
 
-* technology decisions
-* decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
-* decisions on how to achieve key quality goals
-* relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.
+.Tecnologías y motivación
 
-.Motivation
-These decisions form the cornerstones for your architecture. They are the basis for many other detailed decisions or implementation rules.
+* React: React es una biblioteca de código abierto concebida para crear interfaces de usuario. Hemos elegido React por su sencillez y las númerosas posibilidades que proporciona.
 
-.Form
-Keep the explanation of these key decisions short.
+* MongoDB: sistema de bases de datos de código abierto NoSQL. Lo hemos elegido por la forma de almacenamiento de datos en JSON y no en tablas, pensando en lo que más se ajusta a nuestra idea de proyecto.
 
-Motivate what you have decided and why you decided that way,
-based upon your problem statement, the quality goals and key constraints.
-Refer to details in the following sections.
+* Node.js: Node.js, es un entorno en tiempo de ejecución multiplataforma para la capa del servidor (en el lado del servidor) basado en JavaScript.
+
+* Docker: es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
+
+.Forma
+* Seguridad y privacidad: se conservará la seguridad y privacidad de los datos del usuarios e introducidos por el propio usuario mediante el uso de PODs.
+
+* Diseño: vamos a utilizar el MVC (Modelo Vista Controlador)para facilitar el desarrollo, la limpieza de código y la organización del mismo.
+
+* Desarrollo y reparto: dividiremos el desarrollo y el equipo en 2 partes diferenciadas: front-end y back-end.
+
+* Usabilidad: trataremos de crear una aplicación simple y fácil de usar para cualquier nivel informático.
+
+* Accesibilidad: intentaremos hacer la aplicación lo más accesible posible para facilitar en la medida de lo posible el uso de la aplicación para personas con alguna discapacidad.
 ****
