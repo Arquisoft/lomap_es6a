@@ -1,67 +1,34 @@
 [[section-concepts]]
-== Cross-cutting Concepts
+== Conceptos Transversales
 
+=== Modelo de dominio
 
-[role="arc42help"]
-****
-.Content
-This section describes overall, principal regulations and solution ideas that are
-relevant in multiple parts (= cross-cutting) of your system.
-Such concepts are often related to multiple building blocks.
-They can include many different topics, such as
+:imagesdir: images/
+image:ASWDM.png[Punto 8:DM]
 
-* domain models
-* architecture patterns or design patterns
-* rules for using specific technology
-* principal, often technical decisions of overall decisions
-* implementation rules
+=== Conceptos de seguridad y privacidad
 
-.Motivation
-Concepts form the basis for _conceptual integrity_ (consistency, homogeneity)
-of the architecture. Thus, they are an important contribution to achieve inner qualities of your system.
+* Privacidad: los datos introducidos serán privados y no visibles. Las opiniones y marks creados por el usuario solo podrán ser visualizados por los amigos añadidos.
+* Seguridad: los datos serán completamente seguros, siendo almacenado en PODs individuales y no en una base de datos centralizada.
 
-Some of these concepts cannot be assigned to individual building blocks
-(e.g. security or safety). This is the place in the template that we provided for a
-cohesive specification of such concepts.
+=== Arquitectura y patrones de diseño
 
-.Form
-The form can be varied:
+* Patrón fachada: para facilitar el desarrollo del proyecto por parte del equipo, haremos uso del patrón fachada para conectar el back con el front.
+* Pods: uso de pods para guardar la información personal de cada usuario.
+* Interoperabilidad entre proyectos: el proyecto se intentará hacer de tal forma que la información alamacenada pueda ser usada de un proyecto a otro.
+* Base de datos: para la realización de este proyecto usareos una base de datos centralizada para la mejoría del rendimiento.
 
-* concept papers with any kind of structure
-* cross-cutting model excerpts or scenarios using notations of the architecture views
-* sample implementations, especially for technical concepts
-* reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)
+=== Experiencia usuario
 
-.Structure
-A potential (but not mandatory) structure for this section could be:
+* Interfaz simple: trataremos de realizar una interfaz limpia, capaz de ser usada por cualquier usuario.
+* Capacidad de marcar y opinar de sus sitios favoritos con mapas.
+* Ver opiniones y recomendaciones de amigos.
+* Filtrar marcadores y opiniones por tipos de local.
 
-* Domain concepts
-* User Experience concepts (UX)
-* Safety and security concepts
-* Architecture and design patterns
-* "Under-the-hood"
-* development concepts
-* operational concepts
+=== Conceptos de desarrollo
+* Front-end: parte del desarrollo que se encarga de la parte visible de la aplicación. Esta parte se centra en la creación de la  interfaz de usuario.
+* Back-end: parte del desarrollo que se centra en la lógica del proyecto y manejo de base de datos.
+* Testeabilidad: será un proyecto desarrollado en base a la comprobación de test. Estos test pueden ser de funcionalidad o de rendimiento.
 
-Note: it might be difficult to assign individual concepts to one specific topic
-on this list.
-
-image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
-****
-
-
-=== Domain model
-
-image:UmlDiagram.png["Example UML Diagram"]
-
-
-
-=== _<Concept 2>_
-
-_<explanation>_
-
-...
-
-=== _<Concept n>_
-
-_<explanation>_
+=== Coceptos operacionales
+* Rendimiento: es la medida de la eficacia en que la aplicación usa los recursos del sistema para hacer lo que ha diseñado para hacer. Este parámetro se tratará de mejorar mediante pruebas.
