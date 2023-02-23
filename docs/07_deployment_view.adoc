@@ -64,23 +64,24 @@ _<description of the mapping>_
 
 === Infrastructure Level 2
 
-[role="arc42help"]
-****
-Here you can include the internal structure of (some) infrastructure elements from level 1.
+Motivacion::
 
-Please copy the structure from level 1 for each selected element.
-****
+Se ha intentado plantear el sistema de la manera más descentralizada posible y mantener la privacidad del usuario de 
+manera más optima posible.
 
-==== _<Infrastructure Element 1>_
+Caracteristicas de calidad y/o rendimiento::
 
-_<diagram + explanation>_
+Como nuestro objetivo es tener un sistema optimo tanto en cuanto a rendimiento como seguridad y otras características, se ha 
+intentado buscar y comenzar a usar la mejor infraestructura posible.
 
-==== _<Infrastructure Element 2>_
+Mapeo de Bloques de Construccion a Infraestructura::
 
-_<diagram + explanation>_
-
-...
-
-==== _<Infrastructure Element n>_
-
-_<diagram + explanation>_
+[options="header",cols="1,2"]
+|===
+|Building Block|Mapping
+| MongoDB | La base de datos elegida, sera usada por la aplicacion y estara dentro de un servidor.
+| RestAPI| Interfaz entre sistemas para el intercambio de peticiones.
+| WebApp| La parte donde el usuario podra interactuar, el cual ejecuta el navegador web.
+| Web browser| Depende de la eleccion del usuario, y unica forma de acceder a la aplicacion.
+| POD| "Almacenes" para guardar los datos de los usuarios de forma segura.
+|===
