@@ -1,31 +1,36 @@
 [[section-glossary]]
-== Glossary
+== Glosario
 
-
-
-[role="arc42help"]
-****
-.Contents
-The most important domain and technical terms that your stakeholders use when discussing the system.
-
-You can also see the glossary as source for translations if you work in multi-language teams.
-
-.Motivation
-You should clearly define your terms, so that all stakeholders
-
-* have an identical understanding of these terms
-* do not use synonyms and homonyms
-
-.Form
-A table with columns <Term> and <Definition>.
-
-Potentially more columns in case you need translations.
-
-****
-
-[options="header"]
+[options="header",cols="1,1"]
 |===
-| Term         | Definition
-| <Term-1>     | <definition-1>
-| <Term-2>     | <definition-2>
+| Termino         | Definición
+| Discord
+| Servicio de mensajería instantánea que incluye texto y llamadas de audio (por donde hacemos las reuniones).
+
+| SOLID
+| Proyecto desarrollado por Tim Berners-Lee que busca descentralizar los datos de los usuarios del resto de datos de la aplicacion almacenandolos en POD
+
+| Pod
+| Almacenamiento personal de datos alojado en un servidor elegido por el usuario.
+
+| Github
+| Repositorio en github para alojar proyectos utilizando el sistema de versiones Git.
+
+| MongoDB
+| Sistema de base de datos NoSQL, orientado a documentos y de código abierto.
+
+| REACT
+| Biblioteca Javascript de código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de aplicaciones en una sola página.
+
+|Inrupt
+|Empresa colaboradora con el proyecto SOLID de Tim Berners-Lee ofrece un servicio de provedor de PODs, su url es Inrupt.net.
+
+|Material-UI
+|Libreria de componentes para React con multiples estilos.
+
+|HTTP
+|Protocolo de transferencia de hipertexto, es el protocolo usado para las comunicaciones entre maquinas en la web.
+
+| Heroku
+| Es un Paas(Platform as a Service) que nos permite desplegar nuestras aplicaciones sin preocupaciones por la infraestructura.
 |===
