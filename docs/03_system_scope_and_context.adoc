@@ -3,7 +3,7 @@
 
 === Business Context
 
-[role="arc42help"]
+
 Nustra app es una red social con la infraestructura "dispersa" en pods que pertenecen al usuario(uno por usuario) en vez de una base de datos centralizada en los servidores de la empresa
 se sigue teniendo una base de datos central pero solo se usa para guardar informacion basica del usuario tambien la app hara uso de apis externas
 :imagesdir: images/

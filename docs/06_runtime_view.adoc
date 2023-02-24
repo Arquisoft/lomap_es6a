@@ -34,10 +34,10 @@ There are many notations for describing scenarios, e.g.
 [plantuml,"Sequence diagram",png]
 ----
 actor User
-database POD
-database BBDD
 entity LoMap
 entity Api_Rest
+database POD
+database BBDD
 
 User -> LoMap: El user rellena un formulario e introducir un Pod
 LoMap -> Api_Rest: Se envía el formulario
@@ -51,10 +51,10 @@ User -> LoMap: Muestra un mensaje de confirmación
 [plantuml,"Sequence diagram1",png]
 ----
 actor User
-database POD
-database BBDD
 entity LoMap
 entity Api_Rest
+database POD
+database BBDD
 
 User -> LoMap: Introduce su pod 
 LoMap -> Api_Rest: envía el pod
@@ -106,10 +106,10 @@ Api_Rest ->User: Muestra el mapa con la nueva ubicación
 [plantuml,"Sequence diagram2",png]
 ----
 actor User
-database POD
-database BBDD
 entity LoMap
 entity Api_Rest
+database POD
+database BBDD
 
 User -> LoMap: Selecciona la localización
 LoMap -> Restapi: Pide la información sobre esa localización 
