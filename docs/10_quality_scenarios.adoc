@@ -34,7 +34,10 @@ The quality tree is a high-level overview of the quality goals and requirements:
 * a mind map with quality categories as main branches
 
 In any case the tree should include links to the scenarios of the following section.
+
 ****
+:imagesdir: images/
+image:ArbolDeCalidad.png[Punto10:ADC]
 
 === Quality Scenarios
 
@@ -50,6 +53,7 @@ For architects, two kinds of scenarios are important:
 * Usage scenarios (also called application scenarios or use case scenarios) describe the system’s runtime reaction to a certain stimulus. This also includes scenarios that describe the system’s efficiency or performance. Example: The system reacts to a user’s request within one second.
 * Change scenarios describe a modification of the system or of its immediate environment. Example: Additional functionality is implemented or requirements for a quality attribute change.
 
+
 .Motivation
 Scenarios make quality requirements concrete and allow to
 more easily measure or decide whether they are fulfilled.
@@ -60,4 +64,17 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 
 .Form
 Tabular or free form text.
+
+[options="header",cols="1,2,2"]
+|===
+|Objetivos de calidad|Motivación|Importancia
+| Privacidad | Uno de los principales objetivos es hacer una aplicación que respete la privacidad de los usuarios recogiendo 
+la menor información posible de estos | Alta
+| Seguridad | Garantizar la seguridad de los datos del cliente para aumentar su confianza y mantener a salvo su privacidad | Alta
+| Robustez | Buen manejo de excepciones para mejorar la experiencia del usuario y el uso de pods para aumentar la robustez de los servers | Alta
+| Usabilidad | La aplicación ha de ser intuitiva y de fácil manejo para gente de todo tipo de nivel | Alta
+| Autogestión | Permitir a los usuarios crearse sus propios pods o que puedan elegir ellos qué servicio de pods usar | Media-Alta
+| Eficiencia | La aplicación será lo más eficiente posible usando los menores recursos posibles | Media
+| Transparencia | Todo el proyecto será visible | Bajo
+|===
 ****

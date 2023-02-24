@@ -1,17 +1,49 @@
 [[section-technical-risks]]
-== Risks and Technical Debts
+== Riesgos y Deudas Técnicas
 
+=== Tabla de riesgos
+[options="header",cols="1,1,1,1"]
+|=========================================================
+|Prioridad | Riesgo | Explicación | Solución
 
-[role="arc42help"]
-****
-.Contents
-A list of identified technical risks or technical debts, ordered by priority
+|1
+| SOLID
+| Nadie del equipo ha utilizado SOLID, por lo que todos carecemos de conocimiento sobre este framework.
+| Verse videos tutoriales en youtube para orientarnos en el funcionamiento de SOLID.
 
-.Motivation
-“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.) 
+|2
+| React
+| Nadie tiene experiencia con REACT y algunos miembros del equipo no conocen bien JavaScript.
+| Adaptar el conocimiento de los miembros que si conocen JavaScript a TypeScript y los que no lo conocen informarse un poco a cerca de este lenguaje.
 
-This should be your motto for systematic detection and evaluation of risks and technical debts in the architecture, which will be needed by management stakeholders (e.g. project managers, product owners) as part of the overall risk analysis and measurement planning.
+|3
+| MongoDB
+| Nunca hemos trabajado con esta base de datos en concreto pero todos los miembros ya han utilizado una no relacional.
+| Comprender su funcionamiento mirando documentación al respecto.
 
-.Form
-List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
-****
+|4
+| PODs
+| Ningun miembro del equipo ha usado PODs antes ni sabemos como utilizarlos e incorporarlos en el proyecto.
+| Buscar videos en youtube y mirar la documentacion de SOLID.
+
+|5
+| GitHub
+| Aunque todo el equipo trabaja bien con GitHub falta soltura a la hora de realizar ciertas acciones como commits etc...
+| Esto no supone un gran inconveniente, se resolverá a medida que nos vayan saliendo los problemas y haciendo alguna prueba con la documentacion.
+
+|6
+| Heroku
+| Nunca nadie del equipo ha realizado ningún despliegue con Heroku.
+| Los miembros del equipo se apoyarán en la documentación oficial donde se encuentra explicado.
+
+|=========================================================
+=== Tabla deuda técnica
+[options="header",cols="1,1,1"]
+|=========================================================
+| Riesgo | Explicación | Solución
+|Conflictos en gitHub | A la hora de mergear puede dar fallos | Hacer reuniones para solucionar los conflictos para asegurarse no cometer errores
+|Robustez| Al tener poca experencia en trabajar en este tipo de proyectos en grupo puede darse la situación de que el código no quede robusto   | Realizar multiples reuniones para intentar hacerlo lo mejor posible
+|Retardo al hacer login| Al cargar los datos del POD de inrupt.net se provoca cierto retardo   | Tener una buena conexión cableada
+|Retardo al cargar imágenes| Al cargar los datos de imagenes del drive del proyecto se provoca cierto retardo   | Tener una buena conexión cableada
+
+|=========================================================
