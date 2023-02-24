@@ -31,6 +31,4 @@
 |HTTP
 |Protocolo de transferencia de hipertexto, es el protocolo usado para las comunicaciones entre maquinas en la web.
 
-| Heroku
-| Es un Paas(Platform as a Service) que nos permite desplegar nuestras aplicaciones sin preocupaciones por la infraestructura.
 |===
