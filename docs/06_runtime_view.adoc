@@ -29,7 +29,7 @@ There are many notations for describing scenarios, e.g.
 
 ****
 
-== Escenario de ejecución 1. Registro de nuevo usuario
+=== Escenario de ejecución 1. Registro de nuevo usuario
 
 [plantuml,"Sequence diagram",png]
 ----
