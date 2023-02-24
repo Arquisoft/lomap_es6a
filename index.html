@@ -442,34 +442,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#section-introduction-and-goals">1. Introduction and Goals</a>
+<li><a href="#_introduction_and_goals">1. Introduction and Goals</a>
 <ul class="sectlevel2">
-<li><a href="#_requirements_overview">1.1. Requirements Overview</a></li>
-<li><a href="#_quality_goals">1.2. Quality Goals</a></li>
+<li><a href="#_resumen_de_requisitos">1.1. Resumen de Requisitos</a></li>
+<li><a href="#_objetivos_de_calidad">1.2. Objetivos de calidad</a></li>
 <li><a href="#_stakeholders">1.3. Stakeholders</a></li>
+<li><a href="#_explicación_sobre_la_arquitectura">1.4. Explicación sobre la Arquitectura</a></li>
+<li><a href="#_organización_del_equipo">1.5. Organización del equipo</a></li>
+<li><a href="#_puntos_a_tener_en_cuenta">1.6. Puntos a tener en cuenta</a></li>
 </ul>
 </li>
-<li><a href="#section-architecture-constraints">2. Architecture Constraints</a></li>
-<li><a href="#section-system-scope-and-context">3. System Scope and Context</a>
+<li><a href="#section-system-scope-and-context">2. System Scope and Context</a>
 <ul class="sectlevel2">
-<li><a href="#_business_context">3.1. Business Context</a></li>
-<li><a href="#_technical_context">3.2. Technical Context</a></li>
+<li><a href="#_business_context">2.1. Business Context</a></li>
+<li><a href="#_contexto_tecnico">2.2. Contexto tecnico</a></li>
 </ul>
 </li>
-<li><a href="#section-solution-strategy">4. Solution Strategy</a></li>
-<li><a href="#section-building-block-view">5. Building Block View</a>
+<li><a href="#section-solution-strategy">3. Soluciones Estratégicas</a></li>
+<li><a href="#section-building-block-view">4. Vista de bloques</a>
 <ul class="sectlevel2">
-<li><a href="#_whitebox_overall_system">5.1. Whitebox Overall System</a></li>
-<li><a href="#_level_2">5.2. Level 2</a></li>
-<li><a href="#_level_3">5.3. Level 3</a></li>
+<li><a href="#_sistema_general">4.1. Sistema general</a></li>
+<li><a href="#_nivel_2">4.2. Nivel 2</a></li>
+<li><a href="#_nivel_3">4.3. Nivel 3</a></li>
 </ul>
 </li>
-<li><a href="#section-runtime-view">6. Runtime View</a>
+<li><a href="#section-runtime-view">5. Runtime View</a></li>
+<li><a href="#_escenario_de_ejecución_1_registro_de_nuevo_usuario">6. Escenario de ejecución 1. Registro de nuevo usuario</a>
 <ul class="sectlevel2">
-<li><a href="#_runtime_scenario_1">6.1. &lt;Runtime Scenario 1&gt;</a></li>
-<li><a href="#_runtime_scenario_2">6.2. &lt;Runtime Scenario 2&gt;</a></li>
-<li><a href="#">6.3. &#8230;&#8203;</a></li>
-<li><a href="#_runtime_scenario_n">6.4. &lt;Runtime Scenario n&gt;</a></li>
+<li><a href="#_escenario_de_ejecución_2_inicio_de_sesion_de_usuario">6.1. Escenario de ejecución 2. Inicio de sesion de usuario</a></li>
+<li><a href="#_escenario_de_ejecución_3_añadir_localización">6.2. Escenario de ejecución 3. Añadir localización</a></li>
+<li><a href="#_escenario_de_ejecución_4_eliminar_localización">6.3. Escenario de ejecución 4. Eliminar localización</a></li>
+<li><a href="#_escenario_de_ejecución_5_usuario_visualiza_una_de_sus_localizaciones">6.4. Escenario de ejecución 5. Usuario visualiza una de sus localizaciones.</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
@@ -478,11 +481,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_infrastructure_level_2">7.2. Infrastructure Level 2</a></li>
 </ul>
 </li>
-<li><a href="#section-concepts">8. Cross-cutting Concepts</a>
+<li><a href="#section-concepts">8. Conceptos Transversales</a>
 <ul class="sectlevel2">
-<li><a href="#_domain_model">8.1. Domain model</a></li>
-<li><a href="#_concept_2">8.2. <em>&lt;Concept 2&gt;</em></a></li>
-<li><a href="#_concept_n">8.3. <em>&lt;Concept n&gt;</em></a></li>
+<li><a href="#_modelo_de_dominio">8.1. Modelo de dominio</a></li>
+<li><a href="#_conceptos_de_seguridad_y_privacidad">8.2. Conceptos de seguridad y privacidad</a></li>
+<li><a href="#_arquitectura_y_patrones_de_diseño">8.3. Arquitectura y patrones de diseño</a></li>
+<li><a href="#_experiencia_usuario">8.4. Experiencia usuario</a></li>
+<li><a href="#_conceptos_de_desarrollo">8.5. Conceptos de desarrollo</a></li>
+<li><a href="#_coceptos_operacionales">8.6. Coceptos operacionales</a></li>
 </ul>
 </li>
 <li><a href="#section-design-decisions">9. Design Decisions</a></li>
@@ -492,8 +498,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_quality_scenarios">10.2. Quality Scenarios</a></li>
 </ul>
 </li>
-<li><a href="#section-technical-risks">11. Risks and Technical Debts</a></li>
-<li><a href="#section-glossary">12. Glossary</a></li>
+<li><a href="#section-technical-risks">11. Riesgos y Deudas Técnicas</a>
+<ul class="sectlevel2">
+<li><a href="#_tabla_de_riesgos">11.1. Tabla de riesgos</a></li>
+<li><a href="#_tabla_deuda_técnica">11.2. Tabla deuda técnica</a></li>
+</ul>
+</li>
+<li><a href="#section-glossary">12. Glosario</a></li>
 </ul>
 </div>
 </div>
@@ -534,113 +545,204 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-introduction-and-goals">1. Introduction and Goals</h2>
+<h2 id="_introduction_and_goals">1. Introduction and Goals</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
 <div class="paragraph">
-<p>Describes the relevant requirements and the driving forces that software architects and development team must consider. These include</p>
+<p>LoMap es un proyecto de ASW que consiste en la creacion de un sistema en el que los ciudadanos dispongan de un mapa personalizado con lugares, negocios&#8230;&#8203; de la ciudad de Bruselas. Los miembros son:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>underlying business goals, essential features and functional requirements for the system</p>
+<p>Ruben Diaz Zapico - UO283204</p>
 </li>
 <li>
-<p>quality goals for the architecture</p>
+<p>Alonso Antuña Gómez-UO282834</p>
 </li>
 <li>
-<p>relevant stakeholders and their expectations</p>
+<p>Javier Novella Tomás-UO282944</p>
+</li>
+<li>
+<p>Sergio Moro Muñiz - UO284622</p>
+</li>
+<li>
+<p>Pablo Fernandez Diaz-UO271116</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_resumen_de_requisitos">1.1. Resumen de Requisitos</h3>
+<div class="paragraph">
+<p>La aplicación se ejecutará en el servidor, y la información del usuario se almacenará en su pod. Asi mismo, habra una base de datos centralizada cuya informacion solo contendra lo necesario para acceder al pod de cada usuario. Todos estos requisitos son compatibles con el proyecto SOLID, ya que la información de los usuarios no se almacena de forma centralizada.</p>
+</div>
+<div class="ulist">
+<div class="title">Requisitos de alto nivel:</div>
+<ul>
+<li>
+<p>Los usuarios pueden añadir lugares en categorías diferentes: tiendas, bares, restaurantes, paisajes, monumentos, etc.</p>
+</li>
+<li>
+<p>Los usuarios serán capaces de mostrar lugares en una ventana tipo mapa.</p>
+</li>
+<li>
+<p>Los usuarios pueden asociar puntuaciones, comentarios, fotos, etc. sobre los lugares añadidos.</p>
+</li>
+<li>
+<p>Se podrán gestionar desde la aplicación los accesos a la información que comparten con otros usuarios, como sus amigos o grupos de amigos.</p>
+</li>
+<li>
+<p>La información sobre un lugar almacenada por cada usuario no deberá estar centralizada, sino que se almacenará en el pod de cada usuario.</p>
+</li>
+<li>
+<p>Si fuese necesario, se podría almacenar alguna información de forma centralizada por razones de rendimiento tratando de respetar la privacidad de los usuarios en la medida que sea posible.</p>
+</li>
+<li>
+<p>El sistema permitirá a los usuarios ver lugares e información sobre dichos lugares tomada de sus amigos.</p>
+</li>
+<li>
+<p>El sistema permitirá visualizar el mapa incorporando filtros, por ejemplo, por categoría, amigos, etc.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Caracteristicas opcionales:</div>
+<ul>
+<li>
+<p>Permitir a los usuarios crear rutas (por ejemplo, rutas para hacer compras o tomar algo)</p>
+</li>
+<li>
+<p>Permitir a los usuarios comparar mapas, por ejemplo, comparar ciertas categorías como sólo restaurantes.</p>
+</li>
+<li>
+<p>Permitir a los establecimientos (restaurantes, tiendas, bares, etc. ) crear su propio pod para que otras personas puedan conectarse a ellos.</p>
+</li>
+<li>
+<p>Crear un boletín de noticias (newsfeed) a partir de los lugares conectados.</p>
+</li>
+<li>
+<p>Añadir características de gamificación (recoger información de lugares, descubrir nuevos lugares, etc. )</p>
+</li>
+<li>
+<p>Crear múltiples mapas entre grupos de usuarios (por ejemplo, mapas de familia, de compañeros de viaje, &#8230;&#8203;)</p>
+</li>
+<li>
+<p>Conectar con el libro de direcciones para chequear información sobre lugares o realizar recomendaciones de lugares</p>
+</li>
+<li>
+<p>Añadir roles (ciudadano, turista, dueño de negocio,&#8230;&#8203;)</p>
+</li>
+<li>
+<p>Oportunidades para dueños de negocios, por ejemplo, crear un mapa con lugares recomendados cerca de un establecimiento, bares para tomar algo después de realizar la compra, etc.</p>
 </li>
 </ul>
 </div>
 </div>
-</div>
 <div class="sect2">
-<h3 id="_requirements_overview">1.1. Requirements Overview</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).</p>
+<h3 id="_objetivos_de_calidad">1.2. Objetivos de calidad</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Objetivos de calidad</th>
+<th class="tableblock halign-left valign-top">Motivación</th>
+<th class="tableblock halign-left valign-top">Importancia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Garantizar la seguridad de los datos del cliente para aumentar su confianza y mantener a salvo su privacidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Robustez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Buen manejo de excepciones para mejorar la experiencia del usuario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación ha de ser intuitiva y de fácil manejo para gente de todo tipo de nivel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transparencia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Todo el proyecto sera visible</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bajo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Eficiencia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación sera lo más eficiente posible usando los menores recursos posibles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Media</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<div class="title">Requisitos de alto nivel:</div>
+<ul>
+<li>
+<p>Los usuarios pueden añadir lugares en categorías diferentes: tiendas, bares, restaurantes, paisajes, monumentos, etc.</p>
+</li>
+<li>
+<p>Los usuarios serán capaces de mostrar lugares en una ventana tipo mapa.</p>
+</li>
+<li>
+<p>Los usuarios pueden asociar puntuaciones, comentarios, fotos, etc. sobre los lugares añadidos.</p>
+</li>
+<li>
+<p>Se podrán gestionar desde la aplicación los accesos a la información que comparten con otros usuarios, como sus amigos o grupos de amigos.</p>
+</li>
+<li>
+<p>La información sobre un lugar almacenada por cada usuario no deberá estar centralizada, sino que se almacenará en el pod de cada usuario.</p>
+</li>
+<li>
+<p>Si fuese necesario, se podría almacenar alguna información de forma centralizada por razones de rendimiento tratando de respetar la privacidad de los usuarios en la medida que sea posible.</p>
+</li>
+<li>
+<p>El sistema permitirá a los usuarios ver lugares e información sobre dichos lugares tomada de sus amigos.</p>
+</li>
+<li>
+<p>El sistema permitirá visualizar el mapa incorporando filtros, por ejemplo, por categoría, amigos, etc.</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.</p>
-</div>
-<div class="paragraph">
-<p>Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_quality_goals">1.2. Quality Goals</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don&#8217;t confuse them with project goals. They are not necessarily identical.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>A table with quality goals and concrete scenarios, ordered by priorities</p>
-</div>
-</div>
+<div class="ulist">
+<div class="title">Caracteristicas opcionales:</div>
+<ul>
+<li>
+<p>Permitir a los usuarios crear rutas (por ejemplo, rutas para hacer compras o tomar algo)</p>
+</li>
+<li>
+<p>Permitir a los usuarios comparar mapas, por ejemplo, comparar ciertas categorías como sólo restaurantes.</p>
+</li>
+<li>
+<p>Permitir a los establecimientos (restaurantes, tiendas, bares, etc. ) crear su propio pod para que otras personas puedan conectarse a ellos.</p>
+</li>
+<li>
+<p>Crear un boletín de noticias (newsfeed) a partir de los lugares conectados.</p>
+</li>
+<li>
+<p>Añadir características de gamificación (recoger información de lugares, descubrir nuevos lugares, etc. )</p>
+</li>
+<li>
+<p>Crear múltiples mapas entre grupos de usuarios (por ejemplo, mapas de familia, de compañeros de viaje, &#8230;&#8203;)</p>
+</li>
+<li>
+<p>Conectar con el libro de direcciones para chequear información sobre lugares o realizar recomendaciones de lugares</p>
+</li>
+<li>
+<p>Añadir roles (ciudadano, turista, dueño de negocio,&#8230;&#8203;)</p>
+</li>
+<li>
+<p>Oportunidades para dueños de negocios, por ejemplo, crear un mapa con lugares recomendados cerca de un establecimiento, bares para tomar algo después de realizar la compra, etc.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_stakeholders">1.3. Stakeholders</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>should know the architecture</p>
-</li>
-<li>
-<p>have to be convinced of the architecture</p>
-</li>
-<li>
-<p>have to work with the architecture or with code</p>
-</li>
-<li>
-<p>need the documentation of the architecture for their work</p>
-</li>
-<li>
-<p>have to come up with decisions about the system or its development</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Table with role names, person names, and their expectations with respect to the architecture and its documentation.</p>
-</div>
-</div>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -656,14 +758,130 @@ These stakeholders determine the extent and the level of detail of your work and
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Role-1&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Contact-1&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Expectation-1&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Profesores</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>-Jose Emilio Labra</p>
+<p class="tableblock">-Cristian Augusto Alonso</p>
+<p class="tableblock">-Irene Cid Rico</p>
+<p class="tableblock">-Pablo González</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Puesta en practica de los conocimientos y explicaciones realizadas en clase para la realización del proyecto</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Role-2&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Contact-2&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Expectation-2&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Clientes</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Clientes</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Aplicación sencilla, con una buena usabilidad, con todas las funcionalidades requeridas y que protega/asegure los datos introducidos</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Administrador</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Administrador</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manejar una aplicación robusta, bien hecha y eficiente que permita solucionar futuros problemas/errores</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Equipo</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>-Javier Novella Tomás</p>
+<p class="tableblock">-Ruben Díaz Zapico</p>
+<p class="tableblock">-Pablo Fernádez Díaz</p>
+<p class="tableblock">-Sergio Moro Muñiz</p>
+<p class="tableblock">-Alonso Antuña Gómez</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mejorar la técnica de trabajo y cooperación en un equipo de desarrollo</p></td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_explicación_sobre_la_arquitectura">1.4. Explicación sobre la Arquitectura</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usamos React para el front-end, para la interfaz gráfica de usuario.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Con SOLID,este es un requisito sobre las tecnologías que usar, los usuarios guardaran su información usando PODs. De esta forma, pueden permitir o rechazar la solicitud de acceso a los datos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación usará docker.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usaremos github para el control de versiones y comunicarnos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TypeScrypt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript para escribir el back-end, TS es una evolución de javascript con tipos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework de javascript usado para el back-end.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_organización_del_equipo">1.5. Organización del equipo</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Organización</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explicación</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reuniones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Es la primera vez que trabajamos juntos en un proyecto de estas dimensiones, tanto por complejidad en el software como por sus tecnologías.
+Somos un equipo de 5 personas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiene un tiempo de entrega corto, ya que el desarrollo completo debe hacerse en unos 4 meses.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fechas Límite</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dependiendo el mes y la semana, debemos ir entregando versiones del producto final, hasta que la entrega final llegue.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_puntos_a_tener_en_cuenta">1.6. Puntos a tener en cuenta</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estetica y uso</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La interfaz gráfica debe ser facil de usar, ademas de tener un alto grado de accesibilidad y usabilidad.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentación</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usamos Arc42 para la documentación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación sigue los principios SOLID.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usamos los lenguajes TypeScript/JavaScript y alguno de sus frameworks.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MVC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usaremos el modelo vista-controlador.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W3C AAA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nuestra aplicación seguira el convenio del W3C triple AAA, es decir, será tanto accesible como usable para cualquier tipo de público.</p></td>
 </tr>
 </tbody>
 </table>
@@ -672,25 +890,92 @@ These stakeholders determine the extent and the level of detail of your work and
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-architecture-constraints">2. Architecture Constraints</h2>
+<h2 id="section-system-scope-and-context">2. System Scope and Context</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_business_context">2.1. Business Context</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
-<div class="title">Contents</div>
-<p>Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.</p>
+<p>Nustra app es una red social con la infraestructura "dispersa" en pods que pertenecen al usuario(uno por usuario) en vez de una base de datos centralizada en los servidores de la empresa
+se sigue teniendo una base de datos central pero solo se usa para guardar informacion basica del usuario tambien la app hara uso de apis externas</p>
+</div>
+</div>
 </div>
 <div class="paragraph">
-<div class="title">Motivation</div>
-<p>Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.</p>
+<p><span class="image"><img src="./images/diagrama%20contexto%20empresarial.png" alt="Punto3:DCE"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_contexto_tecnico">2.2. Contexto tecnico</h3>
+<div class="paragraph">
+<p>Nuestra aplicación LoMap sigue los principios de descentralización de datos personales SOLID al almacenar datos personales en el POD independiente de cada usuario.
+El front-end se desarrolla utilizando el framework React, el cual implementa componentes propios diseñados o creados, el lenguaje utilizado para desarrollar diversas funciones en pantalla es TypeScript.
+Para el back-end, usando Node.js express, hacemos todas las transacciones con la base de datos.
+La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usaremos una API externa.</p>
 </div>
 <div class="paragraph">
-<div class="title">Form</div>
-<p>Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)</p>
+<p>El siguiente diagrama muestra los componentes de la aplicación afectados por cada tecnología.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/03-documentacion2.png" alt="Punto 3:DT"></span></p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-solution-strategy">3. Soluciones Estratégicas</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Para la reaalización de LoMap hemos tomado la decisión de desarrollarlo en TypeScript. TypeScript es un superconjunto de JavaScript cuyo punto más resaltable es el uso de tipado.</p>
+</div>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="ulist">
+<div class="title">Restricciones tecnológicas</div>
+<ul>
+<li>
+<p>Pods Solid: para mejorar la seguridad y privacidad de los datos de los usuarios, se ha impuesto como una condición necesaria el uso de los pods (no una base de datos centralizada). Los pods almacenan independientemente la información de cada usuario.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Tecnologías y motivación</div>
+<ul>
+<li>
+<p>React: React es una biblioteca de código abierto concebida para crear interfaces de usuario. Hemos elegido React por su sencillez y las númerosas posibilidades que proporciona.</p>
+</li>
+<li>
+<p>MongoDB: sistema de bases de datos de código abierto NoSQL. Lo hemos elegido por la forma de almacenamiento de datos en JSON y no en tablas, pensando en lo que más se ajusta a nuestra idea de proyecto.</p>
+</li>
+<li>
+<p>Node.js: Node.js, es un entorno en tiempo de ejecución multiplataforma para la capa del servidor (en el lado del servidor) basado en JavaScript.</p>
+</li>
+<li>
+<p>Docker: es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Forma</div>
+<ul>
+<li>
+<p>Seguridad y privacidad: se conservará la seguridad y privacidad de los datos del usuarios e introducidos por el propio usuario mediante el uso de PODs.</p>
+</li>
+<li>
+<p>Diseño: vamos a utilizar el MVC (Modelo Vista Controlador)para facilitar el desarrollo, la limpieza de código y la organización del mismo.</p>
+</li>
+<li>
+<p>Desarrollo y reparto: dividiremos el desarrollo y el equipo en 2 partes diferenciadas: front-end y back-end.</p>
+</li>
+<li>
+<p>Usabilidad: trataremos de crear una aplicación simple y fácil de usar para cualquier nivel informático.</p>
+</li>
+<li>
+<p>Accesibilidad: intentaremos hacer la aplicación lo más accesible posible para facilitar en la medida de lo posible el uso de la aplicación para personas con alguna discapacidad.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -698,444 +983,118 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-system-scope-and-context">3. System Scope and Context</h2>
+<h2 id="section-building-block-view">4. Vista de bloques</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
-(neighboring systems and users, i.e. the context of your system). It thereby specifies the external interfaces.</p>
-</div>
-<div class="paragraph">
-<p>If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>The domain interfaces and technical interfaces to communication partners are among your system&#8217;s most critical aspects. Make sure that you completely understand them.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Various options:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Context diagrams</p>
-</li>
-<li>
-<p>Lists of communication partners and their interfaces.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 <div class="sect2">
-<h3 id="_business_context">3.1. Business Context</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Specification of <strong>all</strong> communication partners (users, IT-systems, &#8230;&#8203;) with explanations of domain specific inputs and outputs or interfaces.
-Optionally you can add domain specific formats or communication protocols.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>All stakeholders should understand which data are exchanged with the environment of the system.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>All kinds of diagrams that show the system as a black box and specify the domain interfaces to communication partners.</p>
-</div>
-<div class="paragraph">
-<p>Alternatively (or additionally) you can use a table.
-The title of the table is the name of your system, the three columns contain the name of the communication partner, the inputs, and the outputs.</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>&lt;Diagram or Table&gt;</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>&lt;optionally: Explanation of external domain interfaces&gt;</strong></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_technical_context">3.2. Technical Context</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Technical interfaces (channels and transmission media) linking your system to its environment. In addition a mapping of domain specific input/output to the channels, i.e. an explanation with I/O uses which channel.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Many stakeholders make architectural decision based on the technical interfaces between the system and its context. Especially infrastructure or hardware designers decide these technical interfaces.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels and input/output.</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>&lt;Diagram or Table&gt;</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>&lt;optionally: Explanation of technical interfaces&gt;</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>&lt;Mapping Input/Output to Channels&gt;</strong></p>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="section-solution-strategy">4. Solution Strategy</h2>
-<div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>A short summary and explanation of the fundamental decisions and solution strategies, that shape the system&#8217;s architecture. These include</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>technology decisions</p>
-</li>
-<li>
-<p>decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern</p>
-</li>
-<li>
-<p>decisions on how to achieve key quality goals</p>
-</li>
-<li>
-<p>relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>These decisions form the cornerstones for your architecture. They are the basis for many other detailed decisions or implementation rules.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Keep the explanation of these key decisions short.</p>
-</div>
-<div class="paragraph">
-<p>Motivate what you have decided and why you decided that way,
-based upon your problem statement, the quality goals and key constraints.
-Refer to details in the following sections.</p>
-</div>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="section-building-block-view">5. Building Block View</h2>
-<div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Content</div>
-<p>The building block view shows the static decomposition of the system into building blocks (modules, components, subsystems, classes,
-interfaces, packages, libraries, frameworks, layers, partitions, tiers, functions, macros, operations,
-datas structures, &#8230;&#8203;) as well as their dependencies (relationships, associations, &#8230;&#8203;)</p>
-</div>
-<div class="paragraph">
-<p>This view is mandatory for every architecture documentation.
-In analogy to a house this is the <em>floor plan</em>.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Maintain an overview of your source code by making its structure understandable through
-abstraction.</p>
-</div>
-<div class="paragraph">
-<p>This allows you to communicate with your stakeholder on an abstract level without disclosing implementation details.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>The building block view is a hierarchical collection of black boxes and white boxes
-(see figure below) and their descriptions.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/05_building_blocks-EN.png" alt="Hierarchy of building blocks"></span></p>
-</div>
-<div class="paragraph">
-<p><strong>Level 1</strong> is the white box description of the overall system together with black
-box descriptions of all contained building blocks.</p>
-</div>
-<div class="paragraph">
-<p><strong>Level 2</strong> zooms into some building blocks of level 1.
-Thus it contains the white box description of selected building blocks of level 1, together with black box descriptions of their internal building blocks.</p>
-</div>
-<div class="paragraph">
-<p><strong>Level 3</strong> zooms into selected building blocks of level 2, and so on.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_whitebox_overall_system">5.1. Whitebox Overall System</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Here you describe the decomposition of the overall system using the following white box template. It contains</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>an overview diagram</p>
-</li>
-<li>
-<p>a motivation for the decomposition</p>
-</li>
-<li>
-<p>black box descriptions of the contained building blocks. For these we offer you alternatives:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>use <em>one</em> table for a short and pragmatic overview of all contained building blocks and their interfaces</p>
-</li>
-<li>
-<p>use a list of black box descriptions of the building blocks according to the black box template (see below).
-Depending on your choice of tool this list could be sub-chapters (in text files), sub-pages (in a Wiki) or nested elements (in a modeling tool).</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>(optional:) important interfaces, that are not explained in the black box templates of a building block, but are very important for understanding the white box.
-Since there are so many ways to specify interfaces why do not provide a specific template for them.
- In the worst case you have to specify and describe syntax, semantics, protocols, error handling,
- restrictions, versions, qualities, necessary compatibilities and many things more.
-In the best case you will get away with examples or simple signatures.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><em><strong>&lt;Overview Diagram&gt;</strong></em></p>
-</div>
+<h3 id="_sistema_general">4.1. Sistema general</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Motivation</dt>
+<dt class="hdlist1">Motivacion</dt>
 <dd>
-<p><em>&lt;text explanation&gt;</em></p>
+<p>Describimos el alcance y contexto de nuestra aplicación.</p>
 </dd>
-<dt class="hdlist1">Contained Building Blocks</dt>
+<dt class="hdlist1">Bloques de construcción contenidos</dt>
 <dd>
-<p><em>&lt;Description of contained building block (black boxes)&gt;</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>LoMap</strong>: Nuestra aplicacion que gestiona lugares interesantes para los usuarios</p>
+</li>
+<li>
+<p><strong>Base de datos</strong>: Se guardara la información necesaria para el funcionamiento de la aplicación, ya que la otra parte ira en los pod.</p>
+</li>
+<li>
+<p><strong>POD</strong>: Lugar donde se almacenará la informacion de los usuarios, de forma mas personal(lugares o sitios de summo interes).</p>
+</li>
+</ul>
+</div>
 </dd>
-<dt class="hdlist1">Important Interfaces</dt>
+<dt class="hdlist1">Interfaces importantes</dt>
 <dd>
-<p><em>&lt;Description of important interfaces&gt;</em></p>
+<p>-Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox o googlemaps, aun por decidir).</p>
 </dd>
 </dl>
 </div>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Insert your explanations of black boxes from level 1:</p>
 </div>
-<div class="paragraph">
-<p>If you use tabular form you will only describe your black boxes with name and
-responsibility according to the following schema:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Name</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;black box 1&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>&lt;Text&gt;</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;black box 2&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>&lt;Text&gt;</em></p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>If you use a list of black box descriptions then you fill in a separate black box template for every important building block .
-Its headline is the name of the black box.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_black_box_1">5.1.1. &lt;Name black box 1&gt;</h4>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Here you describe &lt;black box 1&gt;
-according the the following black box template:</p>
-</div>
+<div class="sect2">
+<h3 id="_nivel_2">4.2. Nivel 2</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivacion</dt>
+<dd>
+<p>A continuación mostramos como ira implementada nuestra aplicacion</p>
+</dd>
+<dt class="hdlist1">Bloques de construcción contenidos</dt>
+<dd>
 <div class="ulist">
 <ul>
 <li>
-<p>Purpose/Responsibility</p>
+<p><strong>Front-End</strong>: Para la interfaz de usuario, como tecnología usaremos React.</p>
 </li>
 <li>
-<p>Interface(s), when they are not extracted as separate paragraphs. This interfaces may include qualities and performance characteristics.</p>
-</li>
-<li>
-<p>(Optional) Quality-/Performance characteristics of the black box, e.g.availability, run time behavior, &#8230;&#8203;.</p>
-</li>
-<li>
-<p>(Optional) directory/file location</p>
-</li>
-<li>
-<p>(Optional) Fulfilled requirements (if you need traceability to requirements).</p>
-</li>
-<li>
-<p>(Optional) Open issues/problems/risks</p>
+<p><strong>Back-End</strong>: Aqui ira implementada la gestion de los datos y la propia base de datos, usaremos como tecnología Node.js</p>
 </li>
 </ul>
 </div>
+</dd>
+<dt class="hdlist1">Interfaces importantes</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Con las diferentes apis conectaremos el front-end y el back-end.</p>
+</li>
+</ul>
 </div>
-</div>
-<div class="paragraph">
-<p><em>&lt;Purpose/Responsibility&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;Interface(s)&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;(Optional) Quality/Performance Characteristics&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;(Optional) Directory/File Location&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;(Optional) Fulfilled Requirements&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;(optional) Open Issues/Problems/Risks&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_black_box_2">5.1.2. &lt;Name black box 2&gt;</h4>
-<div class="paragraph">
-<p><em>&lt;black box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_black_box_n">5.1.3. &lt;Name black box n&gt;</h4>
-<div class="paragraph">
-<p><em>&lt;black box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_interface_1">5.1.4. &lt;Name interface 1&gt;</h4>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_interface_m">5.1.5. &lt;Name interface m&gt;</h4>
-
+</dd>
+</dl>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_level_2">5.2. Level 2</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Here you can specify the inner structure of (some) building blocks from level 1 as white boxes.</p>
+<h3 id="_nivel_3">4.3. Nivel 3</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivacion</dt>
+<dd>
+<p>A continuación mostramos los modulos del back-end</p>
+</dd>
+<dt class="hdlist1">Bloques de construcción contenidos</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Main</strong>: Con él comunicamos como forma principal el front-end y el back-end.</p>
+</li>
+<li>
+<p><strong>BBDD</strong>: Se encarga de la comunicación con al base de datos.</p>
+</li>
+<li>
+<p><strong>Solid</strong>: Interactuará con el Pod del usuario.</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>You have to decide which building blocks of your system are important enough to justify such a detailed description.
-Please prefer relevance over completeness. Specify important, surprising, risky, complex or volatile building blocks.
-Leave out normal, simple, boring or standardized parts of your system</p>
+</dd>
+<dt class="hdlist1">Interfaces importantes</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox o googlemaps, aun por decidir).</p>
+</li>
+<li>
+<p>Para conectarnos a los pods usaremos las herramientas que nos facilite solid y las que mas nos ayuden dependiendo de nuestra arquitectura.</p>
+</li>
+</ul>
 </div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_1">5.2.1. White Box <em>&lt;building block 1&gt;</em></h4>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>&#8230;&#8203;describes the internal structure of <em>building block 1</em>.</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_2">5.2.2. White Box <em>&lt;building block 2&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_m">5.2.3. White Box <em>&lt;building block m&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_level_3">5.3. Level 3</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Here you can specify the inner structure of (some) building blocks from level 2 as white boxes.</p>
-</div>
-<div class="paragraph">
-<p>When you need more detailed levels of your architecture please copy this
-part of arc42 for additional levels.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_x_1">5.3.1. White Box &lt;_building block x.1_&gt;</h4>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Specifies the internal structure of <em>building block x.1</em>.</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_x_2">5.3.2. White Box &lt;_building block x.2_&gt;</h4>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_y_1">5.3.3. White Box &lt;_building block y.1_&gt;</h4>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
+</dd>
+</dl>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="section-runtime-view">6. Runtime View</h2>
+<h2 id="section-runtime-view">5. Runtime View</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1195,38 +1154,56 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_escenario_de_ejecución_1_registro_de_nuevo_usuario">6. Escenario de ejecución 1. Registro de nuevo usuario</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="585" height="365">
+</div>
+</div>
 <div class="sect2">
-<h3 id="_runtime_scenario_1">6.1. &lt;Runtime Scenario 1&gt;</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><em>&lt;insert runtime diagram or textual description of the scenario&gt;</em></p>
-</li>
-<li>
-<p><em>&lt;insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.&gt;</em></p>
-</li>
-</ul>
+<h3 id="_escenario_de_ejecución_2_inicio_de_sesion_de_usuario">6.1. Escenario de ejecución 2. Inicio de sesion de usuario</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Sequence%20diagram1.png" alt="Sequence diagram1" width="371" height="365">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_escenario_de_ejecución_3_añadir_localización">6.2. Escenario de ejecución 3. Añadir localización</h3>
+<div class="paragraph">
+<p>Las ubicaciones guardadas pueden ser vistas más tarde por el usuario y sus amigos a través de la aplicación web.</p>
 </div>
 <div class="paragraph">
-<p>It is possible to use a sequence diagram:</p>
+<p>El usuario puede agregar una ubicación a su mapa.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="332" height="335">
+<img src="./images/Sequence%20diagram%20-%20Saving%20Locations%20-%20mobileapp.png" alt="Sequence diagram   Saving Locations   mobileapp" width="637" height="378">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_runtime_scenario_2">6.2. &lt;Runtime Scenario 2&gt;</h3>
-
+<h3 id="_escenario_de_ejecución_4_eliminar_localización">6.3. Escenario de ejecución 4. Eliminar localización</h3>
+<div class="paragraph">
+<p>Las ubicaciones agregadas al mapa luego serán eliminadas por el usuario a través de la aplicación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Sequence%20diagram%20-%20Editing%20Saved%20Locations.png" alt="Sequence diagram   Editing Saved Locations" width="809" height="422">
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="">6.3. &#8230;&#8203;</h3>
-
+<h3 id="_escenario_de_ejecución_5_usuario_visualiza_una_de_sus_localizaciones">6.4. Escenario de ejecución 5. Usuario visualiza una de sus localizaciones.</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Sequence%20diagram2.png" alt="Sequence diagram2" width="542" height="426">
 </div>
-<div class="sect2">
-<h3 id="_runtime_scenario_n">6.4. &lt;Runtime Scenario n&gt;</h3>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1334,159 +1311,143 @@ when your infrastructure is more complex.</p>
 </div>
 <div class="sect2">
 <h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Here you can include the internal structure of (some) infrastructure elements from level 1.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivacion</dt>
+<dd>
+<p>Se ha intentado plantear el sistema de la manera más descentralizada posible y mantener la privacidad del usuario de
+manera más optima posible.</p>
+</dd>
+<dt class="hdlist1">Caracteristicas de calidad y/o rendimiento</dt>
+<dd>
+<p>Como nuestro objetivo es tener un sistema optimo tanto en cuanto a rendimiento como seguridad y otras características, se ha
+intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
+</dd>
+<dt class="hdlist1">Mapeo de Bloques de Construccion a Infraestructura</dt>
+</dl>
 </div>
-<div class="paragraph">
-<p>Please copy the structure from level 1 for each selected element.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_infrastructure_element_1">7.2.1. <em>&lt;Infrastructure Element 1&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_infrastructure_element_2">7.2.2. <em>&lt;Infrastructure Element 2&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_infrastructure_element_n">7.2.3. <em>&lt;Infrastructure Element n&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Building Block</th>
+<th class="tableblock halign-left valign-top">Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La base de datos elegida, sera usada por la aplicacion y estara dentro de un servidor.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RestAPI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interfaz entre sistemas para el intercambio de peticiones.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WebApp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La parte donde el usuario podra interactuar, el cual ejecuta el navegador web.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Web browser</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Depende de la eleccion del usuario, y unica forma de acceder a la aplicacion.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Almacenes" para guardar los datos de los usuarios de forma segura.</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="section-concepts">8. Cross-cutting Concepts</h2>
+<h2 id="section-concepts">8. Conceptos Transversales</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
+<div class="sect2">
+<h3 id="_modelo_de_dominio">8.1. Modelo de dominio</h3>
 <div class="paragraph">
-<div class="title">Content</div>
-<p>This section describes overall, principal regulations and solution ideas that are
-relevant in multiple parts (= cross-cutting) of your system.
-Such concepts are often related to multiple building blocks.
-They can include many different topics, such as</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>domain models</p>
-</li>
-<li>
-<p>architecture patterns or design patterns</p>
-</li>
-<li>
-<p>rules for using specific technology</p>
-</li>
-<li>
-<p>principal, often technical decisions of overall decisions</p>
-</li>
-<li>
-<p>implementation rules</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Concepts form the basis for <em>conceptual integrity</em> (consistency, homogeneity)
-of the architecture. Thus, they are an important contribution to achieve inner qualities of your system.</p>
-</div>
-<div class="paragraph">
-<p>Some of these concepts cannot be assigned to individual building blocks
-(e.g. security or safety). This is the place in the template that we provided for a
-cohesive specification of such concepts.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>The form can be varied:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>concept papers with any kind of structure</p>
-</li>
-<li>
-<p>cross-cutting model excerpts or scenarios using notations of the architecture views</p>
-</li>
-<li>
-<p>sample implementations, especially for technical concepts</p>
-</li>
-<li>
-<p>reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Structure</div>
-<p>A potential (but not mandatory) structure for this section could be:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Domain concepts</p>
-</li>
-<li>
-<p>User Experience concepts (UX)</p>
-</li>
-<li>
-<p>Safety and security concepts</p>
-</li>
-<li>
-<p>Architecture and design patterns</p>
-</li>
-<li>
-<p>"Under-the-hood"</p>
-</li>
-<li>
-<p>development concepts</p>
-</li>
-<li>
-<p>operational concepts</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Note: it might be difficult to assign individual concepts to one specific topic
-on this list.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/08-Crosscutting-Concepts-Structure-EN.png" alt="Possible topics for crosscutting concepts"></span></p>
-</div>
+<p><span class="image"><img src="./images/ASWDM.png" alt="Punto 8:DM"></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_domain_model">8.1. Domain model</h3>
-<div class="paragraph">
-<p><span class="image"><img src="./images/UmlDiagram.png" alt="Example UML Diagram"></span></p>
+<h3 id="_conceptos_de_seguridad_y_privacidad">8.2. Conceptos de seguridad y privacidad</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Privacidad: los datos introducidos serán privados y no visibles. Las opiniones y marks creados por el usuario solo podrán ser visualizados por los amigos añadidos.</p>
+</li>
+<li>
+<p>Seguridad: los datos serán completamente seguros, siendo almacenado en PODs individuales y no en una base de datos centralizada.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concept_2">8.2. <em>&lt;Concept 2&gt;</em></h3>
-<div class="paragraph">
-<p><em>&lt;explanation&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
+<h3 id="_arquitectura_y_patrones_de_diseño">8.3. Arquitectura y patrones de diseño</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Patrón fachada: para facilitar el desarrollo del proyecto por parte del equipo, haremos uso del patrón fachada para conectar el back con el front.</p>
+</li>
+<li>
+<p>Pods: uso de pods para guardar la información personal de cada usuario.</p>
+</li>
+<li>
+<p>Interoperabilidad entre proyectos: el proyecto se intentará hacer de tal forma que la información alamacenada pueda ser usada de un proyecto a otro.</p>
+</li>
+<li>
+<p>Base de datos: para la realización de este proyecto usareos una base de datos centralizada para la mejoría del rendimiento.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concept_n">8.3. <em>&lt;Concept n&gt;</em></h3>
-<div class="paragraph">
-<p><em>&lt;explanation&gt;</em></p>
+<h3 id="_experiencia_usuario">8.4. Experiencia usuario</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Interfaz simple: trataremos de realizar una interfaz limpia, capaz de ser usada por cualquier usuario.</p>
+</li>
+<li>
+<p>Capacidad de marcar y opinar de sus sitios favoritos con mapas.</p>
+</li>
+<li>
+<p>Ver opiniones y recomendaciones de amigos.</p>
+</li>
+<li>
+<p>Filtrar marcadores y opiniones por tipos de local.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conceptos_de_desarrollo">8.5. Conceptos de desarrollo</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Front-end: parte del desarrollo que se encarga de la parte visible de la aplicación. Esta parte se centra en la creación de la  interfaz de usuario.</p>
+</li>
+<li>
+<p>Back-end: parte del desarrollo que se centra en la lógica del proyecto y manejo de base de datos.</p>
+</li>
+<li>
+<p>Testeabilidad: será un proyecto desarrollado en base a la comprobación de test. Estos test pueden ser de funcionalidad o de rendimiento.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_coceptos_operacionales">8.6. Coceptos operacionales</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Rendimiento: es la medida de la eficacia en que la aplicación usa los recursos del sistema para hacer lo que ha diseñado para hacer. Este parámetro se tratará de mejorar mediante pruebas.</p>
+</li>
+</ul>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1531,6 +1492,50 @@ here in this central section or whether you better document it locally
 </li>
 </ul>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decisión Arquitectónica</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ventajas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Desventajas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Simplifica y mejora JavaScript al cual extiende agregando tipado de tipos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nadie ha trabajado con el así que hay que aprender a usarlo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permiten que la información de los usuarios sea almacenada de forma distribuida en vez de centralizada, lo cual aparte de aumentar la robustez, también abarata costes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agregaría el problema de que es una tecnología con la que nadie del grupo tiene experiencia y de que probablemente complicaría el desarrollo de la aplicación agregando complejidad al sistema</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB es una base de datos no relacional con mucha flexibilidad que puede ser muy útil para nuestro proyecto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No se tiene experiencia con ella y habría que aprender</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Una herramienta muy útil para el control de versiones de la aplicación (tiene ramas, issues, etc.)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Si no se gestionan bien los merges pueden ser muy problemáticos</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Teniendo en cuenta la aplicación que se va a hacer usar React es muy conveniente, puesto que está diseñada principalmente para hacer aplicaciones de una sola página con JavaScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Puede agregar complejidad al proyecto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Express</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Es un framework de node.js minimalista, lo cual simplificaría el desarrollo de la aplicación</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">puede llegar a ser "demasiado minimalista" lo cual haría más difícil agregar funcionalidades complejas y nadie del grupo tiene experiencia con este framework con lo que habría que aprender a usarlo</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1588,6 +1593,9 @@ concrete and measurable.</p>
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/ArbolDeCalidad.png" alt="Punto10:ADC"></span></p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_quality_scenarios">10.2. Quality Scenarios</h3>
@@ -1627,6 +1635,58 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 <div class="title">Form</div>
 <p>Tabular or free form text.</p>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Objetivos de calidad</th>
+<th class="tableblock halign-left valign-top">Motivación</th>
+<th class="tableblock halign-left valign-top">Importancia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Privacidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Uno de los principales objetivos es hacer una aplicación que respete la privacidad de los usuarios recogiendo
+la menor información posible de estos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Garantizar la seguridad de los datos del cliente para aumentar su confianza y mantener a salvo su privacidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Robustez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Buen manejo de excepciones para mejorar la experiencia del usuario y el uso de pods para aumentar la robustez de los servers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación ha de ser intuitiva y de fácil manejo para gente de todo tipo de nivel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autogestión</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permitir a los usuarios crearse sus propios pods o que puedan elegir ellos qué servicio de pods usar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Media-Alta</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Eficiencia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación será lo más eficiente posible usando los menores recursos posibles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Media</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transparencia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Todo el proyecto será visible</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bajo</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1634,65 +1694,110 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-technical-risks">11. Risks and Technical Debts</h2>
+<h2 id="section-technical-risks">11. Riesgos y Deudas Técnicas</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>A list of identified technical risks or technical debts, ordered by priority</p>
+<div class="sect2">
+<h3 id="_tabla_de_riesgos">11.1. Tabla de riesgos</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Prioridad</th>
+<th class="tableblock halign-left valign-top">Riesgo</th>
+<th class="tableblock halign-left valign-top">Explicación</th>
+<th class="tableblock halign-left valign-top">Solución</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nadie del equipo ha utilizado SOLID, por lo que todos carecemos de conocimiento sobre este framework.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verse videos tutoriales en youtube para orientarnos en el funcionamiento de SOLID.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nadie tiene experiencia con REACT y algunos miembros del equipo no conocen bien JavaScript.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adaptar el conocimiento de los miembros que si conocen JavaScript a TypeScript y los que no lo conocen informarse un poco a cerca de este lenguaje.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nunca hemos trabajado con esta base de datos en concreto pero todos los miembros ya han utilizado una no relacional.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comprender su funcionamiento mirando documentación al respecto.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PODs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ningun miembro del equipo ha usado PODs antes ni sabemos como utilizarlos e incorporarlos en el proyecto.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Buscar videos en youtube y mirar la documentacion de SOLID.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aunque todo el equipo trabaja bien con GitHub falta soltura a la hora de realizar ciertas acciones como commits etc&#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Esto no supone un gran inconveniente, se resolverá a medida que nos vayan saliendo los problemas y haciendo alguna prueba con la documentacion.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Heroku</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nunca nadie del equipo ha realizado ningún despliegue con Heroku.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Los miembros del equipo se apoyarán en la documentación oficial donde se encuentra explicado.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.)</p>
-</div>
-<div class="paragraph">
-<p>This should be your motto for systematic detection and evaluation of risks and technical debts in the architecture, which will be needed by management stakeholders (e.g. project managers, product owners) as part of the overall risk analysis and measurement planning.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.</p>
-</div>
-</div>
-</div>
+<div class="sect2">
+<h3 id="_tabla_deuda_técnica">11.2. Tabla deuda técnica</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Riesgo</th>
+<th class="tableblock halign-left valign-top">Explicación</th>
+<th class="tableblock halign-left valign-top">Solución</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conflictos en gitHub</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A la hora de mergear puede dar fallos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hacer reuniones para solucionar los conflictos para asegurarse no cometer errores</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Robustez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Al tener poca experencia en trabajar en este tipo de proyectos en grupo puede darse la situación de que el código no quede robusto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Realizar multiples reuniones para intentar hacerlo lo mejor posible</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Retardo al hacer login</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Al cargar los datos del POD de inrupt.net se provoca cierto retardo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tener una buena conexión cableada</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Retardo al cargar imágenes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Al cargar los datos de imagenes del drive del proyecto se provoca cierto retardo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tener una buena conexión cableada</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="section-glossary">12. Glossary</h2>
+<h2 id="section-glossary">12. Glosario</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>The most important domain and technical terms that your stakeholders use when discussing the system.</p>
-</div>
-<div class="paragraph">
-<p>You can also see the glossary as source for translations if you work in multi-language teams.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>You should clearly define your terms, so that all stakeholders</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>have an identical understanding of these terms</p>
-</li>
-<li>
-<p>do not use synonyms and homonyms</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>A table with columns &lt;Term&gt; and &lt;Definition&gt;.</p>
-</div>
-<div class="paragraph">
-<p>Potentially more columns in case you need translations.</p>
-</div>
-</div>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1700,18 +1805,50 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Term</th>
-<th class="tableblock halign-left valign-top">Definition</th>
+<th class="tableblock halign-left valign-top">Termino</th>
+<th class="tableblock halign-left valign-top">Definición</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;Term-1&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;definition-1&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Discord</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Servicio de mensajería instantánea que incluye texto y llamadas de audio (por donde hacemos las reuniones).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;Term-2&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;definition-2&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Proyecto desarrollado por Tim Berners-Lee que busca descentralizar los datos de los usuarios del resto de datos de la aplicacion almacenandolos en POD</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pod</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Almacenamiento personal de datos alojado en un servidor elegido por el usuario.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Github</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Repositorio en github para alojar proyectos utilizando el sistema de versiones Git.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sistema de base de datos NoSQL, orientado a documentos y de código abierto.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REACT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Biblioteca Javascript de código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de aplicaciones en una sola página.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inrupt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empresa colaboradora con el proyecto SOLID de Tim Berners-Lee ofrece un servicio de provedor de PODs, su url es Inrupt.net.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Material-UI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Libreria de componentes para React con multiples estilos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Protocolo de transferencia de hipertexto, es el protocolo usado para las comunicaciones entre maquinas en la web.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Heroku</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Es un Paas(Platform as a Service) que nos permite desplegar nuestras aplicaciones sin preocupaciones por la infraestructura.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1740,7 +1877,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-01-30 12:49:53 +0100
+Last updated 2023-02-24 09:24:47 +0100
 </div>
 </div>
 </body>
