@@ -1,3 +1,4 @@
+== Arquitectura
 === Explicación sobre la Arquitectura
 |===
 |React|Usamos React para el front-end, para la interfaz gráfica de usuario.
