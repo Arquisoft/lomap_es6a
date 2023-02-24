@@ -466,45 +466,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_nivel_3">4.3. Nivel 3</a></li>
 </ul>
 </li>
-<li><a href="#section-runtime-view">5. Runtime View</a></li>
-<li><a href="#_escenario_de_ejecución_1_registro_de_nuevo_usuario">6. Escenario de ejecución 1. Registro de nuevo usuario</a>
+<li><a href="#section-runtime-view">5. Runtime View</a>
 <ul class="sectlevel2">
-<li><a href="#_escenario_de_ejecución_2_inicio_de_sesion_de_usuario">6.1. Escenario de ejecución 2. Inicio de sesion de usuario</a></li>
-<li><a href="#_escenario_de_ejecución_3_añadir_localización">6.2. Escenario de ejecución 3. Añadir localización</a></li>
-<li><a href="#_escenario_de_ejecución_4_eliminar_localización">6.3. Escenario de ejecución 4. Eliminar localización</a></li>
-<li><a href="#_escenario_de_ejecución_5_usuario_visualiza_una_de_sus_localizaciones">6.4. Escenario de ejecución 5. Usuario visualiza una de sus localizaciones.</a></li>
+<li><a href="#_escenario_de_ejecución_1_registro_de_nuevo_usuario">5.1. Escenario de ejecución 1. Registro de nuevo usuario</a></li>
+<li><a href="#_escenario_de_ejecución_2_inicio_de_sesion_de_usuario">5.2. Escenario de ejecución 2. Inicio de sesion de usuario</a></li>
+<li><a href="#_escenario_de_ejecución_3_añadir_localización">5.3. Escenario de ejecución 3. Añadir localización</a></li>
+<li><a href="#_escenario_de_ejecución_4_eliminar_localización">5.4. Escenario de ejecución 4. Eliminar localización</a></li>
+<li><a href="#_escenario_de_ejecución_5_usuario_visualiza_una_de_sus_localizaciones">5.5. Escenario de ejecución 5. Usuario visualiza una de sus localizaciones.</a></li>
 </ul>
 </li>
-<li><a href="#section-deployment-view">7. Deployment View</a>
+<li><a href="#section-deployment-view">6. Deployment View</a>
 <ul class="sectlevel2">
-<li><a href="#_infrastructure_level_1">7.1. Infrastructure Level 1</a></li>
-<li><a href="#_infrastructure_level_2">7.2. Infrastructure Level 2</a></li>
+<li><a href="#_infrastructure">6.1. Infrastructure</a></li>
 </ul>
 </li>
-<li><a href="#section-concepts">8. Conceptos Transversales</a>
+<li><a href="#section-concepts">7. Conceptos Transversales</a>
 <ul class="sectlevel2">
-<li><a href="#_modelo_de_dominio">8.1. Modelo de dominio</a></li>
-<li><a href="#_conceptos_de_seguridad_y_privacidad">8.2. Conceptos de seguridad y privacidad</a></li>
-<li><a href="#_arquitectura_y_patrones_de_diseño">8.3. Arquitectura y patrones de diseño</a></li>
-<li><a href="#_experiencia_usuario">8.4. Experiencia usuario</a></li>
-<li><a href="#_conceptos_de_desarrollo">8.5. Conceptos de desarrollo</a></li>
-<li><a href="#_coceptos_operacionales">8.6. Coceptos operacionales</a></li>
+<li><a href="#_modelo_de_dominio">7.1. Modelo de dominio</a></li>
+<li><a href="#_conceptos_de_seguridad_y_privacidad">7.2. Conceptos de seguridad y privacidad</a></li>
+<li><a href="#_arquitectura_y_patrones_de_diseño">7.3. Arquitectura y patrones de diseño</a></li>
+<li><a href="#_experiencia_usuario">7.4. Experiencia usuario</a></li>
+<li><a href="#_conceptos_de_desarrollo">7.5. Conceptos de desarrollo</a></li>
+<li><a href="#_coceptos_operacionales">7.6. Coceptos operacionales</a></li>
 </ul>
 </li>
-<li><a href="#section-design-decisions">9. Design Decisions</a></li>
-<li><a href="#section-quality-scenarios">10. Quality Requirements</a>
+<li><a href="#section-design-decisions">8. Design Decisions</a></li>
+<li><a href="#section-quality-scenarios">9. Quality Requirements</a>
 <ul class="sectlevel2">
-<li><a href="#_quality_tree">10.1. Quality Tree</a></li>
-<li><a href="#_quality_scenarios">10.2. Quality Scenarios</a></li>
+<li><a href="#_quality_tree">9.1. Quality Tree</a></li>
+<li><a href="#_quality_scenarios">9.2. Quality Scenarios</a></li>
 </ul>
 </li>
-<li><a href="#section-technical-risks">11. Riesgos y Deudas Técnicas</a>
+<li><a href="#section-technical-risks">10. Riesgos y Deudas Técnicas</a>
 <ul class="sectlevel2">
-<li><a href="#_tabla_de_riesgos">11.1. Tabla de riesgos</a></li>
-<li><a href="#_tabla_deuda_técnica">11.2. Tabla deuda técnica</a></li>
+<li><a href="#_tabla_de_riesgos">10.1. Tabla de riesgos</a></li>
+<li><a href="#_tabla_deuda_técnica">10.2. Tabla deuda técnica</a></li>
 </ul>
 </li>
-<li><a href="#section-glossary">12. Glosario</a></li>
+<li><a href="#section-glossary">11. Glosario</a></li>
 </ul>
 </div>
 </div>
@@ -894,16 +893,11 @@ Somos un equipo de 5 personas.</p></td>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_business_context">2.1. Business Context</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
+<div class="paragraph arc42help">
 <p>Nustra app es una red social con la infraestructura "dispersa" en pods que pertenecen al usuario(uno por usuario) en vez de una base de datos centralizada en los servidores de la empresa
-se sigue teniendo una base de datos central pero solo se usa para guardar informacion basica del usuario tambien la app hara uso de apis externas</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/diagrama%20contexto%20empresarial.png" alt="Punto3:DCE"></span></p>
+se sigue teniendo una base de datos central pero solo se usa para guardar informacion basica del usuario tambien la app hara uso de apis externas
+:imagesdir: images/
+<span class="image"><img src="./images/diagrama%20contexto%20empresarial.png" alt="Punto3:DCE"></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -930,9 +924,7 @@ La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usare
 <div class="paragraph">
 <p>Para la reaalización de LoMap hemos tomado la decisión de desarrollarlo en TypeScript. TypeScript es un superconjunto de JavaScript cuyo punto más resaltable es el uso de tipado.</p>
 </div>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="ulist">
+<div class="ulist arc42help">
 <div class="title">Restricciones tecnológicas</div>
 <ul>
 <li>
@@ -976,8 +968,6 @@ La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usare
 <p>Accesibilidad: intentaremos hacer la aplicación lo más accesible posible para facilitar en la medida de lo posible el uso de la aplicación para personas con alguna discapacidad.</p>
 </li>
 </ul>
-</div>
-</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1154,18 +1144,16 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_escenario_de_ejecución_1_registro_de_nuevo_usuario">6. Escenario de ejecución 1. Registro de nuevo usuario</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_escenario_de_ejecución_1_registro_de_nuevo_usuario">5.1. Escenario de ejecución 1. Registro de nuevo usuario</h3>
 <div class="imageblock">
 <div class="content">
 <img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="585" height="365">
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_escenario_de_ejecución_2_inicio_de_sesion_de_usuario">6.1. Escenario de ejecución 2. Inicio de sesion de usuario</h3>
+<h3 id="_escenario_de_ejecución_2_inicio_de_sesion_de_usuario">5.2. Escenario de ejecución 2. Inicio de sesion de usuario</h3>
 <div class="imageblock">
 <div class="content">
 <img src="./images/Sequence%20diagram1.png" alt="Sequence diagram1" width="371" height="365">
@@ -1173,7 +1161,7 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 </div>
 <div class="sect2">
-<h3 id="_escenario_de_ejecución_3_añadir_localización">6.2. Escenario de ejecución 3. Añadir localización</h3>
+<h3 id="_escenario_de_ejecución_3_añadir_localización">5.3. Escenario de ejecución 3. Añadir localización</h3>
 <div class="paragraph">
 <p>Las ubicaciones guardadas pueden ser vistas más tarde por el usuario y sus amigos a través de la aplicación web.</p>
 </div>
@@ -1187,7 +1175,7 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 </div>
 <div class="sect2">
-<h3 id="_escenario_de_ejecución_4_eliminar_localización">6.3. Escenario de ejecución 4. Eliminar localización</h3>
+<h3 id="_escenario_de_ejecución_4_eliminar_localización">5.4. Escenario de ejecución 4. Eliminar localización</h3>
 <div class="paragraph">
 <p>Las ubicaciones agregadas al mapa luego serán eliminadas por el usuario a través de la aplicación.</p>
 </div>
@@ -1198,7 +1186,7 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 </div>
 <div class="sect2">
-<h3 id="_escenario_de_ejecución_5_usuario_visualiza_una_de_sus_localizaciones">6.4. Escenario de ejecución 5. Usuario visualiza una de sus localizaciones.</h3>
+<h3 id="_escenario_de_ejecución_5_usuario_visualiza_una_de_sus_localizaciones">5.5. Escenario de ejecución 5. Usuario visualiza una de sus localizaciones.</h3>
 <div class="imageblock">
 <div class="content">
 <img src="./images/Sequence%20diagram2.png" alt="Sequence diagram2" width="542" height="426">
@@ -1209,7 +1197,7 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-deployment-view">7. Deployment View</h2>
+<h2 id="section-deployment-view">6. Deployment View</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1261,56 +1249,8 @@ when your infrastructure is more complex.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Describe (usually in a combination of diagrams, tables, and text):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>the distribution of your system to multiple locations, environments, computers, processors, .. as well as the physical connections between them</p>
-</li>
-<li>
-<p>important justification or motivation for this deployment structure</p>
-</li>
-<li>
-<p>Quality and/or performance features of the infrastructure</p>
-</li>
-<li>
-<p>the mapping of software artifacts to elements of the infrastructure</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For multiple environments or alternative deployments please copy that section of arc42 for all relevant environments.</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><em><strong>&lt;Overview Diagram&gt;</strong></em></p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Motivation</dt>
-<dd>
-<p><em>&lt;explanation in text form&gt;</em></p>
-</dd>
-<dt class="hdlist1">Quality and/or Performance Features</dt>
-<dd>
-<p><em>&lt;explanation in text form&gt;</em></p>
-</dd>
-<dt class="hdlist1">Mapping of Building Blocks to Infrastructure</dt>
-<dd>
-<p><em>&lt;description of the mapping&gt;</em></p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
+<div class="sect2 arc42help">
+<h3 id="_infrastructure">6.1. Infrastructure</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Motivacion</dt>
@@ -1365,16 +1305,16 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-concepts">8. Conceptos Transversales</h2>
+<h2 id="section-concepts">7. Conceptos Transversales</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_modelo_de_dominio">8.1. Modelo de dominio</h3>
+<h3 id="_modelo_de_dominio">7.1. Modelo de dominio</h3>
 <div class="paragraph">
 <p><span class="image"><img src="./images/ASWDM.png" alt="Punto 8:DM"></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conceptos_de_seguridad_y_privacidad">8.2. Conceptos de seguridad y privacidad</h3>
+<h3 id="_conceptos_de_seguridad_y_privacidad">7.2. Conceptos de seguridad y privacidad</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1387,7 +1327,7 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_arquitectura_y_patrones_de_diseño">8.3. Arquitectura y patrones de diseño</h3>
+<h3 id="_arquitectura_y_patrones_de_diseño">7.3. Arquitectura y patrones de diseño</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1406,7 +1346,7 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_experiencia_usuario">8.4. Experiencia usuario</h3>
+<h3 id="_experiencia_usuario">7.4. Experiencia usuario</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1425,7 +1365,7 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conceptos_de_desarrollo">8.5. Conceptos de desarrollo</h3>
+<h3 id="_conceptos_de_desarrollo">7.5. Conceptos de desarrollo</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1441,7 +1381,7 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_coceptos_operacionales">8.6. Coceptos operacionales</h3>
+<h3 id="_coceptos_operacionales">7.6. Coceptos operacionales</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1454,7 +1394,7 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-design-decisions">9. Design Decisions</h2>
+<h2 id="section-design-decisions">8. Design Decisions</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1542,7 +1482,7 @@ here in this central section or whether you better document it locally
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-quality-scenarios">10. Quality Requirements</h2>
+<h2 id="section-quality-scenarios">9. Quality Requirements</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1563,7 +1503,7 @@ concrete and measurable.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_quality_tree">10.1. Quality Tree</h3>
+<h3 id="_quality_tree">9.1. Quality Tree</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1598,7 +1538,7 @@ concrete and measurable.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_quality_scenarios">10.2. Quality Scenarios</h3>
+<h3 id="_quality_scenarios">9.2. Quality Scenarios</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1694,10 +1634,10 @@ la menor información posible de estos</p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-technical-risks">11. Riesgos y Deudas Técnicas</h2>
+<h2 id="section-technical-risks">10. Riesgos y Deudas Técnicas</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_tabla_de_riesgos">11.1. Tabla de riesgos</h3>
+<h3 id="_tabla_de_riesgos">10.1. Tabla de riesgos</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1748,7 +1688,7 @@ la menor información posible de estos</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_tabla_deuda_técnica">11.2. Tabla deuda técnica</h3>
+<h3 id="_tabla_deuda_técnica">10.2. Tabla deuda técnica</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1790,7 +1730,7 @@ la menor información posible de estos</p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-glossary">12. Glosario</h2>
+<h2 id="section-glossary">11. Glosario</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
