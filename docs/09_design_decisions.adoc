@@ -25,7 +25,7 @@ Various options:
 * ADR (architecture decision record) for every important decision
 [options="header",cols="1,2,2"]
 |===
-Decisión Arquitectónica|Ventajas|Desventajas
+|Decisión Arquitectónica|Ventajas|Desventajas
 | TypeScript | Simplifica y mejora JavaScript al cual extiende agregando tipado de tipos | Nadie ha trabajado con el así que hay que aprender a usarlo
 | Pods | Permiten que la información de los usuarios sea almacenada de forma distribuida en vez de centralizada, lo cual aparte de aumentar la robustez, también abarata costes | agregaría el problema de que es una tecnología con la que nadie del grupo tiene experiencia y de que probablemente complicaría el desarrollo de la aplicación agregando complejidad al sistema
 | MongoDB | MongoDB es una base de datos no relacional con mucha flexibilidad que puede ser muy útil para nuestro proyecto| No se tiene experiencia con ella y habría que aprender
