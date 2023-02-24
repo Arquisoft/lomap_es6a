@@ -39,7 +39,7 @@ entity Api_Rest
 database POD
 database BBDD
 
-User -> LoMap: El user rellena un formulario e introducir un Pod
+User -> LoMap: El user rellena un formulario e introducir un POD
 LoMap -> Api_Rest: Se envía el formulario
 Api_Rest -> POD: Almacena datos del usuario
 Api_Rest -> BBDD: Envía datos necesarios
@@ -56,8 +56,8 @@ entity Api_Rest
 database POD
 database BBDD
 
-User -> LoMap: Introduce su pod 
-LoMap -> Api_Rest: envía el pod
+User -> LoMap: Introduce su POD 
+LoMap -> Api_Rest: envía el POD
 Api_Rest <- POD: Extrae datos del usuario
 Api_Rest <- BBDD: Recibe datos necesarios
 LoMap <- Api_Rest: Devuelve localizaciones
@@ -75,12 +75,12 @@ actor User
 entity Api_Rest
 database POD 
  
-User-> Server: El usuario hace clic en el mapa para agregar un nuevo marcador 
-Server ->Pod: Preguntar ubicaciones JSON 
-Pod-> Server: Ubicaciones de retorno JSON
-Server -> Server: Agregar la nueva ubicación
-Server ->Pod: Envía el nuevo JSON
-Server ->User: Muestra el mapa con la nueva ubicación
+User-> Api_Rest: El usuario hace clic en el mapa para agregar un nuevo marcador 
+Api_Rest ->POD: Preguntar ubicaciones JSON 
+POD-> Api_Rest: Ubicaciones de retorno JSON
+Api_Rest -> Api_Rest: Agregar la nueva ubicación
+Api_Rest ->POD: Envía el nuevo JSON
+Api_Rest ->User: Muestra el mapa con la nueva ubicación
 ----  
 === Escenario de ejecución 4. Eliminar localización 
 
