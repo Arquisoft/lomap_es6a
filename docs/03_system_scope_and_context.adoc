@@ -1,34 +1,11 @@
 [[section-system-scope-and-context]]
-== System Scope and Context
-
-
-[role="arc42help"]
-****
-.Contents
-System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
-(neighboring systems and users, i.e. the context of your system). It thereby specifies the external interfaces.
-
-If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
-
-.Motivation
-The domain interfaces and technical interfaces to communication partners are among your system's most critical aspects. Make sure that you completely understand them.
-
-.Form
-Various options:
-
-* Context diagrams
-* Lists of communication partners and their interfaces.
-****
-
+== System Scope and Context 
 
 === Business Context
 
-[role="arc42help"]
-****
+
 Nustra app es una red social con la infraestructura "dispersa" en pods que pertenecen al usuario(uno por usuario) en vez de una base de datos centralizada en los servidores de la empresa
 se sigue teniendo una base de datos central pero solo se usa para guardar informacion basica del usuario tambien la app hara uso de apis externas
-****
-
 :imagesdir: images/
 image:diagrama contexto empresarial.png[Punto3:DCE]
 

@@ -3,7 +3,6 @@
 Para la reaalización de LoMap hemos tomado la decisión de desarrollarlo en TypeScript. TypeScript es un superconjunto de JavaScript cuyo punto más resaltable es el uso de tipado.
 
 [role="arc42help"]
-****
 .Restricciones tecnológicas
 * Pods Solid: para mejorar la seguridad y privacidad de los datos de los usuarios, se ha impuesto como una condición necesaria el uso de los pods (no una base de datos centralizada). Los pods almacenan independientemente la información de cada usuario.
 
@@ -27,4 +26,4 @@ Para la reaalización de LoMap hemos tomado la decisión de desarrollarlo en Typ
 * Usabilidad: trataremos de crear una aplicación simple y fácil de usar para cualquier nivel informático.
 
 * Accesibilidad: intentaremos hacer la aplicación lo más accesible posible para facilitar en la medida de lo posible el uso de la aplicación para personas con alguna discapacidad.
-****
+

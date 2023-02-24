@@ -31,10 +31,7 @@
 | Aunque todo el equipo trabaja bien con GitHub falta soltura a la hora de realizar ciertas acciones como commits etc...
 | Esto no supone un gran inconveniente, se resolverá a medida que nos vayan saliendo los problemas y haciendo alguna prueba con la documentacion.
 
-|6
-| Heroku
-| Nunca nadie del equipo ha realizado ningún despliegue con Heroku.
-| Los miembros del equipo se apoyarán en la documentación oficial donde se encuentra explicado.
+
 
 |=========================================================
 === Tabla deuda técnica
