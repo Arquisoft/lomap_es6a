@@ -3,7 +3,6 @@ import './App.css';
 import { initMap } from './utils/initMap';
 
 function App(): JSX.Element {
-
   const mapRef = useRef<HTMLDivElement>(null);
 
 
@@ -17,8 +16,13 @@ function App(): JSX.Element {
 }, []);
 
   return (
-  
-  <div ref={mapRef} className='map' />);
+  <>
+  <div className='ejemplo'>
+    <h1>LOMAP_ES6A</h1>
+    <div ref={mapRef} className='map' />
+  </div>
+  </>
+  );
 }
 
 export default App;
