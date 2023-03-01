@@ -1,8 +1,9 @@
+import mapboxgl from 'mapbox-gl';
 import { Map } from 'mapbox-gl';
 
 export const initMap = (container: HTMLDivElement, coords: [number, number]) => {
 
-    return new Map({
+    const mapa = new Map({
         container,
         style: 'mapbox://styles/mapbox/dark-v10',
         pitchWithRotate: false,
@@ -12,4 +13,8 @@ export const initMap = (container: HTMLDivElement, coords: [number, number]) => 
         doubleClickZoom: false
         
     });
+     new mapboxgl.Marker()
+    .setLngLat([-5.851543817083269,43.3548058269008])
+    .addTo(mapa);
+    return mapa;
 }
