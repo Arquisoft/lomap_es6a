@@ -1,10 +1,13 @@
 import React from 'react';
+import '../../hojasEstilo/Footer.css';
+import { Typography } from '@mui/material';
 
 function Footer(){
     return(
         <footer className='contenedor-footer'>
-            <p className='nombre-equipo'>Equipo LoMap 6A</p>
-            <img src={require('../../imagenes/logo192.png')} alt="logo react"/>
+            <Typography variant='h5' align='center'>
+                LoMap-es6a
+            </Typography>
         </footer>
     );
 }

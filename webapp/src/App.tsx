@@ -29,15 +29,23 @@ function App(): JSX.Element {
 
   return (
     <>
+      <div className='contenedor-principal'>
       <Router>
-      <Nav/>
-      <Routes>
-        <Route  path={"/"} element={<Home/>} />
-        <Route  path="/Mapa" element={<Mapa/>}/>
-        <Route  path="/Amigos" element={<Amigos/>}/>
-      </Routes>
-      <Footer/>
+        <div className='contenedor-navegacion'>
+        <Nav/>
+        </div>
+          <div className='contenedor-rutas'>
+          <Routes>
+            <Route  path={"/"} element={<Home/>} />
+            <Route  path="/Mapa" element={<Mapa/>}/>
+            <Route  path="/Amigos" element={<Amigos/>}/>
+          </Routes>
+          </div>
+        <div className='contenedor-footer'>
+        <Footer/>
+        </div>
       </Router>
+      </div>
     </>
   );
 }
