@@ -8,28 +8,34 @@ import UserList from './components/UserList';
 import  {getUsers} from './api/api';
 import {User} from './shared/shareddtypes';
 import './App.css';
+import Footer from './components/fragments/Footer';
+import Home from './components/home/home';
+import Mapa from './components/mapa/Principal-mapa';
+import Amigos from './components/amigos/amigos';
+import Nav from './components/fragments/nav';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-function App(): JSX.Element {
-
-  const [users,setUsers] = useState<User[]>([]);
-
-  const refreshUserList = async () => {
-    setUsers(await getUsers());
-  }
-
-  useEffect(()=>{
-    refreshUserList();
-  },[]);
+function App(): JSX.Element {;
 
   return (
     <>
-      <Container maxWidth="sm">
-        <Welcome message="ASW students"/>
-        <Box component="div" sx={{ py: 2}}>This is a basic example of a React application using Typescript. You can add your email to the list filling the form below.</Box>
-        <EmailForm OnUserListChange={refreshUserList}/>        
-        <UserList users={users}/>
-        <Link href="https://github.com/arquisoft/lomap_0">Source code</Link>
-      </Container>
+      <div className='contenedor-principal'>
+      <Router>
+        <div className='contenedor-navegacion'>
+        <Nav/>
+        </div>
+          <div className='contenedor-rutas'>
+          <Routes>
+            <Route  path={"/"} element={<Home/>} />
+            <Route  path="/Mapa" element={<Mapa/>}/>
+            <Route  path="/Amigos" element={<Amigos/>}/>
+          </Routes>
+          </div>
+        <div className='contenedor-footer'>
+        <Footer/>
+        </div>
+      </Router>
+      </div>
     </>
   );
 }
