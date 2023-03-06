@@ -10,22 +10,12 @@ import {User} from './shared/shareddtypes';
 import './App.css';
 import Footer from './components/fragments/Footer';
 import Home from './components/home/home';
-import Mapa from './components/mapa/mapa';
+import Mapa from './components/mapa/Principal-mapa';
 import Amigos from './components/amigos/amigos';
 import Nav from './components/fragments/nav';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-function App(): JSX.Element {
-
-  const [users,setUsers] = useState<User[]>([]);
-
-  const refreshUserList = async () => {
-    setUsers(await getUsers());
-  }
-
-  useEffect(()=>{
-    refreshUserList();
-  },[]);
+function App(): JSX.Element {;
 
   return (
     <>

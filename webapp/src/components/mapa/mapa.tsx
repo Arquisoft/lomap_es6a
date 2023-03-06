@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from 'react';
+import initMap from './initMap';
 
-function Mapa() {
+function Mapa(){
+    const mapRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (mapRef.current) {
+            initMap(
+                mapRef.current,
+                [-100.31019063199852, 25.66901932031443]
+            )
+        }
+    }, []);
+
     return (
-      <div className="contenedor_mapa_principal">
-            <h1>Mapa</h1>
-      </div>
-    );
-  }
-  
-  export default Mapa;
+        <div ref={mapRef} className='map' />
+    )
+}
+
+export default Mapa;
