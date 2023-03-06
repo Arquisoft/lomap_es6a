@@ -16,7 +16,7 @@ function Welcome(props: WelcomeProps): JSX.Element {
       <Grid item xs={2}>
         <img src={logo} className="App-logo" alt="logo" />
       </Grid>
-      
+
     </Grid>
     
   );
