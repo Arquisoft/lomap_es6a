@@ -1,9 +1,13 @@
 import React from "react";
+import Descripcion from "./descripcion";
+import '../../hojasEstilo/home.css'
+import foto from '../../imagenes/chicamovil.jpg'
 
 function Home() {
     return (
       <div className="contenedor_home_principal">
-            <h1>Bienvenido a LoMap</h1>
+          <Descripcion/>
+          <img src={foto} alt='foto chica movil'/>
       </div>
     );
   }

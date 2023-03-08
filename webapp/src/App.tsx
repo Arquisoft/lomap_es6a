@@ -14,6 +14,8 @@ import Mapa from './components/mapa/Principal-mapa';
 import Amigos from './components/amigos/amigos';
 import Nav from './components/fragments/nav';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from './components/Login/login'
+import AboutUs from './components/aboutus/AboutUs';
 
 function App(): JSX.Element {;
 
@@ -29,6 +31,8 @@ function App(): JSX.Element {;
             <Route  path={"/"} element={<Home/>} />
             <Route  path="/Mapa" element={<Mapa/>}/>
             <Route  path="/Amigos" element={<Amigos/>}/>
+            <Route  path="/Aboutus" element={<AboutUs/>}/>
+            <Route  path="/Login" element={<Login/>}/>
           </Routes>
           </div>
         <div className='contenedor-footer'>

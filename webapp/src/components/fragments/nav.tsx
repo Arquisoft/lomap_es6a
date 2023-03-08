@@ -21,6 +21,12 @@ function Nav() {
           <li className="item">
             <Link to={'/amigos'}>Amigos</Link>
           </li>
+          <li className="item">
+            <Link to={'/aboutus'}>About us</Link>
+          </li>
+          <li className="item">
+            <Link to={'/login'}>Login</Link>
+          </li>
         </ul>
     </nav>
   );
