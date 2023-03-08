@@ -2,6 +2,7 @@ import React, { useEffect,useRef } from 'react';
 import '../../hojasEstilo/mapa.css';
 import { initMap } from './initMap';
 
+
 function Mapa(): JSX.Element {
   const mapRef = useRef<HTMLDivElement>(null);
 
