@@ -13,7 +13,7 @@ import Home from './components/home/home';
 import Mapa from './components/mapa/Principal-mapa';
 import Amigos from './components/amigos/amigos';
 import Nav from './components/fragments/nav';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from './components/Login/login'
 import AboutUs from './components/aboutus/AboutUs';
 
