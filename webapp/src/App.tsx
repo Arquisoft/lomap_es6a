@@ -1,9 +1,19 @@
+import React, { useState, useEffect } from 'react';
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
+import Container from '@mui/material/Container';
+import EmailForm from './components/EmailForm';
+import Welcome from './components/Welcome';
+import UserList from './components/UserList';
+import  {getUsers} from './api/api';
+import {User} from './shared/shareddtypes';
+import './App.css';
 import Footer from './components/fragments/Footer';
 import Home from './components/home/home';
 import Mapa from './components/mapa/Principal-mapa';
 import Amigos from './components/amigos/amigos';
 import Nav from './components/fragments/nav';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Login from './components/Login/login'
 import AboutUs from './components/aboutus/AboutUs';
 
