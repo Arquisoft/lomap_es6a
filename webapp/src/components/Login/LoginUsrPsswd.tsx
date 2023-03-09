@@ -7,7 +7,7 @@ import type { AlertColor } from '@mui/material/Alert';
 import {addUser} from '../../api/api';
 import { textAlign } from '@mui/system';
 
-//type EmailFormProps = {
+//type passwordFormProps = {
 // OnUserListChange: () => void;
 //}
 
@@ -19,6 +19,7 @@ type NotificationType = {
 function LoginUsrPsswd(): JSX.Element {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const [notificationStatus, setNotificationStatus] = useState(false);
   const [notification, setNotification] = useState<NotificationType>({severity:'success',message:''});
@@ -26,7 +27,7 @@ function LoginUsrPsswd(): JSX.Element {
   
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let result:boolean = await addUser({name,email});
+    let result:boolean = await addUser({name,email,password});
     if (result){
       setNotificationStatus(true);
       setNotification({ 
@@ -62,11 +63,11 @@ function LoginUsrPsswd(): JSX.Element {
           <br></br>
         <TextField
           required
-          name="email"
+          name="password"
           label="Password" 
           variant="outlined"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
+          value={password}
+          onChange={e => setPassword(e.target.value)}
           sx={{ my: 2 }}
         />  
         <br></br>
