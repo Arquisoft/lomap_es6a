@@ -1,7 +1,4 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { AppBar } from "@mui/material";
-import Container from '@mui/material/Container';
 import '../../hojasEstilo/Navegacion.css';
 import logo from '../../imagenes/logo192.png'
 
@@ -25,7 +22,7 @@ function Nav() {
             <Link to={'/aboutus'}>About us</Link>
           </li>
           <li className="item">
-            <Link to={'/login'}>Login</Link>
+            <Link to={'/LoginUsrPsswd'}>Login</Link>
           </li>
         </ul>
     </nav>
