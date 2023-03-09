@@ -1,6 +1,7 @@
 cd restapi
 npm install
-npm start 
+git-bash 
+chmod -x "" 
 cd ..
 cd webapp
 npm install
