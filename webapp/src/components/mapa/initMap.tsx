@@ -24,7 +24,7 @@ export const initMap = (container: HTMLDivElement) => {
 
     mapa.on('dblclick', function (evt) {
         new mapboxgl.Marker().setLngLat([evt.lngLat.lng,evt.lngLat.lat]).setPopup(new Popup({ closeButton: false, anchor: 'left', })
-        .setHTML(`<div class="popup">You click here: <br/>[${evt.lngLat.lat}, ${evt.lngLat.lng}]</div>`)).addTo(mapa);
+        .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${evt.lngLat.lat}, ${evt.lngLat.lng}]</div>`)).addTo(mapa);
       });
     return mapa;
 }
