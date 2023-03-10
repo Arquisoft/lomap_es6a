@@ -18,13 +18,17 @@
     margin-right: 4em;
     color: #ffffff;
 }
-
+/*
 .item a:visited{
     color: #ffffff;
 }
+*/
 
 .item a:hover{
     color: darkorange;
+}
+.item a{
+    color: lightsalmon;
 }
 
 .imagen{
