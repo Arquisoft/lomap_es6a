@@ -22,7 +22,7 @@ function Nav() {
             <Link to={'/aboutus'}>About us</Link>
           </li>
           <li className="item">
-            <Link to={'/LoginUsrPsswd'}>Login</Link>
+            <Link to={'/Login'}>Login</Link>
           </li>
         </ul>
     </nav>
