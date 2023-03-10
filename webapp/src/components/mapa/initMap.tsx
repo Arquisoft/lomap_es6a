@@ -1,4 +1,4 @@
-import mapboxgl ,{Map} from 'mapbox-gl';
+import mapboxgl ,{Map,Popup} from 'mapbox-gl';
 
 export const initMap = (container: HTMLDivElement, coords: [number, number]) => {
 
@@ -12,9 +12,11 @@ export const initMap = (container: HTMLDivElement, coords: [number, number]) => 
         doubleClickZoom: false
         
     });
+
      new mapboxgl.Marker().setLngLat([-5.851543817083269,43.3548058269008]).addTo(mapa);
     mapa.on('dblclick', function (evt) {
-        new mapboxgl.Marker().setLngLat([evt.lngLat.lng,evt.lngLat.lat]).addTo(mapa);
+        new mapboxgl.Marker().setLngLat([evt.lngLat.lng,evt.lngLat.lat]).setPopup(new Popup({ closeButton: false, anchor: 'left', })
+        .setHTML(`<div class="popup">You click here: <br/>[${evt.lngLat.lat}, ${evt.lngLat.lng}]</div>`)).addTo(mapa);
       });
     return mapa;
 }
