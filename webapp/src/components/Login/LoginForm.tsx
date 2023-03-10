@@ -2,35 +2,77 @@ import { Button, Card, CardContent, CardHeader, Container, FormGroup, Link, Text
 import { useEffect, useState } from "react";
 import { LoginButton} from "@inrupt/solid-ui-react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { accessToken } from "mapbox-gl";
+import { TokenClass } from "typescript";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    container: {
+      display: 'flex', 
+      flexWrap: 'wrap',
+      width: '60%',
+      height:'30%',
+      marginLeft:'30%',
+      marginBottom: '20%'
+    },
+    loginBtn: {
+      marginTop: theme.spacing(2),
+      flexGrow: 1
+    },
+    header: {
+      textAlign: 'center',
+      background: '#212121',
+      color: '#fff'
+    },
+    card: {
+      marginTop: theme.spacing(10),
+      width: '70%',
+      height:''
+    },
+  })
+);
 
 const LoginForm = () => {
+  const classes = useStyles();
   const [idp, setIdp] = useState("https://inrupt.net");
   const [currentUrl, setCurrentUrl] = useState(window.location.protocol + '//' + window.location.host + '/');
+  //const [token,setToken] = useState("solid-client-authn-node"); 
   
   useEffect(() => {
     setCurrentUrl(window.location.href);
   }, [setCurrentUrl]);
   
 return (
-    <Container fixed>
-      <FormGroup>
-        <TextField
-          label="Identity Provider"
-          placeholder="Identity Provider"
-          type="url"
-          value={idp}
-          onChange={(e) => setIdp(e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <LoginButton oidcIssuer={idp} redirectUrl={window.location.protocol + '//' + window.location.host + "/ProfileViewer"}>
-                <Button variant="contained" color="primary">
-                  Login
-                </Button>
-              </LoginButton>
-            ),
-          }} />
-      </FormGroup>
-    </Container>
+  <>
+  <form className={classes.container} noValidate autoComplete="on">
+      <Card className={classes.card}>
+        <CardHeader className={classes.header} title="Identificate" />
+        <CardContent>
+          <Container fixed>
+            <FormGroup>
+              <TextField
+                label="Identity Provider"
+                placeholder="Identity Provider"
+                type="url"
+                value={idp}
+                InputProps={{
+                  endAdornment: (
+                    <LoginButton oidcIssuer={idp} redirectUrl={window.location.protocol + '//' + window.location.host + "/ProfileViewer"}>
+                      <Button variant="contained" color="primary">
+                        Login
+                      </Button>
+                    </LoginButton>
+                  ),
+                }} />
+            </FormGroup>
+            <Typography variant="body1" component="p" id="help">
+              <Link href="https://inrupt.net/register" margin={'20%'}> ¿No tienes una cuenta? Regístrate aqui</Link>
+            </Typography>
+          </Container>
+        </CardContent>
+      </Card>
+    </form>
+  </> 
   );
 }
 export default LoginForm;

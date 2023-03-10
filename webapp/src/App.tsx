@@ -11,7 +11,6 @@ import ProfileViewer from './components/Login/ProfileViewer'
 import AboutUs from './components/aboutus/AboutUs';
 import { SessionProvider } from '@inrupt/solid-ui-react';
 import { useState } from 'react';
-import LoginUsrPsswd from './components/Login/LoginUsrPsswd';
 
 function App(): JSX.Element {
 
@@ -33,7 +32,6 @@ function App(): JSX.Element {
               <Route  path="/Login" element={<Login/>}/>
               <Route  path="/LoginForm" element={<LoginForm/>}/>
               <Route  path="/ProfileViewer" element={<ProfileViewer/>}/>
-              <Route  path="/LoginUsrPsswd" element={<LoginUsrPsswd/>}/>
             </Routes>
             </div>
           <div className='contenedor-footer'>
