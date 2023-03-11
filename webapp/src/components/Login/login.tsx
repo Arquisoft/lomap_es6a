@@ -4,24 +4,44 @@ import { Container, FormGroup, TextField, Button, Typography, CardContent, Card,
 import React, { useEffect,useRef,useState } from 'react';
 import LoginForm from './LoginForm';
 import ProfileViewer from "./ProfileViewer";
+//import { Session } from '@inrupt/solid-client-authn-browser';
 
 
 function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [accessToken, setAccessToken] = useState<any>({});
+  const [profile, setProfile] = useState<any>({});
   //With this we can control the login status for solid
-  const { session } = useSession();
+  
+  //const [session, setSession] = useSession();
+  var { session } = useSession();
+
+  if(localStorage.getItem("solid-auth-token") == null){
+    setAccessToken(session);
+    localStorage.setItem("solid-auth-token", accessToken);
+  }
+  else{
+    setAccessToken(localStorage.getItem("solid-auth-token"));
+    session = accessToken;
+  }
 
   //We have logged in
   session.onLogin(()=>{
-    setIsLoggedIn(true)
+    setIsLoggedIn(true);
+   // session.fetch(session.info.sessionId + "/.well-known/solid/logout")
+   // .then((response) => {
+   //   const accessToken = response.headers.get("authorization");
+  //    setAccessToken(accessToken);
+ //   });
+  
   })
 
   //We have logged out
   session.onLogout(()=>{
-    setIsLoggedIn(false)
+    setIsLoggedIn(false);
+    setAccessToken(null);
   })
-
+  
   return(
     <SessionProvider sessionId="log-in-example">
       {(!isLoggedIn) ? <LoginForm/> : <ProfileViewer/>}

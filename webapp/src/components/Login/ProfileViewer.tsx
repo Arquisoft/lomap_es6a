@@ -1,10 +1,19 @@
 import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
 import { Button, Card, CardActionArea, CardContent, Container, Typography } from "@material-ui/core";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
-
+import React, { useEffect,useRef,useState } from 'react';
 const ProfileViewer = () => {
-  const { session } = useSession();
+  const [accessToken, setAccessToken] = useState<any>({});
+  var { session } = useSession();
 
+  if(localStorage.getItem("solid-auth-token") == null){
+    setAccessToken(session);
+    localStorage.setItem("solid-auth-token", accessToken);
+  }
+  else{
+    setAccessToken(localStorage.getItem("solid-auth-token"));
+    session = accessToken;
+  }
   return (
     <Container fixed>
       {session.info.webId ? (
