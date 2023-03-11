@@ -1,19 +1,17 @@
 import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
 import { Button, Card, CardActionArea, CardContent, Container, Typography } from "@material-ui/core";
+import { handleIncomingRedirect, login, fetch, getDefaultSession } from '@inrupt/solid-client-authn-browser'
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
-import React, { useEffect,useRef,useState } from 'react';
-const ProfileViewer = () => {
-  const [accessToken, setAccessToken] = useState<any>({});
-  var { session } = useSession();
 
-  if(localStorage.getItem("solid-auth-token") == null){
-    setAccessToken(session);
-    localStorage.setItem("solid-auth-token", accessToken);
-  }
-  else{
-    setAccessToken(localStorage.getItem("solid-auth-token"));
-    session = accessToken;
-  }
+const ProfileViewer = () => {
+
+  var temp;
+  //handleIncomingRedirect({ restorePreviousSession : true });
+  handleIncomingRedirect();
+  //const {session}  = useSession();
+  const session =getDefaultSession();
+
+ // const session = getSessionFromStorage(Cookies.get('accessToken'));
   return (
     <Container fixed>
       {session.info.webId ? (
