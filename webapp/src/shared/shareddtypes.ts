@@ -3,3 +3,7 @@ export type User = {
     password:string;
     email:string;
   }
+export type MarkerEntity = {
+    latitud:number;
+    longitud:number;
+}

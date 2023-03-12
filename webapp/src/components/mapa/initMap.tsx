@@ -1,4 +1,6 @@
 import mapboxgl ,{Map,Popup} from 'mapbox-gl';
+import {MarkerEntity} from '../../shared/shareddtypes';
+import { saveMarker } from '../../api/api';
 
 export const initMap = (container: HTMLDivElement) => {
 
@@ -25,6 +27,12 @@ export const initMap = (container: HTMLDivElement) => {
     mapa.on('dblclick', function (evt) {
         new mapboxgl.Marker().setLngLat([evt.lngLat.lng,evt.lngLat.lat]).setPopup(new Popup({ closeButton: false, anchor: 'left', })
         .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${evt.lngLat.lat}, ${evt.lngLat.lng}]</div>`)).addTo(mapa);
+        let markerEntity: MarkerEntity;
+        markerEntity = {
+          latitud: evt.lngLat.lat,
+          longitud: evt.lngLat.lng,
+        }
+        saveMarker(markerEntity);
       });
     return mapa;
 }

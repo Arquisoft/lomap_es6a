@@ -8,9 +8,7 @@ function Mapa(): JSX.Element {
   const mapRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (mapRef.current) {
-        initMap(
-            mapRef.current
-        )
+        initMap(mapRef.current)
     }
   }, []);
   
