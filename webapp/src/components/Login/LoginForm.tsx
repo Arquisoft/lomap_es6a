@@ -22,7 +22,7 @@ return (
           placeholder="Identity Provider"
           type="url"
           value={idp}
-          onChange={(e) => setIdp(e.target.value)}
+         // onChange={(e) => setIdp(e.target.value)}
           InputProps={{
             endAdornment: (
               <LoginButton oidcIssuer={idp} redirectUrl={window.location.protocol + '//' + window.location.host + "/ProfileViewer"}>

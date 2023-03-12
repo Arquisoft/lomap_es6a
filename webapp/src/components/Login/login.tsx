@@ -1,5 +1,5 @@
 import '../../hojasEstilo/home.css'
-import {Image, LogoutButton,Text,CombinedDataProvider, useSession, SessionProvider, LoginButton } from "@inrupt/solid-ui-react"  
+import {Image, LogoutButton,Text,CombinedDataProvider, useSession, SessionProvider, LoginButton } from "@inrupt/solid-ui-react" 
 import { Container, FormGroup, TextField, Button, Typography, CardContent, Card, CardActionArea} from "@material-ui/core"
 import { handleIncomingRedirect, login, fetch, getDefaultSession,onSessionRestore } from '@inrupt/solid-client-authn-browser'
 
@@ -24,8 +24,8 @@ function Login(){
 async function Test() {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [accessToken, setAccessToken] = useState<any>({});
-  await handleIncomingRedirect();
+  //const [accessToken, setAccessToken] = useState<any>({});
+  await handleIncomingRedirect( {restorePreviousSession: true});
   
  //const router = useRouter();
 
@@ -35,16 +35,16 @@ async function Test() {
     //router.push(url)
   });
 
-  useEffect(() => {
-    // 2. When loading the component, call `handleIncomingRedirect` to authenticate
-    //    the user if appropriate, or to restore a previous session.
-    handleIncomingRedirect({
-      restorePreviousSession: true
-    }).then((info) => {
-      var temp  = info;
-      console.log(`Logged in with WebID [${info?.webId}]`)
-    })
-  }, []);
+  // await useEffect(() => {
+  //   2. When loading the component, call `handleIncomingRedirect` to authenticate
+  //      the user if appropriate, or to restore a previous session.
+  //  handleIncomingRedirect({
+  //     restorePreviousSession: true
+  //   }).then((info) => {
+  //     var temp  = info;
+  //     console.log(`Logged in with WebID [${info?.webId}]`)
+  //   })
+  // }, []);
   //With this we can control the login status for solid
   
   //const [session, setSession] = useSession();

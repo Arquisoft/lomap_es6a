@@ -21,7 +21,7 @@ import {
 
   const ProfileViewer = () => {
     const { session } = useSession();
-    const [profile, setProfile] = useState<any>({});
+    //const [profile, setProfile] = useState<any>({});
   
     // This useEffect hook runs when the session object is updated
     useEffect(() => {

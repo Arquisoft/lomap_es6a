@@ -9,7 +9,7 @@ import ProfileViewer from "./ProfileViewer";
 
 function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [accessToken, setAccessToken] = useState<any>({});
+  //const [accessToken, setAccessToken] = useState<any>({});
 
   //With this we can control the login status for solid
   
@@ -17,11 +17,11 @@ function Login() {
   const { session } = useSession();
 
   if(localStorage.getItem("solid-auth-token") == null){
-    setAccessToken(session);
-    localStorage.setItem("solid-auth-token", accessToken);
+    //setAccessToken(session);
+    //localStorage.setItem("solid-auth-token", accessToken);
   }
   else{
-    setAccessToken(localStorage.getItem("solid-auth-token"));
+    //setAccessToken(localStorage.getItem("solid-auth-token"));
     //session = accessToken;
   }
 
