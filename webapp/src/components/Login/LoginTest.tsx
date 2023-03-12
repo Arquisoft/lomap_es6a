@@ -40,62 +40,62 @@ import {
             datasetUrl={`${session.info.sessionId}/profile/card`}
             thingUrl={session.info.sessionId}
           >
-            <ProfileHeader />
-            <ProfileDetails />
+           
           </CombinedDataProvider>
         </Container>
       </>
     );
   };
+  //<ProfileHeader />
+  //<ProfileDetails />
+  // const ProfileHeader = () => {
+  //   const { session } = useSession();
+  //   const profile = useContext().fetch;
   
-  const ProfileHeader = () => {
-    const { session } = useSession();
-    const profile = useContext(SessionContext).fetch;
-  
-    return (
-      <header>
+  //   return (
+  //     <header>
        
-        <Typography variant="h4">{profile.name}</Typography>
-        <Typography variant="h5">{session.info.webId}</Typography>
-        <LogoutButton />
-      </header>
-    );
-  };
+  //       <Typography variant="h4">{profile.name}</Typography>
+  //       <Typography variant="h5">{session.info.webId}</Typography>
+  //       <LogoutButton />
+  //     </header>
+  //   );
+  // };
   
-  const ProfileDetails = () => {
-    const { session } = useSession();
-    const profile = useContext(SessionContext).fetch;
+  // const ProfileDetails = () => {
+  //   const { session } = useSession();
+  //   const profile = useContext(SessionContext).fetch;
   
-    return (
-      <section>
-        <Card>
-          <CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                Profile Details
-              </Typography>
-              <FormGroup>
-                <TextField
-                  disabled
-                  id="webid"
-                  label="WebID"
-                  value={session.info.webId}
-                  fullWidth
-                />
-                <TextField
-                  disabled
-                  id="name"
-                  label="Name"
-                  value={profile.name}
-                  fullWidth
-                />
-              </FormGroup>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      </section>
-    );
-  };
+  //   return (
+  //     <section>
+  //       <Card>
+  //         <CardActionArea>
+  //           <CardContent>
+  //             <Typography gutterBottom variant="h5" component="h2">
+  //               Profile Details
+  //             </Typography>
+  //             <FormGroup>
+  //               <TextField
+  //                 disabled
+  //                 id="webid"
+  //                 label="WebID"
+  //                 value={session.info.webId}
+  //                 fullWidth
+  //               />
+  //               <TextField
+  //                 disabled
+  //                 id="name"
+  //                 label="Name"
+  //                 value={profile.name}
+  //                 fullWidth
+  //               />
+  //             </FormGroup>
+  //           </CardContent>
+  //         </CardActionArea>
+  //       </Card>
+  //     </section>
+  //   );
+  // };
   
   export default ProfileViewer;
   
