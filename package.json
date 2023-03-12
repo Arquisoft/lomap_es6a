@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "@inrupt/solid-ui-react": "^2.8.2",
     "react-router-dom": "^6.8.2"
+  },"scripts": {
+    "start": "test.bat"
   }
 }
