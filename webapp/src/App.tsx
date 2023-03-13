@@ -5,16 +5,23 @@ import Mapa from './components/mapa/Principal-mapa';
 import Amigos from './components/amigos/amigos';
 import Nav from './components/fragments/nav';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from './components/Login/Login'
+import Login from './components/Login/login'
 import LoginForm from './components/Login/LoginForm'
 import ProfileViewer from './components/Login/ProfileViewer'
 import AboutUs from './components/aboutus/AboutUs';
 import { SessionProvider } from '@inrupt/solid-ui-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import { handleIncomingRedirect } from "@inrupt/solid-client-authn-browser";
 
 function App(): JSX.Element {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  // const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  // useEffect(() => {
+  //   handleIncomingRedirect();
+  // }, []);
+
   return (
     <>
       <div className='contenedor-principal'>
