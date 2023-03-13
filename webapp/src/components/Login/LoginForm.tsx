@@ -2,8 +2,6 @@ import { Button, Card, CardContent, CardHeader, Container, FormGroup, Link, Text
 import { useEffect, useState } from "react";
 import { LoginButton} from "@inrupt/solid-ui-react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { accessToken } from "mapbox-gl";
-import { TokenClass } from "typescript";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -13,7 +11,8 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '60%',
       height:'30%',
       marginLeft:'30%',
-      marginBottom: '20%'
+      marginBottom: '20%',
+      margin: `${theme.spacing(0)} auto`
     },
     loginBtn: {
       marginTop: theme.spacing(2),
@@ -36,8 +35,7 @@ const LoginForm = () => {
   const classes = useStyles();
   const [idp, setIdp] = useState("https://inrupt.net");
   const [currentUrl, setCurrentUrl] = useState(window.location.protocol + '//' + window.location.host + '/');
-  //const [token,setToken] = useState("solid-client-authn-node"); 
-  
+
   useEffect(() => {
     setCurrentUrl(window.location.href);
   }, [setCurrentUrl]);
@@ -55,6 +53,7 @@ return (
                 placeholder="Identity Provider"
                 type="url"
                 value={idp}
+                onChange={(e) => setIdp(e.target.value)}
                 InputProps={{
                   endAdornment: (
                     <LoginButton oidcIssuer={idp} redirectUrl={window.location.protocol + '//' + window.location.host + "/ProfileViewer"}>
@@ -75,4 +74,5 @@ return (
   </> 
   );
 }
+
 export default LoginForm;
