@@ -15,7 +15,7 @@ const AboutUs = () => {
         photo: logojavi
     },
     {
-        name: 'Rubén Zapico',
+        name: 'Rubén Díaz',
         role: 'Developer',
         description: 'Desarrollador junior de la Universidad de Oviedo, estudiante del grado de Informatica de Software y estudiante prodigio en la computación cuántica',
         photo: logoruben
