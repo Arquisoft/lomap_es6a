@@ -4,6 +4,6 @@ revisar 2.1
 -5 especificar mas que informacion se guardadas, agregar en el back end que la base de datos es MongoDB
 conexion front end back end por apis, para el front otra apis
 hablar de los contenedores
-7 diagrama de despliegue
+--7 diagrama de despliegue
 
 --Mencionar el provedor de pods
