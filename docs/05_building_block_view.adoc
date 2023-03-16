@@ -36,4 +36,4 @@ Bloques de construcción contenidos::
 
 Interfaces importantes::
 - Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox).
-- Para conectarnos a los pods usaremos las herramientas que nos facilite solid y las que mas nos ayuden dependiendo de nuestra arquitectura.
+- Para conectarnos a los pods usaremos como proveedor de los mismos a inrupt.
