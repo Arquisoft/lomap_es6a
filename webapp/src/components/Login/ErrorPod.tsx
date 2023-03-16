@@ -4,7 +4,6 @@ import { Button, Card, CardContent, CardHeader, Container, Typography } from "@m
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    
     header: {
       textAlign: 'center',
       background: '#212121',
