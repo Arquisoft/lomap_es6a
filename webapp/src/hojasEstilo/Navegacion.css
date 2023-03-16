@@ -1,0 +1,52 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: #222;
+    padding: 1em;
+    color: #ffffff;
+    
+}
+
+.list{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    float: right;
+}
+
+.nav_con_login{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    float: right;
+}
+
+.nav_sin_login{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    float: right;
+}
+
+.item{
+    margin-right: 4em;
+    color: #ffffff;
+}
+/*
+.item a:visited{
+    color: #ffffff;
+}
+*/
+
+.item a:hover{
+    color: darkorange;
+}
+.item a{
+    color: lightsalmon;
+}
+
+.imagen{
+    width: 50px;
+    height: 50px;
+    float: left;
+}

@@ -24,6 +24,7 @@ Various options:
 * more detailed in form of separate sections per decision
 * ADR (architecture decision record) for every important decision
 [options="header",cols="1,2,2"]
+****
 |===
 |Decisión Arquitectónica|Ventajas|Desventajas
 | TypeScript | Simplifica y mejora JavaScript al cual extiende agregando tipado de tipos | Nadie ha trabajado con el así que hay que aprender a usarlo
@@ -33,4 +34,3 @@ Various options:
 | React | Teniendo en cuenta la aplicación que se va a hacer usar React es muy conveniente, puesto que está diseñada principalmente para hacer aplicaciones de una sola página con JavaScript | Puede agregar complejidad al proyecto
 | Express | Es un framework de node.js minimalista, lo cual simplificaría el desarrollo de la aplicación | puede llegar a ser "demasiado minimalista" lo cual haría más difícil agregar funcionalidades complejas y nadie del grupo tiene experiencia con este framework con lo que habría que aprender a usarlo
 |===
-****

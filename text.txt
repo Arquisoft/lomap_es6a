@@ -1,0 +1,9 @@
+--quitar duplicado 1
+revisar 2.1
+--3.1 mas centrado al  negocio:(que hace la aplicacion fundionalidad etc)
+-5 especificar mas que informacion se guardadas, agregar en el back end que la base de datos es MongoDB
+conexion front end back end por apis, para el front otra apis
+hablar de los contenedores
+--7 diagrama de despliegue
+
+--Mencionar el provedor de pods
