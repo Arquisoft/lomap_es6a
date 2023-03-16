@@ -9,13 +9,13 @@ import Login from './components/Login/login'
 import LoginForm from './components/Login/LoginForm'
 import ProfileViewer from './components/Login/ProfileViewer'
 import AboutUs from './components/aboutus/AboutUs';
-import { SessionProvider } from '@inrupt/solid-ui-react';
+import { SessionProvider, useSession } from '@inrupt/solid-ui-react';
 import { useState, useEffect } from 'react';
 
 import { handleIncomingRedirect } from "@inrupt/solid-client-authn-browser";
 
 function App(): JSX.Element {
-
+  const { session } = useSession();
   // const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   // useEffect(() => {
@@ -33,7 +33,7 @@ function App(): JSX.Element {
             <div className='contenedor-rutas'>
             <Routes>
               <Route  path={"/"} element={<Home/>} />
-              <Route  path="/Mapa" element={<Mapa/>}/>
+              <Route  path="/Mapa" element={<Mapa session={session}/>}/>
               <Route  path="/Amigos" element={<Amigos/>}/>
               <Route  path="/Aboutus" element={<AboutUs/>}/>
               <Route  path="/Login" element={<Login/>}/>
