@@ -11,7 +11,7 @@ Bloques de construcción contenidos::
 -  **Base de datos**: Se guardara la información necesaria para el funcionamiento de la aplicación, ya que la otra parte ira en los pod.
 -  **POD**: Lugar donde se almacenará la informacion de los usuarios, de forma mas personal(lugares o sitios de summo interes).
 Interfaces importantes::
--Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox o googlemaps, aun por decidir).
+-Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox).
 
 === Nivel 2
 
@@ -19,7 +19,7 @@ Motivacion::
 A continuación mostramos como ira implementada nuestra aplicacion
 Bloques de construcción contenidos::
 -  **Front-End**: Para la interfaz de usuario, como tecnología usaremos React.
--  **Back-End**: Aqui ira implementada la gestion de los datos y la propia base de datos, usaremos como tecnología Node.js
+-  **Back-End**: Aqui ira implementada la gestion de los datos y la propia base de datos(la cual sera mongoDB), usaremos como tecnología Node.js
 
 Interfaces importantes::
 -	Con las diferentes apis conectaremos el front-end y el back-end.
@@ -31,8 +31,9 @@ A continuación mostramos los modulos del back-end
 Bloques de construcción contenidos::
 -  **Main**: Con él comunicamos como forma principal el front-end y el back-end.
 -  **BBDD**: Se encarga de la comunicación con al base de datos.
--  **Solid**: Interactuará con el Pod del usuario.
+-  **Solid**: Interactuará con el Pod(los pods seran de inrupt) del usuario.
+-  **MapBox**: Api que se usara para los mapas.
 
 Interfaces importantes::
-- Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox o googlemaps, aun por decidir).
+- Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox).
 - Para conectarnos a los pods usaremos las herramientas que nos facilite solid y las que mas nos ayuden dependiendo de nuestra arquitectura.
