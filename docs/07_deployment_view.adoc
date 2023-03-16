@@ -56,5 +56,5 @@ Mapeo de Bloques de Construccion a Infraestructura::
 | RestAPI| Interfaz entre sistemas para el intercambio de peticiones.
 | WebApp| La parte donde el usuario podra interactuar, el cual ejecuta el navegador web.
 | Web browser| Depende de la eleccion del usuario, y unica forma de acceder a la aplicacion.
-| POD| "Almacenes" para guardar los datos de los usuarios de forma segura.
+| POD| "Almacenes" para guardar los datos de los usuarios de forma segura. el provedor de pods sera inrupt
 |===
