@@ -1,9 +1,14 @@
 import mapboxgl ,{Map,Popup} from 'mapbox-gl';
+
 import {MarkerEntity} from '../../shared/shareddtypes';
 import { saveMarker } from '../../api/api';
 
 
-export const initMap = (container: HTMLDivElement) => {
+import {recuperarMarcador,guardarMarcador, SessionType} from "../../accesoPods/adaptador";
+import Marker from "../../accesoPods/marker";
+
+
+export const initMap = (container: HTMLDivElement, { session }: SessionType) => {
 
     const mapa = new Map({
         container,
@@ -21,11 +26,31 @@ export const initMap = (container: HTMLDivElement) => {
         mapa.setCenter([longitude, latitude]);
       
         // Añade un marcador en la ubicación del usuario
-        new mapboxgl.Marker().setLngLat([longitude,latitude]).setPopup(new Popup({ closeButton: false, anchor: 'left', })
+        new mapboxgl.Marker({
+          color: "#FF0000"
+        }).setLngLat([longitude,latitude]).setPopup(new Popup({ closeButton: false, anchor: 'left', })
         .setHTML(`<div class="popup">Mi ubicación inicial: <br/>[${longitude}, ${latitude}]</div>`)).addTo(mapa);
+
       });
 
+      let userMarkers: Marker[]
+      userMarkers = [];
+
+      recuperarMarcador({session}.session).then(markers => {
+        if (markers != null) {
+            userMarkers = markers;
+            userMarkers.forEach(market => {
+                console.log(market);
+                // NUEVO
+                new mapboxgl.Marker().setLngLat([market.latitude,market.longitude]).setPopup(new Popup({ closeButton: false, anchor: 'left', })
+                  .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.latitude}, ${market.longitude}]</div>`)).addTo(mapa);
+            });
+        }
+      });  
+
     mapa.on('dblclick', function (evt) {
+        let marker = guardarMarcador({session}.session,evt.lngLat.lng,evt.lngLat.lat);
+
         new mapboxgl.Marker().setLngLat([evt.lngLat.lng,evt.lngLat.lat]).setPopup(new Popup({ closeButton: false, anchor: 'left', })
         .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${evt.lngLat.lat}, ${evt.lngLat.lng}]</div>`)).addTo(mapa);
         let markerEntity: MarkerEntity;

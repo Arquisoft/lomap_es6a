@@ -1,10 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
-import Mapa from './mapa'
+import Mapa from './mapa';
+import {SessionType} from "../../accesoPods/adaptador";
 
-function MapaPrincipal(){
+function MapaPrincipal({ session }: SessionType){
   return (
     <div>
-      <Mapa/>
+      <Mapa session={session}/>
     </div>
   );
   
