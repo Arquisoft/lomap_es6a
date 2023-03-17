@@ -2,6 +2,7 @@ import mapboxgl ,{Map,Popup} from 'mapbox-gl';
 import {MarkerEntity} from '../../shared/shareddtypes';
 import { saveMarker } from '../../api/api';
 
+
 export const initMap = (container: HTMLDivElement) => {
 
     const mapa = new Map({

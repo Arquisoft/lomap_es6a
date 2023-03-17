@@ -1,4 +1,5 @@
 import {User, MarkerEntity} from '../shared/shareddtypes';
+import {Session} from "@inrupt/solid-client-authn-browser";
 
 //Obtenemos la url de la apirest de Heroku o utilizamos localhost por defecto
 let apiEndPoint:string ='https://dede-es3a-restapi.herokuapp.com/'
@@ -35,6 +36,8 @@ export async function getUsers():Promise<User[]>{
     //The objects returned by the api are directly convertible to User objects
     return response.json()
 }
-export async function saveMarker(marker:MarkerEntity):Promise<boolean>{
-  return true;
+
+export function saveMarker(marker:MarkerEntity) {
+
+
 }
