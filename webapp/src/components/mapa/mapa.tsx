@@ -10,7 +10,6 @@ function Mapa({ session }: SessionType): JSX.Element {
   useEffect(() => {
     if (mapRef.current) {
 
-        initMap(mapRef.current)
 
         initMap(
             mapRef.current, {session}
