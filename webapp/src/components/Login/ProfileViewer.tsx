@@ -21,7 +21,7 @@ const ProfileViewer = () => {
 
   var temp = useSession().session;
   //const { session } = useSession();
-   var cond = useSession().session.info.isLoggedIn
+   var cond = temp.info.isLoggedIn
 if (getUserSession() == null || cond ){
   setUserSession(temp);
 }
