@@ -2,10 +2,6 @@ import Marker from './marker';
 import {Session} from "@inrupt/solid-client-authn-browser";
 import {escribir, buscarArchivos} from "./acceso";
 
-export type SessionType = {
-    session: Session;
-}
-
 export function guardarMarcador(session: Session, lat: number, lng: number): Marker | null {
     let marker = new Marker(lat, lng);
 

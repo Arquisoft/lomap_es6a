@@ -1,12 +1,13 @@
 import mapboxgl ,{Map,Popup} from 'mapbox-gl';
-import {recuperarMarcador,guardarMarcador, SessionType} from "../../accesoPods/adaptador";
+import {recuperarMarcador,guardarMarcador} from "../../accesoPods/adaptador";
+import {SessionType} from "../../shared/shareddtypes"
 import Marker from "../../accesoPods/marker";
 
 export const initMap = (container: HTMLDivElement, { session }: SessionType) => {
 
     const mapa = new Map({
         container,
-        style: 'mapbox://styles/mapbox/dark-v10',
+        style: 'mapbox://styles/mapbox/streets-v12',
         pitchWithRotate: false,
         zoom: 15,
         accessToken: "pk.eyJ1IjoidW8yODI4MzQiLCJhIjoiY2xlcHp5Z2syMGRteTQ5cDJ2dXltMm5uYSJ9.kTLZTl2_YvQiN79m2kPQ1g",
