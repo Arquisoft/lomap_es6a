@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "react-router-dom": "^6.8.2"
+  },
+  "scripts": {
+    "start": "startup.bat"
   }
 }

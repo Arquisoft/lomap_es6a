@@ -14,7 +14,7 @@ import { useState } from 'react';
 import LoginUsrPsswd from './components/Login/LoginUsrPsswd';
 
 function App(): JSX.Element {
-
+  //localStorage.clear();
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <>

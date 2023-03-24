@@ -1,10 +1,32 @@
 import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
 import { Button, Card, CardActionArea, CardContent, Container, Typography } from "@material-ui/core";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
+import { SessionInfo } from "@inrupt/solid-ui-react/dist/src/hooks/useSession";
+import { Session } from "@inrupt/solid-client-authn-browser";
+
+const setUserSession = (session :Session) => {
+  localStorage.clear();
+  localStorage.setItem("userSession", JSON.stringify(session));
+};
+
+
+const getUserSession = (): Session => {
+  const session = localStorage.getItem("userSession");
+  return session ? JSON.parse(session) : null;
+};
+
+
 
 const ProfileViewer = () => {
-  const { session } = useSession();
 
+  var temp = useSession().session;
+  //const { session } = useSession();
+   var cond = useSession().session.info.isLoggedIn
+if (getUserSession() == null || cond ){
+  setUserSession(temp);
+}
+
+ const  session  = getUserSession();
   return (
     <Container fixed>
       {session.info.webId ? (
