@@ -4,6 +4,7 @@ import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import { SessionInfo } from "@inrupt/solid-ui-react/dist/src/hooks/useSession";
 import { Session } from "@inrupt/solid-client-authn-browser";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import * as loginManager  from "./LoginManager";
 
 const useStyles = makeStyles((theme: Theme) =>
 createStyles({
@@ -44,16 +45,16 @@ createStyles({
 );
 
 
-const setUserSession = (session :Session) => {
-  localStorage.clear();
-  localStorage.setItem("userSession", JSON.stringify(session));
-};
+// const setUserSession = (session :Session) => {
+//   localStorage.clear();
+//   localStorage.setItem("userSession", JSON.stringify(session));
+// };
 
 
-const getUserSession = (): Session => {
-  const session = localStorage.getItem("userSession");
-  return session ? JSON.parse(session) : null;
-};
+// const getUserSession = (): Session => {
+//   const session = localStorage.getItem("userSession");
+//   return session ? JSON.parse(session) : null;
+// };
 
 
 
@@ -65,11 +66,11 @@ const ProfileViewer = () => {
   //const { session } = useSession();
 
    var cond = temp.info.isLoggedIn
-if (getUserSession() == null || cond ){
-  setUserSession(temp);
+if (loginManager.getUserSession() == null || cond ){
+  loginManager.setUserSession(temp);
 }
 
- const  session  = getUserSession();
+ const  session  = loginManager.getUserSession();
 
 //  const { webId } = session.info;
 

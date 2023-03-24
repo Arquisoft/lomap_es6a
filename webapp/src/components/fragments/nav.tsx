@@ -13,9 +13,14 @@ import Menu from '@mui/material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import { AccountCircle } from '@mui/icons-material';
 import MenuItem from '@mui/material/MenuItem';
-
+import * as loginManager  from "../Login/LoginManager";
 function Nav() {
-  const {session} = useSession();
+  
+  //const {session} = useSession();
+  var temp = useSession().session;
+  if (loginManager.getUserSession() != null)
+      temp = loginManager.getUserSession()
+  const session = temp;
   return (
     <nav className="navbar">
         <Link to='/'>
