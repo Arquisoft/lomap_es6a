@@ -72,12 +72,12 @@ if (loginManager.getUserSession() == null || cond ){
 
  const  session  = loginManager.getUserSession();
 
-//  const { webId } = session.info;
+ const { webId } = session.info;
 
-//  function guardarWebId() {
-//    sessionStorage.setItem('webIdSesion', webId as string);
-//    const w = sessionStorage.getItem('webIdSesion');
-//  }
+ function guardarWebId() {
+   sessionStorage.setItem('webIdSesion', webId as string);
+   const w = sessionStorage.getItem('webIdSesion');
+ }
   return (
     <>
     <form className={classes.container} noValidate autoComplete="on">
