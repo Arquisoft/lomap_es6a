@@ -1,20 +1,20 @@
-import React, { useEffect,useRef } from 'react';
+import React, { useEffect,useRef,useState } from 'react';
 import '../../hojasEstilo/mapa.css';
 import { initMap } from './initMap';
+import {SessionType} from "../../accesoPods/adaptador";
+  
 
+function Mapa({ session }: SessionType): JSX.Element {
 
-function Mapa(): JSX.Element {
   const mapRef = useRef<HTMLDivElement>(null);
-
-
   useEffect(() => {
     if (mapRef.current) {
         initMap(
-            mapRef.current,
-            [-5.851543817083269,43.3548058269008]
+            mapRef.current, {session}
         )
     }
-}, []);
+  }, []);
+  
 
   return (
   <>

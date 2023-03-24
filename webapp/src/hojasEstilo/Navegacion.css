@@ -14,17 +14,35 @@
     float: right;
 }
 
+.nav_con_login{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    float: right;
+}
+
+.nav_sin_login{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    float: right;
+}
+
 .item{
     margin-right: 4em;
     color: #ffffff;
 }
-
+/*
 .item a:visited{
     color: #ffffff;
 }
+*/
 
 .item a:hover{
     color: darkorange;
+}
+.item a{
+    color: lightsalmon;
 }
 
 .imagen{

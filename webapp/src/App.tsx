@@ -5,17 +5,23 @@ import Mapa from './components/mapa/Principal-mapa';
 import Amigos from './components/amigos/amigos';
 import Nav from './components/fragments/nav';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from './components/Login/Login'
+import Login from './components/Login/login'
 import LoginForm from './components/Login/LoginForm'
 import ProfileViewer from './components/Login/ProfileViewer'
 import AboutUs from './components/aboutus/AboutUs';
-import { SessionProvider } from '@inrupt/solid-ui-react';
-import { useState } from 'react';
-import LoginUsrPsswd from './components/Login/LoginUsrPsswd';
+import { SessionProvider, useSession } from '@inrupt/solid-ui-react';
+import { useState, useEffect } from 'react';
+
+import { handleIncomingRedirect } from "@inrupt/solid-client-authn-browser";
 
 function App(): JSX.Element {
-  //localStorage.clear();
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const { session } = useSession();
+  // const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  // useEffect(() => {
+  //   handleIncomingRedirect();
+  // }, []);
+
   return (
     <>
       <div className='contenedor-principal'>
@@ -27,13 +33,12 @@ function App(): JSX.Element {
             <div className='contenedor-rutas'>
             <Routes>
               <Route  path={"/"} element={<Home/>} />
-              <Route  path="/Mapa" element={<Mapa/>}/>
+              <Route  path="/Mapa" element={<Mapa session={session}/>}/>
               <Route  path="/Amigos" element={<Amigos/>}/>
               <Route  path="/Aboutus" element={<AboutUs/>}/>
               <Route  path="/Login" element={<Login/>}/>
               <Route  path="/LoginForm" element={<LoginForm/>}/>
               <Route  path="/ProfileViewer" element={<ProfileViewer/>}/>
-              <Route  path="/LoginUsrPsswd" element={<LoginUsrPsswd/>}/>
             </Routes>
             </div>
           <div className='contenedor-footer'>

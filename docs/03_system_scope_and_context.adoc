@@ -6,8 +6,9 @@
 
 Nustra app es una red social con la infraestructura "dispersa" en pods que pertenecen al usuario(uno por usuario) en vez de una base de datos centralizada en los servidores de la empresa
 se sigue teniendo una base de datos central pero solo se usa para guardar informacion basica del usuario tambien la app hara uso de apis externas
+
 :imagesdir: images/
-image:diagrama contexto empresarial.png[Punto3:DCE]
+image:3.1Diagrama.png[Punto3:DCE]
 
 === Contexto tecnico
 
