@@ -13,6 +13,8 @@ function Login() {
   const { session } = useSession();
 
   console.log(session);
+  if(!session.info.isLoggedIn)
+      setUserSession(session)
 
   return(
     <SessionProvider sessionId="">

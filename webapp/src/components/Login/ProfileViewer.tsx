@@ -3,19 +3,6 @@ import { Button, Card, CardActionArea, CardContent, CardHeader, Container, Typog
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import { SessionInfo } from "@inrupt/solid-ui-react/dist/src/hooks/useSession";
 import { Session } from "@inrupt/solid-client-authn-browser";
-
-const setUserSession = (session :Session) => {
-  localStorage.clear();
-  localStorage.setItem("userSession", JSON.stringify(session));
-};
-
-
-const getUserSession = (): Session => {
-  const session = localStorage.getItem("userSession");
-  return session ? JSON.parse(session) : null;
-};
-
-
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -55,6 +42,21 @@ createStyles({
   },
 })
 );
+
+
+const setUserSession = (session :Session) => {
+  localStorage.clear();
+  localStorage.setItem("userSession", JSON.stringify(session));
+};
+
+
+const getUserSession = (): Session => {
+  const session = localStorage.getItem("userSession");
+  return session ? JSON.parse(session) : null;
+};
+
+
+
 
 const ProfileViewer = () => {
   const classes = useStyles();
