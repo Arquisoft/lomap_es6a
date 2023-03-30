@@ -1,6 +1,7 @@
 import mapboxgl ,{Map,Popup} from 'mapbox-gl';
 import {recuperarMarcador,guardarMarcador} from "../../accesoPods/adaptador";
-import {SessionType} from "../../shared/shareddtypes"
+import {SessionType} from "../../shared/shareddtypes";
+import casa from '../../imagenes/marcador.png';
 import Marker from "../../accesoPods/marker";
 
 export const initMap = (container: HTMLDivElement, { session }: SessionType) => {
@@ -21,10 +22,17 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
         mapa.setCenter([longitude, latitude]);
       
         // Añade un marcador en la ubicación del usuario
-        new mapboxgl.Marker({
-          color: "#FF0000"
-        }).setLngLat([longitude,latitude]).setPopup(new Popup({ closeButton: false, anchor: 'left', })
-        .setHTML(`<div class="popup">Mi ubicación inicial: <br/>[${longitude}, ${latitude}]</div>`)).addTo(mapa);
+        const markerElement = document.createElement('img');
+        markerElement.src = casa;
+        markerElement.width = 30; // establecer el ancho en 30 píxeles
+        markerElement.height = 30; // establecer la altura en 30 píxeles
+
+
+        new mapboxgl.Marker({ element: markerElement })
+          .setLngLat([longitude, latitude])
+          .setPopup(new Popup({ closeButton: false, anchor: 'left' })
+          .setHTML(`<div class="popup">Mi ubicación inicial: <br/>[${longitude}, ${latitude}]</div>`))
+          .addTo(mapa);
 
       });
 
