@@ -13,7 +13,8 @@ import Menu from '@mui/material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import { AccountCircle } from '@mui/icons-material';
 import MenuItem from '@mui/material/MenuItem';
-import * as loginManager  from "../Login/LoginManager";
+//import * as loginManager  from "../Login/LoginManager";
+let loginManager = require("../Login/LoginManager.ts");
 function Nav() {
   
   //const {session} = useSession();

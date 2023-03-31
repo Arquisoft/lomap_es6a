@@ -4,7 +4,10 @@ import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import { SessionInfo } from "@inrupt/solid-ui-react/dist/src/hooks/useSession";
 import { Session } from "@inrupt/solid-client-authn-browser";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import * as loginManager  from "./LoginManager";
+import * as loginManager2  from "./LoginManager";
+import { getUser } from "../../api/api";
+let loginManager = require("./LoginManager.ts");
+
 
 const useStyles = makeStyles((theme: Theme) =>
 createStyles({
@@ -61,10 +64,10 @@ createStyles({
 
 const ProfileViewer = () => {
   const classes = useStyles();
-
+  
   var temp = useSession().session;
   //const { session } = useSession();
-
+  //loginManager2
    var cond = temp.info.isLoggedIn
 if (loginManager.getUserSession() == null || cond ){
   loginManager.setUserSession(temp);
