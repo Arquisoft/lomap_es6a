@@ -1,4 +1,4 @@
-import { getSolidDataset, overwriteFile, getContainedResourceUrlAll, getFile } from "@inrupt/solid-client";
+import { getSolidDataset, overwriteFile, getContainedResourceUrlAll, getFile,deleteFile } from "@inrupt/solid-client";
 import {Session} from "@inrupt/solid-client-authn-browser";
 
 async function leer(session: Session, url: string): Promise<File | null> {
@@ -52,4 +52,32 @@ async function buscarArchivos(session: Session, url: string): Promise<File[] | n
     return null;
 }
 
-export {escribir, buscarArchivos};
+async function deleteData(session: Session, url: string): Promise<boolean> {
+    let result = true;
+    if (!existsUrl(session, url)) {
+        return false;
+    }
+    try {
+        await deleteFile(
+            url,
+            { fetch: session.fetch }
+        );
+    } catch (error) {
+        result = false;
+    }
+    return result;
+}
+
+function existsUrl(session: Session, url: string): boolean {
+    try {
+        getSolidDataset(
+            url,
+            { fetch: session.fetch }
+        );
+    } catch (error) {
+        return false;
+    }
+    return true;
+}
+
+export {escribir, buscarArchivos, deleteData};

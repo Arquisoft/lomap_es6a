@@ -2,24 +2,24 @@ import Marker from './marker';
 import {Session} from "@inrupt/solid-client-authn-browser";
 import {escribir, buscarArchivos} from "./acceso";
 
-export function guardarMarcador(session: Session, lat: number, lng: number): Marker | null {
-    let marker = new Marker(lat, lng);
+export function guardarMarcador(session: Session, nombre: String, lat: number, lng: number, tipo: String): Marker | null {
+    let marker = new Marker(nombre, lat, lng, tipo);
 
     if (session.info.webId == null) {
         return null;
     } // Check if the webId is undefined
 
     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-    let pointsUrl = basicUrl.concat("/public", "/markers", "/" + marker.id + ".json");
+    let markersUrl = basicUrl.concat("/public", "/markers", "/" + marker.id + ".json");
 
     let blob = new Blob([JSON.stringify(marker)], { type: "application/json" });
     let file = new File([blob], marker.id + ".json", { type: "application/json" });
 
-    escribir(session, pointsUrl, file).then(result => {
+    escribir(session, markersUrl, file).then(result => {
         if (result) {
-            console.log("Point " + marker.id + " saved correctly in " + pointsUrl);
+            console.log("Marker " + marker.id + " saved correctly in " + markersUrl);
         } else {
-            console.log("Point " + marker.id + " could not be saved correctly");
+            console.log("Marker " + marker.id + " could not be saved correctly");
         }
     });
 
