@@ -17,6 +17,43 @@ function Formulario({ session }: SessionType) {
   const [longitud, setLongitud] = useState("");
   const [tipo, setTipo] = useState("");
 
+  const barMarker = document.createElement('img');
+  barMarker.src = bar;
+  barMarker.width = 30; // establecer el ancho en 30 píxeles
+  barMarker.height = 30; // establecer la altura en 30 píxeles
+
+  const restauranteMarker = document.createElement('img');
+  restauranteMarker.src = restaurante;
+  restauranteMarker.width = 30; // establecer el ancho en 30 píxeles
+  restauranteMarker.height = 30; // establecer la altura en 30 píxeles
+
+  const gasolineraMarker = document.createElement('img');
+  gasolineraMarker.src = gasolinera;
+  gasolineraMarker.width = 30; // establecer el ancho en 30 píxeles
+  gasolineraMarker.height = 30; // establecer la altura en 30 píxeles
+
+  const interrogacionMarker = document.createElement('img');
+  interrogacionMarker.src = interrogacion;
+  interrogacionMarker.width = 30; // establecer el ancho en 30 píxeles
+  interrogacionMarker.height = 30; // establecer la altura en 30 píxeles
+  
+  const mapRef = useRef<HTMLDivElement>(null);
+  let mapa: mapboxgl.Map;
+  useEffect(() => {
+    if (mapRef.current) {
+            mapa = initMap(
+            mapRef.current, {session}
+        )
+
+        mapa.on('dblclick', function (evt) {
+          //let marker = guardarMarcador({session}.session,evt.lngLat.lng,evt.lngLat.lat);
+          setLongitud(evt.lngLat.lat+"");
+          setLatitud(evt.lngLat.lng+"");
+        });
+
+    }
+  }, []);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     let marker = guardarMarcador({session}.session, nombre,Number(latitud),Number(longitud), tipo);
@@ -24,6 +61,25 @@ function Formulario({ session }: SessionType) {
     setLatitud("");
     setLongitud("");
     setTipo("");
+    
+    //Añadir marcador
+    let iconMarker;
+    if (tipo == "Bar"){
+      iconMarker = barMarker;
+    }else if(tipo == "Restaurante"){
+      iconMarker = restauranteMarker;
+    }else if(tipo == "Gasolinera"){
+      iconMarker = gasolineraMarker;
+    }else{
+      iconMarker = interrogacionMarker;
+    }
+      new mapboxgl.Marker({ element: iconMarker })
+      .setLngLat([Number(latitud), Number(longitud)])
+      .setPopup(new Popup({ closeButton: false, anchor: 'left' })
+      .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${latitud}, ${longitud}]</div>`))
+      .addTo(mapa);
+
+
     console.log(`Nombre: ${nombre}, Latitud: ${latitud}, Longitud: ${longitud}, Tipo: ${tipo}`);
     // Aquí podrías hacer algo con los datos del formulario, como enviarlos a un servidor
   };
@@ -44,20 +100,7 @@ function Formulario({ session }: SessionType) {
     setTipo(event.target.value);
   };
 
-  const mapRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (mapRef.current) {
-        let mapa = initMap(
-            mapRef.current, {session}
-        )
-
-        mapa.on('dblclick', function (evt) {
-          //let marker = guardarMarcador({session}.session,evt.lngLat.lng,evt.lngLat.lat);
-          setLongitud(evt.lngLat.lat+"");
-          setLatitud(evt.lngLat.lng+"");
-        });
-    }
-  }, []);
+  
 
   
 

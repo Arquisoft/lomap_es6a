@@ -44,26 +44,6 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
       let userMarkers: Marker[]
       userMarkers = [];
 
-      const barMarker = document.createElement('img');
-      barMarker.src = bar;
-      barMarker.width = 30; // establecer el ancho en 30 píxeles
-      barMarker.height = 30; // establecer la altura en 30 píxeles
-
-      const restauranteMarker = document.createElement('img');
-      restauranteMarker.src = restaurante;
-      restauranteMarker.width = 30; // establecer el ancho en 30 píxeles
-      restauranteMarker.height = 30; // establecer la altura en 30 píxeles
-
-      const gasolineraMarker = document.createElement('img');
-      gasolineraMarker.src = gasolinera;
-      gasolineraMarker.width = 30; // establecer el ancho en 30 píxeles
-      gasolineraMarker.height = 30; // establecer la altura en 30 píxeles
-
-      const interrogacionMarker = document.createElement('img');
-      interrogacionMarker.src = interrogacion;
-      interrogacionMarker.width = 30; // establecer el ancho en 30 píxeles
-      interrogacionMarker.height = 30; // establecer la altura en 30 píxeles
-
       recuperarMarcador({session}.session).then(markers => {
         if (markers != null) {
             userMarkers = markers;
@@ -71,12 +51,28 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                 console.log(market);
                 let iconMarker;
                 if (market.tipo == "Bar"){
+                  let barMarker = document.createElement('img');
+                  barMarker.src = bar;
+                  barMarker.width = 30; // establecer el ancho en 30 píxeles
+                  barMarker.height = 30; // establecer la altura en 30 píxeles
                   iconMarker = barMarker;
                 }else if(market.tipo == "Restaurante"){
+                  let restauranteMarker = document.createElement('img');
+                  restauranteMarker.src = restaurante;
+                  restauranteMarker.width = 30; // establecer el ancho en 30 píxeles
+                  restauranteMarker.height = 30; // establecer la altura en 30 píxeles
                   iconMarker = restauranteMarker;
                 }else if(market.tipo == "Gasolinera"){
+                  let gasolineraMarker = document.createElement('img');
+                  gasolineraMarker.src = gasolinera;
+                  gasolineraMarker.width = 30; // establecer el ancho en 30 píxeles
+                  gasolineraMarker.height = 30; // establecer la altura en 30 píxeles
                   iconMarker = gasolineraMarker;
                 }else{
+                  let interrogacionMarker = document.createElement('img');
+                  interrogacionMarker.src = interrogacion;
+                  interrogacionMarker.width = 30; // establecer el ancho en 30 píxeles
+                  interrogacionMarker.height = 30; // establecer la altura en 30 píxeles
                   iconMarker = interrogacionMarker;
                 }
                   new mapboxgl.Marker({ element: iconMarker })
