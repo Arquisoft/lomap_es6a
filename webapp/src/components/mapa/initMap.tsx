@@ -1,12 +1,19 @@
 import mapboxgl ,{Map,Popup} from 'mapbox-gl';
-import {recuperarMarcador,guardarMarcador, SessionType} from "../../accesoPods/adaptador";
+
+import {SessionType} from "../../shared/shareddtypes";
+import casa from '../../imagenes/marcador.png';
+import bar from '../../imagenes/bar.png';
+import restaurante from '../../imagenes/restaurante.png';
+import gasolinera from '../../imagenes/gasolinera.png';
+import interrogacion from '../../imagenes/interrogacion.png';
+import {recuperarMarcador,guardarMarcador} from "../../accesoPods/adaptador";
 import Marker from "../../accesoPods/marker";
 
 export const initMap = (container: HTMLDivElement, { session }: SessionType) => {
 
     const mapa = new Map({
         container,
-        style: 'mapbox://styles/mapbox/dark-v10',
+        style: 'mapbox://styles/mapbox/streets-v12',
         pitchWithRotate: false,
         zoom: 15,
         accessToken: "pk.eyJ1IjoidW8yODI4MzQiLCJhIjoiY2xlcHp5Z2syMGRteTQ5cDJ2dXltMm5uYSJ9.kTLZTl2_YvQiN79m2kPQ1g",
@@ -20,10 +27,17 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
         mapa.setCenter([longitude, latitude]);
       
         // Añade un marcador en la ubicación del usuario
-        new mapboxgl.Marker({
-          color: "#FF0000"
-        }).setLngLat([longitude,latitude]).setPopup(new Popup({ closeButton: false, anchor: 'left', })
-        .setHTML(`<div class="popup">Mi ubicación inicial: <br/>[${longitude}, ${latitude}]</div>`)).addTo(mapa);
+        const markerElement = document.createElement('img');
+        markerElement.src = casa;
+        markerElement.width = 30; // establecer el ancho en 30 píxeles
+        markerElement.height = 30; // establecer la altura en 30 píxeles
+
+
+        new mapboxgl.Marker({ element: markerElement })
+          .setLngLat([longitude, latitude])
+          .setPopup(new Popup({ closeButton: false, anchor: 'left' })
+          .setHTML(`<div class="popup">Mi ubicación inicial: <br/>[${longitude}, ${latitude}]</div>`))
+          .addTo(mapa);
 
       });
 
@@ -35,18 +49,44 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
             userMarkers = markers;
             userMarkers.forEach(market => {
                 console.log(market);
-                // NUEVO
-                new mapboxgl.Marker().setLngLat([market.latitude,market.longitude]).setPopup(new Popup({ closeButton: false, anchor: 'left', })
-                  .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.latitude}, ${market.longitude}]</div>`)).addTo(mapa);
+                let iconMarker;
+                if (market.tipo == "Bar"){
+                  let barMarker = document.createElement('img');
+                  barMarker.src = bar;
+                  barMarker.width = 30; // establecer el ancho en 30 píxeles
+                  barMarker.height = 30; // establecer la altura en 30 píxeles
+                  iconMarker = barMarker;
+                }else if(market.tipo == "Restaurante"){
+                  let restauranteMarker = document.createElement('img');
+                  restauranteMarker.src = restaurante;
+                  restauranteMarker.width = 30; // establecer el ancho en 30 píxeles
+                  restauranteMarker.height = 30; // establecer la altura en 30 píxeles
+                  iconMarker = restauranteMarker;
+                }else if(market.tipo == "Gasolinera"){
+                  let gasolineraMarker = document.createElement('img');
+                  gasolineraMarker.src = gasolinera;
+                  gasolineraMarker.width = 30; // establecer el ancho en 30 píxeles
+                  gasolineraMarker.height = 30; // establecer la altura en 30 píxeles
+                  iconMarker = gasolineraMarker;
+                }else{
+                  let interrogacionMarker = document.createElement('img');
+                  interrogacionMarker.src = interrogacion;
+                  interrogacionMarker.width = 30; // establecer el ancho en 30 píxeles
+                  interrogacionMarker.height = 30; // establecer la altura en 30 píxeles
+                  iconMarker = interrogacionMarker;
+                }
+                  new mapboxgl.Marker({ element: iconMarker })
+                  .setLngLat([market.latitude, market.longitude])
+                  .setPopup(new Popup({ closeButton: false, anchor: 'left' })
+                  .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.longitude}, ${market.latitude}]</div>`))
+                  .addTo(mapa);
             });
         }
       });  
 
     mapa.on('dblclick', function (evt) {
-        let marker = guardarMarcador({session}.session,evt.lngLat.lng,evt.lngLat.lat);
+        //let marker = guardarMarcador({session}.session,evt.lngLat.lng,evt.lngLat.lat);
 
-        new mapboxgl.Marker().setLngLat([evt.lngLat.lng,evt.lngLat.lat]).setPopup(new Popup({ closeButton: false, anchor: 'left', })
-        .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${evt.lngLat.lat}, ${evt.lngLat.lng}]</div>`)).addTo(mapa);
       });
     return mapa;
 }
