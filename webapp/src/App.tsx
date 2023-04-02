@@ -11,13 +11,15 @@ import ProfileViewer from './components/Login/ProfileViewer'
 import AboutUs from './components/aboutus/AboutUs';
 import { SessionProvider, useSession } from '@inrupt/solid-ui-react';
 import { useState, useEffect } from 'react';
-
+import { Session,  ISessionOptions} from "@inrupt/solid-client-authn-browser";
 import { handleIncomingRedirect } from "@inrupt/solid-client-authn-browser";
 import * as loginManager  from "./components/Login/LoginManager";
 
 function App(): JSX.Element {
   //const { session } = useSession();
+   const [ses, setSes] = useState(new Session);
   var temp = useSession().session;
+  
   if (loginManager.getUserSession() != null)
       temp = loginManager.getUserSession()
   const session = temp;

@@ -64,14 +64,14 @@ const ProfileViewer = () => {
 
   var temp = useSession().session;
   //const { session } = useSession();
-
+  
    var cond = temp.info.isLoggedIn
 if (loginManager.getUserSession() == null || cond ){
   loginManager.setUserSession(temp);
 }
 
+//const  session  = loginManager.getUserSession(window.location.protocol + '//' + window.location.host + "/ProfileViewer");
  const  session  = loginManager.getUserSession();
-
  const { webId } = session.info;
 
  function guardarWebId() {

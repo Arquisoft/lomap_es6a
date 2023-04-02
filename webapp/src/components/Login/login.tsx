@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import LoginForm from './LoginForm';
 import ProfileViewer from "./ProfileViewer";
 import { SessionInfo } from '@inrupt/solid-ui-react/dist/src/hooks/useSession';
-import { Session } from '@inrupt/solid-client-authn-browser';
+import { getDefaultSession, Session } from '@inrupt/solid-client-authn-browser';
 import * as loginManager  from "./LoginManager";
 // const setUserSession = (session :Session) => {
 //   localStorage.setItem("userSession", JSON.stringify(session));
@@ -23,6 +23,8 @@ function Login() {
   }
 
   const  session  = loginManager.getUserSession();
+
+  //const  session  = getDefaultSession();
   console.log(session);
   return(
     <SessionProvider sessionId="">
