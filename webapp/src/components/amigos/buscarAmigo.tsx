@@ -1,94 +1,97 @@
-import React, { Component, ChangeEvent, FormEvent } from 'react';
-import { getSolidDataset, getThing, getStringNoLocale } from "@inrupt/solid-client";
-import { FOAF } from "@inrupt/vocab-common-rdf";
+import React, { useState, useEffect } from 'react';
+import { getSolidDataset, getThing, getStringNoLocale, getUrlAll } from '@inrupt/solid-client';
+import { FOAF } from '@inrupt/vocab-common-rdf';
+import { useSession } from '@inrupt/solid-ui-react';
 
-interface Props {}
+function BuscarAmigo() {
+  const { session } = useSession();
+  const [webId, setWebId] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const [cargando, setCargando] = useState(false);
+  const [amigos, setAmigos] = useState<string[]>([]);
 
-interface State {
-  correo: string;
-  perfil: any;
-  error: string | null;
-  cargando: boolean;
-}
-
-class BuscarAmigo extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      correo: '',
-      perfil: null,
-      error: null,
-      cargando: false
-    };
-  }
-
-  async buscarUsuario() {
+  async function buscarAmigo() {
     try {
-      const { correo } = this.state;
-      console.log("Buscando usuario con correo", correo);
-      this.setState({ cargando: true });
-      const dataset = await getSolidDataset(`https://${correo}/profile/card`);
-      console.log("Dataset encontrado:", dataset);
-      const perfil = getThing(dataset, `https://${correo}/profile/card#me`);
-      console.log("Perfil encontrado:", perfil);
+      setCargando(true);
+      if (!webId) {
+        throw new Error('WebID no especificado');
+      }
+      const dataset = await getSolidDataset(webId);
+      const perfil = getThing(dataset, webId);
       if (!perfil) {
         throw new Error('Perfil no encontrado');
       }
-      this.setState({ perfil, error: null, cargando: false });
-    } catch (error: any) {
-      console.error(error);
-      this.setState({ perfil: null, error: (error as Error).message, cargando: false });
+      setNombre(getStringNoLocale(perfil, FOAF.name) ?? '');
+      setError(null);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('Ha ocurrido un error desconocido');
+      }
+    } finally {
+      setCargando(false);
     }
   }
 
-  handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ correo: event.target.value });
-  }
-  
-  handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    async function cargarAmigos() {
+      if (!session.info.isLoggedIn) return;
+
+      const { webId } = session.info;
+      if (!webId) {
+        throw new Error('WebID no especificado');
+      }
+      const dataset = await getSolidDataset(webId);
+      const perfil = getThing(dataset, webId);
+      if (!perfil) {
+        throw new Error('Perfil no encontrado');
+      }
+      const amigosUrl = getUrlAll(perfil, FOAF.knows);
+      const nuevosAmigos = await Promise.all(amigosUrl.map(async (url) => {
+        const amigoDataset = await getSolidDataset(url);
+        const amigoPerfil = getThing(amigoDataset, url);
+        if (!amigoPerfil) {
+          throw new Error('Perfil de amigo no encontrado');
+        }
+        return getStringNoLocale(amigoPerfil, FOAF.name) ?? url;
+      }));
+      setAmigos(nuevosAmigos);
+    }
+    cargarAmigos();
+  }, [session]);
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    this.buscarUsuario();
+    buscarAmigo();
   }
 
-  agregarAmigo = () => {
-    // Agregar código para enviar una solicitud de amistad al usuario encontrado.
-    // Este código aún no está implementado, ya que el proceso de solicitud puede variar
-    // según la plataforma de Solid que se esté utilizando.
-    alert('Solicitud de amistad enviada');
-  }
-
-  render() {
-    const { correo, perfil, error, cargando } = this.state;
-    console.log("Renderizando con perfil:", perfil);
-    return (
-      <div className="contenedor_buscador_principal">
-        <h1>Buscar Amigo</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Correo:
-            <input type="text" value={correo} onChange={this.handleChange} />
-          </label>
-          <button type="submit">Buscar</button>
-        </form>
-        {cargando && <p>Cargando...</p>}
-        {error && <p>Error: {error}</p>}
-        {perfil && (
-          <div>
-            <h2>{getStringNoLocale(perfil, FOAF.name)}</h2>
-            <p>WebID: {perfil.getSubject().asRef()}</p>
-            <ul>
-              <li>Email: {getStringNoLocale(perfil, FOAF.mbox)}</li>
-              <li>Teléfono: {getStringNoLocale(perfil, FOAF.phone)}</li>
-              <li>Amigos: {perfil.getAllRefs(FOAF.knows).join(', ')}</li>
-            </ul>
-            <button onClick={this.agregarAmigo}>Agregar amigo</button>
-          </div>
-        )}
-      </div>
-    );
-  }
-  
+  return (
+    <div>
+      <h1>Buscar Perfil</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          WebID:
+          <input type="text" value={webId} onChange={(event) => setWebId(event.target.value)} />
+        </label>
+        <button type="submit">Buscar</button>
+      </form>
+      {cargando && <p>Cargando...</p>}
+      {error && <p>{error}</p>}
+      {nombre && <p>Nombre: {nombre}</p>}
+      <h2>Mis Amigos:</h2>
+      {amigos.length > 0 ? (
+        <ul>
+          {amigos.map((amigo) => (
+            <li key={amigo}>{amigo}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>No tienes amigos aún.</p>
+      )}
+    </div>
+  );
 }
 
 export default BuscarAmigo;
-
