@@ -1,8 +1,5 @@
 import mapboxgl ,{Map,Popup} from 'mapbox-gl';
 
-import {MarkerEntity} from '../../shared/shareddtypes';
-import { saveMarker } from '../../api/api';
-
 
 import {recuperarMarcador,guardarMarcador, SessionType} from "../../accesoPods/adaptador";
 import Marker from "../../accesoPods/marker";
@@ -12,7 +9,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
 
     const mapa = new Map({
         container,
-        style: 'mapbox://styles/mapbox/dark-v10',
+        style: 'mapbox://styles/mapbox/streets-v12',
         pitchWithRotate: false,
         zoom: 15,
         accessToken: "pk.eyJ1IjoidW8yODI4MzQiLCJhIjoiY2xlcHp5Z2syMGRteTQ5cDJ2dXltMm5uYSJ9.kTLZTl2_YvQiN79m2kPQ1g",
@@ -53,12 +50,6 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
 
         new mapboxgl.Marker().setLngLat([evt.lngLat.lng,evt.lngLat.lat]).setPopup(new Popup({ closeButton: false, anchor: 'left', })
         .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${evt.lngLat.lat}, ${evt.lngLat.lng}]</div>`)).addTo(mapa);
-        let markerEntity: MarkerEntity;
-        markerEntity = {
-          latitud: evt.lngLat.lat,
-          longitud: evt.lngLat.lng,
-        }
-        saveMarker(markerEntity);
       });
     return mapa;
 }
