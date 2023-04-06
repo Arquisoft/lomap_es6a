@@ -2,8 +2,8 @@ import Marker from './marker';
 import {Session} from "@inrupt/solid-client-authn-browser";
 import {escribir, buscarArchivos} from "./acceso";
 
-export function guardarMarcador(session: Session, nombre: String, lat: number, lng: number, tipo: String): Marker | null {
-    let marker = new Marker(nombre, lat, lng, tipo);
+export function guardarMarcador(session: Session, nombre: String, lat: number, lng: number, tipo: String,comentario:String): Marker | null {
+    let marker = new Marker(nombre, lat, lng, tipo,comentario);
 
     if (session.info.webId == null) {
         return null;

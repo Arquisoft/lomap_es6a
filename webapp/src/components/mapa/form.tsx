@@ -56,7 +56,7 @@ function Formulario({ session }: SessionType) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    let marker = guardarMarcador({session}.session, nombre,Number(latitud),Number(longitud), tipo);
+    let marker = guardarMarcador({session}.session, nombre,Number(latitud),Number(longitud), tipo,"");
     setNombre("");
     setLatitud("");
     setLongitud("");

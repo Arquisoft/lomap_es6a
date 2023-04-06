@@ -1,4 +1,5 @@
-import mapboxgl ,{Map,Popup} from 'mapbox-gl';
+import mapboxgl ,{Map,Popup,MapboxEvent} from 'mapbox-gl';
+import React, {useState} from 'react';
 import {recuperarMarcador,guardarMarcador} from "../../accesoPods/adaptador";
 import {SessionType} from "../../shared/shareddtypes";
 import casa from '../../imagenes/marcador.png';
@@ -8,7 +9,9 @@ import gasolinera from '../../imagenes/gasolinera.png';
 import interrogacion from '../../imagenes/interrogacion.png';
 import Marker from "../../accesoPods/marker";
 
-
+interface CustomEventData {
+  comment: string;
+}
 export const initMap = (container: HTMLDivElement, { session }: SessionType) => {
 
     const mapa = new Map({
@@ -20,6 +23,11 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
         doubleClickZoom: false
         
     });
+    let comentario = "";
+    const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      comentario = event.target.value;
+    };
+    let markerFinal = new Marker("",0,0,"","");
     navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
       
@@ -43,6 +51,11 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
 
       let userMarkers: Marker[]
       userMarkers = [];
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        guardarMarcador({session}.session, markerFinal.nombre,Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo,comentario);
+      };
 
       recuperarMarcador({session}.session).then(markers => {
         if (markers != null) {
@@ -75,11 +88,28 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                   interrogacionMarker.height = 30; // establecer la altura en 30 píxeles
                   iconMarker = interrogacionMarker;
                 }
-                  new mapboxgl.Marker({ element: iconMarker })
+                  let marker = new mapboxgl.Marker({ element: iconMarker })
                   .setLngLat([market.latitude, market.longitude])
                   .setPopup(new Popup({ closeButton: false, anchor: 'left' })
                   .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.longitude}, ${market.latitude}]</div>`))
                   .addTo(mapa);
+                  markerFinal = market;
+                  function onMarkerClick(){
+                    marker.getPopup().setHTML(`<form id="comment-form"><label for="comentario">Añadir un comentario:</label><input type="text" id="comentario" name="comentario" required> <button type="submit">Enviar</button></form>`);
+
+                    marker.getPopup().on('submit', () => {
+                      const form = document.getElementById('comment-form') as HTMLFormElement;
+                      form.addEventListener('submit', (event) => {
+                        event.preventDefault();
+                        const formData = new FormData(form);
+                        const comment = formData.get('comentario') as string;
+                        comentario = formData.get('comentario') as string;
+                        const eventData: CustomEventData = { comment };
+                        marker.getPopup().fire('comment', eventData);
+                      });
+                    });
+                  }
+                  marker.getElement().addEventListener('click',onMarkerClick);
             });
         }
       });  
