@@ -55,19 +55,16 @@ const getUserSession = (): Session => {
   return session ? JSON.parse(session) : null;
 };
 
-
-
-
 const ProfileViewer = () => {
   const classes = useStyles();
 
   var temp = useSession().session;
   //const { session } = useSession();
 
-   var cond = temp.info.isLoggedIn
-if (getUserSession() == null || cond ){
-  setUserSession(temp);
-}
+  var cond = temp.info.isLoggedIn
+  if (getUserSession() == null || cond ) {
+    setUserSession(temp);
+  }
 
  const  session  = getUserSession();
 
