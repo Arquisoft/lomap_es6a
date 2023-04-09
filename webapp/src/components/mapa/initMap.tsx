@@ -6,6 +6,9 @@ import casa from '../../imagenes/marcador.png';
 import bar from '../../imagenes/bar.png';
 import restaurante from '../../imagenes/restaurante.png';
 import gasolinera from '../../imagenes/gasolinera.png';
+import tienda from '../../imagenes/tienda.png';
+import paisaje from '../../imagenes/paisaje.png';
+import monumento from '../../imagenes/monumento.png';
 import interrogacion from '../../imagenes/interrogacion.png';
 import Marker from "../../accesoPods/marker";
 
@@ -81,6 +84,24 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                   gasolineraMarker.width = 30; // establecer el ancho en 30 píxeles
                   gasolineraMarker.height = 30; // establecer la altura en 30 píxeles
                   iconMarker = gasolineraMarker;
+                }else if(market.tipo == "Tienda"){
+                  let tiendaMarker = document.createElement('img');
+                  tiendaMarker.src = tienda;
+                  tiendaMarker.width = 30; // establecer el ancho en 30 píxeles
+                  tiendaMarker.height = 30; // establecer la altura en 30 píxeles
+                  iconMarker = tiendaMarker;
+                }else if(market.tipo == "Paisaje"){
+                  let paisajeMarker = document.createElement('img');
+                  paisajeMarker.src = paisaje;
+                  paisajeMarker.width = 30; // establecer el ancho en 30 píxeles
+                  paisajeMarker.height = 30; // establecer la altura en 30 píxeles
+                  iconMarker = paisajeMarker;
+                }else if(market.tipo == "Monumento"){
+                  let monumentoMarker = document.createElement('img');
+                  monumentoMarker.src = monumento;
+                  monumentoMarker.width = 30; // establecer el ancho en 30 píxeles
+                  monumentoMarker.height = 30; // establecer la altura en 30 píxeles
+                  iconMarker = monumentoMarker;
                 }else{
                   let interrogacionMarker = document.createElement('img');
                   interrogacionMarker.src = interrogacion;
@@ -96,7 +117,6 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                   markerFinal = market;
                   function onMarkerClick(){
                     marker.getPopup().setHTML(`<form id="comment-form"><label for="comentario">Añadir un comentario:</label><input type="text" id="comentario" name="comentario" required> <button type="submit">Enviar</button></form>`);
-
                     marker.getPopup().on('submit', () => {
                       const form = document.getElementById('comment-form') as HTMLFormElement;
                       form.addEventListener('submit', (event) => {

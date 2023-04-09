@@ -7,6 +7,9 @@ import bar from '../../imagenes/bar.png';
 import restaurante from '../../imagenes/restaurante.png';
 import gasolinera from '../../imagenes/gasolinera.png';
 import interrogacion from '../../imagenes/interrogacion.png';
+import tienda from '../../imagenes/tienda.png';
+import paisaje from '../../imagenes/paisaje.png';
+import monumento from '../../imagenes/monumento.png';
 import {SessionType} from "../../shared/shareddtypes"
 import { initMap } from './initMap';
 import mapboxgl ,{Map,Popup} from 'mapbox-gl';
@@ -16,6 +19,7 @@ function Formulario({ session }: SessionType) {
   const [latitud, setLatitud] = useState("");
   const [longitud, setLongitud] = useState("");
   const [tipo, setTipo] = useState("");
+  const [comentario, setComentario] = useState("");
 
   const barMarker = document.createElement('img');
   barMarker.src = bar;
@@ -36,6 +40,21 @@ function Formulario({ session }: SessionType) {
   interrogacionMarker.src = interrogacion;
   interrogacionMarker.width = 30; // establecer el ancho en 30 píxeles
   interrogacionMarker.height = 30; // establecer la altura en 30 píxeles
+
+  const tiendaMarker = document.createElement('img');
+  tiendaMarker.src = tienda;
+  tiendaMarker.width = 30; // establecer el ancho en 30 píxeles
+  tiendaMarker.height = 30; // establecer la altura en 30 píxeles
+
+  const paisajeMarker = document.createElement('img');
+  paisajeMarker.src = paisaje;
+  paisajeMarker.width = 30; // establecer el ancho en 30 píxeles
+  paisajeMarker.height = 30; // establecer la altura en 30 píxeles
+
+  const monumentoMarker = document.createElement('img');
+  monumentoMarker.src = monumento;
+  monumentoMarker.width = 30; // establecer el ancho en 30 píxeles
+  monumentoMarker.height = 30; // establecer la altura en 30 píxeles
   
   const mapRef = useRef<HTMLDivElement>(null);
   let mapa: mapboxgl.Map;
@@ -56,11 +75,12 @@ function Formulario({ session }: SessionType) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    let marker = guardarMarcador({session}.session, nombre,Number(latitud),Number(longitud), tipo,"");
+    let marker = guardarMarcador({session}.session, nombre,Number(latitud),Number(longitud), tipo,comentario);
     setNombre("");
     setLatitud("");
     setLongitud("");
     setTipo("");
+    setComentario("");
     
     //Añadir marcador
     let iconMarker;
@@ -70,6 +90,12 @@ function Formulario({ session }: SessionType) {
       iconMarker = restauranteMarker;
     }else if(tipo == "Gasolinera"){
       iconMarker = gasolineraMarker;
+    }else if(tipo == "Tienda"){
+      iconMarker = tiendaMarker;
+    }else if(tipo == "Paisaje"){
+      iconMarker = paisajeMarker;
+    }else if(tipo == "Monumento"){
+      iconMarker = monumentoMarker;
     }else{
       iconMarker = interrogacionMarker;
     }
@@ -99,11 +125,10 @@ function Formulario({ session }: SessionType) {
   const handleTipoChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setTipo(event.target.value);
   };
-
+  const handleComentarioChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setComentario(event.target.value);
+  };
   
-
-  
-
   return (
     
      <>
@@ -130,7 +155,14 @@ function Formulario({ session }: SessionType) {
           <option value="Gasolinera">Gasolinera</option>
           <option value="Restaurante">Restaurante</option>
           <option value="Bar">Bar</option>
+          <option value="Tienda">Tienda</option>
+          <option value="Paisaje">Paisaje</option>
+          <option value="Monumento">Monumento</option>
         </select>
+      </label>
+      <label>
+      Añadir Comentario:
+      <textarea style={{resize:"none"}} value={comentario} onChange={handleComentarioChange} ></textarea>
       </label>
       <br />
       <button type="submit">Añadir</button>
