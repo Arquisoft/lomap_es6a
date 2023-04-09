@@ -1,24 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { getSolidDataset, getThing, getStringNoLocale, getUrlAll } from '@inrupt/solid-client';
+import React, { useState, useEffect, useRef } from 'react';
+import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThing, saveSolidDatasetAt, removeIri } from '@inrupt/solid-client';
 import { FOAF } from '@inrupt/vocab-common-rdf';
 import { useSession } from '@inrupt/solid-ui-react';
 
 function BuscarAmigo() {
   const { session } = useSession();
-  const [webId, setWebId] = useState('');
   const [nombre, setNombre] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [cargando, setCargando] = useState(false);
   const [amigos, setAmigos] = useState<string[]>([]);
+  const [name, setName] = useState('');
+  const WebID = "https://" + name + ".inrupt.net/profile/card#me";
 
   async function buscarAmigo() {
     try {
       setCargando(true);
-      if (!webId) {
-        throw new Error('WebID no especificado');
+      if (!WebID) {
+        throw new Error('Nombre de usuario no especificado');
       }
-      const dataset = await getSolidDataset(webId);
-      const perfil = getThing(dataset, webId);
+      const dataset = await getSolidDataset(WebID);
+      const perfil = getThing(dataset, WebID);
       if (!perfil) {
         throw new Error('Perfil no encontrado');
       }
@@ -41,7 +42,7 @@ function BuscarAmigo() {
 
       const { webId } = session.info;
       if (!webId) {
-        throw new Error('WebID no especificado');
+        throw new Error('Nombre de usuario no especificado');
       }
       const dataset = await getSolidDataset(webId);
       const perfil = getThing(dataset, webId);
@@ -67,24 +68,57 @@ function BuscarAmigo() {
     buscarAmigo();
   }
 
+  async function addFriend() {
+    const { webId } = session.info;
+
+    if(webId == null) {
+      throw new Error();
+    }
+    const profileDataset = await getSolidDataset(webId);
+
+    if(profileDataset == null) {
+      throw new Error();
+    }
+    const thing = getThing(profileDataset, webId);
+
+    if(thing == null) {
+      throw new Error();
+    }
+    const updatedThing = addIri(thing, FOAF.knows, WebID);
+    const updatedProfileDataset = setThing(profileDataset, updatedThing);
+    const storedProfileDataset = await saveSolidDatasetAt(webId, updatedProfileDataset, {
+        fetch: session.fetch,
+    });
+  }
+
+  async function deleteFriend() {
+
+  }
+
+  function showMap() {
+
+  }
+
   return (
     <div>
       <h1>Buscar Perfil</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          WebID:
-          <input type="text" value={webId} onChange={(event) => setWebId(event.target.value)} />
+        Nombre de usuario:
+          <input type="text" value={name} onChange={(event) => setName(event.target.value)} />
         </label>
         <button type="submit">Buscar</button>
       </form>
       {cargando && <p>Cargando...</p>}
       {error && <p>{error}</p>}
-      {nombre && <p>Nombre: {nombre}</p>}
+      {nombre && <p>Nombre: {nombre} <button type='submit' onClick={addFriend}>Añadir</button></p>}
       <h2>Mis Amigos:</h2>
       {amigos.length > 0 ? (
         <ul>
           {amigos.map((amigo) => (
-            <li key={amigo}>{amigo}</li>
+            <p key={amigo}>
+              {amigo} <button type='submit' onClick={showMap}>Mostrar Mapa</button> <button type='submit' onClick={deleteFriend}>Eliminar</button>
+            </p>
           ))}
         </ul>
       ) : (
