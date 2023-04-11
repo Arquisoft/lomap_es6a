@@ -1,5 +1,8 @@
 import { getSolidDataset, overwriteFile, getContainedResourceUrlAll, getFile,deleteFile } from "@inrupt/solid-client";
-import {Session} from "@inrupt/solid-client-authn-browser";
+import {Session,fetch} from "@inrupt/solid-client-authn-browser";
+import { SessionContext } from "@inrupt/solid-ui-react";
+import { useContext } from "react";
+import { ILoginHandler, ILogoutHandler, IIncomingRedirectHandler, ISessionInfo, IIssuerConfigFetcher, ISessionInternalInfo, ILoginOptions } from "@inrupt/solid-client-authn-core";
 
 async function leer(session: Session, url: string): Promise<File | null> {
     let parts = url.split("/");
@@ -7,7 +10,7 @@ async function leer(session: Session, url: string): Promise<File | null> {
     try {
         let blob = await getFile(
             url,
-            { fetch: session.fetch }
+            { fetch: fetch }
         );
         return new File([blob], name, { type: blob.type });
     } catch (error) {
@@ -17,12 +20,13 @@ async function leer(session: Session, url: string): Promise<File | null> {
 }
 
 async function escribir(session:Session, url: string, file: File): Promise<boolean> {
+    //((input: RequestInfo | URL, init?: RequestInit | undefined) => Promise<Response>) & typeof fetch
     let result = true;
     try {
         await overwriteFile(
             url,
             file,
-            { contentType: file.type, fetch: session.fetch }
+            { contentType: file.type, fetch:  fetch }
         );
     } catch (error) {
         result = false;
@@ -34,7 +38,7 @@ async function buscarArchivos(session: Session, url: string): Promise<File[] | n
     try {
         let dataset = await getSolidDataset(
             url,
-            { fetch: session.fetch }
+            { fetch: fetch }
         );
 
         let urls = getContainedResourceUrlAll(dataset);
@@ -60,7 +64,7 @@ async function deleteData(session: Session, url: string): Promise<boolean> {
     try {
         await deleteFile(
             url,
-            { fetch: session.fetch }
+            { fetch: fetch }
         );
     } catch (error) {
         result = false;
@@ -72,7 +76,7 @@ function existsUrl(session: Session, url: string): boolean {
     try {
         getSolidDataset(
             url,
-            { fetch: session.fetch }
+            { fetch: fetch }
         );
     } catch (error) {
         return false;
