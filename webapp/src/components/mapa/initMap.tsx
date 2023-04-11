@@ -1,5 +1,5 @@
 import mapboxgl ,{Map,Popup,MapboxEvent} from 'mapbox-gl';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {recuperarMarcador,guardarMarcador} from "../../accesoPods/adaptador";
 import {SessionType} from "../../shared/shareddtypes";
 import casa from '../../imagenes/marcador.png';
@@ -11,13 +11,15 @@ import paisaje from '../../imagenes/paisaje.png';
 import monumento from '../../imagenes/monumento.png';
 import interrogacion from '../../imagenes/interrogacion.png';
 import Marker from "../../accesoPods/marker";
+import { RedirectFunction, redirect } from 'react-router-dom';
+
 
 interface CustomEventData {
   comment: string;
 }
 export const initMap = (container: HTMLDivElement, { session }: SessionType) => {
 
-    const mapa = new Map({
+  const mapa = new Map({
         container,
         style: 'mapbox://styles/mapbox/streets-v12',
         pitchWithRotate: false,
@@ -30,7 +32,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
     const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       comentario = event.target.value;
     };
-    let markerFinal = new Marker("",0,0,"","");
+    let markerFinal = new Marker("","",0,0,"");
     navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
       
@@ -57,7 +59,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
 
       const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        guardarMarcador({session}.session, markerFinal.nombre,Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo,comentario);
+        guardarMarcador({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo);
       };
 
       recuperarMarcador({session}.session).then(markers => {
@@ -115,8 +117,24 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                   .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.longitude}, ${market.latitude}]</div>`))
                   .addTo(mapa);
                   markerFinal = market;
-                  function onMarkerClick(){
-                    marker.getPopup().setHTML(`<form id="comment-form"><label for="comentario">Añadir un comentario:</label><input type="text" id="comentario" name="comentario" required> <button type="submit">Enviar</button></form>`);
+
+                  const onMarkerClick= ()=>{
+                  
+                    const handleClick = () => {
+                      console.log("Funciona el boton. POR FIN!!!!!!!!!!!");
+                    };
+
+                    const popupElement = marker.getPopup().setHTML(`
+                        <h1>`+ market.nombre+`</h1>
+                        <p>`+ market.descripcion+`</p>
+                        <form id="comment-form">
+                          <label for="comentario">Añadir un comentario:</label>
+                          <input type="text" id="comentario" name="comentario" required> 
+                          <button id="btncoment" type="submit">Enviar</button>
+                        </form>`);
+
+                    document.getElementById("btncoment")?.addEventListener("click",handleClick);
+
                     marker.getPopup().on('submit', () => {
                       const form = document.getElementById('comment-form') as HTMLFormElement;
                       form.addEventListener('submit', (event) => {

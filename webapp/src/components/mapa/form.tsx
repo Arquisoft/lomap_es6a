@@ -16,10 +16,10 @@ import mapboxgl ,{Map,Popup} from 'mapbox-gl';
 
 function Formulario({ session }: SessionType) {
   const [nombre, setNombre] = useState("");
+  const [descripcion, setDescripcion] = useState("");
   const [latitud, setLatitud] = useState("");
   const [longitud, setLongitud] = useState("");
   const [tipo, setTipo] = useState("");
-  const [comentario, setComentario] = useState("");
 
   const barMarker = document.createElement('img');
   barMarker.src = bar;
@@ -75,12 +75,12 @@ function Formulario({ session }: SessionType) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    let marker = guardarMarcador({session}.session, nombre,Number(latitud),Number(longitud), tipo,comentario);
+    let marker = guardarMarcador({session}.session, nombre, descripcion, Number(latitud),Number(longitud), tipo);
     setNombre("");
     setLatitud("");
     setLongitud("");
     setTipo("");
-    setComentario("");
+    setDescripcion("");
     
     //Añadir marcador
     let iconMarker;
@@ -125,8 +125,8 @@ function Formulario({ session }: SessionType) {
   const handleTipoChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setTipo(event.target.value);
   };
-  const handleComentarioChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setComentario(event.target.value);
+  const handleDescripcionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setDescripcion(event.target.value);
   };
   
   return (
@@ -136,6 +136,11 @@ function Formulario({ session }: SessionType) {
       <label>
         Nombre:
         <input type="text" value={nombre} onChange={handleNombreChange} required />
+      </label>
+      <br />
+      <label>
+        Descripcion:
+        <textarea style={{resize:"none"}} value={descripcion} onChange={handleDescripcionChange} required ></textarea>
       </label>
       <br />
       <label>
@@ -159,10 +164,6 @@ function Formulario({ session }: SessionType) {
           <option value="Paisaje">Paisaje</option>
           <option value="Monumento">Monumento</option>
         </select>
-      </label>
-      <label>
-      Añadir Comentario:
-      <textarea style={{resize:"none"}} value={comentario} onChange={handleComentarioChange} ></textarea>
       </label>
       <br />
       <button type="submit">Añadir</button>
