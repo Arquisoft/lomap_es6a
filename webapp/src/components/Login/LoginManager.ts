@@ -1,4 +1,4 @@
-import { Session,  ISessionOptions, onSessionRestore, handleIncomingRedirect} from "@inrupt/solid-client-authn-browser";
+import { Session,  ISessionOptions, onSessionRestore, handleIncomingRedirect, logout} from "@inrupt/solid-client-authn-browser";
 //import {  ISessionOptions} from "@inrupt/solid-client-authn-browser";
 //import { Session } from "@inrupt/solid-client-authn-node"
 import { IStorage, StorageUtility,ISessionInfoManager } from "@inrupt/solid-client-authn-core";
@@ -27,10 +27,34 @@ class SesionTemp extends Session{
 
 //var ses : Session = new Session;
 
+export const userLogout = () =>{
+  const session = getUserSession()
+  // var testLogout = logout
 
+  // session.logout = testLogout;
+  // session.logout()
+  
+  // var testeoo = getDefaultSession();
+  
+  // var list =testeoo.listeners
+  // session.addListener = testeoo.addListener
+  // // for (var i in list){
+  // //   session.addListener(i.)
+  // // }
+
+  // session.logout = testeoo.logout;
+  // session.logout()
+  
+  // var f = new Session();
+  // f = Session.prototype;
+  session.info.isLoggedIn = false;
+  setUserSession(session)
+  logout()
+  //logout.caller(session)
+}
 
 export const setUserSession = (session :Session) => {
-
+ // logout.caller(session)
   localStorage.clear();
   localStorage.setItem("userSession", JSON.stringify(session));
 }

@@ -105,8 +105,9 @@ if (loginManager.getUserSession() == null || cond ){
                       </Card>
                     </CombinedDataProvider>
                   ) : null}
-                  <LogoutButton>
-                    <Button style={{ marginTop: 20 }} variant="contained" color="primary" href="/LoginForm">
+                  <LogoutButton >
+                    <Button style={{ marginTop: 20 }} onClick={()=>loginManager.userLogout()}
+                   variant="contained" color="primary" href="/LoginForm" >
                       Logout
                     </Button>
                   </LogoutButton>
