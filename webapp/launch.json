@@ -2,8 +2,8 @@
     "version": "0.2.0",
     "configurations": [ 
         {
-            "name": "Chrome",
-            "type": "chrome",
+            "name": "Edge",
+            "type": "edge",
             "request": "launch",
             "url": "http://localhost:3000",     // create-react-app's default port 3000
             "webRoot": "${workspaceRoot}/src"
