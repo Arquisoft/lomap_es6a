@@ -27,6 +27,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
         
     });
     let comentario = "";
+    let form1 = new HTMLFormElement;
     const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       comentario = event.target.value;
     };
@@ -116,19 +117,15 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                   .addTo(mapa);
                   markerFinal = market;
                   function onMarkerClick(){
-                    marker.getPopup().setHTML(`<form id="comment-form"><label for="comentario">Añadir un comentario:</label><input type="text" id="comentario" name="comentario" required> <button type="submit">Enviar</button></form>`);
-                    marker.getPopup().on('submit', () => {
-                      const form = document.getElementById('comment-form') as HTMLFormElement;
-                      form.addEventListener('submit', (event) => {
-                        event.preventDefault();
-                        const formData = new FormData(form);
-                        const comment = formData.get('comentario') as string;
-                        comentario = formData.get('comentario') as string;
-                        const eventData: CustomEventData = { comment };
-                        marker.getPopup().fire('comment', eventData);
-                      });
-                    });
+                    marker.getPopup().setHTML(`<form><label for="comentario">Añadir un comentario:</label><input type="text" id="comentario" name="comentario" required> <button type="submit">Enviar</button></form>`);
+                   
+                   form1 = marker.getPopup().getElement()?.querySelector('form') as HTMLFormElement;         
                   }
+                  form1.addEventListener('submit', (e) => {
+                    e.preventDefault(); // Evita que la página se recargue al enviar el formulario
+                    const comentario = (document.getElementById('comentario') as HTMLInputElement).value;
+                    console.log('Comentario:', comentario);
+                  });   
                   marker.getElement().addEventListener('click',onMarkerClick);
             });
         }

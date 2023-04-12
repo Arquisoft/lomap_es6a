@@ -5,11 +5,12 @@ type MenuProps = {
   onFilter: (option: string) => void;
 };
 
-const Menu = ({ options }: MenuProps) => {
+const Menu = ({ options, onFilter }: MenuProps) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
+    onFilter(option);
   };
 
   return (
@@ -28,4 +29,5 @@ const Menu = ({ options }: MenuProps) => {
     </nav>
   );
 };
+
 export default Menu;
