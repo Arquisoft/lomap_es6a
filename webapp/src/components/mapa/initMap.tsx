@@ -27,7 +27,6 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
         
     });
     let comentario = "";
-    let form1 = new HTMLFormElement;
     const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       comentario = event.target.value;
     };
@@ -118,14 +117,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                   markerFinal = market;
                   function onMarkerClick(){
                     marker.getPopup().setHTML(`<form><label for="comentario">Añadir un comentario:</label><input type="text" id="comentario" name="comentario" required> <button type="submit">Enviar</button></form>`);
-                   
-                   form1 = marker.getPopup().getElement()?.querySelector('form') as HTMLFormElement;         
-                  }
-                  form1.addEventListener('submit', (e) => {
-                    e.preventDefault(); // Evita que la página se recargue al enviar el formulario
-                    const comentario = (document.getElementById('comentario') as HTMLInputElement).value;
-                    console.log('Comentario:', comentario);
-                  });   
+                                     }
                   marker.getElement().addEventListener('click',onMarkerClick);
             });
         }
