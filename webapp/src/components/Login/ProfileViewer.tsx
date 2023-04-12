@@ -4,6 +4,10 @@ import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import { SessionInfo } from "@inrupt/solid-ui-react/dist/src/hooks/useSession";
 import { Session } from "@inrupt/solid-client-authn-browser";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import * as loginManager2  from "./LoginManager";
+import { getUser } from "../../api/api";
+let loginManager = require("./LoginManager.ts");
+
 
 const useStyles = makeStyles((theme: Theme) =>
 createStyles({
@@ -44,36 +48,39 @@ createStyles({
 );
 
 
-const setUserSession = (session :Session) => {
-  localStorage.clear();
-  localStorage.setItem("userSession", JSON.stringify(session));
-};
+// const setUserSession = (session :Session) => {
+//   localStorage.clear();
+//   localStorage.setItem("userSession", JSON.stringify(session));
+// };
 
 
-const getUserSession = (): Session => {
-  const session = localStorage.getItem("userSession");
-  return session ? JSON.parse(session) : null;
-};
+// const getUserSession = (): Session => {
+//   const session = localStorage.getItem("userSession");
+//   return session ? JSON.parse(session) : null;
+// };
+
+
+
 
 const ProfileViewer = () => {
   const classes = useStyles();
-
+  
   var temp = useSession().session;
   //const { session } = useSession();
+  
+   var cond = temp.info.isLoggedIn
+if (loginManager.getUserSession() == null || cond ){
+  loginManager.setUserSession(temp);
+}
 
-  var cond = temp.info.isLoggedIn
-  if (getUserSession() == null || cond ) {
-    setUserSession(temp);
-  }
+//const  session  = loginManager.getUserSession(window.location.protocol + '//' + window.location.host + "/ProfileViewer");
+ const  session  = loginManager.getUserSession();
+ const { webId } = session.info;
 
- const  session  = getUserSession();
-
-//  const { webId } = session.info;
-
-//  function guardarWebId() {
-//    sessionStorage.setItem('webIdSesion', webId as string);
-//    const w = sessionStorage.getItem('webIdSesion');
-//  }
+ function guardarWebId() {
+   sessionStorage.setItem('webIdSesion', webId as string);
+   const w = sessionStorage.getItem('webIdSesion');
+ }
   return (
     <>
     <form className={classes.container} noValidate autoComplete="on">
