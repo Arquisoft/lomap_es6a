@@ -1,6 +1,6 @@
 import mapboxgl ,{Map,Popup,MapboxEvent} from 'mapbox-gl';
-import React, {useState} from 'react';
-import {recuperarMarcador,guardarMarcador} from "../../accesoPods/adaptador";
+import React, {useState, useEffect} from 'react';
+import {recuperarMarcador,guardarMarcador, guardarComentario, recuperarComentario} from "../../accesoPods/adaptador";
 import {SessionType} from "../../shared/shareddtypes";
 import casa from '../../imagenes/marcador.png';
 import bar from '../../imagenes/bar.png';
@@ -11,13 +11,17 @@ import paisaje from '../../imagenes/paisaje.png';
 import monumento from '../../imagenes/monumento.png';
 import interrogacion from '../../imagenes/interrogacion.png';
 import Marker from "../../accesoPods/marker";
+import { RedirectFunction, redirect } from 'react-router-dom';
+import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
+import Comentario from '../../accesoPods/comentario';
+
 
 interface CustomEventData {
   comment: string;
 }
 export const initMap = (container: HTMLDivElement, { session }: SessionType) => {
 
-    const mapa = new Map({
+  const mapa = new Map({
         container,
         style: 'mapbox://styles/mapbox/streets-v12',
         pitchWithRotate: false,
@@ -30,7 +34,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
     const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       comentario = event.target.value;
     };
-    let markerFinal = new Marker("",0,0,"","");
+    let markerFinal = new Marker("","",0,0,"");
     navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
       
@@ -57,7 +61,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
 
       const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        guardarMarcador({session}.session, markerFinal.nombre,Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo,comentario);
+        guardarMarcador({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo);
       };
 
       recuperarMarcador({session}.session).then(markers => {
@@ -115,18 +119,65 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                   .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.longitude}, ${market.latitude}]</div>`))
                   .addTo(mapa);
                   markerFinal = market;
-                  function onMarkerClick(){
-                    marker.getPopup().setHTML(`<form id="comment-form"><label for="comentario">Añadir un comentario:</label><input type="text" id="comentario" name="comentario" required> <button type="submit">Enviar</button></form>`);
-                    marker.getPopup().on('submit', () => {
-                      const form = document.getElementById('comment-form') as HTMLFormElement;
-                      form.addEventListener('submit', (event) => {
-                        event.preventDefault();
-                        const formData = new FormData(form);
-                        const comment = formData.get('comentario') as string;
-                        comentario = formData.get('comentario') as string;
-                        const eventData: CustomEventData = { comment };
-                        marker.getPopup().fire('comment', eventData);
-                      });
+
+                  const onMarkerClick= ()=>{
+                    const handleClickPopup = (event: MouseEvent) => {
+                      event.preventDefault();
+                    }
+                    const handleClick = (event: MouseEvent) => {
+                      event.preventDefault();
+                      const miInput = document.getElementById('comentario');
+                      const miInputValoracion = document.getElementById('valoracion');
+  
+                        // Obtener el valor del input de texto
+                        if (miInput instanceof HTMLInputElement && miInputValoracion instanceof HTMLInputElement){
+                          let texto = miInput.value;
+                          let valoracion = miInputValoracion.value
+                          if (texto.length != 0){
+                            guardarComentario({session}.session, texto, market.id, FOAF.name.iri.value, valoracion);
+                            miInput.value = "";
+                            miInputValoracion.value = "";
+                          }
+                        }else{
+                          console.log("No entro")
+                        }
+                        
+                      
+                    };
+
+                    let markerComments: Comentario[]
+                    markerComments = [];
+                    let cadena = "<ul>";
+                    recuperarComentario({session}.session, market.id).then(comentarios => {
+                      if (comentarios != null) {
+                        markerComments = comentarios;
+                        markerComments.forEach(comentario => {
+                          
+                          cadena += "<li>"+ comentario.texto +"-"+ comentario.valoracion +"</li>"
+                        }
+                    )
+                    cadena += "</ul>";
+
+                    let html = `
+                    <h1>`+ market.nombre+`</h1>
+                    <p>`+ market.descripcion+`</p>
+                    <form id="comment-form">
+                      <label for="comentario">Añadir un comentario:</label>
+                      <input type="text" id="comentario" name="comentario" required>
+                      <input type="number" id="valoracion" min="0" max="10" step="1" required>
+                      <button type="submit" id="btnenviar" >Enviar</button>
+                    </form>
+                    <h2>Comentarios</h2>
+                    `+ cadena;
+                    const popupElement = marker.getPopup().setHTML(html);
+
+                    const miboton = document.getElementById("btnenviar");
+                    if (miboton instanceof HTMLButtonElement){
+                      miboton.addEventListener("click",handleClick);
+                    }
+
+                    popupElement.getElement().addEventListener("click",handleClickPopup);
+                  }
                     });
                   }
                   marker.getElement().addEventListener('click',onMarkerClick);
