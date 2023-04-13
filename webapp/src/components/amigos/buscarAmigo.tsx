@@ -212,7 +212,7 @@ function BuscarAmigo() {
         <ul>
           {amigos.map((amigo) => (
             <p key={amigo}>
-              {amigo} <Link to={'/mapaAmigo/'+nombreUsuario}>Mapa</Link> <button type='submit' onClick={() => deleteFriend(amigo)}>Eliminar</button>
+              {amigo} <Link to={'/mapaAmigo/'+nombreAmigo}>Mapa</Link> <button type='submit' onClick={() => deleteFriend(amigo)}>Eliminar</button>
             </p>
           ))}
         </ul>
