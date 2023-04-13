@@ -10,8 +10,6 @@ Para la reaalización de LoMap hemos tomado la decisión de desarrollarlo en Typ
 
 * React: React es una biblioteca de código abierto concebida para crear interfaces de usuario. Hemos elegido React por su sencillez y las númerosas posibilidades que proporciona.
 
-* MongoDB: sistema de bases de datos de código abierto NoSQL. Lo hemos elegido por la forma de almacenamiento de datos en JSON y no en tablas, pensando en lo que más se ajusta a nuestra idea de proyecto.
-
 * Node.js: Node.js, es un entorno en tiempo de ejecución multiplataforma para la capa del servidor (en el lado del servidor) basado en JavaScript.
 
 * Docker: es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
