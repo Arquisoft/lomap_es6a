@@ -2,10 +2,11 @@ import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@in
 import { Button, Card, CardActionArea, CardContent, CardHeader, Container, Typography } from "@material-ui/core";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import { SessionInfo } from "@inrupt/solid-ui-react/dist/src/hooks/useSession";
-import { Session } from "@inrupt/solid-client-authn-browser";
+import { Session, getDefaultSession } from "@inrupt/solid-client-authn-browser";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import * as loginManager2  from "./LoginManager";
 import { getUser } from "../../api/api";
+import React, { useState, useEffect } from 'react';
 let loginManager = require("./LoginManager.ts");
 
 
@@ -65,22 +66,36 @@ createStyles({
 const ProfileViewer = () => {
   const classes = useStyles();
   
-  var temp = useSession().session;
-  //const { session } = useSession();
+//   var temp = useSession().session;
+//   //const { session } = useSession();
   
-   var cond = temp.info.isLoggedIn
-if (loginManager.getUserSession() == null || cond ){
-  loginManager.setUserSession(temp);
-}
+//    var cond = temp.info.isLoggedIn
+// if (loginManager.getUserSession() == null || cond ){
+//   loginManager.setUserSession(temp);
+// }
 
 //const  session  = loginManager.getUserSession(window.location.protocol + '//' + window.location.host + "/ProfileViewer");
- const  session  = loginManager.getUserSession();
- const { webId } = session.info;
+ //let  session  = loginManager.getUserSession();
+ let  session : Session = new Session();
+//  const { webId } = session.info;
 
- function guardarWebId() {
-   sessionStorage.setItem('webIdSesion', webId as string);
-   const w = sessionStorage.getItem('webIdSesion');
- }
+//  function guardarWebId() {
+//    sessionStorage.setItem('webIdSesion', webId as string);
+//    const w = sessionStorage.getItem('webIdSesion');
+//  }
+// useEffect(() => {
+//   const fetchData = async () => {
+//     await loginManager.useLoginAndFetch();
+//   };
+//   fetchData();
+// }, []);
+useEffect(()=>{ 
+  loginManager.useLogin();
+  session = getDefaultSession();},[])
+//session = loginManager.useLoginT();
+  // session = loginManager.useLoginAndFetch().then((ses:Session) =>{ 
+  // session = ses});
+ 
   return (
     <>
     <form className={classes.container} noValidate autoComplete="on">

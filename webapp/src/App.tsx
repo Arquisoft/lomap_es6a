@@ -25,7 +25,7 @@ function App(): JSX.Element {
       temp = loginManager.getUserSession()
   const session = temp;
   // const [isLoggedIn, setIsLoggedIn] = useState(true);
-
+ 
   // useEffect(() => {
   //   handleIncomingRedirect();
   // }, []);

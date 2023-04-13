@@ -1,12 +1,12 @@
 import '../../hojasEstilo/home.css'
 import { useSession, SessionProvider } from "@inrupt/solid-ui-react";
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import LoginForm from './LoginForm';
 import ProfileViewer from "./ProfileViewer";
 
 import { SessionInfo } from '@inrupt/solid-ui-react/dist/src/hooks/useSession';
 
-import { getDefaultSession, Session } from '@inrupt/solid-client-authn-browser';
+import { getDefaultSession, handleIncomingRedirect, Session } from '@inrupt/solid-client-authn-browser';
 import * as loginManager  from "./LoginManager";
 //import * as loginManager  from "./LoginManager";
 //let loginManager = require("./LoginManager.ts");
@@ -18,18 +18,26 @@ import * as loginManager  from "./LoginManager";
 
 function Login() {
   //const { session } = useSession();
-
+  handleIncomingRedirect();
+  useEffect(() => {
+    const fetchData = async () => {
+      await loginManager.useLoginAndFetch();
+    };
+    fetchData();
+  }, []);
   
-  var temp = useSession().session;
-  //const { session } = useSession();
+    
+  //loginManager.useLoginAndFetch();
+  // var temp = useSession().session;
+  // //const { session } = useSession();
 
-   var cond = temp.info.isLoggedIn
-  if (loginManager.getUserSession() == null || cond ){
-  loginManager.setUserSession(temp);
-  }
+  //  var cond = temp.info.isLoggedIn
+  // if (loginManager.getUserSession() == null || cond ){
+  // loginManager.setUserSession(temp);
+  // }
 
-  const  session  = loginManager.getUserSession();
-
+  //const  session  = loginManager.getUserSession();
+  const  session  = getDefaultSession();
   //const  session  = getDefaultSession();
   console.log(session);
   return(
