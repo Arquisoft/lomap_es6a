@@ -133,6 +133,20 @@ function BuscarAmigo() {
     const storedProfileDataset = await saveSolidDatasetAt(webId, updatedProfileDataset, {
         fetch: session.fetch,
     });
+
+    const nuevosAmigosUrl = getUrlAll(updatedThing, FOAF.knows);
+    const nuevosAmigos = await Promise.all(nuevosAmigosUrl.map(async (url) => {
+      const amigoDataset = await getSolidDataset(url);
+      const amigoPerfil = getThing(amigoDataset, url);
+  
+      if (!amigoPerfil) {
+        throw new Error(`No se pudo encontrar la cosa del amigo en ${url}`);
+      }
+  
+      return getStringNoLocale(amigoPerfil, FOAF.name) ?? url;
+    }));
+  
+    setAmigos(nuevosAmigos);
   }
 
   async function deleteFriend(amigoNombre: string) {
@@ -202,11 +216,6 @@ function BuscarAmigo() {
     }));
   
     setAmigos(nuevosAmigos);
-  }
-
-  function showMap() {
-    
-    
   }
 
   obtenerNombre().then(() =>{
