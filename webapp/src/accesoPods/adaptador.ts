@@ -27,22 +27,31 @@ export function guardarMarcador(session: Session, nombre: String, descripcion:St
     return marker;
 }
 
-export function guardarComentario(session: Session, texto: string, idmarker: string, autor: string, valoracion: string): Comentario | null {
+export function guardarComentario(session: Session, texto: string, idmarker: string, autor: string, valoracion: string, user: string): Comentario | null {
     let comentario = new Comentario(texto, idmarker, autor, valoracion);
 
     if (session.info.webId == null) {
         return null;
     } // Check if the webId is undefined
 
-    let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-    let comentarioUrl = basicUrl.concat("/public", "/comentarios","/"+idmarker, "/" + comentario.id + ".json");
+    let comentariosUrl = "";
+
+    if (user !== ""){
+        let primeraParte = session.info.webId?.split("/").slice(0, 2).join("/");
+        let segundaParte = session.info.webId?.split("/").slice(2, 3).join().split(".").slice(1,3).join(".");
+        comentariosUrl = primeraParte.concat("/",user,".",segundaParte, "/public", "/comentarios","/"+idmarker+"/");
+        console.log(comentariosUrl);
+    }else{
+        let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
+        comentariosUrl = basicUrl.concat("/public", "/comentarios","/"+idmarker, "/" + comentario.id + ".json");
+    }
 
     let blob = new Blob([JSON.stringify(comentario)], { type: "application/json" });
     let file = new File([blob], comentario.id + ".json", { type: "application/json" });
 
-    escribir(session, comentarioUrl, file).then(result => {
+    escribir(session, comentariosUrl, file).then(result => {
         if (result) {
-            console.log("Comentario " + comentario.id + " saved correctly in " + comentarioUrl);
+            console.log("Comentario " + comentario.id + " saved correctly in " + comentariosUrl);
         } else {
             console.log("Comentario " + comentario.id + " could not be saved correctly");
         }
@@ -106,16 +115,27 @@ export async function recuperarMarcador(session: Session, user: string): Promise
     return markers;
 }
 
-export async function recuperarComentario(session: Session, idmarker: String): Promise<Comentario[] | null>{
+export async function recuperarComentario(session: Session, idmarker: String, user: string): Promise<Comentario[] | null>{
     if (session.info.webId == null) {
         return null;
     } // Check if the webId is undefined
 
-    let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-    let pointsUrl = basicUrl.concat("/public", "/comentarios","/"+idmarker+"/");
+    let comentariosUrl = "";
+
+    if (user !== ""){
+        let primeraParte = session.info.webId?.split("/").slice(0, 2).join("/");
+        let segundaParte = session.info.webId?.split("/").slice(2, 3).join().split(".").slice(1,3).join(".");
+        comentariosUrl = primeraParte.concat("/",user,".",segundaParte, "/public", "/comentarios","/"+idmarker+"/");
+        console.log(comentariosUrl);
+    }else{
+        let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
+        comentariosUrl = basicUrl.concat("/public", "/comentarios","/"+idmarker+"/");
+    }
+
+    
 
     let comentarios: Comentario[] = [];
-    let files = await buscarArchivos(session, pointsUrl);
+    let files = await buscarArchivos(session, comentariosUrl);
     let file: File;
     if (files != null) {
         for (let i = 0; i < files.length; i++) {
