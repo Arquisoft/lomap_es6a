@@ -606,38 +606,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </li>
 </ul>
 </div>
-<div class="ulist">
-<div class="title">Caracteristicas opcionales:</div>
-<ul>
-<li>
-<p>Permitir a los usuarios crear rutas (por ejemplo, rutas para hacer compras o tomar algo)</p>
-</li>
-<li>
-<p>Permitir a los usuarios comparar mapas, por ejemplo, comparar ciertas categorías como sólo restaurantes.</p>
-</li>
-<li>
-<p>Permitir a los establecimientos (restaurantes, tiendas, bares, etc. ) crear su propio pod para que otras personas puedan conectarse a ellos.</p>
-</li>
-<li>
-<p>Crear un boletín de noticias (newsfeed) a partir de los lugares conectados.</p>
-</li>
-<li>
-<p>Añadir características de gamificación (recoger información de lugares, descubrir nuevos lugares, etc. )</p>
-</li>
-<li>
-<p>Crear múltiples mapas entre grupos de usuarios (por ejemplo, mapas de familia, de compañeros de viaje, &#8230;&#8203;)</p>
-</li>
-<li>
-<p>Conectar con el libro de direcciones para chequear información sobre lugares o realizar recomendaciones de lugares</p>
-</li>
-<li>
-<p>Añadir roles (ciudadano, turista, dueño de negocio,&#8230;&#8203;)</p>
-</li>
-<li>
-<p>Oportunidades para dueños de negocios, por ejemplo, crear un mapa con lugares recomendados cerca de un establecimiento, bares para tomar algo después de realizar la compra, etc.</p>
-</li>
-</ul>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_objetivos_de_calidad">1.2. Objetivos de calidad</h3>
@@ -813,10 +781,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <td class="tableblock halign-left valign-top"><p class="tableblock">Con SOLID,este es un requisito sobre las tecnologías que usar, los usuarios guardaran su información usando PODs. De esta forma, pueden permitir o rechazar la solicitud de acceso a los datos.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación usará docker.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usaremos github para el control de versiones y comunicarnos.</p></td>
 </tr>
@@ -904,9 +868,10 @@ Somos un equipo de 5 personas.</p></td>
 <h3 id="_business_context">3.1. Business Context</h3>
 <div class="paragraph">
 <p>Nustra app es una red social con la infraestructura "dispersa" en pods que pertenecen al usuario(uno por usuario) en vez de una base de datos centralizada en los servidores de la empresa
-se sigue teniendo una base de datos central pero solo se usa para guardar informacion basica del usuario tambien la app hara uso de apis externas
-:imagesdir: images/
-<span class="image"><img src="./images/diagrama%20contexto%20empresarial.png" alt="Punto3:DCE"></span></p>
+se sigue teniendo una base de datos central pero solo se usa para guardar informacion basica del usuario tambien la app hara uso de apis externas</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/3.1Diagrama.png" alt="Punto3:DCE"></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -946,9 +911,6 @@ La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usare
 <ul>
 <li>
 <p>React: React es una biblioteca de código abierto concebida para crear interfaces de usuario. Hemos elegido React por su sencillez y las númerosas posibilidades que proporciona.</p>
-</li>
-<li>
-<p>MongoDB: sistema de bases de datos de código abierto NoSQL. Lo hemos elegido por la forma de almacenamiento de datos en JSON y no en tablas, pensando en lo que más se ajusta a nuestra idea de proyecto.</p>
 </li>
 <li>
 <p>Node.js: Node.js, es un entorno en tiempo de ejecución multiplataforma para la capa del servidor (en el lado del servidor) basado en JavaScript.</p>
@@ -1000,9 +962,6 @@ La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usare
 <p><strong>LoMap</strong>: Nuestra aplicacion que gestiona lugares interesantes para los usuarios</p>
 </li>
 <li>
-<p><strong>Base de datos</strong>: Se guardara la información necesaria para el funcionamiento de la aplicación, ya que la otra parte ira en los pod.</p>
-</li>
-<li>
 <p><strong>POD</strong>: Lugar donde se almacenará la informacion de los usuarios, de forma mas personal(lugares o sitios de summo interes).</p>
 </li>
 </ul>
@@ -1010,7 +969,7 @@ La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usare
 </dd>
 <dt class="hdlist1">Interfaces importantes</dt>
 <dd>
-<p>-Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox o googlemaps, aun por decidir).</p>
+<p>-Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox).</p>
 </dd>
 </dl>
 </div>
@@ -1029,9 +988,6 @@ La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usare
 <ul>
 <li>
 <p><strong>Front-End</strong>: Para la interfaz de usuario, como tecnología usaremos React.</p>
-</li>
-<li>
-<p><strong>Back-End</strong>: Aqui ira implementada la gestion de los datos y la propia base de datos, usaremos como tecnología Node.js</p>
 </li>
 </ul>
 </div>
@@ -1062,13 +1018,13 @@ La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usare
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Main</strong>: Con él comunicamos como forma principal el front-end y el back-end.</p>
+<p><strong>Main</strong>: Con él comunicamos como forma principal el front-end y los pods.</p>
 </li>
 <li>
-<p><strong>BBDD</strong>: Se encarga de la comunicación con al base de datos.</p>
+<p><strong>Solid</strong>: Interactuará con el Pod(los pods seran de inrupt) del usuario.</p>
 </li>
 <li>
-<p><strong>Solid</strong>: Interactuará con el Pod del usuario.</p>
+<p><strong>MapBox</strong>: Api que se usara para los mapas.</p>
 </li>
 </ul>
 </div>
@@ -1078,10 +1034,10 @@ La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usare
 <div class="ulist">
 <ul>
 <li>
-<p>Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox o googlemaps, aun por decidir).</p>
+<p>Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox).</p>
 </li>
 <li>
-<p>Para conectarnos a los pods usaremos las herramientas que nos facilite solid y las que mas nos ayuden dependiendo de nuestra arquitectura.</p>
+<p>Para conectarnos a los pods usaremos como proveedor de los mismos a inrupt.</p>
 </li>
 </ul>
 </div>
@@ -1157,7 +1113,7 @@ You will mainly capture scenarios in your documentation to communicate your arch
 <h3 id="_escenario_de_ejecución_1_registro_de_nuevo_usuario">6.1. Escenario de ejecución 1. Registro de nuevo usuario</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="827" height="365">
+<img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="777" height="335">
 </div>
 </div>
 </div>
@@ -1165,7 +1121,7 @@ You will mainly capture scenarios in your documentation to communicate your arch
 <h3 id="_escenario_de_ejecución_2_inicio_de_sesion_de_usuario">6.2. Escenario de ejecución 2. Inicio de sesion de usuario</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Sequence%20diagram1.png" alt="Sequence diagram1" width="588" height="365">
+<img src="./images/Sequence%20diagram1.png" alt="Sequence diagram1" width="538" height="335">
 </div>
 </div>
 </div>
@@ -1198,7 +1154,7 @@ You will mainly capture scenarios in your documentation to communicate your arch
 <h3 id="_escenario_de_ejecución_5_usuario_visualiza_una_de_sus_localizaciones">6.5. Escenario de ejecución 5. Usuario visualiza una de sus localizaciones.</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Sequence%20diagram2.png" alt="Sequence diagram2" width="801" height="426">
+<img src="./images/Sequence%20diagram2.png" alt="Sequence diagram2" width="801" height="365">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1288,10 +1244,6 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La base de datos elegida, sera usada por la aplicacion y estara dentro de un servidor.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">RestAPI</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Interfaz entre sistemas para el intercambio de peticiones.</p></td>
 </tr>
@@ -1305,10 +1257,13 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">POD</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Almacenes" para guardar los datos de los usuarios de forma segura.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Almacenes" para guardar los datos de los usuarios de forma segura. el provedor de pods sera inrupt</p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p><span class="image"><img src="./images/7Diagrama.png" alt="Punto7:DesplDig"></span></p>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1348,9 +1303,6 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 <li>
 <p>Interoperabilidad entre proyectos: el proyecto se intentará hacer de tal forma que la información alamacenada pueda ser usada de un proyecto a otro.</p>
 </li>
-<li>
-<p>Base de datos: para la realización de este proyecto usareos una base de datos centralizada para la mejoría del rendimiento.</p>
-</li>
 </ul>
 </div>
 </div>
@@ -1381,7 +1333,7 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 <p>Front-end: parte del desarrollo que se encarga de la parte visible de la aplicación. Esta parte se centra en la creación de la  interfaz de usuario.</p>
 </li>
 <li>
-<p>Back-end: parte del desarrollo que se centra en la lógica del proyecto y manejo de base de datos.</p>
+<p>Back-end: "carece" de este puesto que toda la informacion se hace mediante los pods</p>
 </li>
 <li>
 <p>Testeabilidad: será un proyecto desarrollado en base a la comprobación de test. Estos test pueden ser de funcionalidad o de rendimiento.</p>
@@ -1675,18 +1627,12 @@ la menor información posible de estos</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nunca hemos trabajado con esta base de datos en concreto pero todos los miembros ya han utilizado una no relacional.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comprender su funcionamiento mirando documentación al respecto.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PODs</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ningun miembro del equipo ha usado PODs antes ni sabemos como utilizarlos e incorporarlos en el proyecto.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Buscar videos en youtube y mirar la documentacion de SOLID.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Aunque todo el equipo trabaja bien con GitHub falta soltura a la hora de realizar ciertas acciones como commits etc&#8230;&#8203;</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Esto no supone un gran inconveniente, se resolverá a medida que nos vayan saliendo los problemas y haciendo alguna prueba con la documentacion.</p></td>
@@ -1814,7 +1760,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-24 09:24:47 +0100
+Last updated 2023-02-16 18:09:30 +0100
 </div>
 </div>
 </body>
