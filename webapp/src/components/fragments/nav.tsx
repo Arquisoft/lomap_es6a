@@ -17,11 +17,11 @@ import MenuItem from '@mui/material/MenuItem';
 let loginManager = require("../Login/LoginManager.ts");
 function Nav() {
   
-  //const {session} = useSession();
-  var temp = useSession().session;
-  if (loginManager.getUserSession() != null)
-      temp = loginManager.getUserSession()
-  const session = temp;
+  const {session} = useSession();
+  //var temp = useSession().session;
+  //if (loginManager.getUserSession() != null)
+  //    temp = loginManager.getUserSession()
+  //const session = temp;
   return (
     <nav className="navbar">
         <Link to='/'>
