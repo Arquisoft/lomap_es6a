@@ -48,12 +48,9 @@ function BuscarAmigo() {
     }
   }
 
-  function obtenerNombre(amigoPerfil: ThingPersisted){
-    return amigoPerfil?.url.split("/").slice(2,3).join().split(".").slice(0,1).join();
-  }
+  async function obtenerNombre(){
+      let r;  
 
-  useEffect(() => {
-    async function cargarAmigos() {
       if (!session.info.isLoggedIn) return;
 
       const { webId } = session.info;
@@ -66,19 +63,40 @@ function BuscarAmigo() {
         throw new Error('Perfil no encontrado');
       }
       const amigosUrl = getUrlAll(perfil, FOAF.knows);
-      console.log(FOAF.knows);
       const nuevosAmigos = await Promise.all(amigosUrl.map(async (url) => {
         const amigoDataset = await getSolidDataset(url);
         const amigoPerfil = getThing(amigoDataset, url);
         if (amigoPerfil){
 
-          nombreAmigo =obtenerNombre(amigoPerfil);
+          r =amigoPerfil?.url.split("/").slice(2,3).join().split(".").slice(0,1).join();
         }else{
-          nombreAmigo = nombreUsuario;
+          r = nombreUsuario;
         }
+      }));
 
-        console.log(nombreAmigo);
-        
+      console.log(r);
+
+      return r ? r:"";
+    }
+
+  useEffect(() => {
+    async function cargarAmigos() {
+      let r;
+      if (!session.info.isLoggedIn) return;
+
+      const { webId } = session.info;
+      if (!webId) {
+        throw new Error('Nombre de usuario no especificado');
+      }
+      const dataset = await getSolidDataset(webId);
+      const perfil = getThing(dataset, webId);
+      if (!perfil) {
+        throw new Error('Perfil no encontrado');
+      }
+      const amigosUrl = getUrlAll(perfil, FOAF.knows);
+      const nuevosAmigos = await Promise.all(amigosUrl.map(async (url) => {
+        const amigoDataset = await getSolidDataset(url);
+        const amigoPerfil = getThing(amigoDataset, url);
         if (!amigoPerfil) {
           throw new Error('Perfil de amigo no encontrado');
         }
@@ -154,7 +172,6 @@ function BuscarAmigo() {
       }
   
       const amigoNombreActual = getStringNoLocale(amigoPerfil, FOAF.name);
-  
       if (amigoNombreActual === amigoNombre) {
         amigoUrl = url;
         break;
@@ -192,8 +209,10 @@ function BuscarAmigo() {
     
   }
 
-  console.log(nombreAmigo);
+  obtenerNombre().then(() =>{
 
+  })
+    
   return (
     <div>
       <h1>Buscar Perfil</h1>
@@ -212,7 +231,7 @@ function BuscarAmigo() {
         <ul>
           {amigos.map((amigo) => (
             <p key={amigo}>
-              {amigo} <Link to={'/mapaAmigo/'+nombreAmigo}>Mapa</Link> <button type='submit' onClick={() => deleteFriend(amigo)}>Eliminar</button>
+              {amigo} <Link to={"/mapaAmigo/uo282834"}>Mapa</Link> <button type='submit' onClick={() => deleteFriend(amigo)}>Eliminar</button>
             </p>
           ))}
         </ul>
