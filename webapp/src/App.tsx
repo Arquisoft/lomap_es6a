@@ -2,6 +2,7 @@ import './App.css';
 import Footer from './components/fragments/Footer';
 import Home from './components/home/home';
 import Mapa from './components/mapa/Principal-mapa';
+import MapaAmigo from './components/mapa/mapa';
 import Amigos from './components/amigos/amigos';
 import Nav from './components/fragments/nav';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -43,6 +44,7 @@ function App(): JSX.Element {
             <Routes>
               <Route  path={"/"} element={<Home/>} />
               <Route  path="/Mapa" element={<Mapa session={session}/>}/>
+              <Route  path="/MapaAmigo/:user" element={<MapaAmigo session={session}/>}/>
               <Route  path="/Marcador" element={<Marcador session={session}/>}/>
               <Route  path="/Amigos" element={<Amigos/>}/>
               <Route  path="/Aboutus" element={<AboutUs/>}/>

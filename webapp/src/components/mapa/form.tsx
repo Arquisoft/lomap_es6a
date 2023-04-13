@@ -15,6 +15,7 @@ import { initMap } from './initMap';
 import mapboxgl ,{Map,Popup} from 'mapbox-gl';
 
 function Formulario({ session }: SessionType) {
+
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [latitud, setLatitud] = useState("");
@@ -58,10 +59,19 @@ function Formulario({ session }: SessionType) {
   
   const mapRef = useRef<HTMLDivElement>(null);
   let mapa: mapboxgl.Map;
+
+  let nombreUsuario = "";
+  if (session.info.isLoggedIn) {
+    const user = session.info.webId;
+    
+    if (user) {
+      nombreUsuario = user.split('//')[1].split('.')[0];
+    }
+  }
   useEffect(() => {
     if (mapRef.current) {
-            mapa = initMap(
-            mapRef.current, {session}
+          mapa = initMap(
+          mapRef.current, {session}, nombreUsuario
         )
 
         mapa.on('dblclick', function (evt) {

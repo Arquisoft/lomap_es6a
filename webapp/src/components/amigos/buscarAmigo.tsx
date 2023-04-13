@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThing, saveSolidDatasetAt, removeIri } from '@inrupt/solid-client';
+import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThing, saveSolidDatasetAt, removeIri, ThingPersisted } from '@inrupt/solid-client';
 import { FOAF } from '@inrupt/vocab-common-rdf';
 import { useSession } from '@inrupt/solid-ui-react';
+import { Link } from 'react-router-dom';
+import { waitFor } from '@testing-library/react';
 
 function BuscarAmigo() {
   const { session } = useSession();
@@ -11,6 +13,16 @@ function BuscarAmigo() {
   const [amigos, setAmigos] = useState<string[]>([]);
   const [name, setName] = useState('');
   const WebID = "https://" + name + ".inrupt.net/profile/card#me";
+
+  let nombreAmigo = "";
+  let nombreUsuario = "";
+  if (session.info.isLoggedIn) {
+    const user = session.info.webId;
+    
+    if (user) {
+      nombreUsuario = user.split('//')[1].split('.')[0];
+    }
+  }
 
   async function buscarAmigo() {
     try {
@@ -36,6 +48,10 @@ function BuscarAmigo() {
     }
   }
 
+  function obtenerNombre(amigoPerfil: ThingPersisted){
+    return amigoPerfil?.url.split("/").slice(2,3).join().split(".").slice(0,1).join();
+  }
+
   useEffect(() => {
     async function cargarAmigos() {
       if (!session.info.isLoggedIn) return;
@@ -53,6 +69,15 @@ function BuscarAmigo() {
       const nuevosAmigos = await Promise.all(amigosUrl.map(async (url) => {
         const amigoDataset = await getSolidDataset(url);
         const amigoPerfil = getThing(amigoDataset, url);
+        if (amigoPerfil){
+
+          nombreAmigo =obtenerNombre(amigoPerfil);
+        }else{
+          nombreAmigo = nombreUsuario;
+        }
+
+        console.log(nombreAmigo);
+        
         if (!amigoPerfil) {
           throw new Error('Perfil de amigo no encontrado');
         }
@@ -96,8 +121,11 @@ function BuscarAmigo() {
   }
 
   function showMap() {
-
+    
+    
   }
+
+  console.log(nombreAmigo);
 
   return (
     <div>
@@ -117,7 +145,7 @@ function BuscarAmigo() {
         <ul>
           {amigos.map((amigo) => (
             <p key={amigo}>
-              {amigo} <button type='submit' onClick={showMap}>Mostrar Mapa</button> <button type='submit' onClick={deleteFriend}>Eliminar</button>
+              {amigo} <Link to={'/mapaAmigo/'+nombreUsuario}>Mapa</Link> <button type='submit' onClick={deleteFriend}>Eliminar</button>
             </p>
           ))}
         </ul>
