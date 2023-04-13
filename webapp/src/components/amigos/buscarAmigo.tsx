@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThing, saveSolidDatasetAt, removeIri } from '@inrupt/solid-client';
+import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThing, saveSolidDatasetAt, removeIri, ThingPersisted } from '@inrupt/solid-client';
 import { FOAF } from '@inrupt/vocab-common-rdf';
 import { useSession } from '@inrupt/solid-ui-react';
+import { Link } from 'react-router-dom';
+import { waitFor } from '@testing-library/react';
 
 function BuscarAmigo() {
   const { session } = useSession();
@@ -11,6 +13,16 @@ function BuscarAmigo() {
   const [amigos, setAmigos] = useState<string[]>([]);
   const [name, setName] = useState('');
   const WebID = "https://" + name + ".inrupt.net/profile/card#me";
+
+  let nombreAmigo = "";
+  let nombreUsuario = "";
+  if (session.info.isLoggedIn) {
+    const user = session.info.webId;
+    
+    if (user) {
+      nombreUsuario = user.split('//')[1].split('.')[0];
+    }
+  }
 
   async function buscarAmigo() {
     try {
@@ -36,8 +48,9 @@ function BuscarAmigo() {
     }
   }
 
-  useEffect(() => {
-    async function cargarAmigos() {
+  async function obtenerNombre(){
+      let r;  
+
       if (!session.info.isLoggedIn) return;
 
       const { webId } = session.info;
@@ -50,7 +63,37 @@ function BuscarAmigo() {
         throw new Error('Perfil no encontrado');
       }
       const amigosUrl = getUrlAll(perfil, FOAF.knows);
-      console.log(FOAF.knows);
+      const nuevosAmigos = await Promise.all(amigosUrl.map(async (url) => {
+        const amigoDataset = await getSolidDataset(url);
+        const amigoPerfil = getThing(amigoDataset, url);
+        if (amigoPerfil){
+
+          r =amigoPerfil?.url.split("/").slice(2,3).join().split(".").slice(0,1).join();
+        }else{
+          r = nombreUsuario;
+        }
+      }));
+
+      console.log(r);
+
+      return r ? r:"";
+    }
+
+  useEffect(() => {
+    async function cargarAmigos() {
+      let r;
+      if (!session.info.isLoggedIn) return;
+
+      const { webId } = session.info;
+      if (!webId) {
+        throw new Error('Nombre de usuario no especificado');
+      }
+      const dataset = await getSolidDataset(webId);
+      const perfil = getThing(dataset, webId);
+      if (!perfil) {
+        throw new Error('Perfil no encontrado');
+      }
+      const amigosUrl = getUrlAll(perfil, FOAF.knows);
       const nuevosAmigos = await Promise.all(amigosUrl.map(async (url) => {
         const amigoDataset = await getSolidDataset(url);
         const amigoPerfil = getThing(amigoDataset, url);
@@ -129,7 +172,6 @@ function BuscarAmigo() {
       }
   
       const amigoNombreActual = getStringNoLocale(amigoPerfil, FOAF.name);
-  
       if (amigoNombreActual === amigoNombre) {
         amigoUrl = url;
         break;
@@ -163,9 +205,14 @@ function BuscarAmigo() {
   }
 
   function showMap() {
-
+    
+    
   }
 
+  obtenerNombre().then(() =>{
+
+  })
+    
   return (
     <div>
       <h1>Buscar Perfil</h1>
@@ -184,7 +231,7 @@ function BuscarAmigo() {
         <ul>
           {amigos.map((amigo) => (
             <p key={amigo}>
-              {amigo} <button type='submit' onClick={showMap}>Mostrar Mapa</button> <button type='submit' onClick={() => deleteFriend(amigo)}>Eliminar</button>
+              {amigo} <Link to={"/mapaAmigo/uo282834"}>Mapa</Link> <button type='submit' onClick={() => deleteFriend(amigo)}>Eliminar</button>
             </p>
           ))}
         </ul>

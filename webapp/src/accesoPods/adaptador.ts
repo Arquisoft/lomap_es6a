@@ -74,16 +74,27 @@ export function guardarComentario(session: Session, texto: string, idmarker: str
 //     return marker;
 // }
 
-export async function recuperarMarcador(session: Session): Promise<Marker[] | null>{
+export async function recuperarMarcador(session: Session, user: string): Promise<Marker[] | null>{
     if (session.info.webId == null) {
         return null;
     } // Check if the webId is undefined
-
-    let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-    let pointsUrl = basicUrl.concat("/public", "/markers/");
+    let markersUrl = "";
+    if (user !== ""){
+        let primeraParte = session.info.webId?.split("/").slice(0, 2).join("/");
+        let segundaParte = session.info.webId?.split("/").slice(2, 3).join().split(".").slice(1,3).join(".");
+        markersUrl = primeraParte.concat("/",user,".",segundaParte, "/public", "/markers/");
+        console.log(markersUrl);
+    }else{
+        let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
+        console.log(user.concat("."+session.info.webId?.split("/").slice(2, 3).join("/").split(".").slice(1,3).join(".").concat("/public", "/markers/")))
+        markersUrl = basicUrl.concat("/public", "/markers/");
+        console.log(markersUrl)
+    }
+    
+    
 
     let markers: Marker[] = [];
-    let files = await buscarArchivos(session, pointsUrl);
+    let files = await buscarArchivos(session, markersUrl);
     let file: File;
     if (files != null) {
         for (let i = 0; i < files.length; i++) {

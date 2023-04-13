@@ -2,6 +2,7 @@ import './App.css';
 import Footer from './components/fragments/Footer';
 import Home from './components/home/home';
 import Mapa from './components/mapa/Principal-mapa';
+import MapaAmigo from './components/mapa/mapa';
 import Amigos from './components/amigos/amigos';
 import Nav from './components/fragments/nav';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -17,11 +18,12 @@ import { handleIncomingRedirect } from "@inrupt/solid-client-authn-browser";
 //import * as loginManager  from "./components/Login/LoginManager";
 let loginManager = require("./components/Login/LoginManager.ts");
 function App(): JSX.Element {
+  //const { session } = useSession();
   const { session } = useSession();
    const [ses, setSes] = useState(new Session);
+  var temp = useSession().session;
   //var temp = useSession().session;
 
-  
   //if (loginManager.getUserSession() != null)
   //    temp = loginManager.getUserSession()
   //const session = temp;
@@ -43,6 +45,7 @@ function App(): JSX.Element {
             <Routes>
               <Route  path={"/"} element={<Home/>} />
               <Route  path="/Mapa" element={<Mapa session={session}/>}/>
+              <Route  path="/MapaAmigo/:user" element={<MapaAmigo session={session}/>}/>
               <Route  path="/Marcador" element={<Marcador session={session}/>}/>
               <Route  path="/Amigos" element={<Amigos/>}/>
               <Route  path="/Aboutus" element={<AboutUs/>}/>

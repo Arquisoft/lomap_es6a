@@ -1,5 +1,5 @@
 import mapboxgl ,{Map,Popup,MapboxEvent} from 'mapbox-gl';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Props} from 'react';
 import {recuperarMarcador,guardarMarcador, guardarComentario, recuperarComentario} from "../../accesoPods/adaptador";
 import {SessionType} from "../../shared/shareddtypes";
 import casa from '../../imagenes/marcador.png';
@@ -11,15 +11,10 @@ import paisaje from '../../imagenes/paisaje.png';
 import monumento from '../../imagenes/monumento.png';
 import interrogacion from '../../imagenes/interrogacion.png';
 import Marker from "../../accesoPods/marker";
-import { RedirectFunction, redirect } from 'react-router-dom';
-import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import Comentario from '../../accesoPods/comentario';
 
 
-interface CustomEventData {
-  comment: string;
-}
-export const initMap = (container: HTMLDivElement, { session }: SessionType) => {
+export const initMap = (container: HTMLDivElement, { session }: SessionType, user: string) => {
 
   const mapa = new Map({
         container,
@@ -64,7 +59,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
         guardarMarcador({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo);
       };
 
-      recuperarMarcador({session}.session).then(markers => {
+      recuperarMarcador({session}.session,user).then(markers => {
         if (markers != null) {
             userMarkers = markers;
             userMarkers.forEach(market => {

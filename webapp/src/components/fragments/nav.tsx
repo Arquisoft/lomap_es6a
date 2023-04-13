@@ -13,15 +13,23 @@ import Menu from '@mui/material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import { AccountCircle } from '@mui/icons-material';
 import MenuItem from '@mui/material/MenuItem';
+import { SessionType } from '../../shared/shareddtypes';
 //import * as loginManager  from "../Login/LoginManager";
 let loginManager = require("../Login/LoginManager.ts");
 function Nav() {
-  
   const {session} = useSession();
   //var temp = useSession().session;
   //if (loginManager.getUserSession() != null)
   //    temp = loginManager.getUserSession()
   //const session = temp;
+  let nombreUsuario = "";
+  if (session.info.isLoggedIn) {
+    const user = session.info.webId;
+    
+    if (user) {
+      nombreUsuario = user.split('//')[1].split('.')[0];
+    }
+  }
   return (
     <nav className="navbar">
         <Link to='/'>
