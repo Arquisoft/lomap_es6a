@@ -15,7 +15,6 @@ import Comentario from '../../accesoPods/comentario';
 
 
 export const initMap = (container: HTMLDivElement, { session }: SessionType, user: string) => {
-
   const mapa = new Map({
         container,
         style: 'mapbox://styles/mapbox/streets-v12',
@@ -131,12 +130,12 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                           if (Number(valoracion) != null){
                             if (texto.length != 0 && Number(valoracion)>=0 && Number(valoracion)<=10){
                               if (session.info.isLoggedIn) {
-                                const user = session.info.webId;
+                                const user2 = session.info.webId;
                                 let nombreUsuario = "";
-                                if (user) {
-                                  nombreUsuario = user.split('//')[1].split('.')[0];
+                                if (user2) {
+                                  nombreUsuario = user2.split('//')[1].split('.')[0];
                                 }
-                                guardarComentario({session}.session, texto, market.id, nombreUsuario , valoracion);
+                                guardarComentario({session}.session, texto, market.id, nombreUsuario , valoracion, user);
                               }
                               miInput.value = "";
                               miInputValoracion.value = "";
@@ -152,7 +151,8 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                     let markerComments: Comentario[]
                     markerComments = [];
                     let cadena = "<div class='table-container'><table class='table'><tr><th>Usuario</th><th>Comentario</th><th>Valoración</th></tr>";
-                    recuperarComentario({session}.session, market.id).then(comentarios => {
+                    recuperarComentario({session}.session, market.id, user).then(comentarios => {
+                      
                       if (comentarios != null) {
                         markerComments = comentarios;
                         markerComments.forEach(comentario => {
