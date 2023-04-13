@@ -12,6 +12,7 @@ function BuscarAmigo() {
   const [cargando, setCargando] = useState(false);
   const [amigos, setAmigos] = useState<string[]>([]);
   const [name, setName] = useState('');
+  const [url,setUrl] = useState('');
   const WebID = "https://" + name + ".inrupt.net/profile/card#me";
 
   let nombreAmigo = "";
@@ -48,10 +49,10 @@ function BuscarAmigo() {
     }
   }
 
-  async function obtenerNombre(){
+  async function obtenerNombre() : Promise<string>{
       let r;  
 
-      if (!session.info.isLoggedIn) return;
+      if (!session.info.isLoggedIn) return "";
 
       const { webId } = session.info;
       if (!webId) {
@@ -209,10 +210,36 @@ function BuscarAmigo() {
     
   }
 
-  obtenerNombre().then(() =>{
+  // const [s,setTing] = useState(obtenerNombre());
+  // useState()
 
-  })
+
+  
+  // useEffect(() => { obtenerNombre().then(string =>{
+  //   setUrl( "/mapaAmigo/"+string)
+  // })
+  // })
+
+  // waitFor(async () =>{ await obtenerNombre().then(string =>{
+  //   setUrl( "/mapaAmigo/"+string)
     
+  // } )
+  //   },{timeout : 50000} )
+  //   //,{timeout : 50000} 
+  //   waitFor(()=>{var i= 10000000
+  //   while(i>0){
+  //     i= i-1;
+  //   }
+  //   console.log("b");
+  //   })
+
+  //   var i= 10000000
+  //   while(i>0){
+  //     i= i-1;
+  //   }
+  //   console.log("a");
+
+   
   return (
     <div>
       <h1>Buscar Perfil</h1>
@@ -231,7 +258,7 @@ function BuscarAmigo() {
         <ul>
           {amigos.map((amigo) => (
             <p key={amigo}>
-              {amigo} <Link to={"/mapaAmigo/uo282834"}>Mapa</Link> <button type='submit' onClick={() => deleteFriend(amigo)}>Eliminar</button>
+              {amigo} <Link to={url} onClick={(event) => obtenerNombre().then( string =>{setUrl( "/mapaAmigo/"+string)} )} >Mapa</Link> <button type='submit' onClick={() => deleteFriend(amigo)}>Eliminar</button>
             </p>
           ))}
         </ul>
