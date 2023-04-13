@@ -1,4 +1,5 @@
 import {User} from '../shared/shareddtypes';
+import {Session} from "@inrupt/solid-client-authn-browser";
 
 //Obtenemos la url de la apirest de Heroku o utilizamos localhost por defecto
 let apiEndPoint:string ='https://dede-es3a-restapi.herokuapp.com/'

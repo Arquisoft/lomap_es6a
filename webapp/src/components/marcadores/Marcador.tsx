@@ -1,15 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react';
-import Form from './form'
 import '../../hojasEstilo/MapaPrincipal.css';
 import {SessionType} from "../../shared/shareddtypes";
 
-function MapaPrincipal({ session }: SessionType){
+function Marcador({ session }: SessionType){
   return (
     <div className='contenedor-principal-mapa'>
-      <Form session={session}/>
+      <h1>Holaaaa</h1>
     </div>
   );
   
 }
 
-export default MapaPrincipal
+export default Marcador

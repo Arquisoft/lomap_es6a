@@ -1,6 +1,8 @@
 import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
 import { Button, Card, CardActionArea, CardContent, CardHeader, Container, Typography } from "@material-ui/core";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
+import { SessionInfo } from "@inrupt/solid-ui-react/dist/src/hooks/useSession";
+import { Session } from "@inrupt/solid-client-authn-browser";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -41,16 +43,40 @@ createStyles({
 })
 );
 
+
+const setUserSession = (session :Session) => {
+  localStorage.clear();
+  localStorage.setItem("userSession", JSON.stringify(session));
+};
+
+
+const getUserSession = (): Session => {
+  const session = localStorage.getItem("userSession");
+  return session ? JSON.parse(session) : null;
+};
+
+
+
+
 const ProfileViewer = () => {
   const classes = useStyles();
-  const { session } = useSession();
-  const { webId } = session.info;
 
-  function guardarWebId() {
-    sessionStorage.setItem('webIdSesion', webId as string);
-    const w = sessionStorage.getItem('webIdSesion');
-  }
+  var temp = useSession().session;
+  //const { session } = useSession();
 
+   var cond = temp.info.isLoggedIn
+if (getUserSession() == null || cond ){
+  setUserSession(temp);
+}
+
+ const  session  = getUserSession();
+
+//  const { webId } = session.info;
+
+//  function guardarWebId() {
+//    sessionStorage.setItem('webIdSesion', webId as string);
+//    const w = sessionStorage.getItem('webIdSesion');
+//  }
   return (
     <>
     <form className={classes.container} noValidate autoComplete="on">

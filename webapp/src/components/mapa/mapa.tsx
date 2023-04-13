@@ -1,17 +1,29 @@
 import React, { useEffect,useRef,useState } from 'react';
 import '../../hojasEstilo/mapa.css';
 import { initMap } from './initMap';
-import {SessionType} from "../../accesoPods/adaptador";
+import {SessionType} from "../../shared/shareddtypes"
+import {useParams} from 'react-router-dom';
   
 
-function Mapa({ session }: SessionType): JSX.Element {
+function MapaAmigos({ session }: SessionType): JSX.Element {
+
+    const {user} = useParams();
 
   const mapRef = useRef<HTMLDivElement>(null);
+  let mapa: mapboxgl.Map;
   useEffect(() => {
     if (mapRef.current) {
-        initMap(
-            mapRef.current, {session}
+
+
+        if (user){
+            mapa = initMap(
+            mapRef.current, {session}, user
         )
+        }else{
+          mapa = initMap(
+            mapRef.current, {session}, "")
+        }
+
     }
   }, []);
   
@@ -25,4 +37,4 @@ function Mapa({ session }: SessionType): JSX.Element {
   );
 }
 
-export default Mapa;
+export default MapaAmigos;
