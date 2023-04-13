@@ -115,7 +115,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                 }
                   let marker = new mapboxgl.Marker({ element: iconMarker })
                   .setLngLat([market.latitude, market.longitude])
-                  .setPopup(new Popup({ closeButton: false, anchor: 'left' })
+                  .setPopup(new Popup({ closeButton: false, anchor: 'left', maxWidth: '400px' })
                   .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.longitude}, ${market.latitude}]</div>`))
                   .addTo(mapa);
                   markerFinal = market;
@@ -133,10 +133,19 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                         if (miInput instanceof HTMLInputElement && miInputValoracion instanceof HTMLInputElement){
                           let texto = miInput.value;
                           let valoracion = miInputValoracion.value
-                          if (texto.length != 0){
-                            guardarComentario({session}.session, texto, market.id, FOAF.name.iri.value, valoracion);
-                            miInput.value = "";
-                            miInputValoracion.value = "";
+                          if (Number(valoracion) != null){
+                            if (texto.length != 0 && Number(valoracion)>=0 && Number(valoracion)<=10){
+                              if (session.info.isLoggedIn) {
+                                const user = session.info.webId;
+                                let nombreUsuario = "";
+                                if (user) {
+                                  nombreUsuario = user.split('//')[1].split('.')[0];
+                                }
+                                guardarComentario({session}.session, texto, market.id, nombreUsuario , valoracion);
+                              }
+                              miInput.value = "";
+                              miInputValoracion.value = "";
+                            }
                           }
                         }else{
                           console.log("No entro")
@@ -147,24 +156,25 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
 
                     let markerComments: Comentario[]
                     markerComments = [];
-                    let cadena = "<ul>";
+                    let cadena = "<div class='table-container'><table class='table'><tr><th>Usuario</th><th>Comentario</th><th>Valoración</th></tr>";
                     recuperarComentario({session}.session, market.id).then(comentarios => {
                       if (comentarios != null) {
                         markerComments = comentarios;
                         markerComments.forEach(comentario => {
                           
-                          cadena += "<li>"+ comentario.texto +"-"+ comentario.valoracion +"</li>"
+                          cadena += "<tr><td>"+ comentario.autor +"</td><td>"+ comentario.texto+"</td><td>" + comentario.valoracion +"</td></tr>"
                         }
                     )
-                    cadena += "</ul>";
+                    cadena += "</table></div>"+
+                    "<style>.table-container { max-height: 200px; overflow-y: auto; } .table { width: 100%; border-collapse: collapse; } .table th, .table td { border: 1px solid #ccc; padding: 10px; text-align: left; } .table th { background-color: #f2f2f2; font-weight: bold; } .table tr:nth-child(even) { background-color: #f9f9f9; } .table tr:hover { background-color: #e6e6e6; } .table td.actions { text-align: center; } .table td.actions a { color: #007bff; text-decoration: none; } .table td.actions a:hover { color: #0056b3; } th { font-weight: bold; } </style>";
 
                     let html = `
                     <h1>`+ market.nombre+`</h1>
                     <p>`+ market.descripcion+`</p>
                     <form id="comment-form">
                       <label for="comentario">Añadir un comentario:</label>
-                      <input type="text" id="comentario" name="comentario" required>
-                      <input type="number" id="valoracion" min="0" max="10" step="1" required>
+                      <input type="text" id="comentario" name="comentario" placeholder="Escribe un comentario" required>
+                      <input type="number" id="valoracion" min="0" max="10" step="1" placeholder="Valora del 1 al 10" required>
                       <button type="submit" id="btnenviar" >Enviar</button>
                     </form>
                     <h2>Comentarios</h2>
