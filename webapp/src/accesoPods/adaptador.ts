@@ -27,7 +27,7 @@ export function guardarMarcador(session: Session, nombre: String, descripcion:St
     return marker;
 }
 
-export function guardarComentario(session: Session, texto: String, idmarker: String, autor: String, valoracion: String): Comentario | null {
+export function guardarComentario(session: Session, texto: string, idmarker: string, autor: string, valoracion: string): Comentario | null {
     let comentario = new Comentario(texto, idmarker, autor, valoracion);
 
     if (session.info.webId == null) {
