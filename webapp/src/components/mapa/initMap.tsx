@@ -163,6 +163,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                     <form id="comment-form">
                       <label for="comentario">Añadir un comentario:</label>
                       <input type="text" id="comentario" name="comentario" required>
+                      <label for="valoracion">Añadir Puntuación:</label>
                       <input type="number" id="valoracion" min="0" max="10" step="1" required>
                       <button type="submit" id="btnenviar" >Enviar</button>
                     </form>
