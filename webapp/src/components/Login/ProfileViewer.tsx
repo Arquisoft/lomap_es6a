@@ -7,6 +7,8 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import * as loginManager2  from "./LoginManager";
 import { getUser } from "../../api/api";
 import React, { useState, useEffect } from 'react';
+import { waitFor } from "@testing-library/react";
+import { Console } from "console";
 let loginManager = require("./LoginManager.ts");
 
 
@@ -89,9 +91,18 @@ const ProfileViewer = () => {
 //   };
 //   fetchData();
 // }, []);
-useEffect(()=>{ 
-  loginManager.useLogin();
-  session = getDefaultSession();},[])
+// useEffect(()=>{ 
+//   const fetchData = async () => {
+//          await loginManager.useLogin();
+//          session = getDefaultSession();
+//        };
+//        fetchData();
+       
+//   },[])
+  console.log("start")
+  waitFor(loginManager.useLogin());
+  console.log("fin")
+  session = getDefaultSession();
 //session = loginManager.useLoginT();
   // session = loginManager.useLoginAndFetch().then((ses:Session) =>{ 
   // session = ses});

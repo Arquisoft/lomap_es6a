@@ -195,8 +195,9 @@ export const useLogin = async  ()  => {
   //      the user's credentials are stored in-memory, and
   //      the login process is complete. 
   //   Otherwise, no-op.  
+  console.log("log in process start")
   await handleIncomingRedirect();
-
+  console.log("log in process mid")
   // 2. Start the Login Process if not already logged in.
   if (!getDefaultSession().info.isLoggedIn) {
     await login({
@@ -210,7 +211,8 @@ export const useLogin = async  ()  => {
       clientName: "My application"
     });
   }
-  var ses = getDefaultSession();
+  console.log("log in process fin")
+  //var ses = getDefaultSession();
 
 }
 
