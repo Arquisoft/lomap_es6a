@@ -171,11 +171,6 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                     <h1>`+ market.nombre+`</h1>
                     <p>`+ market.descripcion+`</p>
                     <form id="comment-form">
-                      <label for="comentario">Añadir un comentario:</label>
-
-                      <input type="text" id="comentario" name="comentario" required>
-                      <label for="valoracion">Añadir Puntuación:</label>
-                      <input type="number" id="valoracion" min="0" max="10" step="1" required>
                       <input type="text" id="comentario" name="comentario" placeholder="Escribe un comentario" required>
                       <input type="number" id="valoracion" min="0" max="10" step="1" placeholder="Valora del 1 al 10" required>
                       <button type="submit" id="btnenviar" >Enviar</button>
