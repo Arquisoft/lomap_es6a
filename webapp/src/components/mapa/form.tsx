@@ -147,6 +147,15 @@ function Formulario({ session }: SessionType) {
     const files = event.target.files;
   if (files && files.length > 0) {
     const file = files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function(){
+      var base64 = reader.result;
+      if (typeof base64 === "string"){
+        var resFinal = base64.split(',')[1];
+        setImagen(resFinal);
+      }
+    }
   }
   };
   
