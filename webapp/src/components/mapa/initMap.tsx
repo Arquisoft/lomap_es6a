@@ -1,6 +1,6 @@
 import mapboxgl ,{Map,Popup,MapboxEvent} from 'mapbox-gl';
 import React, {useState, useEffect, Props} from 'react';
-import {recuperarMarcador,guardarMarcador, guardarComentario, recuperarComentario} from "../../accesoPods/adaptador";
+import {recuperarMarcador,guardarMarcador, guardarComentario, recuperarComentario, guardarMarcadorSinImagen} from "../../accesoPods/adaptador";
 import {SessionType} from "../../shared/shareddtypes";
 import casa from '../../imagenes/marcador.png';
 import bar from '../../imagenes/bar.png';
@@ -55,7 +55,12 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
 
       const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        guardarMarcador({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo);
+        if (markerFinal.imagen){
+          guardarMarcador({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo, markerFinal.imagen);
+
+        }else{
+           guardarMarcadorSinImagen({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo);
+        }
       };
 
       recuperarMarcador({session}.session,user).then(markers => {
@@ -112,8 +117,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                   .setPopup(new Popup({ closeButton: false, anchor: 'left', maxWidth: '400px' })
                   .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.longitude}, ${market.latitude}]</div>`))
                   .addTo(mapa);
-                  markerFinal = market;
-
+                  markerFinal = market;                                     
                   const onMarkerClick= ()=>{
                     const handleClickPopup = (event: MouseEvent) => {
                       event.preventDefault();
@@ -162,12 +166,15 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                     )
                     cadena += "</table></div>"+
                     "<style>.table-container { max-height: 200px; overflow-y: auto; } .table { width: 100%; border-collapse: collapse; } .table th, .table td { border: 1px solid #ccc; padding: 10px; text-align: left; } .table th { background-color: #f2f2f2; font-weight: bold; } .table tr:nth-child(even) { background-color: #f9f9f9; } .table tr:hover { background-color: #e6e6e6; } .table td.actions { text-align: center; } .table td.actions a { color: #007bff; text-decoration: none; } .table td.actions a:hover { color: #0056b3; } th { font-weight: bold; } </style>";
+                    var img;
+                    if (typeof market.imagen === "string"){
+                       img = market.imagen;
+                    }
 
-                    let html = `
+                    let html = `<img style="width: 250px; height: 150px;"src =`+img +`>`+`
                     <h1>`+ market.nombre+`</h1>
                     <p>`+ market.descripcion+`</p>
                     <form id="comment-form">
-                      <label for="comentario">Añadir un comentario:</label>
                       <input type="text" id="comentario" name="comentario" placeholder="Escribe un comentario" required>
                       <input type="number" id="valoracion" min="0" max="10" step="1" placeholder="Valora del 1 al 10" required>
                       <button type="submit" id="btnenviar" >Enviar</button>
