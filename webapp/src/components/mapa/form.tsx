@@ -195,8 +195,10 @@ function Formulario({ session }: SessionType) {
           <option value="Monumento">Monumento</option>
         </select>
       </label>
-      <input id="imageUploader" type="file" accept="image/*" onChange={handleImageChange}
-      />
+      <label>
+        Añade una imagen
+      <input id="imageUploader" type="file" accept="image/*" onChange={handleImageChange}/>
+      </label>
       <br />
       <button type="submit">Añadir</button>
     </form>
