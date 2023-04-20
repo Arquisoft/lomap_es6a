@@ -153,7 +153,7 @@ function Formulario({ session }: SessionType) {
       var base64 = reader.result;
       if (typeof base64 === "string"){
         var resFinal = base64.split(',')[1];
-        setImagen(resFinal);
+        setImagen(base64);
       }
     }
   }
