@@ -7,6 +7,19 @@
             "request": "launch",
             "url": "http://localhost:3000",     // create-react-app's default port 3000
             "webRoot": "${workspaceRoot}/src"
-        }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest: current file",
+            //"env": { "NODE_ENV": "test" },
+            "program": "${workspaceFolder}/node_modules/.bin/jest",
+            "args": ["${fileBasenameNoExtension}", "--config", "jest.config.js"],
+            "console": "integratedTerminal",
+            "disableOptimisticBPs": true,
+            "windows": {
+              "program": "${workspaceFolder}/node_modules/@testing-library/jest-dom/bin/jest"
+            }
+          }
     ]
 }

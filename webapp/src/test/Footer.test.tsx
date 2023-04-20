@@ -1,14 +1,12 @@
+import React from "react";
 import { render, screen } from '@testing-library/react';
 import Footer from "../components/fragments/Footer";
 
-describe("Footer", () => {
-    test('renders Footer component without crashing', () => {
-        render(<Footer />);
-    });
+test('renders Footer component without crashing', () => {
+    render(<Footer/>);
+});
 
-    test('contains the correct text', () => {
-        render(<Footer />);
-        const titleElement = screen.getByText('LoMap-es6a');
-        expect(titleElement).toBeInTheDocument();
-    });
-})
+test('Footer contains the correct text', () => {
+    render(<Footer/>);
+    expect(screen.queryByText(/LoMap-es6a/i)).toBeInTheDocument();
+});

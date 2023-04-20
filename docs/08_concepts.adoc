@@ -16,7 +16,6 @@ image:ASWDM.png[Punto 8:DM]
 * Patrón fachada: para facilitar el desarrollo del proyecto por parte del equipo, haremos uso del patrón fachada para conectar el back con el front.
 * Pods: uso de pods para guardar la información personal de cada usuario.
 * Interoperabilidad entre proyectos: el proyecto se intentará hacer de tal forma que la información alamacenada pueda ser usada de un proyecto a otro.
-* Base de datos: para la realización de este proyecto usareos una base de datos centralizada para la mejoría del rendimiento.
 
 === Experiencia usuario
 
@@ -27,7 +26,7 @@ image:ASWDM.png[Punto 8:DM]
 
 === Conceptos de desarrollo
 * Front-end: parte del desarrollo que se encarga de la parte visible de la aplicación. Esta parte se centra en la creación de la  interfaz de usuario.
-* Back-end: parte del desarrollo que se centra en la lógica del proyecto y manejo de base de datos.
+* Back-end: "carece" de este puesto que toda la informacion se hace mediante los pods
 * Testeabilidad: será un proyecto desarrollado en base a la comprobación de test. Estos test pueden ser de funcionalidad o de rendimiento.
 
 === Coceptos operacionales

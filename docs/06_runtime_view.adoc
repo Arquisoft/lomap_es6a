@@ -37,12 +37,10 @@ actor User
 entity LoMap
 entity Api_Rest
 database POD
-database BBDD
 
 User -> LoMap: El user rellena un formulario e introducir un POD
 LoMap -> Api_Rest: Se envía el formulario
 Api_Rest -> POD: Almacena datos del usuario
-Api_Rest -> BBDD: Envía datos necesarios
 LoMap <- Api_Rest: Devuelve la confirmación del registro
 User -> LoMap: Muestra un mensaje de confirmación
 
@@ -54,12 +52,10 @@ actor User
 entity LoMap
 entity Api_Rest
 database POD
-database BBDD
 
 User -> LoMap: Introduce su POD 
 LoMap -> Api_Rest: envía el POD
 Api_Rest <- POD: Extrae datos del usuario
-Api_Rest <- BBDD: Recibe datos necesarios
 LoMap <- Api_Rest: Devuelve localizaciones
 User -> LoMap: Muestra localizaciones
 ----
@@ -114,9 +110,7 @@ database BBDD
 User -> LoMap: Selecciona la localización
 LoMap -> Restapi: Pide la información sobre esa localización 
 Api_Rest -> POD: Busca datos sobre la localización
-Api_Rest -> BBDD: Busca datos sobre la localización
 Api_Rest <- POD: Devuelve los datos encontrados
-Api_Rest <- BBDD: Devuelve los datos encontrados
 LoMap <- Api_Rest: Devuelve la información que encontro
 User -> LoMap: Muestra esa información
 ----
