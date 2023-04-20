@@ -171,7 +171,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                        img = market.imagen;
                     }
 
-                    let html = `<img src =`+img +`>`+`
+                    let html = `<img style="width: 250px; height: 150px;"src =`+img +`>`+`
                     <h1>`+ market.nombre+`</h1>
                     <p>`+ market.descripcion+`</p>
                     <form id="comment-form">
