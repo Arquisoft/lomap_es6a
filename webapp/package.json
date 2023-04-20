@@ -43,6 +43,7 @@
     "build": "react-scripts build",
     "testOld": "react-scripts test --coverage",
     "test": "npx react-scripts test --env=./src/test/custom-test-env.js",
+    "test:debug": "npx react-scripts --inspect-brk test --env=./src/test/custom-test-env.js --runInBand --no-cache",
     "test:e2e": "start-server-and-test 'npm --prefix ../restapi start' http://localhost:5000/api/users/list prod 3000 'cd e2e && jest'",
     "eject": "react-scripts eject",
     "prod": "ts-node-dev ./server.ts",
