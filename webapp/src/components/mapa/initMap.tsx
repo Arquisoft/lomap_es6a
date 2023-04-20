@@ -1,6 +1,6 @@
 import mapboxgl ,{Map,Popup,MapboxEvent} from 'mapbox-gl';
 import React, {useState, useEffect, Props} from 'react';
-import {recuperarMarcador,guardarMarcador, guardarComentario, recuperarComentario} from "../../accesoPods/adaptador";
+import {recuperarMarcador,guardarMarcador, guardarComentario, recuperarComentario, guardarMarcadorSinImagen} from "../../accesoPods/adaptador";
 import {SessionType} from "../../shared/shareddtypes";
 import casa from '../../imagenes/marcador.png';
 import bar from '../../imagenes/bar.png';
@@ -55,7 +55,12 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
 
       const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        guardarMarcador({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo);
+        if (markerFinal.imagen){
+          guardarMarcador({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo, markerFinal.imagen);
+
+        }else{
+           guardarMarcadorSinImagen({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo);
+        }
       };
 
       recuperarMarcador({session}.session,user).then(markers => {

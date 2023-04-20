@@ -1,6 +1,6 @@
 import React, { useEffect,useRef,useState } from 'react';
 import '../../hojasEstilo/form.css';
-import {recuperarMarcador,guardarMarcador} from "../../accesoPods/adaptador";
+import {recuperarMarcador,guardarMarcador, guardarMarcadorSinImagen} from "../../accesoPods/adaptador";
 import Marker from "../../accesoPods/marker";
 import casa from '../../imagenes/marcador.png';
 import bar from '../../imagenes/bar.png';
@@ -21,6 +21,7 @@ function Formulario({ session }: SessionType) {
   const [latitud, setLatitud] = useState("");
   const [longitud, setLongitud] = useState("");
   const [tipo, setTipo] = useState("");
+  const [imagen, setImagen] = useState("");
 
   const barMarker = document.createElement('img');
   barMarker.src = bar;
@@ -85,7 +86,11 @@ function Formulario({ session }: SessionType) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    let marker = guardarMarcador({session}.session, nombre, descripcion, Number(latitud),Number(longitud), tipo);
+    if (imagen.length > 0){
+      guardarMarcador({session}.session, nombre, descripcion, Number(latitud),Number(longitud), tipo,imagen);
+    }else{
+      guardarMarcadorSinImagen({session}.session, nombre, descripcion, Number(latitud),Number(longitud), tipo);
+    }
     setNombre("");
     setLatitud("");
     setLongitud("");
@@ -138,6 +143,12 @@ function Formulario({ session }: SessionType) {
   const handleDescripcionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescripcion(event.target.value);
   };
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+  if (files && files.length > 0) {
+    const file = files[0];
+  }
+  };
   
   return (
     
@@ -175,6 +186,8 @@ function Formulario({ session }: SessionType) {
           <option value="Monumento">Monumento</option>
         </select>
       </label>
+      <input id="imageUploader" type="file" accept="image/*" onChange={handleImageChange}
+      />
       <br />
       <button type="submit">Añadir</button>
     </form>
