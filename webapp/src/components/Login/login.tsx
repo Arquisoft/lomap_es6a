@@ -3,35 +3,18 @@ import { useSession, SessionProvider } from "@inrupt/solid-ui-react";
 import React, { useState } from 'react';
 import LoginForm from './LoginForm';
 import ProfileViewer from "./ProfileViewer";
-
-import { SessionInfo } from '@inrupt/solid-ui-react/dist/src/hooks/useSession';
-
-import { getDefaultSession, Session } from '@inrupt/solid-client-authn-browser';
-import * as loginManager  from "./LoginManager";
-//import * as loginManager  from "./LoginManager";
-//let loginManager = require("./LoginManager.ts");
-
-// const setUserSession = (session :Session) => {
-//   localStorage.setItem("userSession", JSON.stringify(session));
-// };
-
+import { Session } from '@inrupt/solid-client-authn-browser';
+const setUserSession = (session :Session) => {
+  localStorage.setItem("userSession", JSON.stringify(session));
+};
 
 function Login() {
-  //const { session } = useSession();
+  const { session } = useSession();
 
-  
-  var temp = useSession().session;
-  //const { session } = useSession();
-
-   var cond = temp.info.isLoggedIn
-  if (loginManager.getUserSession() == null || cond ){
-  loginManager.setUserSession(temp);
-  }
-
-  const  session  = loginManager.getUserSession();
-
-  //const  session  = getDefaultSession();
   console.log(session);
+  if(!session.info.isLoggedIn)
+      setUserSession(session)
+
   return(
     <SessionProvider sessionId="">
       {(!session.info.isLoggedIn) ? <LoginForm/> : <ProfileViewer/>}

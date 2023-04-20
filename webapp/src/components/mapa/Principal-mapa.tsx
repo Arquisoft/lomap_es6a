@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react';
-import Mapa from './mapa';
 import Form from './form'
 import Menu from './menu';
 import '../../hojasEstilo/MapaPrincipal.css';

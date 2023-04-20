@@ -1,5 +1,5 @@
 import mapboxgl ,{Map,Popup,MapboxEvent} from 'mapbox-gl';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Props} from 'react';
 import {recuperarMarcador,guardarMarcador, guardarComentario, recuperarComentario} from "../../accesoPods/adaptador";
 import {SessionType} from "../../shared/shareddtypes";
 import casa from '../../imagenes/marcador.png';
@@ -11,16 +11,10 @@ import paisaje from '../../imagenes/paisaje.png';
 import monumento from '../../imagenes/monumento.png';
 import interrogacion from '../../imagenes/interrogacion.png';
 import Marker from "../../accesoPods/marker";
-import { RedirectFunction, redirect } from 'react-router-dom';
-import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import Comentario from '../../accesoPods/comentario';
 
 
-interface CustomEventData {
-  comment: string;
-}
-export const initMap = (container: HTMLDivElement, { session }: SessionType) => {
-
+export const initMap = (container: HTMLDivElement, { session }: SessionType, user: string) => {
   const mapa = new Map({
         container,
         style: 'mapbox://styles/mapbox/streets-v12',
@@ -64,7 +58,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
         guardarMarcador({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo);
       };
 
-      recuperarMarcador({session}.session).then(markers => {
+      recuperarMarcador({session}.session,user).then(markers => {
         if (markers != null) {
             userMarkers = markers;
             userMarkers.forEach(market => {
@@ -135,12 +129,12 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                           if (Number(valoracion) != null){
                             if (texto.length != 0 && Number(valoracion)>=0 && Number(valoracion)<=10){
                               if (session.info.isLoggedIn) {
-                                const user = session.info.webId;
+                                const user2 = session.info.webId;
                                 let nombreUsuario = "";
-                                if (user) {
-                                  nombreUsuario = user.split('//')[1].split('.')[0];
+                                if (user2) {
+                                  nombreUsuario = user2.split('//')[1].split('.')[0];
                                 }
-                                guardarComentario({session}.session, texto, market.id, nombreUsuario , valoracion);
+                                guardarComentario({session}.session, texto, market.id, nombreUsuario , valoracion, user);
                               }
                               miInput.value = "";
                               miInputValoracion.value = "";
@@ -156,7 +150,8 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType) => 
                     let markerComments: Comentario[]
                     markerComments = [];
                     let cadena = "<div class='table-container'><table class='table'><tr><th>Usuario</th><th>Comentario</th><th>Valoración</th></tr>";
-                    recuperarComentario({session}.session, market.id).then(comentarios => {
+                    recuperarComentario({session}.session, market.id, user).then(comentarios => {
+                      
                       if (comentarios != null) {
                         markerComments = comentarios;
                         markerComments.forEach(comentario => {
