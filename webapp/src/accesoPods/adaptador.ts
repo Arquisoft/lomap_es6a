@@ -39,7 +39,7 @@ export function guardarComentario(session: Session, texto: string, idmarker: str
     if (user !== ""){
         let primeraParte = session.info.webId?.split("/").slice(0, 2).join("/");
         let segundaParte = session.info.webId?.split("/").slice(2, 3).join().split(".").slice(1,3).join(".");
-        comentariosUrl = primeraParte.concat("/",user,".",segundaParte, "/public", "/comentarios","/"+idmarker+"/");
+        comentariosUrl = primeraParte.concat("/",user,".",segundaParte, "/public", "/comentarios","/"+idmarker+"/"+ comentario.id + ".json");
         console.log(comentariosUrl);
     }else{
         let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
