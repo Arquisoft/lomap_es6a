@@ -3,7 +3,30 @@ import Comentario from './comentario';
 import {Session} from "@inrupt/solid-client-authn-browser";
 import {escribir, buscarArchivos} from "./acceso";
 
-export function guardarMarcador(session: Session, nombre: String, descripcion:String, lat: number, lng: number, tipo: String): Marker | null {
+export function guardarMarcador(session: Session, nombre: String, descripcion:String, lat: number, lng: number, tipo: String,imagen:String): Marker | null {
+    let marker = new Marker(nombre, descripcion, lat, lng, tipo,imagen);
+
+    if (session.info.webId == null) {
+        return null;
+    } // Check if the webId is undefined
+
+    let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
+    let markersUrl = basicUrl.concat("/public", "/markers", "/" + marker.id + ".json");
+
+    let blob = new Blob([JSON.stringify(marker)], { type: "application/json" });
+    let file = new File([blob], marker.id + ".json", { type: "application/json" });
+
+    escribir(session, markersUrl, file).then(result => {
+        if (result) {
+            console.log("Marker " + marker.id + " saved correctly in " + markersUrl);
+        } else {
+            console.log("Marker " + marker.id + " could not be saved correctly");
+        }
+    });
+
+    return marker;
+}
+export function guardarMarcadorSinImagen(session: Session, nombre: String, descripcion:String, lat: number, lng: number, tipo: String): Marker | null {
     let marker = new Marker(nombre, descripcion, lat, lng, tipo);
 
     if (session.info.webId == null) {
@@ -39,7 +62,7 @@ export function guardarComentario(session: Session, texto: string, idmarker: str
     if (user !== ""){
         let primeraParte = session.info.webId?.split("/").slice(0, 2).join("/");
         let segundaParte = session.info.webId?.split("/").slice(2, 3).join().split(".").slice(1,3).join(".");
-        comentariosUrl = primeraParte.concat("/",user,".",segundaParte, "/public", "/comentarios","/"+idmarker+"/");
+        comentariosUrl = primeraParte.concat("/",user,".",segundaParte, "/public", "/comentarios","/"+idmarker+"/"+ comentario.id + ".json");
         console.log(comentariosUrl);
     }else{
         let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
