@@ -56,6 +56,17 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
       }
     }
 
+    function guardarComentarioSiEstaEnSesion(texto:string,marker:Marker,valoracion:string){
+      if (session.info.isLoggedIn) {
+        const user2 = session.info.webId;
+        let nombreUsuario = "";
+        if (user2) {
+          nombreUsuario = user2.split('//')[1].split('.')[0];
+        }
+        guardarComentario({session}.session, texto, marker.id, nombreUsuario , valoracion, user);
+      }
+    }
+
     navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
       
@@ -106,14 +117,9 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                         let texto = (miInput as HTMLInputElement).value;
                         let valoracion = (miInputValoracion  as HTMLInputElement).value
                         if (validacionCamposComentario(texto,valoracion)){
-                          if (session.info.isLoggedIn) {
-                            const user2 = session.info.webId;
-                            let nombreUsuario = "";
-                            if (user2) {
-                              nombreUsuario = user2.split('//')[1].split('.')[0];
-                            }
-                            guardarComentario({session}.session, texto, market.id, nombreUsuario , valoracion, user);
-                          }
+                          
+                          guardarComentarioSiEstaEnSesion(texto, market, valoracion);
+
                           (miInput as HTMLInputElement).value = "";
                           (miInputValoracion  as HTMLInputElement).value = "";
                         }
