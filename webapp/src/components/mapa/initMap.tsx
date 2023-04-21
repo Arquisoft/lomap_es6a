@@ -34,7 +34,11 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
       return chincheta;
     }
 
-    function seleccionarIcono(tipo:String){
+    function validacionCamposComentario(texto:string, valoracion:string){
+      return (texto.length != 0 && Number(valoracion)>=0 && Number(valoracion)<=10 && Number(valoracion) != null);
+    }
+
+    function seleccionarIcono(tipo:string){
       if (tipo == "Bar"){
         return crearImgHtml(bar);
       }else if(tipo == "Restaurante"){
@@ -99,25 +103,19 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                       const miInputValoracion = document.getElementById('valoracion');
   
                         // Obtener el valor del input de texto
-                        if (miInput instanceof HTMLInputElement && miInputValoracion instanceof HTMLInputElement){
-                          let texto = miInput.value;
-                          let valoracion = miInputValoracion.value
-                          if (Number(valoracion) != null){
-                            if (texto.length != 0 && Number(valoracion)>=0 && Number(valoracion)<=10){
-                              if (session.info.isLoggedIn) {
-                                const user2 = session.info.webId;
-                                let nombreUsuario = "";
-                                if (user2) {
-                                  nombreUsuario = user2.split('//')[1].split('.')[0];
-                                }
-                                guardarComentario({session}.session, texto, market.id, nombreUsuario , valoracion, user);
-                              }
-                              miInput.value = "";
-                              miInputValoracion.value = "";
+                        let texto = (miInput as HTMLInputElement).value;
+                        let valoracion = (miInputValoracion  as HTMLInputElement).value
+                        if (validacionCamposComentario(texto,valoracion)){
+                          if (session.info.isLoggedIn) {
+                            const user2 = session.info.webId;
+                            let nombreUsuario = "";
+                            if (user2) {
+                              nombreUsuario = user2.split('//')[1].split('.')[0];
                             }
+                            guardarComentario({session}.session, texto, market.id, nombreUsuario , valoracion, user);
                           }
-                        }else{
-                          console.log("No entro")
+                          (miInput as HTMLInputElement).value = "";
+                          (miInputValoracion  as HTMLInputElement).value = "";
                         }
                         
                       

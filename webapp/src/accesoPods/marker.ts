@@ -1,13 +1,13 @@
 class Marker {
     id: string;
-    nombre: String;
-    descripcion: String;
+    nombre: string;
+    descripcion: string;
     latitude: number;
     longitude: number;
-    tipo: String;
-    imagen?:String;
+    tipo: string;
+    imagen?:string;
 
-    constructor(nombre: String, descripcion: String, latitude: number, longitude: number, tipo: String, imagen?:String) {
+    constructor(nombre: string, descripcion: string, latitude: number, longitude: number, tipo: string, imagen?:string) {
         this.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
         this.nombre = nombre;
         this.latitude = latitude;

@@ -3,7 +3,7 @@ import Comentario from './comentario';
 import {Session} from "@inrupt/solid-client-authn-browser";
 import {escribir, buscarArchivos} from "./acceso";
 
-export function guardarMarcador(session: Session, nombre: String, descripcion:String, lat: number, lng: number, tipo: String,imagen:String): Marker | null {
+export function guardarMarcador(session: Session, nombre: string, descripcion:string, lat: number, lng: number, tipo: string,imagen:string): Marker | null {
     let marker = new Marker(nombre, descripcion, lat, lng, tipo,imagen);
 
     if (session.info.webId == null) {
@@ -30,7 +30,7 @@ export function guardarMarcador(session: Session, nombre: String, descripcion:St
 
     return marker;
 }
-export function guardarMarcadorSinImagen(session: Session, nombre: String, descripcion:String, lat: number, lng: number, tipo: String): Marker | null {
+export function guardarMarcadorSinImagen(session: Session, nombre: string, descripcion:string, lat: number, lng: number, tipo: string): Marker | null {
     let marker = new Marker(nombre, descripcion, lat, lng, tipo);
 
     if (session.info.webId == null) {
