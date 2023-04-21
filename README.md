@@ -3,6 +3,7 @@
 [![CI for LOMAP_ES6A](https://github.com/Arquisoft/lomap_es6a/actions/workflows/lomap_es6a.yml/badge.svg)](https://github.com/Arquisoft/lomap_es6a/actions/workflows/lomap_es6a.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_es6a&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_es6a)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_es6a&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_es6a)
+A
 
 <p float="left">
 <img src="https://blog.wildix.com/wp-content/uploads/2020/06/react-logo.jpg" height="100">
