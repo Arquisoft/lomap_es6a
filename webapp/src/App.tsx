@@ -10,7 +10,6 @@ import Login from './components/Login/login'
 import LoginForm from './components/Login/LoginForm'
 import ProfileViewer from './components/Login/ProfileViewer'
 import AboutUs from './components/aboutus/AboutUs';
-import Marcador from './components/marcadores/Marcador';
 import { SessionProvider, useSession } from '@inrupt/solid-ui-react';
 import { useState, useEffect } from 'react';
 import { Session,  ISessionOptions} from "@inrupt/solid-client-authn-browser";
@@ -46,7 +45,6 @@ function App(): JSX.Element {
               <Route  path={"/"} element={<Home/>} />
               <Route  path="/Mapa" element={<Mapa session={session}/>}/>
               <Route  path="/MapaAmigo/:user" element={<MapaAmigo session={session}/>}/>
-              <Route  path="/Marcador" element={<Marcador session={session}/>}/>
               <Route  path="/Amigos" element={<Amigos/>}/>
               <Route  path="/Aboutus" element={<AboutUs/>}/>
               <Route  path="/Login" element={<Login/>}/>
