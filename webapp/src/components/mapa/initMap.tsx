@@ -141,10 +141,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                     )
                     cadena += "</table></div>"+
                     "<style>.table-container { max-height: 200px; overflow-y: auto; } .table { width: 100%; border-collapse: collapse; } .table th, .table td { border: 1px solid #ccc; padding: 10px; text-align: left; } .table th { background-color: #f2f2f2; font-weight: bold; } .table tr:nth-child(even) { background-color: #f9f9f9; } .table tr:hover { background-color: #e6e6e6; } .table td.actions { text-align: center; } .table td.actions a { color: #007bff; text-decoration: none; } .table td.actions a:hover { color: #0056b3; } th { font-weight: bold; } </style>";
-                    let img;
-                    if (typeof market.imagen === "string"){
-                       img = market.imagen;
-                    }
+                    let img = market.imagen;
 
                     let html = `<img style="width: 250px; height: 150px;"src =`+img +`>`+`
                     <h1>`+ market.nombre+`</h1>
@@ -159,9 +156,8 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                     const popupElement = marker.getPopup().setHTML(html);
 
                     const miboton = document.getElementById("btnenviar");
-                    if (miboton instanceof HTMLButtonElement){
-                      miboton.addEventListener("click",handleClick);
-                    }
+                    
+                    (miboton as HTMLButtonElement).addEventListener("click",handleClick);
 
                     popupElement.getElement().addEventListener("click",handleClickPopup);
                   }
