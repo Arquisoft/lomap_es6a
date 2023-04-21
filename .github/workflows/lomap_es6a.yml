@@ -1,6 +1,17 @@
 name: CI for LOMAP_ES6A
 
-on: [push,pull_request]
+on:
+  push:
+    branches:
+      - AlonsoPrincipal
+      - developer
+      - master
+  pull_request:
+    branches:
+       - AlonsoPrincipal
+       - developer
+       - master
+
 
 jobs:
   unit-test-webapp:
