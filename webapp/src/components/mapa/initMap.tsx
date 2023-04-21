@@ -67,26 +67,32 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
       }
     }
 
-    navigator.geolocation.getCurrentPosition(position => {
-        const { latitude, longitude } = position.coords;
-      
-        // Centra el mapa en la ubicación del usuario
-        mapa.setCenter([longitude, latitude]);
-      
-        // Añade un marcador en la ubicación del usuario
-        const markerElement = document.createElement('img');
-        markerElement.src = casa;
-        markerElement.width = 30; // establecer el ancho en 30 píxeles
-        markerElement.height = 30; // establecer la altura en 30 píxeles
+    navigator.permissions.query({name:"geolocation"}).then(function(result) {
+    
+    if (result){
+
+      navigator.geolocation.getCurrentPosition(position => {
+          const { latitude, longitude } = position.coords;
+        
+          // Centra el mapa en la ubicación del usuario
+          mapa.setCenter([longitude, latitude]);
+        
+          // Añade un marcador en la ubicación del usuario
+          const markerElement = document.createElement('img');
+          markerElement.src = casa;
+          markerElement.width = 30; // establecer el ancho en 30 píxeles
+          markerElement.height = 30; // establecer la altura en 30 píxeles
 
 
-        new mapboxgl.Marker({ element: markerElement })
-          .setLngLat([longitude, latitude])
-          .setPopup(new Popup({ closeButton: false, anchor: 'left' })
-          .setHTML(`<div class="popup">Mi ubicación inicial: <br/>[${longitude}, ${latitude}]</div>`))
-          .addTo(mapa);
+          new mapboxgl.Marker({ element: markerElement })
+            .setLngLat([longitude, latitude])
+            .setPopup(new Popup({ closeButton: false, anchor: 'left' })
+            .setHTML(`<div class="popup">Mi ubicación inicial: <br/>[${longitude}, ${latitude}]</div>`))
+            .addTo(mapa);
 
-      });
+        });
+      }
+    });
 
       let userMarkers: Marker[]
       userMarkers = [];
