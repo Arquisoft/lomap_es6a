@@ -57,21 +57,20 @@ const getUserSession = (): Session => {
 
 
 
-
 const ProfileViewer = () => {
   const classes = useStyles();
 
-  var temp = useSession().session;
-  //const { session } = useSession();
+  // var temp = useSession().session;
+  const { session } = useSession();
 
-   var cond = temp.info.isLoggedIn
-if (getUserSession() == null || cond ){
-  setUserSession(temp);
-}
+//    var cond = temp.info.isLoggedIn
+// if (getUserSession() == null || cond ){
+//   setUserSession(temp);
+// }
 
- const  session  = getUserSession();
+//  const  session  = getUserSession();
 
-//  const { webId } = session.info;
+ const { webId } = session.info;
 
 //  function guardarWebId() {
 //    sessionStorage.setItem('webIdSesion', webId as string);
@@ -80,36 +79,29 @@ if (getUserSession() == null || cond ){
   return (
     <>
     <form className={classes.container} noValidate autoComplete="on">
-      { sessionStorage.getItem('address') === "NEGATIVO" ? (
-          window.location.href = window.location.protocol + '//' + window.location.host + '/ErrorPod'
-        ) : (
-              [
-                <Container fixed>
-                  {session.info.webId ? (
-                    <CombinedDataProvider
-                      datasetUrl={session.info.webId}
-                      thingUrl={session.info.webId}>
-                      <Card className={classes.card}>
-                        <CardHeader className={classes.header} title="User" />
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="h2">
-                            <Text property={FOAF.name.iri.value} />
-                          </Typography>
-                        </CardContent>
-                        <CardActionArea style={{ justifyContent: "center", display: "flex" }}>
-                        </CardActionArea>
-                      </Card>
-                    </CombinedDataProvider>
-                  ) : null}
-                  <LogoutButton>
-                    <Button style={{ marginTop: 20 }} variant="contained" color="primary" href="/LoginForm">
-                      Logout
-                    </Button>
-                  </LogoutButton>
-                </Container>
-              ]
-        )
-      }
+      <Container fixed>
+        {session.info.webId ? (
+          <CombinedDataProvider
+            datasetUrl={session.info.webId}
+            thingUrl={session.info.webId}>
+            <Card className={classes.card}>
+              <CardHeader className={classes.header} title="User" />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  <Text property={FOAF.name.iri.value} />
+                </Typography>
+              </CardContent>
+              <CardActionArea style={{ justifyContent: "center", display: "flex" }}>
+              </CardActionArea>
+            </Card>
+          </CombinedDataProvider>
+        ) : null}
+        <LogoutButton>
+          <Button style={{ marginTop: 20 }} variant="contained" color="primary" href="/LoginForm">
+            Logout
+          </Button>
+        </LogoutButton>
+      </Container>
     </form>
     </>
   ); 

@@ -52,7 +52,6 @@ Mapeo de Bloques de Construccion a Infraestructura::
 [options="header",cols="1,2"]
 |===
 |Building Block|Mapping
-| MongoDB | La base de datos elegida, sera usada por la aplicacion y estara dentro de un servidor.
 | RestAPI| Interfaz entre sistemas para el intercambio de peticiones.
 | WebApp| La parte donde el usuario podra interactuar, el cual ejecuta el navegador web.
 | Web browser| Depende de la eleccion del usuario, y unica forma de acceder a la aplicacion.

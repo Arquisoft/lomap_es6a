@@ -17,16 +17,11 @@
 | Adaptar el conocimiento de los miembros que si conocen JavaScript a TypeScript y los que no lo conocen informarse un poco a cerca de este lenguaje.
 
 |3
-| MongoDB
-| Nunca hemos trabajado con esta base de datos en concreto pero todos los miembros ya han utilizado una no relacional.
-| Comprender su funcionamiento mirando documentación al respecto.
-
-|4
 | PODs
 | Ningun miembro del equipo ha usado PODs antes ni sabemos como utilizarlos e incorporarlos en el proyecto.
 | Buscar videos en youtube y mirar la documentacion de SOLID.
 
-|5
+|4
 | GitHub
 | Aunque todo el equipo trabaja bien con GitHub falta soltura a la hora de realizar ciertas acciones como commits etc...
 | Esto no supone un gran inconveniente, se resolverá a medida que nos vayan saliendo los problemas y haciendo alguna prueba con la documentacion.

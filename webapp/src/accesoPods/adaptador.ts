@@ -3,7 +3,34 @@ import Comentario from './comentario';
 import {Session} from "@inrupt/solid-client-authn-browser";
 import {escribir, buscarArchivos} from "./acceso";
 
-export function guardarMarcador(session: Session, nombre: String, descripcion:String, lat: number, lng: number, tipo: String): Marker | null {
+export function guardarMarcador(session: Session, nombre: String, descripcion:String, lat: number, lng: number, tipo: String,imagen:String): Marker | null {
+    let marker = new Marker(nombre, descripcion, lat, lng, tipo,imagen);
+
+    if (session.info.webId == null) {
+        return null;
+    } // Check if the webId is undefined
+
+    let url = session.info.webId?.split("/").slice(0, 3).join("/");
+    let markersUrl = url.concat("/public", "/markers", "/" + marker.id + ".jsonld");
+
+    let markerToSave = JSON.parse(JSON.stringify(marker));
+    markerToSave["@context"] = "https://schema.org/";
+    markerToSave["@type"] = "Place";
+
+    let blob = new Blob([JSON.stringify(markerToSave)], { type: "application/ld+json" });
+    let file = new File([blob], marker.id + ".jsonld", { type: "application/ld+json" });
+
+    escribir(session, markersUrl, file).then(result => {
+        if (result) {
+            console.log("Marker " + marker.id + " saved correctly in " + markersUrl);
+        } else {
+            console.log("Marker " + marker.id + " could not be saved correctly");
+        }
+    });
+
+    return marker;
+}
+export function guardarMarcadorSinImagen(session: Session, nombre: String, descripcion:String, lat: number, lng: number, tipo: String): Marker | null {
     let marker = new Marker(nombre, descripcion, lat, lng, tipo);
 
     if (session.info.webId == null) {
@@ -11,10 +38,14 @@ export function guardarMarcador(session: Session, nombre: String, descripcion:St
     } // Check if the webId is undefined
 
     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-    let markersUrl = basicUrl.concat("/public", "/markers", "/" + marker.id + ".json");
+    let markersUrl = basicUrl.concat("/public", "/markers", "/" + marker.id + ".jsonld");
 
-    let blob = new Blob([JSON.stringify(marker)], { type: "application/json" });
-    let file = new File([blob], marker.id + ".json", { type: "application/json" });
+    let markerToSave = JSON.parse(JSON.stringify(marker));
+    markerToSave["@context"] = "https://schema.org/";
+    markerToSave["@type"] = "Place";
+
+    let blob = new Blob([JSON.stringify(markerToSave)], { type: "application/ld+json" });
+    let file = new File([blob], marker.id + ".jsonld", { type: "application/ld+json" });
 
     escribir(session, markersUrl, file).then(result => {
         if (result) {
@@ -36,18 +67,24 @@ export function guardarComentario(session: Session, texto: string, idmarker: str
 
     let comentariosUrl = "";
 
+    
+
     if (user !== ""){
         let primeraParte = session.info.webId?.split("/").slice(0, 2).join("/");
         let segundaParte = session.info.webId?.split("/").slice(2, 3).join().split(".").slice(1,3).join(".");
-        comentariosUrl = primeraParte.concat("/",user,".",segundaParte, "/public", "/comentarios","/"+idmarker+"/");
+        comentariosUrl = primeraParte.concat("/",user,".",segundaParte, "/public", "/comentarios","/"+idmarker+"/"+ comentario.id + ".jsonld");
         console.log(comentariosUrl);
     }else{
         let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-        comentariosUrl = basicUrl.concat("/public", "/comentarios","/"+idmarker, "/" + comentario.id + ".json");
+        comentariosUrl = basicUrl.concat("/public", "/comentarios","/"+idmarker, "/" + comentario.id + ".jsonld");
     }
 
-    let blob = new Blob([JSON.stringify(comentario)], { type: "application/json" });
-    let file = new File([blob], comentario.id + ".json", { type: "application/json" });
+    let comentarioToSave = JSON.parse(JSON.stringify(comentario));
+    comentarioToSave["@context"] = "https://schema.org/";
+    comentarioToSave["@type"] = "Comentario";
+
+    let blob = new Blob([JSON.stringify(comentarioToSave)], { type: "application/ld+json" });
+    let file = new File([blob], comentario.id + ".jsonld", { type: "application/ld+json" });
 
     escribir(session, comentariosUrl, file).then(result => {
         if (result) {
@@ -59,29 +96,6 @@ export function guardarComentario(session: Session, texto: string, idmarker: str
 
     return comentario;
 }
-// export function borrarMarcador(session: Session, lat: number, lng: number): Marker | null {
-//     let marker = new Marker(lat, lng);
-
-//     if (session.info.webId == null) {
-//         return null;
-//     } // Check if the webId is undefined
-
-//     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-//     let pointsUrl = basicUrl.concat("/public", "/markers", "/" + marker.id + ".json");
-
-//     let blob = new Blob([JSON.stringify(marker)], { type: "application/json" });
-//     let file = new File([blob], marker.id + ".json", { type: "application/json" });
-
-//     escribir(session, pointsUrl, file).then(result => {
-//         if (result) {
-//             console.log("Point " + marker.id + " saved correctly in " + pointsUrl);
-//         } else {
-//             console.log("Point " + marker.id + " could not be saved correctly");
-//         }
-//     });
-
-//     return marker;
-// }
 
 export async function recuperarMarcador(session: Session, user: string): Promise<Marker[] | null>{
     if (session.info.webId == null) {

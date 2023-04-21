@@ -2,7 +2,9 @@ import { Button, Card, CardContent, CardHeader, Container, FormGroup, Link, Text
 import { useEffect, useState } from "react";
 import { LoginButton} from "@inrupt/solid-ui-react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { TextEncoder, TextDecoder } from 'util';
 
+Object.assign(global, { TextDecoder, TextEncoder });
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
@@ -53,11 +55,10 @@ return (
                 placeholder="Identity Provider"
                 type="url"
                 value={idp}
-                onChange={(e) => setIdp(e.target.value)}
                 InputProps={{
                   endAdornment: (
-                    <LoginButton oidcIssuer={idp} redirectUrl={window.location.protocol + '//' + window.location.host + "/ProfileViewer"}>
-                      <Button variant="contained" color="primary">
+                    <LoginButton  oidcIssuer={idp} redirectUrl={window.location.protocol + '//' + window.location.host + "/ProfileViewer"}>
+                      <Button variant="contained" color="primary" aria-label="loginButton">
                         Login
                       </Button>
                     </LoginButton>
