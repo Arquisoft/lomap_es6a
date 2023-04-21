@@ -1,6 +1,6 @@
 import mapboxgl ,{Map,Popup} from 'mapbox-gl';
 import React from 'react';
-import {recuperarMarcador,guardarMarcador, guardarComentario, recuperarComentario, guardarMarcadorSinImagen} from "../../accesoPods/adaptador";
+import {recuperarMarcador, guardarComentario, recuperarComentario} from "../../accesoPods/adaptador";
 import {SessionType} from "../../shared/shareddtypes";
 import casa from '../../imagenes/marcador.png';
 import bar from '../../imagenes/bar.png';
@@ -34,7 +34,24 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
       return chincheta;
     }
 
-    let markerFinal = new Marker("","",0,0,"");
+    function seleccionarIcono(tipo:String){
+      if (tipo == "Bar"){
+        return crearImgHtml(bar);
+      }else if(tipo == "Restaurante"){
+        return crearImgHtml(restaurante);
+      }else if(tipo == "Gasolinera"){
+        return crearImgHtml(gasolinera);
+      }else if(tipo == "Tienda"){
+        return crearImgHtml(tienda);
+      }else if(tipo == "Paisaje"){
+        return crearImgHtml(paisaje);
+      }else if(tipo == "Monumento"){
+        return crearImgHtml(monumento);
+      }else{
+        return crearImgHtml(interrogacion);
+      }
+    }
+
     navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
       
@@ -61,31 +78,17 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
 
       recuperarMarcador({session}.session,user).then(markers => {
         if (markers != null) {
+            
             userMarkers = markers;
             userMarkers.forEach(market => {
                 console.log(market);
                 let iconMarker;
-                if (market.tipo == "Bar"){
-                  iconMarker = crearImgHtml(bar);
-                }else if(market.tipo == "Restaurante"){
-                  iconMarker = crearImgHtml(restaurante);
-                }else if(market.tipo == "Gasolinera"){
-                  iconMarker = crearImgHtml(gasolinera);
-                }else if(market.tipo == "Tienda"){
-                  iconMarker = crearImgHtml(tienda);
-                }else if(market.tipo == "Paisaje"){
-                  iconMarker = crearImgHtml(paisaje);
-                }else if(market.tipo == "Monumento"){
-                  iconMarker = crearImgHtml(monumento);
-                }else{
-                  iconMarker = crearImgHtml(interrogacion);
-                }
+                iconMarker = seleccionarIcono(market.tipo);
                   let marker = new mapboxgl.Marker({ element: iconMarker })
                   .setLngLat([market.latitude, market.longitude])
                   .setPopup(new Popup({ closeButton: false, anchor: 'left', maxWidth: '400px' })
                   .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.longitude}, ${market.latitude}]</div>`))
-                  .addTo(mapa);
-                  markerFinal = market;                                     
+                  .addTo(mapa);                                 
                   const onMarkerClick= ()=>{
                     const handleClickPopup = (event: MouseEvent) => {
                       event.preventDefault();
