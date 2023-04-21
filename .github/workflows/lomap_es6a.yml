@@ -1,4 +1,4 @@
-name: CI for LOMAP ES6A, Quality Gate Status, Coverage
+name: CI for LOMAP ES6A
 
 on: [push, pull_request]
   
