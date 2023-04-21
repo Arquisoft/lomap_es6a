@@ -1,5 +1,4 @@
-import { Session,  ISessionOptions, handleIncomingRedirect} from "@inrupt/solid-client-authn-browser";
-import { getDefaultSession, login } from "@inrupt/solid-client-authn-browser";
+import { Session,  ISessionOptions, handleIncomingRedirect, getDefaultSession, login} from "@inrupt/solid-client-authn-browser";
 
 class SesionTemp extends Session{
   constructor(sesion : Session,sessionOptions?: Partial<ISessionOptions>, sessionId?: string | undefined) {

@@ -14,16 +14,6 @@ function BuscarAmigo() {
   const [url,setUrl] = useState('');
   const WebID = "https://" + name + ".inrupt.net/profile/card#me";
 
-  
-  let nombreUsuario = "";
-  if (session.info.isLoggedIn) {
-    const user = session.info.webId;
-    
-    if (user) {
-      nombreUsuario = user.split('//')[1].split('.')[0];
-    }
-  }
-
   async function buscarAmigo() {
     try {
       setCargando(true);
@@ -230,12 +220,7 @@ function BuscarAmigo() {
   
     setAmigos(nuevosAmigos);
   }
-
-  function showMap() {
-    
-    
-  }
-
+  
   return (
     <div>
       <h1>Buscar Perfil</h1>

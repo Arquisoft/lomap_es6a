@@ -25,6 +25,15 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
         
     });
     
+    function crearImgHtml(foto:string){
+      let chincheta = document.createElement('img');
+      chincheta.src = foto;
+      chincheta.width = 30; // establecer el ancho en 30 píxeles
+      chincheta.height = 30; // establecer la altura en 30 píxeles
+
+      return chincheta;
+    }
+
     let markerFinal = new Marker("","",0,0,"");
     navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
@@ -50,16 +59,6 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
       let userMarkers: Marker[]
       userMarkers = [];
 
-      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        if (markerFinal.imagen){
-          guardarMarcador({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo, markerFinal.imagen);
-
-        }else{
-           guardarMarcadorSinImagen({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo);
-        }
-      };
-
       recuperarMarcador({session}.session,user).then(markers => {
         if (markers != null) {
             userMarkers = markers;
@@ -67,47 +66,19 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                 console.log(market);
                 let iconMarker;
                 if (market.tipo == "Bar"){
-                  let barMarker = document.createElement('img');
-                  barMarker.src = bar;
-                  barMarker.width = 30; // establecer el ancho en 30 píxeles
-                  barMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = barMarker;
+                  iconMarker = crearImgHtml(bar);
                 }else if(market.tipo == "Restaurante"){
-                  let restauranteMarker = document.createElement('img');
-                  restauranteMarker.src = restaurante;
-                  restauranteMarker.width = 30; // establecer el ancho en 30 píxeles
-                  restauranteMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = restauranteMarker;
+                  iconMarker = crearImgHtml(restaurante);
                 }else if(market.tipo == "Gasolinera"){
-                  let gasolineraMarker = document.createElement('img');
-                  gasolineraMarker.src = gasolinera;
-                  gasolineraMarker.width = 30; // establecer el ancho en 30 píxeles
-                  gasolineraMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = gasolineraMarker;
+                  iconMarker = crearImgHtml(gasolinera);
                 }else if(market.tipo == "Tienda"){
-                  let tiendaMarker = document.createElement('img');
-                  tiendaMarker.src = tienda;
-                  tiendaMarker.width = 30; // establecer el ancho en 30 píxeles
-                  tiendaMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = tiendaMarker;
+                  iconMarker = crearImgHtml(tienda);
                 }else if(market.tipo == "Paisaje"){
-                  let paisajeMarker = document.createElement('img');
-                  paisajeMarker.src = paisaje;
-                  paisajeMarker.width = 30; // establecer el ancho en 30 píxeles
-                  paisajeMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = paisajeMarker;
+                  iconMarker = crearImgHtml(paisaje);
                 }else if(market.tipo == "Monumento"){
-                  let monumentoMarker = document.createElement('img');
-                  monumentoMarker.src = monumento;
-                  monumentoMarker.width = 30; // establecer el ancho en 30 píxeles
-                  monumentoMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = monumentoMarker;
+                  iconMarker = crearImgHtml(monumento);
                 }else{
-                  let interrogacionMarker = document.createElement('img');
-                  interrogacionMarker.src = interrogacion;
-                  interrogacionMarker.width = 30; // establecer el ancho en 30 píxeles
-                  interrogacionMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = interrogacionMarker;
+                  iconMarker = crearImgHtml(interrogacion);
                 }
                   let marker = new mapboxgl.Marker({ element: iconMarker })
                   .setLngLat([market.latitude, market.longitude])

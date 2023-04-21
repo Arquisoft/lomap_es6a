@@ -1,4 +1,4 @@
-import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
+import { useSession, CombinedDataProvider, LogoutButton, Text } from "@inrupt/solid-ui-react";
 import { Button, Card, CardActionArea, CardContent, CardHeader, Container, Typography } from "@material-ui/core";
 import { FOAF} from "@inrupt/lit-generated-vocab-common";
 import { Session } from "@inrupt/solid-client-authn-browser";
