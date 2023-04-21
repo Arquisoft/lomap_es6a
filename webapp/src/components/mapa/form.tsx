@@ -202,9 +202,9 @@ function Formulario({ session }: SessionType) {
       <br />
       <button type="submit">Añadir</button>
     </form>
-     <div className='contenedor-mapa'>
+     <main className='contenedor-mapa'>
        <div ref={mapRef} className='map' />
-     </div>
+     </main>
      </>
   );
 }

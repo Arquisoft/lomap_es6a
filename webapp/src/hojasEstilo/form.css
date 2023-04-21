@@ -1,11 +1,14 @@
 .contenedor-principal-mapa{
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    'form main main main main main main main';
 }
-
 .formulario {
-    max-width: 500px;
+    grid-area: form;
+    max-width: 30%;
+    height: auto;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: gainsboro;
@@ -14,6 +17,10 @@
   label {
     display: block;
     margin-bottom: 10px;
+  }
+
+  main {
+    grid-area: main;
   }
   
   input,
@@ -37,8 +44,3 @@
     cursor: pointer;
     margin-top: 20px;
   }
-
-  .map{
-    width: 110em;
-    height: 50em;
-}
