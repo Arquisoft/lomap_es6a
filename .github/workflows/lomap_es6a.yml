@@ -1,8 +1,6 @@
 name: CI for LOMAP_ES6A
 
-on:
-  release:
-    types: [published]
+on: [push,pull_request]
 
 jobs:
   unit-test-webapp:
