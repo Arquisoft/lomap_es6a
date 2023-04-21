@@ -1,6 +1,5 @@
 import '../../hojasEstilo/home.css'
 import { useSession, SessionProvider } from "@inrupt/solid-ui-react";
-import React, { useState } from 'react';
 import LoginForm from './LoginForm';
 import ProfileViewer from "./ProfileViewer";
 import { Session } from '@inrupt/solid-client-authn-browser';

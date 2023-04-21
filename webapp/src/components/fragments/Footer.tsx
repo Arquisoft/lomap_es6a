@@ -1,7 +1,5 @@
-import React from 'react';
 import '../../hojasEstilo/Footer.css';
 import { Typography } from '@mui/material';
-import { makeStyles } from '@material-ui/core/styles';
 
 function Footer() {
     return(

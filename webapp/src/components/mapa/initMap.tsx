@@ -1,5 +1,5 @@
-import mapboxgl ,{Map,Popup,MapboxEvent} from 'mapbox-gl';
-import React, {useState, useEffect, Props} from 'react';
+import mapboxgl ,{Map,Popup} from 'mapbox-gl';
+import React from 'react';
 import {recuperarMarcador,guardarMarcador, guardarComentario, recuperarComentario, guardarMarcadorSinImagen} from "../../accesoPods/adaptador";
 import {SessionType} from "../../shared/shareddtypes";
 import casa from '../../imagenes/marcador.png';
@@ -24,10 +24,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
         doubleClickZoom: false
         
     });
-    let comentario = "";
-    const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      comentario = event.target.value;
-    };
+    
     let markerFinal = new Marker("","",0,0,"");
     navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
@@ -166,7 +163,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                     )
                     cadena += "</table></div>"+
                     "<style>.table-container { max-height: 200px; overflow-y: auto; } .table { width: 100%; border-collapse: collapse; } .table th, .table td { border: 1px solid #ccc; padding: 10px; text-align: left; } .table th { background-color: #f2f2f2; font-weight: bold; } .table tr:nth-child(even) { background-color: #f9f9f9; } .table tr:hover { background-color: #e6e6e6; } .table td.actions { text-align: center; } .table td.actions a { color: #007bff; text-decoration: none; } .table td.actions a:hover { color: #0056b3; } th { font-weight: bold; } </style>";
-                    var img;
+                    let img;
                     if (typeof market.imagen === "string"){
                        img = market.imagen;
                     }
@@ -196,10 +193,5 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
             });
         }
       });  
-
-    mapa.on('dblclick', function (evt) {
-        //let marker = guardarMarcador({session}.session,evt.lngLat.lng,evt.lngLat.lat);
-
-      });
     return mapa;
 }

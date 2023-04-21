@@ -1,9 +1,8 @@
-import React, { useEffect,useRef,useState } from 'react';
+import React, { useEffect,useRef} from 'react';
 import '../../hojasEstilo/mapa.css';
 import { initMap } from './initMap';
 import {SessionType} from "../../shared/shareddtypes"
-import {useParams} from 'react-router-dom';
-import {Navigate } from 'react-router-dom';
+import {useParams, Navigate} from 'react-router-dom';
   
 
 function MapaAmigos({ session }: SessionType): JSX.Element {
@@ -17,11 +16,11 @@ function MapaAmigos({ session }: SessionType): JSX.Element {
 
 
         if (user){
-            mapa = initMap(
+            initMap(
             mapRef.current, {session}, user
         )
         }else{
-          mapa = initMap(
+          initMap(
             mapRef.current, {session}, "")
         }
 

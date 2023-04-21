@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThing, saveSolidDatasetAt, removeIri, ThingPersisted } from '@inrupt/solid-client';
+import React, { useState, useEffect} from 'react';
+import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThing, saveSolidDatasetAt, removeIri} from '@inrupt/solid-client';
 import { FOAF } from '@inrupt/vocab-common-rdf';
 import { useSession } from '@inrupt/solid-ui-react';
 import { Link } from 'react-router-dom';
-import { waitFor } from '@testing-library/react';
 
 function BuscarAmigo() {
   const { session } = useSession();
@@ -15,7 +14,7 @@ function BuscarAmigo() {
   const [url,setUrl] = useState('');
   const WebID = "https://" + name + ".inrupt.net/profile/card#me";
 
-  let nombreAmigo = "";
+  
   let nombreUsuario = "";
   if (session.info.isLoggedIn) {
     const user = session.info.webId;
@@ -49,40 +48,6 @@ function BuscarAmigo() {
     }
   }
 
-  async function obtenerNombre(friendName : string) : Promise<string>{
-      let r;  
-
-      if (!session.info.isLoggedIn) return "";
-
-      const { webId } = session.info;
-      if (!webId) {
-        throw new Error('Nombre de usuario no especificado');
-      }
-      const dataset = await getSolidDataset(webId);
-      const perfil = getThing(dataset, webId);
-      if (!perfil) {
-        throw new Error('Perfil no encontrado');
-      }
-      const amigosUrl = getUrlAll(perfil, FOAF.knows);
-      const nuevosAmigos = await Promise.all(amigosUrl.map(async (url) => {
-        
-        const amigoDataset = await getSolidDataset(url);
-        const amigoPerfil = getThing(amigoDataset, url);
-        if (amigoPerfil){
-          
-          r =amigoPerfil?.url.split("/").slice(2,3).join().split(".").slice(0,1).join();
-        }else{
-          r = nombreUsuario;
-        }
-          
-        }));
-      //nuevosAmigos.forEach(amigo => amigo == friendName)
-      console.log(r);
-
-      return r ? r:"";
-    }
-
-
     async function encontrarUrl(nombreAmigo : string) : Promise<string>{
       const { webId } = session.info;
   
@@ -104,7 +69,6 @@ function BuscarAmigo() {
   
     const amigosUrl = getUrlAll(profileThing, FOAF.knows);
   
-    // Buscar la URL del amigo correspondiente a partir de su nombre
     let amigoUrl: string ="";
     for (const url of amigosUrl) {
       const amigoDataset = await getSolidDataset(url);
@@ -131,7 +95,6 @@ function BuscarAmigo() {
 
   useEffect(() => {
     async function cargarAmigos() {
-      let r;
       if (!session.info.isLoggedIn) return;
 
       const { webId } = session.info;
@@ -180,7 +143,7 @@ function BuscarAmigo() {
     }
     const updatedThing = addIri(thing, FOAF.knows, WebID);
     const updatedProfileDataset = setThing(profileDataset, updatedThing);
-    const storedProfileDataset = await saveSolidDatasetAt(webId, updatedProfileDataset, {
+    await saveSolidDatasetAt(webId, updatedProfileDataset, {
         fetch: session.fetch,
     });
 
@@ -248,7 +211,7 @@ function BuscarAmigo() {
   
     const updatedThing = removeIri(profileThing, FOAF.knows, amigoUrl);
     const updatedProfileDataset = setThing(profileDataset, updatedThing);
-    const storedProfileDataset = await saveSolidDatasetAt(webId, updatedProfileDataset, {
+    await saveSolidDatasetAt(webId, updatedProfileDataset, {
       fetch: session.fetch,
     });
   
@@ -273,36 +236,6 @@ function BuscarAmigo() {
     
   }
 
-  // const [s,setTing] = useState(obtenerNombre());
-  // useState()
-
-
-  
-  // useEffect(() => { obtenerNombre().then(string =>{
-  //   setUrl( "/mapaAmigo/"+string)
-  // })
-  // })
-
-  // waitFor(async () =>{ await obtenerNombre().then(string =>{
-  //   setUrl( "/mapaAmigo/"+string)
-    
-  // } )
-  //   },{timeout : 50000} )
-  //   //,{timeout : 50000} 
-  //   waitFor(()=>{var i= 10000000
-  //   while(i>0){
-  //     i= i-1;
-  //   }
-  //   console.log("b");
-  //   })
-
-  //   var i= 10000000
-  //   while(i>0){
-  //     i= i-1;
-  //   }
-  //   console.log("a");
-
-   
   return (
     <div>
       <h1>Buscar Perfil</h1>

@@ -35,12 +35,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const LoginForm = () => {
   const classes = useStyles();
-  const [idp, setIdp] = useState("https://inrupt.net");
+  const [idp] = useState("https://inrupt.net");
   const [currentUrl, setCurrentUrl] = useState(window.location.protocol + '//' + window.location.host + '/');
 
   useEffect(() => {
     setCurrentUrl(window.location.href);
-  }, [setCurrentUrl]);
+  }, [currentUrl]);
   
 return (
   <>
