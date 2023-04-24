@@ -164,13 +164,21 @@ function Formulario({ session }: SessionType) {
     }
   }
   };
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+    console.log(`Checkbox is now ${isChecked ? 'unchecked' : 'checked'}`);
+  };
   
   return (
     
      <>
      <div className='mapc'>
      <div ref={mapRef} className='map' />
-     <div className='panel'>
+      
+      <div className='panel'>
      <form onSubmit={handleSubmit} className="formulario">
       <label>
         Nombre:
@@ -211,14 +219,84 @@ function Formulario({ session }: SessionType) {
       <br />
       <button type="submit">Añadir</button>
     </form>
-    <div className='filtro'>
-        <h1>Filtros</h1>
-        <Menu options={['All', '1', '2', '3']} onFilter={handleFilter} />
-        <ul>
-          {filteredItems.map(item => <li key={item}>{item}</li>)}
-        </ul>
+    
+      <div className='filtro'>
+        <h1>Filtro</h1>
+        <div className='pareja'>
+      <label>
+      Todos
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+      </label>
       </div>
-
+      <div className='pareja'>
+      <label>
+      Todos
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+      </label>
+      </div>
+      <div className='pareja'>
+      <label>
+      Todos
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+      </label>
+      </div>
+        
+      <div className='pareja'>
+      <label>
+      Todos
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+      </label>
+      </div>
+       
+      <div className='pareja'>
+      <label>
+      Todos
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+      </label>
+      </div>
+        
+      <div className='pareja'>
+      <label>
+      Todos
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+      </label>
+      </div>
+      
+      <div className='pareja'>
+      <label>
+      Todos
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+      </label>
+      </div>
+      </div>
       </div>
       </div>
      </>

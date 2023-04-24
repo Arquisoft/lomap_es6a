@@ -9,15 +9,22 @@
 }
 
 .formulario {
+  height: auto;
   grid-area: form;
   padding: 10px;
   width: 92%;
-  height: auto;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: gainsboro;
 }
+.pareja{
+  display: flex;
+}
+
 .filtro{
+  overflow-y: auto;
+  max-height: 34%;
+  width: auto;
   background-color: #ccc;
 }
 .map{
