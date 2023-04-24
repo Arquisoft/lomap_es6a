@@ -9,6 +9,8 @@
 }
 
 .formulario {
+  overflow-y: auto;
+  max-height: 66%;
   height: auto;
   grid-area: form;
   padding: 10px;

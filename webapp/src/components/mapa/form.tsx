@@ -180,6 +180,7 @@ function Formulario({ session }: SessionType) {
       
       <div className='panel'>
      <form onSubmit={handleSubmit} className="formulario">
+     <h2>Añadir Marcador</h2>
       <label>
         Nombre:
         <input type="text" value={nombre} onChange={handleNombreChange} required />
@@ -221,7 +222,7 @@ function Formulario({ session }: SessionType) {
     </form>
     
       <div className='filtro'>
-        <h1>Filtro</h1>
+        <h2>Filtros</h2>
         <div className='pareja'>
       <label>
       Todos
