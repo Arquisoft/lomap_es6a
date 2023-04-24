@@ -1,8 +1,6 @@
 import React, { useEffect,useRef,useState } from 'react';
 import '../../hojasEstilo/form.css';
-import {recuperarMarcador,guardarMarcador, guardarMarcadorSinImagen} from "../../accesoPods/adaptador";
-import Marker from "../../accesoPods/marker";
-import casa from '../../imagenes/marcador.png';
+import {guardarMarcador, guardarMarcadorSinImagen} from "../../accesoPods/adaptador";
 import bar from '../../imagenes/bar.png';
 import restaurante from '../../imagenes/restaurante.png';
 import gasolinera from '../../imagenes/gasolinera.png';
@@ -12,7 +10,7 @@ import paisaje from '../../imagenes/paisaje.png';
 import monumento from '../../imagenes/monumento.png';
 import {SessionType} from "../../shared/shareddtypes"
 import { initMap } from './initMap';
-import mapboxgl ,{Map,Popup} from 'mapbox-gl';
+import mapboxgl ,{Popup} from 'mapbox-gl';
 
 function Formulario({ session }: SessionType) {
 
@@ -76,7 +74,6 @@ function Formulario({ session }: SessionType) {
         )
 
         mapa.on('dblclick', function (evt) {
-          //let marker = guardarMarcador({session}.session,evt.lngLat.lng,evt.lngLat.lat);
           setLongitud(evt.lngLat.lat+"");
           setLatitud(evt.lngLat.lng+"");
         });
@@ -147,12 +144,11 @@ function Formulario({ session }: SessionType) {
     const files = event.target.files;
   if (files && files.length > 0) {
     const file = files[0];
-    var reader = new FileReader();
+    let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function(){
-      var base64 = reader.result;
+      let base64 = reader.result;
       if (typeof base64 === "string"){
-        var resFinal = base64.split(',')[1];
         setImagen(base64);
       }
     }
