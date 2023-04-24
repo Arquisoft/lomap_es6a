@@ -158,6 +158,8 @@ function Formulario({ session }: SessionType) {
   return (
     
      <>
+     <div className='mapc'>
+     <div ref={mapRef} className='map' />
      <form onSubmit={handleSubmit} className="formulario">
       <label>
         Nombre:
@@ -198,9 +200,8 @@ function Formulario({ session }: SessionType) {
       <br />
       <button type="submit">Añadir</button>
     </form>
-     <main className='contenedor-mapa'>
-       <div ref={mapRef} className='map' />
-     </main>
+      
+      </div>
      </>
   );
 }

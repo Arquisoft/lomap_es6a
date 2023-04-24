@@ -24,7 +24,7 @@ function MapaPrincipal({ session }: SessionType){
   return (
     <div className='contenedor-principal-mapa'>
       <Form session={session}/>
-      </div>
+    </div>
   );
   
 }

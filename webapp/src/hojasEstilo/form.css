@@ -1,26 +1,32 @@
-.contenedor-principal-mapa{
-  display: grid;
-  grid-template-areas:
-    'form main main main main main main main';
+.mapc{
+  display: flex;
 }
+
+
 .formulario {
-    grid-area: form;
-    max-width: 30%;
-    height: auto;
-    margin: 0 auto;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: gainsboro;
-  }
+  grid-area: form;
+  padding: 10px;
+  width: 30%;
+  height: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: gainsboro;
+}
+
+.map{
+  width: 100%;
+  height: auto;
+}
   
   label {
     display: block;
-    margin-bottom: 10px;
   }
 
   main {
-    grid-area: main;
+    width: 200%;
+    height: 200%;
+    margin:0;
+    padding:0;
   }
   
   input,
@@ -32,7 +38,6 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-    margin-bottom: 20px;
   }
   
   button[type="submit"] {
