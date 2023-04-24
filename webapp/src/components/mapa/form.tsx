@@ -11,9 +11,19 @@ import monumento from '../../imagenes/monumento.png';
 import {SessionType} from "../../shared/shareddtypes"
 import { initMap } from './initMap';
 import mapboxgl ,{Popup} from 'mapbox-gl';
+import Menu from './menu';
 
 function Formulario({ session }: SessionType) {
-
+  const [filteredItems, setFilteredItems] = useState<string[]>([]);
+  const allItems = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
+  const handleFilter = (option: string) => {
+    if (option === 'All') {
+      setFilteredItems(allItems);
+    } else {
+      const filtered = allItems.filter(item => item.includes(option));
+      setFilteredItems(filtered);
+    }
+  }
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [latitud, setLatitud] = useState("");
@@ -159,6 +169,12 @@ function Formulario({ session }: SessionType) {
     
      <>
      <div className='mapc'>
+     <div className='filtro'>
+        <Menu options={['All', '1', '2', '3']} onFilter={handleFilter} />
+        <ul>
+          {filteredItems.map(item => <li key={item}>{item}</li>)}
+        </ul>
+      </div>
      <div ref={mapRef} className='map' />
      <form onSubmit={handleSubmit} className="formulario">
       <label>
@@ -200,7 +216,7 @@ function Formulario({ session }: SessionType) {
       <br />
       <button type="submit">Añadir</button>
     </form>
-      
+    
       </div>
      </>
   );

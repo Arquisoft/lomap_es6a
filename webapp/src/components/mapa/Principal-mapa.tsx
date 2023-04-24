@@ -24,12 +24,7 @@ function MapaPrincipal({ session }: SessionType){
   return (
     <div className='contenedor-principal-mapa'>
       <Form session={session}/>
-      <div className='filtro'>
-        <Menu options={['All', '1', '2', '3']} onFilter={handleFilter} />
-        <ul>
-          {filteredItems.map(item => <li key={item}>{item}</li>)}
-        </ul>
-      </div>
+      
     </div>
   );
   
