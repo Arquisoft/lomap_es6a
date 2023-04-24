@@ -12,18 +12,9 @@ import {SessionType} from "../../shared/shareddtypes"
 import { initMap } from './initMap';
 import mapboxgl ,{Popup} from 'mapbox-gl';
 import Menu from './menu';
+import Marker from "../../accesoPods/marker";
 
 function Formulario({ session }: SessionType) {
-  const [filteredItems, setFilteredItems] = useState<string[]>([]);
-  const allItems = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
-  const handleFilter = (option: string) => {
-    if (option === 'All') {
-      setFilteredItems(allItems);
-    } else {
-      const filtered = allItems.filter(item => item.includes(option));
-      setFilteredItems(filtered);
-    }
-  }
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [latitud, setLatitud] = useState("");
@@ -67,6 +58,10 @@ function Formulario({ session }: SessionType) {
   monumentoMarker.height = 30; // establecer la altura en 30 píxeles
   
   const mapRef = useRef<HTMLDivElement>(null);
+  let tupla: [mapboxgl.Map,Array<mapboxgl.Marker>,Array<Marker>];
+  let marcadores: Array<mapboxgl.Marker> = [];
+  let marcadoresCopia: {}[]
+  let marcadoresObjeto: Array<Marker> = [];
   let mapa: mapboxgl.Map;
 
   let nombreUsuario = "";
@@ -79,10 +74,17 @@ function Formulario({ session }: SessionType) {
   }
   useEffect(() => {
     if (mapRef.current) {
-          mapa = initMap(
+          tupla = initMap(
           mapRef.current, {session}, nombreUsuario
-        )
+        );
 
+        mapa = tupla[0];
+
+        marcadores = tupla[1];
+
+        marcadoresObjeto = tupla[2];
+        console.log("---------------------");  
+        console.log(mapa);  
         mapa.on('dblclick', function (evt) {
           setLongitud(evt.lngLat.lat+"");
           setLatitud(evt.lngLat.lng+"");
@@ -165,12 +167,16 @@ function Formulario({ session }: SessionType) {
   }
   };
 
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-    console.log(`Checkbox is now ${isChecked ? 'unchecked' : 'checked'}`);
-  };
+  const handleCheckboxChangeTodos = () => {
+      setIsChecked(!isChecked);
+      if (marcadores.length>0){
+        marcadoresCopia = marcadores.map(obj => ({ ...obj }));
+      }
+
+      console.log(marcadoresCopia);
+  }
   
   return (
     
@@ -229,7 +235,7 @@ function Formulario({ session }: SessionType) {
         <input
           type="checkbox"
           checked={isChecked}
-          onChange={handleCheckboxChange}
+          onChange={handleCheckboxChangeTodos}
         />
       </label>
       </div>
@@ -239,7 +245,7 @@ function Formulario({ session }: SessionType) {
         <input
           type="checkbox"
           checked={isChecked}
-          onChange={handleCheckboxChange}
+          onChange={handleCheckboxChangeTodos}
         />
       </label>
       </div>
@@ -249,7 +255,7 @@ function Formulario({ session }: SessionType) {
         <input
           type="checkbox"
           checked={isChecked}
-          onChange={handleCheckboxChange}
+          onChange={handleCheckboxChangeTodos}
         />
       </label>
       </div>
@@ -260,7 +266,7 @@ function Formulario({ session }: SessionType) {
         <input
           type="checkbox"
           checked={isChecked}
-          onChange={handleCheckboxChange}
+          onChange={handleCheckboxChangeTodos}
         />
       </label>
       </div>
@@ -271,7 +277,7 @@ function Formulario({ session }: SessionType) {
         <input
           type="checkbox"
           checked={isChecked}
-          onChange={handleCheckboxChange}
+          onChange={handleCheckboxChangeTodos}
         />
       </label>
       </div>
@@ -282,7 +288,7 @@ function Formulario({ session }: SessionType) {
         <input
           type="checkbox"
           checked={isChecked}
-          onChange={handleCheckboxChange}
+          onChange={handleCheckboxChangeTodos}
         />
       </label>
       </div>
@@ -293,7 +299,7 @@ function Formulario({ session }: SessionType) {
         <input
           type="checkbox"
           checked={isChecked}
-          onChange={handleCheckboxChange}
+          onChange={handleCheckboxChangeTodos}
         />
       </label>
       </div>
