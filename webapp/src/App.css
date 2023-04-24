@@ -1,4 +1,4 @@
-.contenedor-principal{
+#root{
   display: flex;
   flex-direction: column;
 }

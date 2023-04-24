@@ -34,7 +34,6 @@ function App(): JSX.Element {
 
   return (
     <>
-      <div className='contenedor-principal'>
       <SessionProvider sessionId="logIn">
         <Router>
           <div className='contenedor-navegacion'>
@@ -57,7 +56,6 @@ function App(): JSX.Element {
           </div>
         </Router>
       </SessionProvider>
-      </div>
     </>
   );
 }
