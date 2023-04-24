@@ -1,7 +1,4 @@
-#root{
-  display: flex;
-  flex-direction: column;
-}
+
 
 .contenedor-navegacion{
   grid-area: nav;

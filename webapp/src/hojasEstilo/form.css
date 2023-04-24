@@ -1,18 +1,25 @@
 .mapc{
+  height: 86.4vh;
   display: flex;
 }
 
+.panel{
+  display: flex;
+  flex-direction: column;
+}
 
 .formulario {
   grid-area: form;
   padding: 10px;
-  width: 30%;
+  width: 92%;
   height: auto;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: gainsboro;
 }
-
+.filtro{
+  background-color: #ccc;
+}
 .map{
   width: 100%;
   height: auto;

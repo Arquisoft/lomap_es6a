@@ -169,13 +169,8 @@ function Formulario({ session }: SessionType) {
     
      <>
      <div className='mapc'>
-     <div className='filtro'>
-        <Menu options={['All', '1', '2', '3']} onFilter={handleFilter} />
-        <ul>
-          {filteredItems.map(item => <li key={item}>{item}</li>)}
-        </ul>
-      </div>
      <div ref={mapRef} className='map' />
+     <div className='panel'>
      <form onSubmit={handleSubmit} className="formulario">
       <label>
         Nombre:
@@ -216,7 +211,15 @@ function Formulario({ session }: SessionType) {
       <br />
       <button type="submit">Añadir</button>
     </form>
-    
+    <div className='filtro'>
+        <h1>Filtros</h1>
+        <Menu options={['All', '1', '2', '3']} onFilter={handleFilter} />
+        <ul>
+          {filteredItems.map(item => <li key={item}>{item}</li>)}
+        </ul>
+      </div>
+
+      </div>
       </div>
      </>
   );
