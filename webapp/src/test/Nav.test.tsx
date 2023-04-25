@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent,AllByAttribute } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Session } from "@inrupt/solid-client-authn-browser";
+import { Session, getDefaultSession } from "@inrupt/solid-client-authn-browser";
 import Login from '../components/Login/login';
 import LoginForm from '../components/Login/LoginForm';
 import Home from "../components/home/home";
@@ -113,4 +113,9 @@ describe("logedNav",()=>{
         session.logout();
       }
     });
+});
+
+
+afterAll(async () => {
+    await getDefaultSession().logout();
 });
