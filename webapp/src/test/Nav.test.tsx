@@ -56,13 +56,15 @@ test('prueba login',()=>{
       // 2. Use the authenticated credentials to log in the session.
       clientId: "https://testASW.inrupt.net/profile/card#me",
       clientSecret: "1234567890ABCabc.",
-      oidcIssuer: "https://inrupt.net"
+      oidcIssuer: "https://inrupt.net",
+      //redirectUrl : "" ,
+      redirectUrl: window.location.protocol + '//' + window.location.host + "/Home"
     }).then(() => {
       if (session.info.isLoggedIn) {
         // 3. Your session should now be logged in, and able to make authenticated requests.
-        session
-        console.log(`Logged in with WebID [${session.info.webId}]`);
-
+       // session
+        //console.log(`Logged in with WebID [${session.info.webId}]`);
+        session.handleIncomingRedirect(window.location.protocol + '//' + window.location.host + "/Home");
         var home = render(<Home/>);
 
         home.findAllByText("Amigos").then((tmp) => (
@@ -75,6 +77,7 @@ test('prueba login',()=>{
         }
         else
             fail();
+        session.logout();
     });
 })
 
@@ -86,13 +89,16 @@ describe("logedNav",()=>{
       // 2. Use the authenticated credentials to log in the session.
       clientId: "https://testASW.inrupt.net/profile/card#me",
       clientSecret: "1234567890ABCabc.",
-      oidcIssuer: "https://inrupt.net"
+      oidcIssuer: "https://inrupt.net",
+      //redirectUrl : "" ,
+      redirectUrl: window.location.protocol + '//' + window.location.host + "/Home",
+
     }).then(() => {
       if (session.info.isLoggedIn) {
         // 3. Your session should now be logged in, and able to make authenticated requests.
-        session
-        console.log(`Logged in with WebID [${session.info.webId}]`);
-
+       // session
+       // console.log(`Logged in with WebID [${session.info.webId}]`);
+        session.handleIncomingRedirect(window.location.protocol + '//' + window.location.host + "/Home");
         test("check if Amigos exists after loggin",() =>{
             var home = render(<Home/>);
 
@@ -104,7 +110,7 @@ describe("logedNav",()=>{
             ));
 
         })
-        session.info.isLoggedIn = false;
+        session.logout();
       }
     });
 });
