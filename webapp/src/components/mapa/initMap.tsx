@@ -1,6 +1,6 @@
-import mapboxgl ,{Map,Popup,MapboxEvent} from 'mapbox-gl';
-import React, {useState, useEffect, Props} from 'react';
-import {recuperarMarcador,guardarMarcador, guardarComentario, recuperarComentario, guardarMarcadorSinImagen} from "../../accesoPods/adaptador";
+import mapboxgl ,{Map,Popup} from 'mapbox-gl';
+import React from 'react';
+import {recuperarMarcador, guardarComentario, recuperarComentario} from "../../accesoPods/adaptador";
 import {SessionType} from "../../shared/shareddtypes";
 import casa from '../../imagenes/marcador.png';
 import bar from '../../imagenes/bar.png';
@@ -24,11 +24,49 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
         doubleClickZoom: false
         
     });
-    let comentario = "";
-    const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      comentario = event.target.value;
-    };
-    let markerFinal = new Marker("","",0,0,"");
+    
+    function crearImgHtml(foto:string){
+      let chincheta = document.createElement('img');
+      chincheta.src = foto;
+      chincheta.width = 30; // establecer el ancho en 30 píxeles
+      chincheta.height = 30; // establecer la altura en 30 píxeles
+
+      return chincheta;
+    }
+
+    function validacionCamposComentario(texto:string, valoracion:string){
+      return (texto.length != 0 && Number(valoracion)>=0 && Number(valoracion)<=10 && Number(valoracion) != null);
+    }
+
+    function seleccionarIcono(tipo:string){
+      if (tipo == "Bar"){
+        return crearImgHtml(bar);
+      }else if(tipo == "Restaurante"){
+        return crearImgHtml(restaurante);
+      }else if(tipo == "Gasolinera"){
+        return crearImgHtml(gasolinera);
+      }else if(tipo == "Tienda"){
+        return crearImgHtml(tienda);
+      }else if(tipo == "Paisaje"){
+        return crearImgHtml(paisaje);
+      }else if(tipo == "Monumento"){
+        return crearImgHtml(monumento);
+      }else{
+        return crearImgHtml(interrogacion);
+      }
+    }
+
+    function guardarComentarioSiEstaEnSesion(texto:string,marker:Marker,valoracion:string){
+      if (session.info.isLoggedIn) {
+        const user2 = session.info.webId;
+        let nombreUsuario = "";
+        if (user2) {
+          nombreUsuario = user2.split('//')[1].split('.')[0];
+        }
+        guardarComentario({session}.session, texto, marker.id, nombreUsuario , valoracion, user);
+      }
+    }
+
     navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
       
@@ -53,71 +91,19 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
       let userMarkers: Marker[]
       userMarkers = [];
 
-      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        if (markerFinal.imagen){
-          guardarMarcador({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo, markerFinal.imagen);
-
-        }else{
-           guardarMarcadorSinImagen({session}.session, markerFinal.nombre, markerFinal.descripcion, Number(markerFinal.latitude),Number(markerFinal.longitude), markerFinal.tipo);
-        }
-      };
-
       recuperarMarcador({session}.session,user).then(markers => {
         if (markers != null) {
+            
             userMarkers = markers;
             userMarkers.forEach(market => {
                 console.log(market);
                 let iconMarker;
-                if (market.tipo == "Bar"){
-                  let barMarker = document.createElement('img');
-                  barMarker.src = bar;
-                  barMarker.width = 30; // establecer el ancho en 30 píxeles
-                  barMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = barMarker;
-                }else if(market.tipo == "Restaurante"){
-                  let restauranteMarker = document.createElement('img');
-                  restauranteMarker.src = restaurante;
-                  restauranteMarker.width = 30; // establecer el ancho en 30 píxeles
-                  restauranteMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = restauranteMarker;
-                }else if(market.tipo == "Gasolinera"){
-                  let gasolineraMarker = document.createElement('img');
-                  gasolineraMarker.src = gasolinera;
-                  gasolineraMarker.width = 30; // establecer el ancho en 30 píxeles
-                  gasolineraMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = gasolineraMarker;
-                }else if(market.tipo == "Tienda"){
-                  let tiendaMarker = document.createElement('img');
-                  tiendaMarker.src = tienda;
-                  tiendaMarker.width = 30; // establecer el ancho en 30 píxeles
-                  tiendaMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = tiendaMarker;
-                }else if(market.tipo == "Paisaje"){
-                  let paisajeMarker = document.createElement('img');
-                  paisajeMarker.src = paisaje;
-                  paisajeMarker.width = 30; // establecer el ancho en 30 píxeles
-                  paisajeMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = paisajeMarker;
-                }else if(market.tipo == "Monumento"){
-                  let monumentoMarker = document.createElement('img');
-                  monumentoMarker.src = monumento;
-                  monumentoMarker.width = 30; // establecer el ancho en 30 píxeles
-                  monumentoMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = monumentoMarker;
-                }else{
-                  let interrogacionMarker = document.createElement('img');
-                  interrogacionMarker.src = interrogacion;
-                  interrogacionMarker.width = 30; // establecer el ancho en 30 píxeles
-                  interrogacionMarker.height = 30; // establecer la altura en 30 píxeles
-                  iconMarker = interrogacionMarker;
-                }
+                iconMarker = seleccionarIcono(market.tipo);
                   let marker = new mapboxgl.Marker({ element: iconMarker })
                   .setLngLat([market.latitude, market.longitude])
                   .setPopup(new Popup({ closeButton: false, anchor: 'left', maxWidth: '400px' })
                   .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.longitude}, ${market.latitude}]</div>`))
-                  .addTo(mapa);
-                  markerFinal = market;                                     
+                  .addTo(mapa);                                 
                   const onMarkerClick= ()=>{
                     const handleClickPopup = (event: MouseEvent) => {
                       event.preventDefault();
@@ -128,25 +114,14 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                       const miInputValoracion = document.getElementById('valoracion');
   
                         // Obtener el valor del input de texto
-                        if (miInput instanceof HTMLInputElement && miInputValoracion instanceof HTMLInputElement){
-                          let texto = miInput.value;
-                          let valoracion = miInputValoracion.value
-                          if (Number(valoracion) != null){
-                            if (texto.length != 0 && Number(valoracion)>=0 && Number(valoracion)<=10){
-                              if (session.info.isLoggedIn) {
-                                const user2 = session.info.webId;
-                                let nombreUsuario = "";
-                                if (user2) {
-                                  nombreUsuario = user2.split('//')[1].split('.')[0];
-                                }
-                                guardarComentario({session}.session, texto, market.id, nombreUsuario , valoracion, user);
-                              }
-                              miInput.value = "";
-                              miInputValoracion.value = "";
-                            }
-                          }
-                        }else{
-                          console.log("No entro")
+                        let texto = (miInput as HTMLInputElement).value;
+                        let valoracion = (miInputValoracion  as HTMLInputElement).value
+                        if (validacionCamposComentario(texto,valoracion)){
+                          
+                          guardarComentarioSiEstaEnSesion(texto, market, valoracion);
+
+                          (miInput as HTMLInputElement).value = "";
+                          (miInputValoracion  as HTMLInputElement).value = "";
                         }
                         
                       
@@ -166,10 +141,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                     )
                     cadena += "</table></div>"+
                     "<style>.table-container { max-height: 200px; overflow-y: auto; } .table { width: 100%; border-collapse: collapse; } .table th, .table td { border: 1px solid #ccc; padding: 10px; text-align: left; } .table th { background-color: #f2f2f2; font-weight: bold; } .table tr:nth-child(even) { background-color: #f9f9f9; } .table tr:hover { background-color: #e6e6e6; } .table td.actions { text-align: center; } .table td.actions a { color: #007bff; text-decoration: none; } .table td.actions a:hover { color: #0056b3; } th { font-weight: bold; } </style>";
-                    var img;
-                    if (typeof market.imagen === "string"){
-                       img = market.imagen;
-                    }
+                    let img = market.imagen;
 
                     let html = `<img style="width: 250px; height: 150px;"src =`+img +`>`+`
                     <h1>`+ market.nombre+`</h1>
@@ -184,9 +156,8 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                     const popupElement = marker.getPopup().setHTML(html);
 
                     const miboton = document.getElementById("btnenviar");
-                    if (miboton instanceof HTMLButtonElement){
-                      miboton.addEventListener("click",handleClick);
-                    }
+                    
+                    (miboton as HTMLButtonElement).addEventListener("click",handleClick);
 
                     popupElement.getElement().addEventListener("click",handleClickPopup);
                   }
@@ -196,10 +167,5 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
             });
         }
       });  
-
-    mapa.on('dblclick', function (evt) {
-        //let marker = guardarMarcador({session}.session,evt.lngLat.lng,evt.lngLat.lat);
-
-      });
     return mapa;
 }

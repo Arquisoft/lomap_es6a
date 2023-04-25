@@ -1,35 +1,10 @@
-import * as React from 'react';
 import { Link } from "react-router-dom";
 import '../../hojasEstilo/Navegacion.css';
 import logo from '../../imagenes/logo192.png'
 import { useSession } from '@inrupt/solid-ui-react';
-
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import HomeIcon from '@mui/icons-material/Home';
-import { AccountCircle } from '@mui/icons-material';
-import MenuItem from '@mui/material/MenuItem';
-import { SessionType } from '../../shared/shareddtypes';
-//import * as loginManager  from "../Login/LoginManager";
-let loginManager = require("../Login/LoginManager.ts");
 function Nav() {
   const {session} = useSession();
-  //var temp = useSession().session;
-  //if (loginManager.getUserSession() != null)
-  //    temp = loginManager.getUserSession()
-  //const session = temp;
-  let nombreUsuario = "";
-  if (session.info.isLoggedIn) {
-    const user = session.info.webId;
-    
-    if (user) {
-      nombreUsuario = user.split('//')[1].split('.')[0];
-    }
-  }
+
   return (
     <nav className="navbar">
         <Link to='/'>
