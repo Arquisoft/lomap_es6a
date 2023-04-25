@@ -34,11 +34,17 @@ test('LoginForm renders registration link correctly', () => {
   expect(registrationLink).toHaveAttribute('href', 'https://inrupt.net/register');
 });
 
-// test('LoginForm renders and click on login button', () => {
-//   const{getByLabelText,getByRole,getByText,getAllByRole} =render(<LoginForm />);
-//   //fireEvent.click(getByText('loginButton',{r}));
-//   //fireEvent.click(getByLabelText('loginButton'));
-//   var temp = getAllByRole('button');
-//   fireEvent.click(getAllByRole('button')[1]);
+test('LoginForm renders and click on login button', () => {
+  const loginForm =render(<LoginForm />);
+  //fireEvent.click(getByText('loginButton',{r}));
+  //fireEvent.click(getByLabelText('loginButton'));
+  // var temp = getAllByRole('button');
+  // fireEvent.click(getAllByRole('button')[1]);
+  var temp = loginForm.findAllByRole('loginButton');
+  temp.then(tmp =>{
+    //fireEvent.click(tmp[1]);
+    
+  })
   
-// });
+  
+});
