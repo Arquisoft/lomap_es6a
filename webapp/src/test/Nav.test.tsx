@@ -12,6 +12,7 @@ import nav from "../components/fragments/nav";
 //We use home as a base to test the nav menu
 test('Check if login exists in the nav menu', () => {
     var home = render(<Home/>);
+    
     home.findAllByLabelText("nav-Login").then((tmp) =>{
         expect(tmp).toBeInTheDocument();
     });
