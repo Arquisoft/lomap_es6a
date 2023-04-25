@@ -104,6 +104,7 @@ describe("logedNav",()=>{
             ));
 
         })
+        session.info.isLoggedIn = false;
       }
     });
 });
