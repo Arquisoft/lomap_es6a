@@ -5,8 +5,14 @@ import logoruben from '../../imagenes/fotopruben.png';
 import logoalonso from '../../imagenes/fotopalonso.png';
 import logopablo from '../../imagenes/fotoppablo.png';
 import logosergio from '../../imagenes/fotopsergio.png';
+import {Navigate } from 'react-router-dom';
+import { useSession } from '@inrupt/solid-ui-react';
 
 const AboutUs = () => {
+  const { session } = useSession();
+  if (!session.info.isLoggedIn){
+    return <Navigate to="/login" replace />;
+  }
   const teamMembers = [
     {
         name: 'Javier Novella',
