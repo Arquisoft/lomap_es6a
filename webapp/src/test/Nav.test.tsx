@@ -51,13 +51,11 @@ test('Check if redirect to home from login works', () => {
 });
 
 test('prueba login',()=>{
-
-
     const session = new Session();
     session.login({
       // 2. Use the authenticated credentials to log in the session.
-      clientId: "https://pablofernandezdiaz.inrupt.net/profile/card#me",
-      clientSecret: "Introduce tu contraseña",
+      clientId: "https://testASW.inrupt.net/profile/card#me",
+      clientSecret: "1234567890ABCabc.",
       oidcIssuer: "https://inrupt.net"
     }).then(() => {
       if (session.info.isLoggedIn) {
@@ -77,7 +75,6 @@ test('prueba login',()=>{
         }
         else
             fail();
-
     });
 })
 
@@ -87,8 +84,8 @@ describe("logedNav",()=>{
     const session = new Session();
     session.login({
       // 2. Use the authenticated credentials to log in the session.
-      clientId: "https://pablofernandezdiaz.inrupt.net/profile/card#me",
-      clientSecret: "Introduce tu contraseña",
+      clientId: "https://testASW.inrupt.net/profile/card#me",
+      clientSecret: "1234567890ABCabc.",
       oidcIssuer: "https://inrupt.net"
     }).then(() => {
       if (session.info.isLoggedIn) {
@@ -109,6 +106,4 @@ describe("logedNav",()=>{
         })
       }
     });
-
-
 });

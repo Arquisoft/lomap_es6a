@@ -71,8 +71,9 @@
   "devDependencies": {
     "@types/expect-puppeteer": "^4.4.7",
     "@types/express": "^4.17.15",
-    "@types/jest": "^29.2.5",
+    "@types/jest": "^29.5.1",
     "@types/mapbox-gl": "^2.7.10",
+    "@types/mocha": "^10.0.1",
     "@types/puppeteer": "^5.4.4",
     "@types/solid-auth-client": "^2.4.1",
     "@types/text-encoding": "^0.0.36",
