@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {Navigate } from 'react-router-dom';
 import Form from './form'
 import '../../hojasEstilo/MapaPrincipal.css';
