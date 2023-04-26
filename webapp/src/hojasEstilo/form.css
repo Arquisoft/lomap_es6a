@@ -60,3 +60,7 @@
     cursor: pointer;
     margin-top: 20px;
   }
+
+  .mapaAmigos{
+    height: calc(100vh - 113.6px);
+  }
