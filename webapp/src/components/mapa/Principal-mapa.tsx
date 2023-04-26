@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {Navigate } from 'react-router-dom';
 import Form from './form'
-import Menu from './menu';
 import '../../hojasEstilo/MapaPrincipal.css';
 import {SessionType} from "../../shared/shareddtypes";
 
