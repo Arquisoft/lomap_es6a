@@ -44,7 +44,6 @@ function Filtro(props: any){
         setIsCheckedRestaurante(false);
       }
     }
-    return;
   }
 
   function handleCheckboxChange(tipo:string, checked:boolean, func:React.Dispatch<React.SetStateAction<boolean>>,

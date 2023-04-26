@@ -1,5 +1,4 @@
 import mapboxgl ,{Map,Popup} from 'mapbox-gl';
-import React, { useState } from 'react';
 import {recuperarMarcador, guardarComentario, recuperarComentario} from "../../accesoPods/adaptador";
 import {SessionType} from "../../shared/shareddtypes";
 import casa from '../../imagenes/marcador.png';
@@ -12,8 +11,6 @@ import monumento from '../../imagenes/monumento.png';
 import interrogacion from '../../imagenes/interrogacion.png';
 import Marker from "../../accesoPods/marker";
 import Comentario from '../../accesoPods/comentario';
-import Filtro from "./filtro";
-
 
 export const initMap = (container: HTMLDivElement, { session }: SessionType, user: string) => {
   const marcadoresEnMapa: Array<mapboxgl.Marker> = [];
