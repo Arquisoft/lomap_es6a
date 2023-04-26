@@ -3,6 +3,7 @@ import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThi
 import { FOAF } from '@inrupt/vocab-common-rdf';
 import { useSession } from '@inrupt/solid-ui-react';
 import { Link } from 'react-router-dom';
+import '../../hojasEstilo/amigos.css'
 
 function BuscarAmigo() {
   const { session } = useSession();
@@ -222,8 +223,10 @@ function BuscarAmigo() {
   }
   
   return (
-    <div>
-      <h1>Buscar Perfil</h1>
+    <div className='contenedor-amigos'>
+      
+      <div className='buscar-amigo'>
+      <h2>Buscar Perfil</h2>
       <form onSubmit={handleSubmit}>
         <label>
         Nombre de usuario:
@@ -231,21 +234,30 @@ function BuscarAmigo() {
         </label>
         <button type="submit">Buscar</button>
       </form>
+      
       {cargando && <p>Cargando...</p>}
       {error && <p>{error}</p>}
-      {nombre && <p>Nombre: {nombre} <button type='submit' onClick={addFriend}>Añadir</button></p>}
-      <h2>Mis Amigos:</h2>
-      {amigos.length > 0 ? (
-        <ul>
-          {amigos.map((amigo) => (
-            <p key={amigo}>
-              {amigo} <Link to={url} onClick={(event) => encontrarUrl(amigo).then( string =>{setUrl( "/mapaAmigo/"+string)} )} >Mapa</Link> <button type='submit' onClick={() => deleteFriend(amigo)}>Eliminar</button>
-            </p>
-          ))}
-        </ul>
-      ) : (
-        <p>No tienes amigos aún.</p>
-      )}
+      {nombre && <p className='pconañadir'>Nombre: {nombre} <button type='submit' onClick={addFriend}>Añadir</button></p>}
+      </div>
+      <div className='mis-amigos'>
+  <h2>Mis Amigos:</h2>
+  <div className='amigos'>
+  {amigos.length > 0 ? (
+    <div>
+      {amigos.map((amigo) => (
+        <div className='amigo' key={amigo}>
+          <p>{amigo}</p>
+          <Link to={url} onClick={(event) => encontrarUrl(amigo).then( string =>{setUrl( "/mapaAmigo/"+string)} )}>Mapa</Link>
+          <button type='submit' onClick={() => deleteFriend(amigo)}>Eliminar</button>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <p>No tienes amigos aún.</p>
+  )}
+  </div>
+</div>
+
     </div>
   );
 }
