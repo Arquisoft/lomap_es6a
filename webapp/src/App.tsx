@@ -1,7 +1,7 @@
 import './App.css';
 import Footer from './components/fragments/Footer';
 import Home from './components/home/home';
-import Mapa from './components/mapa/Principal-mapa';
+import Mapa from './components/mapa/form';
 import MapaAmigo from './components/mapa/mapa';
 import Amigos from './components/amigos/amigos';
 import Nav from './components/fragments/nav';
@@ -34,7 +34,6 @@ function App(): JSX.Element {
 
   return (
     <>
-      <div className='contenedor-principal'>
       <SessionProvider sessionId="logIn">
         <Router>
           <div className='contenedor-navegacion'>
@@ -57,7 +56,6 @@ function App(): JSX.Element {
           </div>
         </Router>
       </SessionProvider>
-      </div>
     </>
   );
 }

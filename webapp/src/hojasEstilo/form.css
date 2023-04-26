@@ -1,19 +1,48 @@
-.contenedor-principal-mapa{
+.mapc{
+  height: 82vh;
   display: flex;
 }
 
+.panel{
+  display: flex;
+  flex-direction: column;
+}
+
 .formulario {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: gainsboro;
-  }
+  overflow-y: auto;
+  max-height: 66%;
+  height: auto;
+  grid-area: form;
+  padding: 10px;
+  width: 92%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: gainsboro;
+}
+.pareja{
+  display: flex;
+}
+
+.filtro{
+  overflow-y: auto;
+  max-height: 34%;
+  width: auto;
+  background-color: #ccc;
+}
+.map{
+  width: 100%;
+  height: 85vh;
+}
   
   label {
     display: block;
-    margin-bottom: 10px;
+  }
+
+  main {
+    width: 200%;
+    height: 200%;
+    margin:0;
+    padding:0;
   }
   
   input,
@@ -25,7 +54,6 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-    margin-bottom: 20px;
   }
   
   button[type="submit"] {
@@ -37,8 +65,3 @@
     cursor: pointer;
     margin-top: 20px;
   }
-
-  .map{
-    width: 110em;
-    height: 50em;
-}
