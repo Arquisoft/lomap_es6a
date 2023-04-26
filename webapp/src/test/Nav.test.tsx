@@ -16,28 +16,16 @@ import { Session } from "@inrupt/solid-client-authn-node";
 
 
 //We use home as a base to test the nav menu
-<<<<<<< HEAD
 test('Check if Login exists in the nav menu', () => {
     var login = render(<Login/>);
     login.findAllByLabelText("nav-Login").then((tmp) =>{
-=======
-test('Check if login exists in the nav menu', () => {
-    var home = render(<Home/>);
-    
-    home.findAllByLabelText("nav-Login").then((tmp) =>{
->>>>>>> ee6c7275d1119776e4e8d3483e8234517975885d
         expect(tmp).toBeInTheDocument();
     });
 });
+
 test('Check if Home exists in the nav menu', () => {
     var home = render(<Home/>);
     home.findAllByLabelText("nav-Home").then((tmp) =>{
-        expect(tmp).toBeInTheDocument();
-    });
-});
-test('Check if AboutUs exists in the nav menu', () => {
-    var aboutUs = render(<AboutUs/>);
-    aboutUs.findAllByLabelText("nav-AboutUs").then((tmp) =>{
         expect(tmp).toBeInTheDocument();
     });
 });
