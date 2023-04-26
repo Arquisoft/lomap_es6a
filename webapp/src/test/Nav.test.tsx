@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent,AllByAttribute } from '@testing-library/react';
+import { render, screen, fireEvent,AllByAttribute, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Session, getDefaultSession } from "@inrupt/solid-client-authn-browser";
 import Login from '../components/Login/login';
@@ -8,33 +8,48 @@ import Home from "../components/home/home";
 import ProfileViewer from '../components/Login/ProfileViewer';
 import nav from "../components/fragments/nav";
 import { useSession } from "@inrupt/solid-ui-react";
+import { Await } from 'react-router';
+import App from '../App';
+import { act } from 'react-dom/test-utils';
 //import { Session } from "@inrupt/solid-client-authn-node";
 
 
 //We use home as a base to test the nav menu
-test('Check if login exists in the nav menu', () => {
-    var home = render(<Home/>);
-    
-    home.findAllByLabelText("nav-Login").then((tmp) =>{
+test('Check if login exists in the nav menu',  async () => {
+    var home = render(<App/>);
+    // act( () => home.findByLabelText("nav-Login").then((tmp) =>{
+    //     expect(tmp).toBeInTheDocument();
+    // }));
+    //var tmp = await home.getByLabelText("nav-Login");
+    //var tmp = await home.findByLabelText("nav-Login");
+    //await expect(tmp).toBeInTheDocument();
+
+    //  expect(home.findByLabelText("nav-Login").then((tmp) =>{
+    //      expect(tmp).toBeInTheDocument();
+    //  })).toBeInTheDocument();
+    await home.findByLabelText("nav-Login").then((tmp) =>{
         expect(tmp).toBeInTheDocument();
-    });
+    }).catch(() =>{ fail()}) ;
    
 });
-test('Check if Home exists in the nav menu', () => {
-    var home = render(<Home/>);
-    home.findAllByLabelText("nav-Home").then((tmp) =>{
+test('Check if Home exists in the nav menu',async () => {
+    var home = render(<App/>);
+    await home.findByLabelText("nav-Home").then((tmp) =>{
         expect(tmp).toBeInTheDocument();
     });
 });
 
-test('Check if redirect to login from home works', () => {
-    var home = render(<Home/>);
-    var loginNav = home.findByLabelText("nav-Login")
+test('Check if redirect to login from home works', async () => {
+    var home = render(<App/>);
+    var loginNav =  home.findByLabelText("nav-Login")
     //expect(loginNav);
-    loginNav.then(tmp =>{ 
+    await loginNav.then( tmp =>{ 
         expect(tmp).toBeInTheDocument();
         fireEvent.click(tmp)
-        expect(screen.findByLabelText("loginButton")).toBeInTheDocument()
+        //expect(await home.findByLabelText("loginButton")).toBeInTheDocument()
+         home.findByLabelText("loginButton").then((tmp) =>{
+            expect(tmp).toBeInTheDocument();
+        })
     } )
     //fireEvent.click(home.findByLabelText("nav-Login"))
 });
@@ -110,12 +125,37 @@ describe("logedNav",()=>{
             ));
 
         })
+        test("check if Mapa exists after loggin",() =>{
+            var home = render(<Home/>);
+
+            home.findAllByText("Mapa").then((tmp) => (
+                expect(tmp).toBeInTheDocument()
+            ));
+            home.findByLabelText("nav-Mapa").then((tmp) => (
+                expect(tmp).toBeInTheDocument()
+            ));
+
+        })
+        test("check if About us exists after loggin",() =>{
+            var home = render(<Home/>);
+
+            home.findAllByText("About us").then((tmp) => (
+                expect(tmp).toBeInTheDocument()
+            ));
+            home.findByLabelText("nav-AboutUs").then((tmp) => (
+                expect(tmp).toBeInTheDocument()
+            ));
+
+        })
         session.logout();
       }
     });
 });
 
+afterEach(() => {
+    cleanup(); // Resets the DOM after each test suite
+})
 
-afterAll(async () => {
-    await getDefaultSession().logout();
+afterAll( () => {
+     getDefaultSession().logout();
 });
