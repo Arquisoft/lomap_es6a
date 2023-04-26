@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import '../../hojasEstilo/Navegacion.css';
-import logo from '../../imagenes/logo192.png'
+import logo from '../../imagenes/icono.png'
 import { useSession } from '@inrupt/solid-ui-react';
 function Nav() {
   const {session} = useSession();

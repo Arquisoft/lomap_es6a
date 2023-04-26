@@ -1,5 +1,4 @@
 import mapboxgl ,{Map,Popup} from 'mapbox-gl';
-import React from 'react';
 import {recuperarMarcador, guardarComentario, recuperarComentario} from "../../accesoPods/adaptador";
 import {SessionType} from "../../shared/shareddtypes";
 import casa from '../../imagenes/marcador.png';
@@ -13,8 +12,9 @@ import interrogacion from '../../imagenes/interrogacion.png';
 import Marker from "../../accesoPods/marker";
 import Comentario from '../../accesoPods/comentario';
 
-
 export const initMap = (container: HTMLDivElement, { session }: SessionType, user: string) => {
+  const marcadoresEnMapa: Array<mapboxgl.Marker> = [];
+  const marcadoresObjetoEnMapa: Array<Marker> = [];
   const mapa = new Map({
         container,
         style: 'mapbox://styles/mapbox/streets-v12',
@@ -103,7 +103,9 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                   .setLngLat([market.latitude, market.longitude])
                   .setPopup(new Popup({ closeButton: false, anchor: 'left', maxWidth: '400px' })
                   .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.longitude}, ${market.latitude}]</div>`))
-                  .addTo(mapa);                                 
+                  .addTo(mapa);
+                  marcadoresEnMapa.push(marker);
+                  marcadoresObjetoEnMapa.push(market);                               
                   const onMarkerClick= ()=>{
                     const handleClickPopup = (event: MouseEvent) => {
                       event.preventDefault();
@@ -166,6 +168,11 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                   marker.getElement().addEventListener('click',onMarkerClick);
             });
         }
-      });  
-    return mapa;
+      });
+
+  
+
+      let tupla: [mapboxgl.Map,Array<mapboxgl.Marker>,Array<Marker>];
+      tupla =[mapa,marcadoresEnMapa,marcadoresObjetoEnMapa];  
+    return tupla;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent,AllByAttribute } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-//import { Session } from "@inrupt/solid-client-authn-browser";
+import { Session, getDefaultSession } from "@inrupt/solid-client-authn-browser";
 import Login from '../components/Login/login';
 import LoginForm from '../components/Login/LoginForm';
 import Home from "../components/home/home";
@@ -12,7 +12,7 @@ import MapaPrincipal from "../components/mapa/Principal-mapa";
 import ProfileViewer from '../components/Login/ProfileViewer';
 import nav from "../components/fragments/nav";
 import { useSession } from "@inrupt/solid-ui-react";
-import { Session } from "@inrupt/solid-client-authn-node";
+//import { Session } from "@inrupt/solid-client-authn-node";
 
 
 //We use home as a base to test the nav menu
@@ -59,13 +59,15 @@ test('prueba login',()=>{
       // 2. Use the authenticated credentials to log in the session.
       clientId: "https://testASW.inrupt.net/profile/card#me",
       clientSecret: "1234567890ABCabc.",
-      oidcIssuer: "https://inrupt.net"
+      oidcIssuer: "https://inrupt.net",
+      //redirectUrl : "" ,
+      redirectUrl: window.location.protocol + '//' + window.location.host + "/Home"
     }).then(() => {
       if (session.info.isLoggedIn) {
         // 3. Your session should now be logged in, and able to make authenticated requests.
-        session
-        console.log(`Logged in with WebID [${session.info.webId}]`);
-
+       // session
+        //console.log(`Logged in with WebID [${session.info.webId}]`);
+        session.handleIncomingRedirect(window.location.protocol + '//' + window.location.host + "/Home");
         var home = render(<Home/>);
 
         home.findAllByText("Amigos").then((tmp) => (
@@ -78,6 +80,7 @@ test('prueba login',()=>{
         }
         else
             fail();
+        session.logout();
     });
 })
 
@@ -89,13 +92,16 @@ describe("logedNav",()=>{
       // 2. Use the authenticated credentials to log in the session.
       clientId: "https://testASW.inrupt.net/profile/card#me",
       clientSecret: "1234567890ABCabc.",
-      oidcIssuer: "https://inrupt.net"
+      oidcIssuer: "https://inrupt.net",
+      //redirectUrl : "" ,
+      redirectUrl: window.location.protocol + '//' + window.location.host + "/Home",
+
     }).then(() => {
       if (session.info.isLoggedIn) {
         // 3. Your session should now be logged in, and able to make authenticated requests.
-        session
-        console.log(`Logged in with WebID [${session.info.webId}]`);
-
+       // session
+       // console.log(`Logged in with WebID [${session.info.webId}]`);
+        session.handleIncomingRedirect(window.location.protocol + '//' + window.location.host + "/Home");
         test("check if Amigos exists after loggin",() =>{
             var home = render(<Home/>);
 
@@ -107,7 +113,12 @@ describe("logedNav",()=>{
             ));
 
         })
-        session.info.isLoggedIn = false;
+        session.logout();
       }
     });
+});
+
+
+afterAll(async () => {
+    await getDefaultSession().logout();
 });

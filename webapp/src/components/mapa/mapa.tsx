@@ -32,9 +32,7 @@ function MapaAmigos({ session }: SessionType): JSX.Element {
   }
   return (
   <>
-  <div className='contenedor-mapa'>
     <div ref={mapRef} className='map' />
-  </div>
   </>
   );
 }
