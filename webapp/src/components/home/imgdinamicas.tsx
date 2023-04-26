@@ -34,11 +34,11 @@ const Slider: React.FC<SliderProps> = ({ images, delay }) => {
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
-        height: '79.5vh',
+        height: 'calc(100vh - 113.6px)',
         overflow: 'hidden',
       }}
     >
-      <img
+      <img 
         src={images[currentImageIndex]}
         alt="Slider"
         style={{

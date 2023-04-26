@@ -33,9 +33,6 @@ function App(): JSX.Element {
               <Route  path="/ProfileViewer" element={<ProfileViewer/>}/>
             </Routes>
             </div>
-          <div className='contenedor-footer'>
-            <Footer/>
-          </div>
         </Router>
       </SessionProvider>
     </>
