@@ -1,24 +1,13 @@
 import React from 'react';
 import { render, screen, fireEvent,AllByAttribute } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { Session, getDefaultSession } from "@inrupt/solid-client-authn-browser";
-import Login from '../components/Login/login';
-import LoginForm from '../components/Login/LoginForm';
 import Home from "../components/home/home";
-import AboutUs from "../components/aboutus/AboutUs";
-import Amigos from "../components/amigos/amigos";
-import BuscarAmigo from "../components/amigos/buscarAmigo";
-import MapaPrincipal from "../components/mapa/Principal-mapa";
-import ProfileViewer from '../components/Login/ProfileViewer';
-import nav from "../components/fragments/nav";
-import { useSession } from "@inrupt/solid-ui-react";
-//import { Session } from "@inrupt/solid-client-authn-node";
 
 
 //We use home as a base to test the nav menu
 test('Check if Login exists in the nav menu', () => {
-    var login = render(<Login/>);
-    login.findAllByLabelText("nav-Login").then((tmp) =>{
+    var home = render(<Home/>);
+    home.findAllByLabelText("nav-Login").then((tmp) =>{
         expect(tmp).toBeInTheDocument();
     });
 });
@@ -42,7 +31,7 @@ test('Check if redirect to login from home works', () => {
     //fireEvent.click(home.findByLabelText("nav-Login"))
 });
 test('Check if redirect to home from login works', () => {
-    var home = render(<Login/>);
+    var home = render(<Home/>);
     var homeNav = home.findByLabelText("nav-Home")
     //expect(homeNav);
     homeNav.then(tmp =>{
