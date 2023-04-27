@@ -12,15 +12,23 @@ import ProfileViewer from './components/Login/ProfileViewer'
 import AboutUs from './components/aboutus/AboutUs';
 import { SessionProvider, useSession } from '@inrupt/solid-ui-react';
 import { useState, useEffect } from 'react';
-import { Session,  ISessionOptions} from "@inrupt/solid-client-authn-browser";
+import { Session,  ISessionOptions, ILoginInputOptions} from "@inrupt/solid-client-authn-browser";
 import { handleIncomingRedirect } from "@inrupt/solid-client-authn-browser";
 //import * as loginManager  from "./components/Login/LoginManager";
-let loginManager = require("./components/Login/LoginManager.ts");
+//let loginManager = require("./components/Login/LoginManager.ts");
+
+// function Test(){
+//   const { session } = useSession();
+//   return <Nav session={session} />
+// }
+
 function App(): JSX.Element {
   //const { session } = useSession();
   const { session } = useSession();
    const [ses, setSes] = useState(new Session);
   var temp = useSession().session;
+
+
   //var temp = useSession().session;
 
   //if (loginManager.getUserSession() != null)
@@ -31,14 +39,13 @@ function App(): JSX.Element {
   // useEffect(() => {
   //   handleIncomingRedirect();
   // }, []);
-
+  //Nav({session}
   return (
-    <>
-      <div className='contenedor-principal'>
+<>
       <SessionProvider sessionId="logIn">
         <Router>
           <div className='contenedor-navegacion'>
-          <Nav/>
+            <Nav/>
           </div>
             <div className='contenedor-rutas'>
             <Routes>
@@ -52,12 +59,8 @@ function App(): JSX.Element {
               <Route  path="/ProfileViewer" element={<ProfileViewer/>}/>
             </Routes>
             </div>
-          <div className='contenedor-footer'>
-            <Footer/>
-          </div>
         </Router>
       </SessionProvider>
-      </div>
     </>
   );
 }
