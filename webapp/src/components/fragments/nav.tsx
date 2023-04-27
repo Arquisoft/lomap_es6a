@@ -4,11 +4,11 @@ import logo from '../../imagenes/icono.png'
 import { useSession } from '@inrupt/solid-ui-react';
 import { getDefaultSession} from '@inrupt/solid-client-authn-browser';
 
-interface test {
+interface NavSes {
   session?: any;
 }
 
-function Nav({session = getDefaultSession()}: test) {
+function Nav({session = getDefaultSession()}: NavSes) {
 
    const tmp= useSession().session
    if(!session)
