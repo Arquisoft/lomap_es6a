@@ -1,20 +1,44 @@
-.contenedor-principal-mapa{
+.mapc{
+  height: calc(100vh - 113.6px);
   display: flex;
 }
 
+.panel{
+  display: flex;
+  flex-direction: column;
+  background-color: #ccc;
+}
+
 .formulario {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: gainsboro;
-  }
+  overflow-y: auto;
+  max-height: 66%;
+  height: auto;
+  grid-area: form;
+  padding: 10px;
+  width: 92%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: gainsboro;
+}
+.pareja{
+  display: flex;
+}
+
+.filtro{
+  overflow-y: auto;
+  max-height: 34%;
+  width: auto;
+  background-color: #ccc;
+}
+.map{
+  width: 100%;
+  height: auto;
+}
   
   label {
     display: block;
-    margin-bottom: 10px;
   }
+
   
   input,
   select,
@@ -25,7 +49,6 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-    margin-bottom: 20px;
   }
   
   button[type="submit"] {
@@ -38,7 +61,6 @@
     margin-top: 20px;
   }
 
-  .map{
-    width: 110em;
-    height: 50em;
-}
+  .mapaAmigos{
+    height: calc(100vh - 113.6px);
+  }

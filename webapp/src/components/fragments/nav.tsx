@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import '../../hojasEstilo/Navegacion.css';
-import logo from '../../imagenes/logo192.png'
+import logo from '../../imagenes/icono.png'
 import { useSession,SessionProvider } from '@inrupt/solid-ui-react';
 import {Session, getDefaultSession} from '@inrupt/solid-client-authn-browser';
 //import { SessionInfo } from "@inrupt/solid-ui-react/dist/src/hooks/useSession";

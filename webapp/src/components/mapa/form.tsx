@@ -11,9 +11,11 @@ import monumento from '../../imagenes/monumento.png';
 import {SessionType} from "../../shared/shareddtypes"
 import { initMap } from './initMap';
 import mapboxgl ,{Popup} from 'mapbox-gl';
+import Filtro from './filtro';
+import Marker from "../../accesoPods/marker";
 
 function Formulario({ session }: SessionType) {
-
+  const [count, setCount] = useState(0);
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [latitud, setLatitud] = useState("");
@@ -57,6 +59,9 @@ function Formulario({ session }: SessionType) {
   monumentoMarker.height = 30; // establecer la altura en 30 píxeles
   
   const mapRef = useRef<HTMLDivElement>(null);
+  let tupla: [mapboxgl.Map,Array<mapboxgl.Marker>,Array<Marker>];
+  const [marcadores, setMarcadores] = useState(Array<mapboxgl.Marker>);
+  const [marcadoresObjeto, setMarcadoresObjeto] = useState(Array<Marker>);
   let mapa: mapboxgl.Map;
 
   let nombreUsuario = "";
@@ -69,17 +74,24 @@ function Formulario({ session }: SessionType) {
   }
   useEffect(() => {
     if (mapRef.current) {
-          mapa = initMap(
+          tupla = initMap(
           mapRef.current, {session}, nombreUsuario
-        )
+        );
 
+        mapa = tupla[0];
+
+        setMarcadores(tupla[1]);
+
+        setMarcadoresObjeto(tupla[2]);
+        console.log("---------------------");  
+        console.log(mapa);  
         mapa.on('dblclick', function (evt) {
           setLongitud(evt.lngLat.lat+"");
           setLatitud(evt.lngLat.lng+"");
         });
 
     }
-  }, []);
+  }, [count]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -120,6 +132,7 @@ function Formulario({ session }: SessionType) {
 
     console.log(`Nombre: ${nombre}, Latitud: ${latitud}, Longitud: ${longitud}, Tipo: ${tipo}`);
     // Aquí podrías hacer algo con los datos del formulario, como enviarlos a un servidor
+    setCount(count+1);
   };
 
   const handleNombreChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -157,51 +170,57 @@ function Formulario({ session }: SessionType) {
   
   return (
     
-     <>
-     <form onSubmit={handleSubmit} className="formulario">
-      <label>
-        Nombre:
-        <input type="text" value={nombre} onChange={handleNombreChange} required />
-      </label>
-      <br />
-      <label>
-        Descripcion:
-        <textarea style={{resize:"none"}} value={descripcion} onChange={handleDescripcionChange} required ></textarea>
-      </label>
-      <br />
-      <label>
-        Longitud:
-        <input type="number" name="longitud" min="-180" max="180" step="0.000000000000001" value={longitud} onChange={handleLongitudChange} required />
-      </label>
-      <br />
-      <label>
-        Latitud:
-        <input type="number" name="latitud" min="-90" max="90" step="0.000000000000001" value={latitud} onChange={handleLatitudChange} required />
-      </label>
-      <br />
-      <label>
-        Tipo:
-        <select value={tipo} onChange={handleTipoChange} required>
-          <option value="">Elija un tipo</option>
-          <option value="Gasolinera">Gasolinera</option>
-          <option value="Restaurante">Restaurante</option>
-          <option value="Bar">Bar</option>
-          <option value="Tienda">Tienda</option>
-          <option value="Paisaje">Paisaje</option>
-          <option value="Monumento">Monumento</option>
-        </select>
-      </label>
-      <label>
-        Añade una imagen
-      <input id="imageUploader" type="file" accept="image/*" onChange={handleImageChange}/>
-      </label>
-      <br />
-      <button type="submit">Añadir</button>
-    </form>
-     <div className='contenedor-mapa'>
-       <div ref={mapRef} className='map' />
-     </div>
-     </>
+    <>
+    <div className='mapc'>
+      <div ref={mapRef} className='map' />
+        
+      <div className='panel'>
+        <form onSubmit={handleSubmit} className="formulario">
+        <h2>Añadir Marcador</h2>
+          <label>
+            Nombre:
+            <input type="text" value={nombre} onChange={handleNombreChange} required />
+          </label>
+          <br />
+          <label>
+            Descripcion:
+            <textarea style={{resize:"none"}} value={descripcion} onChange={handleDescripcionChange} required ></textarea>
+          </label>
+          <br />
+          <label>
+            Longitud:
+            <input type="number" name="longitud" min="-180" max="180" step="0.000000000000001" value={longitud} onChange={handleLongitudChange} required />
+          </label>
+          <br />
+          <label>
+            Latitud:
+            <input type="number" name="latitud" min="-90" max="90" step="0.000000000000001" value={latitud} onChange={handleLatitudChange} required />
+          </label>
+          <br />
+          <label>
+            Tipo:
+            <select value={tipo} onChange={handleTipoChange} required>
+              <option value="">Elija un tipo</option>
+              <option value="Gasolinera">Gasolinera</option>
+              <option value="Restaurante">Restaurante</option>
+              <option value="Bar">Bar</option>
+              <option value="Tienda">Tienda</option>
+              <option value="Paisaje">Paisaje</option>
+              <option value="Monumento">Monumento</option>
+            </select>
+          </label>
+          <label>
+            Añade una imagen
+          <input id="imageUploader" type="file" accept="image/*" onChange={handleImageChange}/>
+          </label>
+          <br />
+          <button type="submit">Añadir</button>
+        </form>
+      
+        <Filtro marcadoresEnMapa={marcadores} marcadoresObjetoEnMapa={marcadoresObjeto}/>
+      </div>
+    </div>
+    </>
   );
 }
 

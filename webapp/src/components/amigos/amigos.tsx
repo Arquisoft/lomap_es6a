@@ -3,6 +3,7 @@ import {Navigate } from 'react-router-dom';
 import BuscarAmigo from "./buscarAmigo";
 import { useSession } from '@inrupt/solid-ui-react';
 
+
 function Amigos() {
   const { session } = useSession();
   if (!session.info.isLoggedIn){
