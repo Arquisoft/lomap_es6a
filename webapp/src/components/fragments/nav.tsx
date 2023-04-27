@@ -1,21 +1,19 @@
 import { Link } from "react-router-dom";
 import '../../hojasEstilo/Navegacion.css';
 import logo from '../../imagenes/icono.png'
-import { useSession,SessionProvider } from '@inrupt/solid-ui-react';
-import {Session, getDefaultSession} from '@inrupt/solid-client-authn-browser';
-//import { SessionInfo } from "@inrupt/solid-ui-react/dist/src/hooks/useSession";
-import { SessionType } from "../../shared/shareddtypes";
-import { SessionInfo } from "@inrupt/solid-ui-react/dist/src/hooks/useSession";
+import { useSession } from '@inrupt/solid-ui-react';
+import { getDefaultSession} from '@inrupt/solid-client-authn-browser';
+
 interface test {
   session?: any;
 }
 
 function Nav({session = getDefaultSession()}: test) {
-  //var {session} = useSession();
+
    const tmp= useSession().session
    if(!session)
      session = tmp;
-  //session.info.isLoggedIn
+
   return (
     <nav className="navbar">
         <Link to='/'>
