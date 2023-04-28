@@ -230,9 +230,9 @@ function BuscarAmigo() {
       <form onSubmit={handleSubmit}>
         <label>
         Nombre de usuario:
-          <input type="text" value={name} onChange={(event) => setName(event.target.value)} />
+          <input aria-label='username' type="text" value={name} onChange={(event) => setName(event.target.value)} />
         </label>
-        <button type="submit">Buscar</button>
+        <button type="submit" aria-label="searchButton">Buscar </button>
       </form>
       
       {cargando && <p>Cargando...</p>}

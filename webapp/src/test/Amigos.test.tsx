@@ -3,6 +3,7 @@ import Amigos from '../components/amigos/amigos';
 import { render, screen } from '@testing-library/react';
 import { Navigate } from 'react-router-dom';
 import Home from "../components/home/home";
+import { MemoryRouter } from 'react-router-dom';
 
 test('prueba login',()=>{
   const session = new Session();
