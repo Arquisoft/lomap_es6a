@@ -1,4 +1,3 @@
-import React from 'react';
 import '../../hojasEstilo/AboutUs.css';
 import logojavi from '../../imagenes/fotopjavi.png';
 import logoruben from '../../imagenes/fotopruben.png';

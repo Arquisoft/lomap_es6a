@@ -41,21 +41,6 @@ createStyles({
   },
 })
 );
-
-
-const setUserSession = (session :Session) => {
-  localStorage.clear();
-  localStorage.setItem("userSession", JSON.stringify(session));
-};
-
-
-const getUserSession = (): Session => {
-  const session = localStorage.getItem("userSession");
-  return session ? JSON.parse(session) : null;
-};
-
-
-
 const ProfileViewer = () => {
   const classes = useStyles();
 

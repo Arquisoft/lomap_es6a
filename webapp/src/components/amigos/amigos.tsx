@@ -1,4 +1,3 @@
-import React from "react";
 import {Navigate } from 'react-router-dom';
 import BuscarAmigo from "./buscarAmigo";
 import { useSession } from '@inrupt/solid-ui-react';
