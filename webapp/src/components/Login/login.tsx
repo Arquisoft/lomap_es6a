@@ -9,7 +9,23 @@ const setUserSession = (session :Session) => {
 
 function Login() {
   const { session } = useSession();
+  // const session = new Session(
+  //   {
+  //     clientAuthentication: getClientAuthenticationWithDependencies({})//.login({sessionId:"testasw",tokenType:"DPoP"},{})
+  //   }
+  // ).login({clientName:"testasw", clientSecret: "1234567890ABCabc.",oidcIssuer: "https://inrupt.net" }) ;
+  // session.login({clientName:"testASW", clientSecret: "1234567890ABCabc.",oidcIssuer: "https://inrupt.net",
+  // redirectUrl: window.location.protocol + '//' + window.location.host + "/Home" }) ;
+  // session.login({
+  //   // 2. Use the authenticated credentials to log in the session.
+  //   clientId: "https://testasw.inrupt.net/",
+  //   clientSecret: "1234567890ABCabc.",
+  //   oidcIssuer: "https://inrupt.net",
+  //   //redirectUrl : "" ,
+  //   redirectUrl: window.location.protocol + '//' + window.location.host + "/Home",
 
+  // })
+  
   console.log(session);
   if(!session.info.isLoggedIn)
       setUserSession(session)
