@@ -1,62 +1,27 @@
-import { Session, getDefaultSession } from "@inrupt/solid-client-authn-browser";
-import Amigos from '../components/amigos/amigos';
+import React from "react";
 import { render, screen } from '@testing-library/react';
-import { Navigate } from 'react-router-dom';
-import Home from "../components/home/home";
-import { MemoryRouter } from 'react-router-dom';
+import { Session } from "@inrupt/solid-client-authn-browser";
+import Amigos from "../components/amigos/amigos";
+import BuscarAmigo from "../components/amigos/buscarAmigo";
 
-test('prueba login',()=>{
-  const session = new Session();
-  session.login({
-    // 2. Use the authenticated credentials to log in the session.
-    clientId: "https://testASW.inrupt.net/profile/card#me",
-    clientSecret: "1234567890ABCabc.",
-    oidcIssuer: "https://inrupt.net",
-    //redirectUrl : "" ,
-    redirectUrl: window.location.protocol + '//' + window.location.host + "/Home"
-  }).then(() => {
-    if (session.info.isLoggedIn) {
-      // 3. Your session should now be logged in, and able to make authenticated requests.
-     // session
-      //console.log(`Logged in with WebID [${session.info.webId}]`);
-      session.handleIncomingRedirect(window.location.protocol + '//' + window.location.host + "/Home");
-      var home = render(<Home/>);
+const session = new Session();
+session.info.isLoggedIn = true;
+session.info.webId = "https://testasw.inrupt.net/profile/card#me";
 
-      home.findAllByText("Amigos").then((tmp) => (
-          expect(tmp).toBeInTheDocument()
-      ));
-      home.findByLabelText("nav-Amigos").then((tmp) => (
-          expect(tmp).toBeInTheDocument()
-      ));
+test('renders Amigos component without log in fail', () => {
+    expect(() => render(<Amigos session={new Session()}/>)).toThrow();
+});
 
-      }
-      else
-          fail();
-      session.logout();
-  });
-})
+test('renders Amigos component without crashing', () => {
+    render(<Amigos session={session}/>);
+    expect(screen.getByText(/Bienvenido a Amigos/i)).toBeInTheDocument();
+});
 
-describe('Amigos', () => {
-  const session = new Session();
-  session.login({
-    // 2. Use the authenticated credentials to log in the session.
-    clientId: "https://testASW.inrupt.net/profile/card#me",
-    clientSecret: "1234567890ABCabc.",
-    oidcIssuer: "https://inrupt.net",
-    //redirectUrl : "" ,
-    redirectUrl: window.location.protocol + '//' + window.location.host + "/Home",
+test('renders BuscarAmigo component without crashing with WebId', () => {
+    render(<BuscarAmigo session={session}/>);
 
-  }).then(() => {
-    if (session.info.isLoggedIn) {
-      session.logout();
-      session.handleIncomingRedirect(window.location.protocol + '//' + window.location.host + "/amigos");
-      test("comprueba que redirige a /login", async () => {
-        render(<Amigos/>);
-        expect(screen.findByLabelText("loginButton")).toBeInTheDocument()
-      })
-    }
-    else
-      fail();
-  });      
-
+    expect(screen.getByText(/Buscar Perfil/i)).toBeInTheDocument();
+    expect(screen.getByText(/Mis Amigos:/i)).toBeInTheDocument();
+    expect(screen.getByLabelText("username")).toBeInTheDocument();
+    expect(screen.getByLabelText("searchButton")).toBeInTheDocument();
 });

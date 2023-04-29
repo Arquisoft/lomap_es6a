@@ -4,7 +4,7 @@ import '../../hojasEstilo/MapaPrincipal.css';
 import {SessionType} from "../../shared/shareddtypes";
 
 function MapaPrincipal({ session }: SessionType) {
-  if (!session.info.isLoggedIn){
+  if (!session.info.isLoggedIn) {
     return <Navigate to="/login" replace />;
   }
   
