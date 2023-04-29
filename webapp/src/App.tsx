@@ -11,15 +11,15 @@ import LoginForm from './components/Login/LoginForm'
 import ProfileViewer from './components/Login/ProfileViewer'
 import AboutUs from './components/aboutus/AboutUs';
 import { SessionProvider, useSession } from '@inrupt/solid-ui-react';
+
 function App(): JSX.Element {
   const { session } = useSession();
-
   return (
     <>
       <SessionProvider sessionId="logIn">
         <Router>
           <div className='contenedor-navegacion'>
-          <Nav/>
+            <Nav/>
           </div>
             <div className='contenedor-rutas'>
             <Routes>

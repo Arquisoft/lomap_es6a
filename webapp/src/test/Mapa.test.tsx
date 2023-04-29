@@ -12,6 +12,7 @@ import Form from '../components/mapa/form';
 import MapaAmigos from '../components/mapa/mapa';
 import Marker from '../accesoPods/marker';
 import {guardarMarcador, guardarMarcadorSinImagen} from "../accesoPods/adaptador";
+
 //import { Session } from "@inrupt/solid-client-authn-node";
 
 test('prueba login',()=>{
