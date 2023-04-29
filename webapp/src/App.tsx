@@ -1,5 +1,4 @@
 import './App.css';
-import Footer from './components/fragments/Footer';
 import Home from './components/home/home';
 import Mapa from './components/mapa/form';
 import MapaAmigo from './components/mapa/mapa';
@@ -27,8 +26,8 @@ function App(): JSX.Element {
               <Route  path="/Mapa" element={<Mapa session={session}/>}/>
               <Route  path="/MapaAmigo/:user" element={<MapaAmigo session={session}/>}/>
               <Route  path="/Amigos" element={<Amigos/>}/>
-              <Route  path="/Aboutus" element={<AboutUs/>}/>
-              <Route  path="/Login" element={<Login/>}/>
+              <Route  path="/Aboutus" element={<AboutUs session={session}/>}/>
+              <Route  path="/Login" element={<Login session={session}/>}/>
               <Route  path="/LoginForm" element={<LoginForm/>}/>
               <Route  path="/ProfileViewer" element={<ProfileViewer/>}/>
             </Routes>

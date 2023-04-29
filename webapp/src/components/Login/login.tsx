@@ -1,11 +1,10 @@
 import '../../hojasEstilo/home.css'
-import { useSession, SessionProvider } from "@inrupt/solid-ui-react";
+import { SessionProvider } from "@inrupt/solid-ui-react";
 import LoginForm from './LoginForm';
 import ProfileViewer from "./ProfileViewer";
+import {SessionType} from "../../shared/shareddtypes";
 
-function Login() {
-  const { session } = useSession();
-  
+function Login({ session }: SessionType) {
   return(
     <SessionProvider sessionId="">
       {(!session.info.isLoggedIn) ? <LoginForm/> : <ProfileViewer/>}

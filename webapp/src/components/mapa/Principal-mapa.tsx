@@ -3,7 +3,7 @@ import Form from './form'
 import '../../hojasEstilo/MapaPrincipal.css';
 import {SessionType} from "../../shared/shareddtypes";
 
-function MapaPrincipal({ session }: SessionType){
+function MapaPrincipal({ session }: SessionType) {
   if (!session.info.isLoggedIn){
     return <Navigate to="/login" replace />;
   }
@@ -11,7 +11,6 @@ function MapaPrincipal({ session }: SessionType){
   return (
     <div className='contenedor-principal-mapa'>
       <Form session={session}/>
-      
     </div>
   );
   

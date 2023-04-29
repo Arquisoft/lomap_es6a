@@ -10,7 +10,7 @@ interface NavSes {
 
 function Nav({session = getDefaultSession()}: NavSes) {
 
-   const tmp= useSession().session
+   const tmp = useSession().session
    if(!session)
      session = tmp;
 
