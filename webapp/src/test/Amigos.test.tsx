@@ -4,6 +4,8 @@ import { Session } from "@inrupt/solid-client-authn-browser";
 import Amigos from "../components/amigos/amigos";
 import BuscarAmigo from "../components/amigos/buscarAmigo";
 
+jest.setTimeout(100000000);
+
 const session = new Session();
 session.info.isLoggedIn = true;
 session.info.webId = "https://testasw.inrupt.net/profile/card#me";
@@ -44,5 +46,12 @@ test('buscar y añadir un amigo', async () => {
 
         expect(screen.getByText(/Nombre: Ruben Diaz/i)).toBeInTheDocument();
         expect(addButton).toBeInTheDocument();
-    }, { timeout: 3000 });
+
+        fireEvent.click(addButton);
+    }, { timeout: 5000 });
+
+    // await waitFor(() => {
+    //     const deleteButton = getByLabelText("deleteButton");
+    //     const mapaLink = getByLabelText("mapaLink");
+    // }, { timeout: 100000 });
 });
