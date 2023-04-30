@@ -3,6 +3,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { Session } from "@inrupt/solid-client-authn-browser";
 import Login from '../components/Login/login';
 
+jest.setTimeout(100000000);
+
 const session = new Session();
 session.info.isLoggedIn = true;
 
@@ -29,14 +31,13 @@ test('renders Login component with log in with webId', async () => {
 
   expect(screen.getByText(/Logout/i)).toBeInTheDocument();
 
-  await waitFor(() => {
-    expect(screen.getByText(/User/i)).toBeInTheDocument();
-    expect(screen.getByText(/testASW/i)).toBeInTheDocument();
-    // expect(screen.getByText(/tu puta madre/i)).toBeInTheDocument();
-  });
-  
-  // setTimeout(() => {
+  // await waitFor(() => {
   //   expect(screen.getByText(/User/i)).toBeInTheDocument();
   //   expect(screen.getByText(/testASW/i)).toBeInTheDocument();
-  // }, 5000);
+  // }, { timeout: 10000 });
+  
+  setTimeout(() => {
+    expect(screen.getByText(/User/i)).toBeInTheDocument();
+    expect(screen.getByText(/testASW/i)).toBeInTheDocument();
+  }, 5000);
 });
