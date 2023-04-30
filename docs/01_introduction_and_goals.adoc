@@ -1,6 +1,8 @@
-== Introduction and Goals
+== Introducción y Objetivos
 
-LoMap es un proyecto de ASW que consiste en la creacion de un sistema en el que los ciudadanos dispongan de un mapa personalizado con lugares, negocios... de la ciudad de Bruselas. Los miembros son: 
+LoMap es un proyecto de ASW que consiste en la creacion de un sistema en el que los ciudadanos dispongan de un mapa personalizado con lugares, negocios y otros sitios de interés de la ciudad de Bruselas.
+Lo interesante de LoMap son las amplias posibilidades que te ofrece como usuario, desde añadir marcadores con puntos de interés y valorarlos, hasta poder visualizar los mapas de diferentes amigos.
+ Los miembros son: 
 
 
 * Ruben Diaz Zapico - UO283204  
@@ -15,7 +17,7 @@ LoMap es un proyecto de ASW que consiste en la creacion de un sistema en el que 
 
 === Resumen de Requisitos 
 
-La aplicación se ejecutará en el servidor, y la información del usuario se almacenará en su pod. Asi mismo, habra una base de datos centralizada cuya informacion solo contendra lo necesario para acceder al pod de cada usuario. Todos estos requisitos son compatibles con el proyecto SOLID, ya que la información de los usuarios no se almacena de forma centralizada. 
+La aplicación se ejecutará en el servidor, y la información del usuario se almacenará en su pod. Asi mismo, no habra una base de datos centralizada ya que todos los datos se almacenan en los pod. Todos estos requisitos son compatibles con el proyecto SOLID, ya que la información de los usuarios no se almacena de forma centralizada. 
 
 .Requisitos de alto nivel:
 * Los usuarios pueden añadir lugares en categorías diferentes: tiendas, bares, restaurantes, paisajes, monumentos, etc.
@@ -38,16 +40,6 @@ La aplicación se ejecutará en el servidor, y la información del usuario se al
 | Transparencia | Todo el proyecto sera visible | Bajo
 | Eficiencia | La aplicación sera lo más eficiente posible usando los menores recursos posibles | Media
 |===
-
-.Requisitos de alto nivel:
-* Los usuarios pueden añadir lugares en categorías diferentes: tiendas, bares, restaurantes, paisajes, monumentos, etc.
-* Los usuarios serán capaces de mostrar lugares en una ventana tipo mapa.
-* Los usuarios pueden asociar puntuaciones, comentarios, fotos, etc. sobre los lugares añadidos.
-* Se podrán gestionar desde la aplicación los accesos a la información que comparten con otros usuarios, como sus amigos o grupos de amigos.
-* La información sobre un lugar almacenada por cada usuario no deberá estar centralizada, sino que se almacenará en el pod de cada usuario.
-* Si fuese necesario, se podría almacenar alguna información de forma centralizada por razones de rendimiento tratando de respetar la privacidad de los usuarios en la medida que sea posible.
-* El sistema permitirá a los usuarios ver lugares e información sobre dichos lugares tomada de sus amigos.
-* El sistema permitirá visualizar el mapa incorporando filtros, por ejemplo, por categoría, amigos, etc.
 
 .Caracteristicas opcionales: 
 * Permitir a los usuarios crear rutas (por ejemplo, rutas para hacer compras o tomar algo)
@@ -73,8 +65,8 @@ La aplicación se ejecutará en el servidor, y la información del usuario se al
 -Irene Cid Rico
 
 -Pablo González_ | _Puesta en practica de los conocimientos y explicaciones realizadas en clase para la realización del proyecto_
-| _Clientes_ | _Clientes_ | _Aplicación sencilla, con una buena usabilidad, con todas las funcionalidades requeridas y que protega/asegure los datos introducidos_
-| _Administrador_ | _Administrador_ | Manejar una aplicación robusta, bien hecha y eficiente que permita solucionar futuros problemas/errores
+| _Clientes_ | _Clientes_ | _Aplicación web sencilla, con una buena usabilidad, con todas las funcionalidades requeridas y que protega/asegure los datos introducidos_
+| _Administrador_ | _Administrador_ | Manejar una aplicación robusta, útil, esteticamente atractiva y eficiente, además de ser mantenible con el tiempo.
 | _Equipo_ | _-Javier Novella Tomás
 
 -Ruben Díaz Zapico
