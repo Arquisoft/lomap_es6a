@@ -1,62 +1,57 @@
-import { Session, getDefaultSession } from "@inrupt/solid-client-authn-browser";
-import Amigos from '../components/amigos/amigos';
-import { render, screen } from '@testing-library/react';
-import { Navigate } from 'react-router-dom';
-import Home from "../components/home/home";
-import { MemoryRouter } from 'react-router-dom';
+import React from "react";
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { Session } from "@inrupt/solid-client-authn-browser";
+import Amigos from "../components/amigos/amigos";
+import BuscarAmigo from "../components/amigos/buscarAmigo";
 
-test('prueba login',()=>{
-  const session = new Session();
-  session.login({
-    // 2. Use the authenticated credentials to log in the session.
-    clientId: "https://testASW.inrupt.net/profile/card#me",
-    clientSecret: "1234567890ABCabc.",
-    oidcIssuer: "https://inrupt.net",
-    //redirectUrl : "" ,
-    redirectUrl: window.location.protocol + '//' + window.location.host + "/Home"
-  }).then(() => {
-    if (session.info.isLoggedIn) {
-      // 3. Your session should now be logged in, and able to make authenticated requests.
-     // session
-      //console.log(`Logged in with WebID [${session.info.webId}]`);
-      session.handleIncomingRedirect(window.location.protocol + '//' + window.location.host + "/Home");
-      var home = render(<Home/>);
+jest.setTimeout(100000000);
 
-      home.findAllByText("Amigos").then((tmp) => (
-          expect(tmp).toBeInTheDocument()
-      ));
-      home.findByLabelText("nav-Amigos").then((tmp) => (
-          expect(tmp).toBeInTheDocument()
-      ));
+const session = new Session();
+session.info.isLoggedIn = true;
+session.info.webId = "https://testasw.inrupt.net/profile/card#me";
 
-      }
-      else
-          fail();
-      session.logout();
-  });
-}) 
-
-describe('Amigos', () => {
-  const session = new Session();
-  session.login({
-    // 2. Use the authenticated credentials to log in the session.
-    clientId: "https://testASW.inrupt.net/profile/card#me",
-    clientSecret: "1234567890ABCabc.",
-    oidcIssuer: "https://inrupt.net",
-    //redirectUrl : "" ,
-    redirectUrl: window.location.protocol + '//' + window.location.host + "/Home",
-
-  }).then(() => {
-    if (session.info.isLoggedIn) {
-      session.logout();
-      session.handleIncomingRedirect(window.location.protocol + '//' + window.location.host + "/amigos");
-      test("comprueba que redirige a /login", async () => {
-        render(<Amigos/>);
-        expect(screen.findByLabelText("loginButton")).toBeInTheDocument()
-      })
-    }
-    else
-      fail();
-  });      
-
+test('renders Amigos component without log in fail', () => {
+    expect(() => render(<Amigos session={new Session()}/>)).toThrow();
 });
+
+test('renders Amigos component without crashing', () => {
+    render(<Amigos session={session}/>);
+    expect(screen.getByText(/Bienvenido a Amigos/i)).toBeInTheDocument();
+});
+
+test('renders BuscarAmigo component without crashing with WebId', () => {
+    render(<BuscarAmigo session={session}/>);
+
+    expect(screen.getByText(/Buscar Perfil/i)).toBeInTheDocument();
+    expect(screen.getByText(/Mis Amigos:/i)).toBeInTheDocument();
+    expect(screen.getByLabelText("username")).toBeInTheDocument();
+    expect(screen.getByLabelText("searchButton")).toBeInTheDocument();
+    expect(screen.getByText(/No tienes amigos aún./i)).toBeInTheDocument();
+});
+
+test('buscar y añadir un amigo', async () => {
+    const AmigosMios = render(<BuscarAmigo session={session}/>);
+
+    const { getByLabelText } = AmigosMios;
+    const inputField = getByLabelText("username");
+    const searchButton = getByLabelText("searchButton");
+
+    fireEvent.change(inputField, { target: { value: "rubenndiazz5" } } );
+    fireEvent.click(searchButton);
+
+    expect(screen.getByText(/Cargando.../i)).toBeInTheDocument();  
+
+    await waitFor(() => {
+        const addButton = getByLabelText("addButton");
+
+        expect(screen.getByText(/Nombre: Ruben Diaz/i)).toBeInTheDocument();
+        expect(addButton).toBeInTheDocument();
+
+        fireEvent.click(addButton);
+    }, { timeout: 5000 });
+
+    // await waitFor(() => {
+    //     const deleteButton = getByLabelText("deleteButton");
+    //     const mapaLink = getByLabelText("mapaLink");
+    // }, { timeout: 100000 });
+}); 
