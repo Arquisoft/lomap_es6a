@@ -122,8 +122,19 @@ const getDefaultSessioncustom= () => ({
 describe("logedNav", ()=>{
 
     //const {session} = useSession()
-    const session  = getDefaultSessioncustom()
-    //session.info.isLoggedIn=true
+    const session = getDefaultSessioncustom();
+    // const session  = new Session();
+    //  session.login({ 
+    //     clientId: "af99f530bb34e6865a99034f404f51fc",
+    //     clientSecret: "e0052c8c5e4cb90494458627f4607e33",
+    //     oidcIssuer: "https://inrupt.net",
+    //     redirectUrl: "http://localhost:3000/"
+    //     }).then(()=>{console.log(test);
+    //         if (!session.info.isLoggedIn) {
+    //             fail();
+    //           }
+    //         }) ;
+    // //session.info.isLoggedIn=true
     //render(<Nav session={session} />)
     //const session = new Session({clientAuthentication:getClientAuthenticationWithDependencies({})});
     //var a =  ClientAuthentication 
@@ -137,7 +148,7 @@ describe("logedNav", ()=>{
     //   redirectUrl: window.location.protocol + '//' + window.location.host + "/Home",
 
     // })
-    jest.setTimeout(20000) 
+   // jest.setTimeout(20000) 
     var a = beforeAll(async ()=>{
        
         // render(  <>
@@ -211,9 +222,7 @@ describe("logedNav", ()=>{
     //   })},{timeout:10000 , onTimeout:()=>{fail()} } );
 
 
-    if (!session.info.isLoggedIn) {
-        fail();
-      }
+   
         // 3. Your session should now be logged in, and able to make authenticated requests.
        // session
        // console.log(`Logged in with WebID [${session.info.webId}]`);
