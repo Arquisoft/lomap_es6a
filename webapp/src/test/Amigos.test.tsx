@@ -34,7 +34,7 @@ test('prueba login',()=>{
           fail();
       session.logout();
   });
-})
+}) 
 
 describe('Amigos', () => {
   const session = new Session();
