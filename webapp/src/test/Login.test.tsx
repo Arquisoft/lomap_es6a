@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { Session } from "@inrupt/solid-client-authn-browser";
 import Login from '../components/Login/login';
 
@@ -23,14 +23,20 @@ test('renders Login component with log in without webId', () => {
   expect(screen.getByText(/Logout/i)).toBeInTheDocument();
 });
 
-test('renders Login component with log in with webId', () => {
+test('renders Login component with log in with webId', async () => {
   session.info.webId = "https://testasw.inrupt.net/profile/card#me";
   render(<Login session={session} />);
 
   expect(screen.getByText(/Logout/i)).toBeInTheDocument();
-  
-  setTimeout(() => {
+
+  await waitFor(() => {
     expect(screen.getByText(/User/i)).toBeInTheDocument();
     expect(screen.getByText(/testASW/i)).toBeInTheDocument();
-  }, 5000);
+    // expect(screen.getByText(/tu puta madre/i)).toBeInTheDocument();
+  });
+  
+  // setTimeout(() => {
+  //   expect(screen.getByText(/User/i)).toBeInTheDocument();
+  //   expect(screen.getByText(/testASW/i)).toBeInTheDocument();
+  // }, 5000);
 });

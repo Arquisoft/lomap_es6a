@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Session } from "@inrupt/solid-client-authn-browser";
 import Amigos from "../components/amigos/amigos";
 import BuscarAmigo from "../components/amigos/buscarAmigo";
@@ -24,4 +24,25 @@ test('renders BuscarAmigo component without crashing with WebId', () => {
     expect(screen.getByText(/Mis Amigos:/i)).toBeInTheDocument();
     expect(screen.getByLabelText("username")).toBeInTheDocument();
     expect(screen.getByLabelText("searchButton")).toBeInTheDocument();
+    expect(screen.getByText(/No tienes amigos aún./i)).toBeInTheDocument();
+});
+
+test('buscar y añadir un amigo', async () => {
+    const AmigosMios = render(<BuscarAmigo session={session}/>);
+
+    const { getByLabelText } = AmigosMios;
+    const inputField = getByLabelText("username");
+    const searchButton = getByLabelText("searchButton");
+
+    fireEvent.change(inputField, { target: { value: "rubenndiazz5" } } );
+    fireEvent.click(searchButton);
+
+    expect(screen.getByText(/Cargando.../i)).toBeInTheDocument();  
+
+    await waitFor(() => {
+        const addButton = getByLabelText("addButton");
+
+        expect(screen.getByText(/Nombre: Ruben Diaz/i)).toBeInTheDocument();
+        expect(addButton).toBeInTheDocument();
+    }, { timeout: 3000 });
 });

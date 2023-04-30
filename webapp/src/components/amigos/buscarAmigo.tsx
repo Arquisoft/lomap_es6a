@@ -3,7 +3,8 @@ import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThi
 import { FOAF } from '@inrupt/vocab-common-rdf';
 import {SessionType} from "../../shared/shareddtypes";
 import { Link } from 'react-router-dom';
-import '../../hojasEstilo/amigos.css'
+import '../../hojasEstilo/amigos.css';
+import { clear } from 'console';
 
 function BuscarAmigo({ session }: SessionType) {
   const [nombre, setNombre] = useState('');
@@ -38,8 +39,8 @@ function BuscarAmigo({ session }: SessionType) {
     }
   }
 
-    async function encontrarUrl(nombreAmigo : string) : Promise<string>{
-      const { webId } = session.info;
+  async function encontrarUrl(nombreAmigo : string) : Promise<string> {
+    const { webId } = session.info;
   
     if (!webId) {
       throw new Error('Nombre de usuario no especificado');
@@ -80,8 +81,8 @@ function BuscarAmigo({ session }: SessionType) {
       }
     }
   
-      return amigoUrl;
-    }
+    return amigoUrl;
+  }
 
   useEffect(() => {
     async function cargarAmigos() {
@@ -227,14 +228,14 @@ function BuscarAmigo({ session }: SessionType) {
         <h2>Buscar Perfil</h2>
         <form onSubmit={handleSubmit}>
           <label>
-          Nombre de usuario:
+            Nombre de usuario:
             <input aria-label='username' type="text" value={name} onChange={(event) => setName(event.target.value)} />
           </label>
           <button type="submit" aria-label="searchButton">Buscar </button>
         </form>
         {cargando && <p>Cargando...</p>}
         {error && <p>{error}</p>}
-        {nombre && <p className='pconañadir'>Nombre: {nombre} <button type='submit' onClick={addFriend}>Añadir</button></p>}
+        {nombre && <p className='pconañadir'>Nombre: {nombre} <button type='submit' aria-label="addButton" onClick={addFriend}>Añadir</button></p>}
       </div>
       <div className='mis-amigos'>
         <h2>Mis Amigos:</h2>
@@ -244,8 +245,8 @@ function BuscarAmigo({ session }: SessionType) {
               {amigos.map((amigo) => (
                 <div className='amigo' key={amigo}>
                   <p>{amigo}</p>
-                  <Link to={url} onClick={(event) => encontrarUrl(amigo).then( string =>{setUrl( "/mapaAmigo/"+string)} )}>Mapa</Link>
-                  <button type='submit' onClick={() => deleteFriend(amigo)}>Eliminar</button>
+                  <Link aria-label="mapaLink" to={url} onClick={(event) => encontrarUrl(amigo).then( string =>{setUrl( "/mapaAmigo/"+string)} )}>Mapa</Link>
+                  <button type='submit' aria-label="deleteButton" onClick={() => deleteFriend(amigo)}>Eliminar</button>
                 </div>
               ))}
             </div>
