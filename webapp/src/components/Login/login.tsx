@@ -13,7 +13,7 @@ const setUserSession = (session :Session) => {
 function Login({ session }: SessionType) {
 
   //var test =  useSession();
-  var test = new Session();
+  // var test = new Session();
   //var s = new StorageUtility();
   //getSessionIdFromOauthState(s,"aaaa")
   // test.login({ clientId: "9a21fe50-c6fd-4d95-9924-63a823d92f73",
@@ -46,15 +46,15 @@ function Login({ session }: SessionType) {
 
   //clientid:af99f530bb34e6865a99034f404f51fc
   //clientsecret:e0052c8c5e4cb90494458627f4607e33
-  if(!session.info.isLoggedIn)
-    login({ 
-    clientId: "af99f530bb34e6865a99034f404f51fc",
-    clientSecret: "e0052c8c5e4cb90494458627f4607e33",
-    clientName:"af99f530bb34e6865a99034f404f51fc",
-    tokenType:"DPoP",
-    oidcIssuer: "https://inrupt.net",
-    redirectUrl: "http://localhost:3000/"
-    }).then(()=>{console.log(test);}) ;
+  // if(!session.info.isLoggedIn)
+  //   login({ 
+  //   clientId: "af99f530bb34e6865a99034f404f51fc",
+  //   clientSecret: "e0052c8c5e4cb90494458627f4607e33",
+  //   clientName:"af99f530bb34e6865a99034f404f51fc",
+  //   tokenType:"DPoP",
+  //   oidcIssuer: "https://inrupt.net",
+  //   redirectUrl: "http://localhost:3000/"
+  //   }).then(()=>{console.log(test);}) ;
   // test.login({ 
   //      clientId: "https://testasw.inrupt.net/public/web%20solid%20auth.jsonld#this",
   //     oidcIssuer: "https://inrupt.net",
