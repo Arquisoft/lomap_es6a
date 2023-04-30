@@ -54,4 +54,4 @@ test('buscar y añadir un amigo', async () => {
     //     const deleteButton = getByLabelText("deleteButton");
     //     const mapaLink = getByLabelText("mapaLink");
     // }, { timeout: 100000 });
-}); 
+});  
