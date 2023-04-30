@@ -1,12 +1,12 @@
 import React, { useState, useEffect} from 'react';
 import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThing, saveSolidDatasetAt, removeIri} from '@inrupt/solid-client';
 import { FOAF } from '@inrupt/vocab-common-rdf';
-import { useSession } from '@inrupt/solid-ui-react';
+import {SessionType} from "../../shared/shareddtypes";
 import { Link } from 'react-router-dom';
-import '../../hojasEstilo/amigos.css'
+import '../../hojasEstilo/amigos.css';
+import { clear } from 'console';
 
-function BuscarAmigo() {
-  const { session } = useSession();
+function BuscarAmigo({ session }: SessionType) {
   const [nombre, setNombre] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [cargando, setCargando] = useState(false);
@@ -39,8 +39,8 @@ function BuscarAmigo() {
     }
   }
 
-    async function encontrarUrl(nombreAmigo : string) : Promise<string>{
-      const { webId } = session.info;
+  async function encontrarUrl(nombreAmigo : string) : Promise<string> {
+    const { webId } = session.info;
   
     if (!webId) {
       throw new Error('Nombre de usuario no especificado');
@@ -81,8 +81,8 @@ function BuscarAmigo() {
       }
     }
   
-      return amigoUrl;
-    }
+    return amigoUrl;
+  }
 
   useEffect(() => {
     async function cargarAmigos() {
@@ -224,40 +224,37 @@ function BuscarAmigo() {
   
   return (
     <div className='contenedor-amigos'>
-      
       <div className='buscar-amigo'>
-      <h2>Buscar Perfil</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-        Nombre de usuario:
-          <input aria-label='username' type="text" value={name} onChange={(event) => setName(event.target.value)} />
-        </label>
-        <button type="submit" aria-label="searchButton">Buscar </button>
-      </form>
-      
-      {cargando && <p>Cargando...</p>}
-      {error && <p>{error}</p>}
-      {nombre && <p className='pconañadir'>Nombre: {nombre} <button type='submit' onClick={addFriend}>Añadir</button></p>}
+        <h2>Buscar Perfil</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Nombre de usuario:
+            <input aria-label='username' type="text" value={name} onChange={(event) => setName(event.target.value)} />
+          </label>
+          <button type="submit" aria-label="searchButton">Buscar </button>
+        </form>
+        {cargando && <p>Cargando...</p>}
+        {error && <p>{error}</p>}
+        {nombre && <p className='pconañadir'>Nombre: {nombre} <button type='submit' aria-label="addButton" onClick={addFriend}>Añadir</button></p>}
       </div>
       <div className='mis-amigos'>
-  <h2>Mis Amigos:</h2>
-  <div className='amigos'>
-  {amigos.length > 0 ? (
-    <div>
-      {amigos.map((amigo) => (
-        <div className='amigo' key={amigo}>
-          <p>{amigo}</p>
-          <Link to={url} onClick={(event) => encontrarUrl(amigo).then( string =>{setUrl( "/mapaAmigo/"+string)} )}>Mapa</Link>
-          <button type='submit' onClick={() => deleteFriend(amigo)}>Eliminar</button>
+        <h2>Mis Amigos:</h2>
+        <div className='amigos'>
+          {amigos.length > 0 ? (
+            <div>
+              {amigos.map((amigo) => (
+                <div className='amigo' key={amigo}>
+                  <p>{amigo}</p>
+                  <Link aria-label="mapaLink" to={url} onClick={(event) => encontrarUrl(amigo).then( string =>{setUrl( "/mapaAmigo/"+string)} )}>Mapa</Link>
+                  <button type='submit' aria-label="deleteButton" onClick={() => deleteFriend(amigo)}>Eliminar</button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No tienes amigos aún.</p>
+          )}
         </div>
-      ))}
-    </div>
-  ) : (
-    <p>No tienes amigos aún.</p>
-  )}
-  </div>
-</div>
-
+      </div>
     </div>
   );
 }

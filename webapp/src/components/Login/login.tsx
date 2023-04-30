@@ -1,18 +1,19 @@
 import '../../hojasEstilo/home.css'
-import { useSession, SessionProvider } from "@inrupt/solid-ui-react";
+import { SessionProvider } from "@inrupt/solid-ui-react";
 import LoginForm from './LoginForm';
 import ProfileViewer from "./ProfileViewer";
 import {Session, getDefaultSession,login } from '@inrupt/solid-client-authn-browser';
 //import { Session} from '@inrupt/solid-client-authn-node';
 import { getSessionIdFromOauthState,StorageUtility,InMemoryStorage} from '@inrupt/solid-client-authn-core';
+import { SessionType } from '../../shared/shareddtypes';
 const setUserSession = (session :Session) => {
   localStorage.setItem("userSession", JSON.stringify(session));
 };
 
-function Login() {
-  const { session } = useSession();
-  var test =  useSession();
-  //var test = new Session();
+function Login({ session }: SessionType) {
+
+  //var test =  useSession();
+  var test = new Session();
   //var s = new StorageUtility();
   //getSessionIdFromOauthState(s,"aaaa")
   // test.login({ clientId: "9a21fe50-c6fd-4d95-9924-63a823d92f73",

@@ -1,7 +1,6 @@
 import { useSession, CombinedDataProvider, LogoutButton, Text } from "@inrupt/solid-ui-react";
 import { Button, Card, CardActionArea, CardContent, CardHeader, Container, Typography } from "@material-ui/core";
 import { FOAF} from "@inrupt/lit-generated-vocab-common";
-import { Session } from "@inrupt/solid-client-authn-browser";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -41,20 +40,6 @@ createStyles({
   },
 })
 );
-
-
-const setUserSession = (session :Session) => {
-  localStorage.clear();
-  localStorage.setItem("userSession", JSON.stringify(session));
-};
-
-
-const getUserSession = (): Session => {
-  const session = localStorage.getItem("userSession");
-  return session ? JSON.parse(session) : null;
-};
-
-
 
 const ProfileViewer = () => {
   const classes = useStyles();
