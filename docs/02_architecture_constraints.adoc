@@ -6,7 +6,6 @@ Usamos el MVC(modelo vista-controlador). MVC es un patrón de arquitectura de so
 |SOLID|Con SOLID,este es un requisito sobre las tecnologías que usar, los usuarios guardaran su información usando PODs. De esta forma, pueden permitir o rechazar la solicitud de acceso a los datos.
 |GitHub|Usaremos github para el control de versiones y comunicarnos.
 |TypeScrypt|TypeScript para escribir el back-end, TS es una evolución de javascript con tipos.
-|Node.js|Framework de javascript usado para el back-end.
 |===
 
 === Organización del equipo
