@@ -442,7 +442,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_introduction_and_goals">1. Introduction and Goals</a>
+<li><a href="#_introducción_y_objetivos">1. Introducción y Objetivos</a>
 <ul class="sectlevel2">
 <li><a href="#_resumen_de_requisitos">1.1. Resumen de Requisitos</a></li>
 <li><a href="#_objetivos_de_calidad">1.2. Objetivos de calidad</a></li>
@@ -548,10 +548,12 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 </div>
 <div class="sect1">
-<h2 id="_introduction_and_goals">1. Introduction and Goals</h2>
+<h2 id="_introducción_y_objetivos">1. Introducción y Objetivos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>LoMap es un proyecto de ASW que consiste en la creacion de un sistema en el que los ciudadanos dispongan de un mapa personalizado con lugares, negocios&#8230;&#8203; de la ciudad de Bruselas. Los miembros son:</p>
+<p>LoMap es un proyecto de ASW que consiste en la creacion de un sistema en el que los ciudadanos dispongan de un mapa personalizado con lugares, negocios y otros sitios de interés de la ciudad de Bruselas.
+Lo interesante de LoMap son las amplias posibilidades que te ofrece como usuario, desde añadir marcadores con puntos de interés y valorarlos, hasta poder visualizar los mapas de diferentes amigos.
+ Los miembros son:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -575,7 +577,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect2">
 <h3 id="_resumen_de_requisitos">1.1. Resumen de Requisitos</h3>
 <div class="paragraph">
-<p>La aplicación se ejecutará en el servidor, y la información del usuario se almacenará en su pod. Asi mismo, habra una base de datos centralizada cuya informacion solo contendra lo necesario para acceder al pod de cada usuario. Todos estos requisitos son compatibles con el proyecto SOLID, ya que la información de los usuarios no se almacena de forma centralizada.</p>
+<p>La aplicación se ejecutará en el servidor, y la información del usuario se almacenará en su pod. Asi mismo, no habra una base de datos centralizada ya que todos los datos se almacenan en los pod. Todos estos requisitos son compatibles con el proyecto SOLID, ya que la información de los usuarios no se almacena de forma centralizada.</p>
 </div>
 <div class="ulist">
 <div class="title">Requisitos de alto nivel:</div>
@@ -651,35 +653,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tbody>
 </table>
 <div class="ulist">
-<div class="title">Requisitos de alto nivel:</div>
-<ul>
-<li>
-<p>Los usuarios pueden añadir lugares en categorías diferentes: tiendas, bares, restaurantes, paisajes, monumentos, etc.</p>
-</li>
-<li>
-<p>Los usuarios serán capaces de mostrar lugares en una ventana tipo mapa.</p>
-</li>
-<li>
-<p>Los usuarios pueden asociar puntuaciones, comentarios, fotos, etc. sobre los lugares añadidos.</p>
-</li>
-<li>
-<p>Se podrán gestionar desde la aplicación los accesos a la información que comparten con otros usuarios, como sus amigos o grupos de amigos.</p>
-</li>
-<li>
-<p>La información sobre un lugar almacenada por cada usuario no deberá estar centralizada, sino que se almacenará en el pod de cada usuario.</p>
-</li>
-<li>
-<p>Si fuese necesario, se podría almacenar alguna información de forma centralizada por razones de rendimiento tratando de respetar la privacidad de los usuarios en la medida que sea posible.</p>
-</li>
-<li>
-<p>El sistema permitirá a los usuarios ver lugares e información sobre dichos lugares tomada de sus amigos.</p>
-</li>
-<li>
-<p>El sistema permitirá visualizar el mapa incorporando filtros, por ejemplo, por categoría, amigos, etc.</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
 <div class="title">Caracteristicas opcionales:</div>
 <ul>
 <li>
@@ -739,12 +712,12 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Clientes</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Clientes</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Aplicación sencilla, con una buena usabilidad, con todas las funcionalidades requeridas y que protega/asegure los datos introducidos</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Aplicación web sencilla, con una buena usabilidad, con todas las funcionalidades requeridas y que protega/asegure los datos introducidos</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Administrador</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Administrador</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Manejar una aplicación robusta, bien hecha y eficiente que permita solucionar futuros problemas/errores</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manejar una aplicación robusta, útil, esteticamente atractiva y eficiente, además de ser mantenible con el tiempo.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Equipo</em></p></td>
@@ -1712,10 +1685,6 @@ la menor información posible de estos</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Github</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Repositorio en github para alojar proyectos utilizando el sistema de versiones Git.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sistema de base de datos NoSQL, orientado a documentos y de código abierto.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">REACT</p></td>
