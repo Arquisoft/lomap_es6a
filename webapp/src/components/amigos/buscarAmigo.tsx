@@ -4,7 +4,6 @@ import { FOAF } from '@inrupt/vocab-common-rdf';
 import {SessionType} from "../../shared/shareddtypes";
 import { Link } from 'react-router-dom';
 import '../../hojasEstilo/amigos.css';
-import { clear } from 'console';
 
 function BuscarAmigo({ session }: SessionType) {
   const [nombre, setNombre] = useState('');
