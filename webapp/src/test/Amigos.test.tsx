@@ -1,10 +1,12 @@
 import React from "react";
+import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThing, saveSolidDatasetAt, removeIri} from '@inrupt/solid-client';
+import { FOAF } from '@inrupt/vocab-common-rdf';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Session } from "@inrupt/solid-client-authn-browser";
 import Amigos from "../components/amigos/amigos";
 import BuscarAmigo from "../components/amigos/buscarAmigo";
 
-jest.setTimeout(100000000);
+jest.setTimeout(100000);
 
 const session = new Session();
 session.info.isLoggedIn = true;
@@ -29,14 +31,23 @@ test('renders BuscarAmigo component without crashing with WebId', () => {
     expect(screen.getByText(/No tienes amigos aún./i)).toBeInTheDocument();
 });
 
-test('buscar y añadir un amigo', async () => {
-    const AmigosMios = render(<BuscarAmigo session={session}/>);
+test('buscar un amigo without name', async () => {
+    const { getByLabelText } = render(<BuscarAmigo session={session}/>);;
+    const searchButton = getByLabelText("searchButton");
 
-    const { getByLabelText } = AmigosMios;
+    fireEvent.click(searchButton);
+
+    await waitFor(() => {
+        expect(screen.getByText("request to https://.inrupt.net/profile/card#me failed, reason: getaddrinfo ENOTFOUND .inrupt.net")).toBeInTheDocument();
+    });
+});
+
+test('buscar y añadir un amigo', async () => {
+    const { getByLabelText } = render(<BuscarAmigo session={session}/>);
     const inputField = getByLabelText("username");
     const searchButton = getByLabelText("searchButton");
 
-    fireEvent.change(inputField, { target: { value: "rubenndiazz5" } } );
+    fireEvent.change(inputField, { target: { value: "testasw" } } );
     fireEvent.click(searchButton);
 
     expect(screen.getByText(/Cargando.../i)).toBeInTheDocument();  
@@ -44,14 +55,9 @@ test('buscar y añadir un amigo', async () => {
     await waitFor(() => {
         const addButton = getByLabelText("addButton");
 
-        expect(screen.getByText(/Nombre: Ruben Diaz/i)).toBeInTheDocument();
+        expect(screen.getByText(/Nombre: testASW/i)).toBeInTheDocument();
         expect(addButton).toBeInTheDocument();
 
         fireEvent.click(addButton);
-    }, { timeout: 5000 });
-
-    // await waitFor(() => {
-    //     const deleteButton = getByLabelText("deleteButton");
-    //     const mapaLink = getByLabelText("mapaLink");
-    // }, { timeout: 100000 });
-});  
+    }, { timeout: 10000 });  
+});
