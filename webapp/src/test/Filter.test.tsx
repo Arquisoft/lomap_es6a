@@ -38,14 +38,38 @@ test('renders Filter component without crashing', () => {
         (session: Session, idmarker: String, user: string): Promise<Comentario[] | null> => Promise.resolve([comentario1, comentario2])
     );
 
+    const filtro = render(<Filtro session={session}/>);
 
-    render(<Filtro session={session}/>);
+    const checkTodos = filtro.getByLabelText(/Todos/i);
+    const checkBar = filtro.getByLabelText(/Bar/i);
+    const checkTienda = filtro.getByLabelText(/Tienda/i);
+    const checkGas = filtro.getByLabelText(/Gasolinera/i);
+    const checkPaisaje = filtro.getByLabelText(/Paisaje/i);
+    const checkMonumento = filtro.getByLabelText(/Monumento/i);
+    const checkResta = filtro.getByLabelText(/Restaurante/i);
+
     expect(screen.getByText(/Filtros/i)).toBeInTheDocument();
-    expect(screen.getByText(/Todos/i)).toBeInTheDocument();
-    expect(screen.getByText(/Bar/i)).toBeInTheDocument();
-    expect(screen.getByText(/Tienda/i)).toBeInTheDocument();
-    expect(screen.getByText(/Gasolinera/i)).toBeInTheDocument();
-    expect(screen.getByText(/Paisaje/i)).toBeInTheDocument();
-    expect(screen.getByText(/Monumento/i)).toBeInTheDocument();
-    expect(screen.getByText(/Restaurante/i)).toBeInTheDocument();
+    expect(checkTodos).toBeInTheDocument();
+    expect(checkBar).toBeInTheDocument();
+    expect(checkTienda).toBeInTheDocument();
+    expect(checkGas).toBeInTheDocument();
+    expect(checkPaisaje).toBeInTheDocument();
+    expect(checkMonumento).toBeInTheDocument();
+    expect(checkResta).toBeInTheDocument();
+
+    expect(checkTodos).toBeChecked();
+    expect(checkBar).toBeChecked();
+    expect(checkTienda).toBeChecked();
+    expect(checkGas).toBeChecked();
+    expect(checkPaisaje).toBeChecked();
+    expect(checkMonumento).toBeChecked();
+    expect(checkResta).toBeChecked();
+
+    fireEvent.click(checkTodos);
+    fireEvent.click(checkBar);
+    fireEvent.click(checkTienda);
+    fireEvent.click(checkGas);
+    fireEvent.click(checkPaisaje);
+    fireEvent.click(checkMonumento);
+    fireEvent.click(checkResta);
 });
