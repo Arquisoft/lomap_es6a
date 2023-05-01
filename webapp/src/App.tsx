@@ -23,7 +23,7 @@ function App(): JSX.Element {
             <div className='contenedor-rutas'>
             <Routes>
               <Route  path={"/"} element={<Home/>} />
-              <Route  path="/Mapa" element={<Mapa session={session}/>}/>
+              <Route  path="/Mapa" element={<Mapa session={session} modo={true}/>}/>
               <Route  path="/MapaAmigo/:user" element={<MapaAmigo session={session}/>}/>
               <Route  path="/Amigos" element={<Amigos session={session}/>}/>
               <Route  path="/Aboutus" element={<AboutUs session={session}/>}/>

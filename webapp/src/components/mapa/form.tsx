@@ -8,13 +8,20 @@ import interrogacion from '../../imagenes/interrogacion.png';
 import tienda from '../../imagenes/tienda.png';
 import paisaje from '../../imagenes/paisaje.png';
 import monumento from '../../imagenes/monumento.png';
-import {SessionType} from "../../shared/shareddtypes"
+import {SessionType} from "../../shared/shareddtypes";
+import { Session } from "@inrupt/solid-client-authn-browser";
 import { initMap } from './initMap';
 import mapboxgl ,{Popup} from 'mapbox-gl';
 import Filtro from './filtro';
 import Marker from "../../accesoPods/marker";
 
-function Formulario({ session }: SessionType) {
+interface Props {
+  session: Session;
+  modo: boolean;
+}
+
+// function Formulario({ session }: SessionType) {
+function Formulario({ session, modo }: Props) {
   const [count, setCount] = useState(0);
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
@@ -73,8 +80,9 @@ function Formulario({ session }: SessionType) {
     }
   }
   useEffect(() => {
-    if (mapRef.current) {
-          tupla = initMap(
+    if(modo) {
+      if (mapRef.current) {
+        tupla = initMap(
           mapRef.current, {session}, nombreUsuario
         );
 
@@ -89,7 +97,7 @@ function Formulario({ session }: SessionType) {
           setLongitud(evt.lngLat.lat+"");
           setLatitud(evt.lngLat.lng+"");
         });
-
+      }
     }
   }, [count]);
 
