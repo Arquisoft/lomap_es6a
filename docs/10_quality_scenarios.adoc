@@ -72,9 +72,8 @@ Tabular or free form text.
 | Privacidad | Uno de los principales objetivos es hacer una aplicación que respete la privacidad de los usuarios recogiendo 
 la menor información posible de estos | Alta
 | Seguridad | Garantizar la seguridad de los datos del cliente para aumentar su confianza y mantener a salvo su privacidad | Alta
-| Robustez | Buen manejo de excepciones para mejorar la experiencia del usuario y el uso de pods para aumentar la robustez de los servers | Alta
+| Robustez | Buen manejo de excepciones para mejorar la experiencia del usuario y el uso de pods para aumentar la robustez de los servers, alta disponibilidad y tolerancia a fallos software | Alta
 | Usabilidad | La aplicación ha de ser intuitiva y de fácil manejo para gente de todo tipo de nivel | Alta
-| Autogestión | Permitir a los usuarios crearse sus propios pods o que puedan elegir ellos qué servicio de pods usar | Media-Alta
 | Eficiencia | La aplicación será lo más eficiente posible usando los menores recursos posibles | Media
-| Transparencia | Todo el proyecto será visible | Bajo
+| Transparencia | Todo el proyecto será de codigo abierto, disponible en el repositorio de github para su modificación| Bajo
 |===
