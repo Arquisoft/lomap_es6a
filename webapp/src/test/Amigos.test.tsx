@@ -61,36 +61,3 @@ test('buscar y añadir un amigo', async () => {
         fireEvent.click(addButton);
     }, { timeout: 10000 });  
 });
-
-// test("debería devolver una cadena vacía si el nombre no coincide con ninguno de los amigos conocidos", async () => {
-//     const nombreAmigo = "Juan Pérez";
-//     const amigosUrl = [      
-//         "https://amigo1.inrupt.net/profile/card#me",      
-//         "https://amigo2.inrupt.net/profile/card#me",      
-//         "https://amigo3.inrupt.net/profile/card#me",    
-//     ];
-
-//     // Simulamos la carga de los datasets de los amigos
-//     const getSolidDatasetMock = jest.fn();
-//     getSolidDatasetMock.mockResolvedValue({});
-
-//     // Simulamos la carga de las cosas de los amigos
-//     const getThingMock = jest.fn();
-//     getThingMock.mockReturnValue({});
-
-//     // Simulamos la obtención del nombre de los amigos
-//     const getStringNoLocaleMock = jest.fn();
-//     getStringNoLocaleMock.mockReturnValue("otro nombre");
-
-//     // Simulamos la obtención de los amigos conocidos del usuario
-//     const getUrlAllMock = jest.fn();
-//     getUrlAllMock.mockReturnValueOnce(amigosUrl);
-
-//     const amigoUrl = await encontrarUrl(nombreAmigo);
-
-//     expect(getSolidDatasetMock).toHaveBeenCalledTimes(amigosUrl.length);
-//     expect(getThingMock).toHaveBeenCalledTimes(amigosUrl.length);
-//     expect(getStringNoLocaleMock).toHaveBeenCalledTimes(amigosUrl.length);
-//     expect(getUrlAllMock).toHaveBeenCalledTimes(1);
-//     expect(amigoUrl).toBe("");
-// });
