@@ -35,7 +35,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
     }
 
     function validacionCamposComentario(texto:string, valoracion:string){
-      return (texto.length != 0 && Number(valoracion)>=0 && Number(valoracion)<=10 && Number(valoracion) != null);
+      return (texto.length != 0 && Number(valoracion)>=0 && Number(valoracion)<=10 && Number(valoracion) != null && valoracion.length != 0);
     }
 
     function seleccionarIcono(tipo:string){
