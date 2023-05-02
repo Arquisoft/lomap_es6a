@@ -8,7 +8,6 @@ import interrogacion from '../../imagenes/interrogacion.png';
 import tienda from '../../imagenes/tienda.png';
 import paisaje from '../../imagenes/paisaje.png';
 import monumento from '../../imagenes/monumento.png';
-import {SessionType} from "../../shared/shareddtypes";
 import { Session } from "@inrupt/solid-client-authn-browser";
 import { initMap } from './initMap';
 import mapboxgl ,{Popup} from 'mapbox-gl';
@@ -20,7 +19,6 @@ interface Props {
   modo: boolean;
 }
 
-// function Formulario({ session }: SessionType) {
 function Formulario({ session, modo }: Props) {
   const [count, setCount] = useState(0);
   const [nombre, setNombre] = useState("");
