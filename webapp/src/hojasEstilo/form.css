@@ -27,6 +27,7 @@
 .filtro{
   overflow-y: auto;
   max-height: 34%;
+  height: auto;
   width: auto;
   background-color: #ccc;
 }

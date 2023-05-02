@@ -15,6 +15,7 @@ import Comentario from '../../accesoPods/comentario';
 export const initMap = (container: HTMLDivElement, { session }: SessionType, user: string) => {
   const marcadoresEnMapa: Array<mapboxgl.Marker> = [];
   const marcadoresObjetoEnMapa: Array<Marker> = [];
+  let popupElement:Popup;
   const mapa = new Map({
         container,
         style: 'mapbox://styles/mapbox/streets-v12',
@@ -124,6 +125,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
 
                           (miInput as HTMLInputElement).value = "";
                           (miInputValoracion  as HTMLInputElement).value = "";
+                          popupElement.remove();
                         }
                         
                       
@@ -155,7 +157,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                     </form>
                     <h2>Comentarios</h2>
                     `+ cadena;
-                    const popupElement = marker.getPopup().setHTML(html);
+                    popupElement = marker.getPopup().setHTML(html);
 
                     const miboton = document.getElementById("btnenviar");
                     

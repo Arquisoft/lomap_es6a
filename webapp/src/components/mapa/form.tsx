@@ -13,6 +13,7 @@ import { initMap } from './initMap';
 import mapboxgl ,{Popup} from 'mapbox-gl';
 import Filtro from './filtro';
 import Marker from "../../accesoPods/marker";
+import { rejects } from 'assert';
 
 interface ErroresFormulario {
   nombre: string | null;
@@ -253,6 +254,7 @@ function Formulario({ session }: SessionType) {
             <input
               type="text"
               value={nombre}
+              placeholder='Escribe el nombre del lugar'
               onChange={handleNombreChange}
             />
             {errores.nombre && <div className="error">{errores.nombre}</div>}
@@ -263,6 +265,7 @@ function Formulario({ session }: SessionType) {
             <textarea
               style={{ resize: "none" }}
               value={descripcion}
+              placeholder='Escribe la descripción del lugar'
               onChange={handleDescripcionChange}
             ></textarea>
             {errores.descripcion && (
@@ -277,6 +280,7 @@ function Formulario({ session }: SessionType) {
               name="longitud"
               step="0.000000000000001"
               value={longitud}
+              placeholder='Doble click en el mapa'
               onChange={handleLongitudChange}
             />
             {errores.longitud && <div className="error">{errores.longitud}</div>}
@@ -289,6 +293,7 @@ function Formulario({ session }: SessionType) {
               name="latitud"
               step="0.000000000000001"
               value={latitud}
+              placeholder='Doble click en el mapa'
               onChange={handleLatitudChange}
             />
             {errores.latitud && <div className="error">{errores.latitud}</div>}
