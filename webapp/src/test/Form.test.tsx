@@ -321,6 +321,48 @@ test('testing form validators', async () =>{
     expect(screen.getByLabelText("Paisaje")).toBeInTheDocument();
     expect(screen.getByLabelText("Monumento")).toBeInTheDocument();
     expect(screen.getByLabelText("Restaurante")).toBeInTheDocument();
+
+  fireEvent.change(nombre,{target: {value:"Hola"}})
+  fireEvent.change(descripcion,{target: {value:"Muy buen sitio"}})
+  fireEvent.change(longitud,{target: {value:"43"}})
+  fireEvent.change(latitud,{target: {value:"-5"}})
+  fireEvent.change(tipo,{target: {value:"Tienda"}})
+  fireEvent.click(screen.getByText("Añadir"))
+
+  fireEvent.change(nombre,{target: {value:"Hola"}})
+  fireEvent.change(descripcion,{target: {value:"Muy buen sitio"}})
+  fireEvent.change(longitud,{target: {value:"43"}})
+  fireEvent.change(latitud,{target: {value:"-5"}})
+  fireEvent.change(tipo,{target: {value:"Bar"}})
+  fireEvent.click(screen.getByText("Añadir"))
+
+  fireEvent.change(nombre,{target: {value:"Hola"}})
+  fireEvent.change(descripcion,{target: {value:"Muy buen sitio"}})
+  fireEvent.change(longitud,{target: {value:"43"}})
+  fireEvent.change(latitud,{target: {value:"-5"}})
+  fireEvent.change(tipo,{target: {value:"Monumento"}})
+  fireEvent.click(screen.getByText("Añadir"))
+    
+  fireEvent.change(nombre,{target: {value:"Hola"}})
+  fireEvent.change(descripcion,{target: {value:"Muy buen sitio"}})
+  fireEvent.change(longitud,{target: {value:"43"}})
+  fireEvent.change(latitud,{target: {value:"-5"}})
+  fireEvent.change(tipo,{target: {value:"Paisaje"}})
+  fireEvent.click(screen.getByText("Añadir"))
+
+  fireEvent.change(nombre,{target: {value:"Hola"}})
+  fireEvent.change(descripcion,{target: {value:"Muy buen sitio"}})
+  fireEvent.change(longitud,{target: {value:"43"}})
+  fireEvent.change(latitud,{target: {value:"-5"}})
+  fireEvent.change(tipo,{target: {value:"Restaurante"}})
+  fireEvent.click(screen.getByText("Añadir"))
+
+  fireEvent.change(nombre,{target: {value:"Hola"}})
+  fireEvent.change(descripcion,{target: {value:"Muy buen sitio"}})
+  fireEvent.change(longitud,{target: {value:"43"}})
+  fireEvent.change(latitud,{target: {value:"-5"}})
+  fireEvent.change(tipo,{target: {value:"asdasda"}})
+  fireEvent.click(screen.getByText("Añadir"))
     
 });
 

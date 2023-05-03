@@ -1,6 +1,6 @@
 import React, { useEffect,useRef} from 'react';
 import '../../hojasEstilo/mapa.css';
-import { initMap } from './initMap';
+import {initMap} from './initMap';
 import {SessionType} from "../../shared/shareddtypes"
 import {useParams, Navigate} from 'react-router-dom';
   
