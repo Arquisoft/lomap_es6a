@@ -6,13 +6,68 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import * as adaptador from "../accesoPods/adaptador";
 import Marker from "../accesoPods/marker";
 import Comentario from "../accesoPods/comentario";
+import mapboxgl from 'mapbox-gl'
+import { SessionProvider } from "@inrupt/solid-ui-react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+//import Map from '@/components/modules/Home/Map/Map'
 
+jest.mock('mapbox-gl/dist/mapbox-gl', () => ({
+  Map: jest.fn(),
+  Marker: jest.fn().mockReturnValue({
+    setLngLat: jest.fn().mockReturnValue({
+      setPopup: jest.fn().mockReturnValue({
+        addTo: jest.fn().mockReturnValue({})
+      })
+    })
+  }),
+  Popup: jest.fn().mockReturnValue({
+    setHTML: jest.fn().mockReturnValue({ on: jest.fn() })
+  })
+}))
+// jest.mock('mapbox-gl', () => ({
+//     Geolocation.getCurrentPosition(): () => ({})
+//   }))
+// jest.mock('mapbox-gl', () => ({
+//     GeolocationCoordinates : {
+//     accuracy: number,
+//     altitude: number | null,
+//     altitudeAccuracy: number | null,
+//     heading: number | null,
+//     latitude: number,
+//     longitude: number,
+//     speed: number | null,
+//     }
+// }))
+jest.mock('mapbox-gl', () => ({
+   
+    Geolocation : {getCurrentPosition :()=> { 
+        var pos ={
+            coords:{
+                acurracy: 5,
+                altitude: 20,
+                latitude: 20
+            },
+            timestamp:40
+        }
+        // new GeolocationPosition();
+        // readonly coords: GeolocationCoordinates;
+        // readonly timestamp: EpochTimeStamp;
+        // jest.mock('mapbox-gl', () => ({
+        //     pos : {
+        //         acurracy: 5,
+        //         altitude: 20,
+        //         latitude: 20
+        //     }        
+        // }))
+        
+        return  pos   } }
+  }))
 const session = new Session();
 session.info.isLoggedIn = true;
 session.info.webId = "https://testasw.inrupt.net/profile/card#me";
 
 test('renders Form component without crashing', async () => {
-   /* const marcador1 = new Marker("1","MasYMas","Supermercado",1,1,"Tienda");
+    const marcador1 = new Marker("1","MasYMas","Supermercado",1,1,"Tienda");
     const marcador2 = new Marker("2","MasYMas","Supermercado",1,1,"Tienda");
     const marcador3 = new Marker("3","Alimerka","Supermercado",2,2,"Tienda");
     const marcador4 = new Marker("4","Carrefour","Supermercado",3,3,"Tienda");
@@ -39,7 +94,16 @@ test('renders Form component without crashing', async () => {
         (session: Session, idmarker: String, user: string): Promise<Comentario[] | null> => Promise.resolve([comentario1, comentario2])
     );
 
-    render(<Form session={session}/>);
+    render( <>
+        <SessionProvider sessionId="logIn">
+          <Router>
+              <div className='contenedor-rutas'>
+              <Form session={session}/>
+              </div>
+              
+            </Router>
+              </SessionProvider>
+              </> );
     expect(screen.getByText(/Añadir Marcador/i)).toBeInTheDocument();
     expect(screen.getByText(/Nombre:/i)).toBeInTheDocument();
     expect(screen.getByText(/Descripcion:/i)).toBeInTheDocument();
@@ -47,5 +111,5 @@ test('renders Form component without crashing', async () => {
     expect(screen.getByText(/Latitud:/i)).toBeInTheDocument();
     expect(screen.getByText(/Tipo:/i)).toBeInTheDocument();
     expect(screen.getByText(/Añade una imagen:/i)).toBeInTheDocument();
-    */
+    
 });
