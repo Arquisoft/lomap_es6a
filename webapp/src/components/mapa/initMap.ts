@@ -1,16 +1,16 @@
 import mapboxgl ,{Map,Popup} from 'mapbox-gl';
-import {recuperarMarcador, guardarComentario, recuperarComentario} from "./adaptador";
-import {SessionType} from "../shared/shareddtypes";
-import casa from '../imagenes/marcador.png';
-import bar from '../imagenes/bar.png';
-import restaurante from '../imagenes/restaurante.png';
-import gasolinera from '../imagenes/gasolinera.png';
-import tienda from '../imagenes/tienda.png';
-import paisaje from '../imagenes/paisaje.png';
-import monumento from '../imagenes/monumento.png';
-import interrogacion from '../imagenes/interrogacion.png';
-import Marker from "./marker";
-import Comentario from './comentario';
+import {recuperarMarcador, guardarComentario, recuperarComentario} from "../../accesoPods/adaptador";
+import {SessionType} from "../../shared/shareddtypes";
+import casa from '../../imagenes/marcador.png';
+import bar from '../../imagenes/bar.png';
+import restaurante from '../../imagenes/restaurante.png';
+import gasolinera from '../../imagenes/gasolinera.png';
+import tienda from '../../imagenes/tienda.png';
+import paisaje from '../../imagenes/paisaje.png';
+import monumento from '../../imagenes/monumento.png';
+import interrogacion from '../../imagenes/interrogacion.png';
+import Marker from "../../accesoPods/marker";
+import Comentario from '../../accesoPods/comentario';
 
 export const initMap = (container: HTMLDivElement, { session }: SessionType, user: string) => {
   const marcadoresEnMapa: Array<mapboxgl.Marker> = [];

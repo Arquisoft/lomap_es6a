@@ -9,7 +9,7 @@ import tienda from '../../imagenes/tienda.png';
 import paisaje from '../../imagenes/paisaje.png';
 import monumento from '../../imagenes/monumento.png';
 import { Session } from "@inrupt/solid-client-authn-browser";
-import {initMap} from '../../accesoPods/initMap';
+import {initMap} from './initMap';
 import mapboxgl ,{Popup} from 'mapbox-gl';
 import Filtro from './filtro';
 import Marker from "../../accesoPods/marker";
