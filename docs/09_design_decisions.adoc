@@ -1,11 +1,7 @@
 [[section-design-decisions]]
 == Decisiones de diseño
-
-
-[role="arc42help"]
-****
 [options="header",cols="1,2,2"]
-****
+
 |===
 |Decisión Arquitectónica|Ventajas|Desventajas
 | TypeScript | Simplifica y mejora JavaScript al cual extiende agregando tipado de tipos | Nadie ha trabajado con el así que hay que aprender a usarlo

@@ -19,20 +19,19 @@ Los usuarios también pueden agregar puntajes de revisión, comentarios, imágen
 Nustra app es una red social con la infraestructura "dispersa" en pods que pertenecen al usuario(uno por usuario) en vez de una base de datos centralizada en los servidores de la empresa
 se sigue teniendo una base de datos central pero solo se usa para guardar informacion basica del usuario tambien la app hara uso de apis externas
 
-=== Contexto tecnico
+=== Contexto técnico
 
 Nuestra aplicación LoMap sigue los principios de descentralización de datos personales SOLID al almacenar datos personales en el POD independiente de cada usuario.  
 El front-end se desarrolla utilizando el framework React, el cual implementa componentes propios diseñados o creados, el lenguaje utilizado para desarrollar diversas funciones en pantalla es TypeScript.   
-Para el back-end, usando Node.js express, hacemos todas las transacciones con la base de datos.  
-La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usaremos una API externa.  
+No usamos nada de Back-End ya que el Front-End se comunica directamente con los PODs de inrupt.
 
 [options="header",cols="1,2"]
 |===
-| Technology         | Description
-| SOLID    | The architecture of the application
-| PODs    | Store the personal data
-| TYPESCRIPT     | Main programing lenguage
-| REACT     | The library to make the GUI
-| Mapbox    | Map api
+| Tecnología         | Descripción
+| SOLID    | Principios de descentralización de la aplicación.
+| PODs    | Para guardar los datos de los usuarios.
+| TYPESCRIPT     | Lenguaje principal de la aplicación.
+| REACT     | Framework usado para el Front-End.
+| Mapbox    | Api que usamos para los mapas.
 
 |===

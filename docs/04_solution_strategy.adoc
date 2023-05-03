@@ -1,6 +1,6 @@
 [[section-solution-strategy]]
 == Soluciones Estratégicas
-Para la reaalización de LoMap hemos tomado la decisión de desarrollarlo en TypeScript, usando el framework React y el proovedor de pods de inrupt. TypeScript es un superconjunto de JavaScript cuyo punto más resaltable es el uso de tipado.
+Para la realización de LoMap hemos tomado la decisión de desarrollarlo en TypeScript, usando el framework React y el proovedor de pods de inrupt. TypeScript es un superconjunto de JavaScript cuyo punto más resaltable es el uso de tipado.
 
 [role="arc42help"]
 .Restricciones tecnológicas
@@ -8,7 +8,7 @@ Para la reaalización de LoMap hemos tomado la decisión de desarrollarlo en Typ
 
 .Tecnologías y motivación
 
-* React: React es una biblioteca de código abierto concebida para crear interfaces de usuario. Hemos elegido React por su sencillez y las númerosas posibilidades que proporciona, entre ellas desarrollar aplicaciones web multiplataforma.
+* React: Framework de código abierto concebida para crear interfaces de usuario. Hemos elegido React por su sencillez y las númerosas posibilidades que proporciona, entre ellas desarrollar aplicaciones web multiplataforma.
 
 * Docker: es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción.
 

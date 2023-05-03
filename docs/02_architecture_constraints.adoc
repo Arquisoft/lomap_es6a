@@ -1,6 +1,8 @@
 == Arquitectura
 Usamos el MVC(modelo vista-controlador). MVC es un patrón de arquitectura de software que separa una aplicación en tres componentes: Modelo, Vista y Controlador. El Modelo maneja los datos y la lógica de negocio, la Vista se encarga de la presentación de la información al usuario, y el Controlador actúa como intermediario entre los dos, gestionando las interacciones del usuario y actualizando el Modelo y la Vista según sea necesario.
+
 === Explicación sobre la Pila Tecnológica
+
 |===
 |React|Usamos React para el front-end, para la interfaz gráfica de usuario.
 |SOLID|Con SOLID,este es un requisito sobre las tecnologías que usar, los usuarios guardaran su información usando PODs. De esta forma, pueden permitir o rechazar la solicitud de acceso a los datos.
