@@ -20,8 +20,14 @@ import tienda from '../imagenes/tienda.png';
 import paisaje from '../imagenes/paisaje.png';
 import monumento from '../imagenes/monumento.png';
 import interrogacion from '../imagenes/interrogacion.png';
-
+const marcador1 = new Marker("1","MasYMas","Supermercado",1,1,"Tienda");
+const marcador2 = new Marker("2","MasYMas","Supermercado",1,1,"Tienda");
+const marcador3 = new Marker("3","Alimerka","Supermercado",2,2,"Tienda");
+const marcador4 = new Marker("4","Carrefour","Supermercado",3,3,"Tienda");
+const comentario1 = new Comentario("Muy buena","3","uo282944","9");
+const comentario2 = new Comentario("Muy guapa","3","uo282944","8");
 beforeAll(()=>{
+    
     jest.spyOn(adaptador, "guardarMarcador").mockImplementation(
           (session: Session, nombre: string, descripcion:string, lat: number, lng: number, tipo: string,imagen:string): Marker | null => marcador1
       );
