@@ -17,7 +17,8 @@ function BuscarAmigo({ session }: SessionType) {
   async function buscarAmigo() {
     try {
       setCargando(true);
-      if (!WebID) {
+      setNombre('');
+      if (!name) {
         throw new Error('Nombre de usuario no especificado');
       }
       const dataset = await getSolidDataset(WebID);
@@ -30,8 +31,6 @@ function BuscarAmigo({ session }: SessionType) {
     } catch (error: unknown) {
       if (error instanceof Error) {
         setError(error.message);
-      } else {
-        setError('Ha ocurrido un error desconocido');
       }
     } finally {
       setCargando(false);
@@ -118,18 +117,18 @@ function BuscarAmigo({ session }: SessionType) {
   async function addFriend() {
     const { webId } = session.info;
 
-    if(webId == null) {
-      throw new Error();
+    if(!webId) {
+      throw new Error('Nombre de usuario no especificado');
     }
     const profileDataset = await getSolidDataset(webId);
 
-    if(profileDataset == null) {
-      throw new Error();
+    if(!profileDataset) {
+      throw new Error('Perfil no encontrado');
     }
     const thing = getThing(profileDataset, webId);
 
-    if(thing == null) {
-      throw new Error();
+    if(!thing) {
+      throw new Error('Cosa de usuario no encontrada');
     }
     const updatedThing = addIri(thing, FOAF.knows, WebID);
     const updatedProfileDataset = setThing(profileDataset, updatedThing);

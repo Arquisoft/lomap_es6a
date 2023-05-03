@@ -150,4 +150,4 @@ function Filtro({ marcadores, marcadoresObjeto }: FiltroProps){
   );
 }
 
-  export default Filtro;
+export default Filtro;
