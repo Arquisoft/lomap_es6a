@@ -1,9 +1,9 @@
 [[section-building-block-view]]
 
 
-== Building Block View
+== Vista de bloque de creación
 
-=== Level 0: Whitebox of the Overall System 
+=== Nivel 0: Vista general del sistema
 
 [plantuml, "whitebox-overall-system", png]
 ----
@@ -16,12 +16,12 @@ Usuario -right-> pod: tiene
 LoMap <-right-> pod: obtiene/almacena datos Usuario
 ----
 
-Motivation::
+Motivación::
 LoMap es la estructura principal de un sistema en el que el usuario interactúa con su mapa, personalizándolo con los lugares que le interesan. 
 Además, el usuario puede añadir a sus amigos a la aplicación y compartir con ellos sus marcadores.
 La información personal del usuario se almacena de forma descentralizada en PODs.
 
-Contained Building Blocks::
+Bloques de construcción contenidos::
 
 [cols="1,2" options="header"]
 |===
@@ -31,7 +31,7 @@ Contained Building Blocks::
 | inrupt.net/solidcommunity.net | Sistema encargado de almacenar la información de cada usuario en un POD de forma descentralizada.
 |===
 
-=== Level 1
+=== Nivel 1
 
 [plantuml, "level-1", png]
 ----
@@ -47,10 +47,10 @@ Usuario -right-> pod: tiene
 web <-down-> pod: obtiene/almacena datos
 ----
 
-Motivation::
+Motivación::
 Muestra como funcionan los distintos componentes de LoMap, a grandes rasgos.
 
-Contained Building Blocks::
+Bloques de construcción contenidos::
 
 [cols="1,2" options="header"]
 |===
@@ -58,7 +58,7 @@ Contained Building Blocks::
 | WebApp | Parte del sistema con la que interactúa el usuario (Frontend). Además, es la parte encargada de comunicarse con los pods de los usuarios.
 |===
 
-=== Level 2
+=== Nivel 2
 [plantuml, "level-2", png]
 
 ----
@@ -81,10 +81,10 @@ user -up-> pod: tiene
 web -down-> pod: obtiene/almacena datos
 ----
 
-Motivation::
+Motivación::
 Muestra como funcionan los distintos componentes de LoMap, con mas detalle que el nivel anterior. Se profundiza en los distintos componentes de la aplicación que forman parte de WebApp.
 
-Contained Building Blocks::
+Bloques de construcción contenidos::
 
 [cols="1,2" options="header"]
 |===
