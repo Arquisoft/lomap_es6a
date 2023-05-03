@@ -264,3 +264,46 @@ export async function delAmigos({session}: SessionType, amigoNombre:string): Pro
 
     return getUrlAll(updatedThing, FOAF.knows);
 }
+
+export async function encontrarurl({session}: SessionType, nombreAmigo:string): Promise<string | undefined>{
+    const { webId } = session.info;
+  
+    if (!webId) {
+      throw new Error('Nombre de usuario no especificado');
+    }
+  
+    const profileDataset = await getSolidDataset(webId);
+  
+    if (!profileDataset) {
+      throw new Error('Perfil no encontrado');
+    }
+  
+    const profileThing = getThing(profileDataset, webId);
+  
+    if (!profileThing) {
+      throw new Error('Perfil no encontrado');
+    }
+  
+    const amigosUrl = getUrlAll(profileThing, FOAF.knows);
+  
+    let amigoUrl: string ="";
+    for (const url of amigosUrl) {
+      const amigoDataset = await getSolidDataset(url);
+  
+      if (!amigoDataset) {
+        throw new Error(`No se pudo cargar el perfil del amigo en ${url}`);
+      }
+  
+      const amigoPerfil = getThing(amigoDataset, url);
+  
+      if (!amigoPerfil) {
+        throw new Error(`No se pudo encontrar la cosa del amigo en ${url}`);
+      }
+      const amigoNombreActual = getStringNoLocale(amigoPerfil, FOAF.name);
+      if (amigoNombreActual === nombreAmigo) {
+        amigoUrl = url.split("/").slice(2,3).join().split(".").slice(0,1).join();
+        break;
+      }
+    }
+    return amigoUrl;
+}
