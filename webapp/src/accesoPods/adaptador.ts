@@ -2,6 +2,9 @@ import Marker from './marker';
 import Comentario from './comentario';
 import {Session} from "@inrupt/solid-client-authn-browser";
 import {escribir, buscarArchivos} from "./acceso";
+import { addIri, getSolidDataset, getThing, getUrlAll, saveSolidDatasetAt, setThing } from '@inrupt/solid-client';
+import { SessionType } from '../shared/shareddtypes';
+import { FOAF } from '@inrupt/vocab-common-rdf';
 
 export function guardarMarcador(session: Session, nombre: string, descripcion:string, lat: number, lng: number, tipo: string,imagen:string): Marker | null {
     let marker = new Marker("",nombre, descripcion, lat, lng, tipo,imagen);
@@ -159,4 +162,49 @@ export async function recuperarComentario(session: Session, idmarker: String, us
         }
     }
     return comentarios;
+}
+
+export async function addAmigo({session}: SessionType, WebID:string): Promise<string[] | undefined>{
+    const { webId } = session.info;
+    if(!webId) {
+        throw new Error('Nombre de usuario no especificado');
+      }
+      const profileDataset = await getSolidDataset(webId);
+  
+      if(!profileDataset) {
+        throw new Error('Perfil no encontrado');
+      }
+      const thing = getThing(profileDataset, webId);
+  
+      if(!thing) {
+        throw new Error('Cosa de usuario no encontrada');
+      }
+      const updatedThing = addIri(thing, FOAF.knows, WebID);
+      const updatedProfileDataset = setThing(profileDataset, updatedThing);
+      await saveSolidDatasetAt(webId, updatedProfileDataset, {
+          fetch: session.fetch,
+      });
+
+      return getUrlAll(updatedThing, FOAF.knows);
+}
+
+export async function delAmigo({session}: SessionType, WebID:string): Promise<string[] | undefined>{
+    const { webId } = session.info;
+  
+    if (!webId) {
+      throw new Error('Nombre de usuario no especificado');
+    }
+  
+    const profileDataset = await getSolidDataset(webId);
+  
+    if (!profileDataset) {
+      throw new Error('Perfil no encontrado');
+    }
+  
+    const profileThing = getThing(profileDataset, webId);
+  
+    if (!profileThing) {
+      throw new Error('Perfil no encontrado');
+    }
+    return getUrlAll(profileThing, FOAF.knows);
 }

@@ -4,6 +4,7 @@ import { FOAF } from '@inrupt/vocab-common-rdf';
 import {SessionType} from "../../shared/shareddtypes";
 import { Link } from 'react-router-dom';
 import '../../hojasEstilo/amigos.css';
+import {addAmigo} from "../../accesoPods/adaptador";
 
 function BuscarAmigo({ session }: SessionType) {
   const [nombre, setNombre] = useState('');
@@ -115,28 +116,9 @@ function BuscarAmigo({ session }: SessionType) {
   }
 
   async function addFriend() {
-    const { webId } = session.info;
-
-    if(!webId) {
-      throw new Error('Nombre de usuario no especificado');
-    }
-    const profileDataset = await getSolidDataset(webId);
-
-    if(!profileDataset) {
-      throw new Error('Perfil no encontrado');
-    }
-    const thing = getThing(profileDataset, webId);
-
-    if(!thing) {
-      throw new Error('Cosa de usuario no encontrada');
-    }
-    const updatedThing = addIri(thing, FOAF.knows, WebID);
-    const updatedProfileDataset = setThing(profileDataset, updatedThing);
-    await saveSolidDatasetAt(webId, updatedProfileDataset, {
-        fetch: session.fetch,
-    });
-
-    const nuevosAmigosUrl = getUrlAll(updatedThing, FOAF.knows);
+    
+    const nuevosAmigosUrl = await addAmigo({session},WebID);
+    if (nuevosAmigosUrl !== undefined){
     const nuevosAmigos = await Promise.all(nuevosAmigosUrl.map(async (url) => {
       const amigoDataset = await getSolidDataset(url);
       const amigoPerfil = getThing(amigoDataset, url);
@@ -149,6 +131,7 @@ function BuscarAmigo({ session }: SessionType) {
     }));
   
     setAmigos(nuevosAmigos);
+    }
   }
 
   async function deleteFriend(amigoNombre: string) {
