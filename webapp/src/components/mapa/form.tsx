@@ -325,7 +325,7 @@ function Formulario({ session, modo }: Props) {
           <button type="submit">Añadir</button>
         </form>
 
-        <Filtro marcadoresEnMapa={marcadores} marcadoresObjetoEnMapa={marcadoresObjeto}/>
+        <Filtro marcadores={marcadores} marcadoresObjeto={marcadoresObjeto}/>
       </div>
     </div>
     </>
