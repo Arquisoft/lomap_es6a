@@ -96,21 +96,8 @@ function Formulario({ session, modo }: Props) {
   useEffect(() => {
     if(modo) {
       if (mapRef.current) {
-        tupla = initMap(
-          mapRef.current, {session}, nombreUsuario
-        );
-
-        mapa = tupla[0];
-
-        setMarcadores(tupla[1]);
-
-        setMarcadoresObjeto(tupla[2]);
-        console.log("---------------------");  
-        console.log(mapa);  
-        mapa.on('dblclick', function (evt) {
-          setLongitud(evt.lngLat.lat+"");
-          setLatitud(evt.lngLat.lng+"");
-        });
+        tupla = initMap(mapRef.current, {session}, nombreUsuario);mapa = tupla[0];setMarcadores(tupla[1]);setMarcadoresObjeto(tupla[2]);
+        mapa.on('dblclick', function (evt) {setLongitud(evt.lngLat.lat+"");setLatitud(evt.lngLat.lng+"");});
       }
     }
   }, [count]);
@@ -199,11 +186,13 @@ function Formulario({ session, modo }: Props) {
       }else{
         iconMarker = interrogacionMarker;
       }
+      if(modo){
         new mapboxgl.Marker({ element: iconMarker })
         .setLngLat([Number(latitud), Number(longitud)])
         .setPopup(new Popup({ closeButton: false, anchor: 'left' })
         .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${latitud}, ${longitud}]</div>`))
         .addTo(mapa);
+      }
 
 
       console.log(`Nombre: ${nombre}, Latitud: ${latitud}, Longitud: ${longitud}, Tipo: ${tipo}`);

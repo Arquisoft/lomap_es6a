@@ -307,8 +307,8 @@ test('testing form validators', async () =>{
 
   fireEvent.change(nombre,{target: {value:"Hola"}})
   fireEvent.change(descripcion,{target: {value:"Muy buen sitio"}})
-  fireEvent.change(longitud,{target: {value:"43,405982364923744"}})
-  fireEvent.change(latitud,{target: {value:"-5,8009308688549766"}})
+  fireEvent.change(longitud,{target: {value:"43"}})
+  fireEvent.change(latitud,{target: {value:"-5"}})
   fireEvent.change(tipo,{target: {value:"Gasolinera"}})
   fireEvent.click(screen.getByText("Añadir"))
     expect(screen.getByText("Añadir")).toBeInTheDocument();
