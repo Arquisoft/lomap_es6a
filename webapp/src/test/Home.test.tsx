@@ -1,8 +1,10 @@
 import React from "react";
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import "@testing-library/jest-dom/extend-expect";
 import Home from "../components/home/home";
 import Slider from "../components/home/imgdinamicas";
+
+jest.setTimeout(100000);
 
 test('renders Home component without crashing', () => {
     render(<Home/>);
@@ -85,4 +87,14 @@ test('should go to the last image after the first', () => {
     fireEvent.click(getByLabelText('Previous Image'));
 
     expect(getByAltText('Slider')).toHaveAttribute('src', images[-1]);
+});
+
+test('should go to the next image after delay', async () => {
+    const images = ["fotohome1.png", "fotohome11.png", "fotohome12.png", "fotohome14.png", "fotohome5.png"];
+    const delay = 10000;
+    const { getByAltText, getByLabelText } = render(<Slider images={images} delay={delay} />);
+
+    await waitFor(() => {
+        expect(getByAltText('Slider')).toHaveAttribute('src', images[1]);
+    }, { timeout: 10000 });
 });
