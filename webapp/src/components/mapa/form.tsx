@@ -137,7 +137,7 @@ function Formulario({ session, modo }: Props) {
       erroresFormulario.descripcion = "El campo Descripción es obligatorio";
     }
 
-    if (nombre.trim().length > 100) {
+    if (descripcion.trim().length > 100) {
       erroresFormulario.descripcion = "Descripción no debe ser superior a 100";
     }
     if (Number(longitud) < -180 || Number(longitud) > 180 || longitud.trim().length == 0) {
@@ -256,7 +256,7 @@ function Formulario({ session, modo }: Props) {
           <h2>Añadir Marcador</h2>
           <label>
             Nombre:
-            <input
+            <input aria-label='form-nombre'
               type="text"
               value={nombre}
               placeholder='Escribe el nombre del lugar'
@@ -267,7 +267,7 @@ function Formulario({ session, modo }: Props) {
           <br />
           <label>
             Descripcion:
-            <textarea
+            <textarea aria-label='form-descripcion'
               style={{ resize: "none" }}
               value={descripcion}
               placeholder='Escribe la descripción del lugar'
@@ -280,7 +280,7 @@ function Formulario({ session, modo }: Props) {
           <br />
           <label>
             Longitud:
-            <input
+            <input aria-label='form-longitud'
               type="number"
               name="longitud"
               step="0.000000000000001"
@@ -293,7 +293,7 @@ function Formulario({ session, modo }: Props) {
           <br />
           <label>
             Latitud:
-            <input
+            <input aria-label='form-latitud'
               type="number"
               name="latitud"
               step="0.000000000000001"
@@ -306,20 +306,20 @@ function Formulario({ session, modo }: Props) {
           <br />
           <label>
             Tipo:
-            <select value={tipo} onChange={handleTipoChange}>
+            <select value={tipo} onChange={handleTipoChange} aria-label='form-tipo'>
               <option value="">Elija un tipo</option>
-              <option value="Gasolinera">Gasolinera</option>
-              <option value="Restaurante">Restaurante</option>
-              <option value="Bar">Bar</option>
-              <option value="Tienda">Tienda</option>
-              <option value="Paisaje">Paisaje</option>
-              <option value="Monumento">Monumento</option>
+              <option aria-label='tipo-Gasolinera' value="Gasolinera">Gasolinera</option>
+              <option aria-label='tipo-Restaurante' value="Restaurante">Restaurante</option>
+              <option aria-label='tipo-Bar' value="Bar">Bar</option>
+              <option aria-label='tipo-Tienda' value="Tienda">Tienda</option>
+              <option aria-label='tipo-Paisaje' value="Paisaje">Paisaje</option>
+              <option aria-label='tipo-Monumento' value="Monumento">Monumento</option>
             </select>
             {errores.tipo && <div className="error">{errores.tipo}</div>}
           </label>
           <label>
             Añade una imagen
-            <input id="imageUploader" type="file" accept="image/*" onChange={handleImageChange}/>
+            <input id="imageUploader" type="file" accept="image/*" onChange={handleImageChange} aria-label='form-imagen'/>
           </label>
           <br />
           <button type="submit">Añadir</button>
