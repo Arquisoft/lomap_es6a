@@ -233,7 +233,6 @@ function Formulario({ session, modo }: Props) {
     }
   }
   };
-  
   return (
     
     <>
