@@ -4,7 +4,9 @@
 [role="arc42help"]
 
 === Escenario de ejecución 1. Registro de nuevo usuario
+
 [plantuml,"Sequence diagram0",png]
+
 ----
 actor User
 entity FrontEnd
@@ -18,8 +20,11 @@ FrontEnd <- LoMap: Devuelve la confirmación del registro
 User -> FrontEnd: Muestra un mensaje de confirmación
 
 ----
+
 === Escenario de ejecución 2. Inicio de sesion de usuario
+
 [plantuml,"Sequence diagram1",png]
+
 ----
 actor User
 entity FrontEnd
@@ -31,7 +36,9 @@ FrontEnd -> LoMap: envía el POD
 LoMap <- POD: Extrae datos del usuario
 FrontEnd <- LoMap: Devuelve localizaciones
 User -> FrontEnd: Muestra localizaciones
+
 ----
+
 === Escenario de ejecución 3. Añadir localización
 
 El login ante el provedor de PODs ya está hecho en este escenario.
