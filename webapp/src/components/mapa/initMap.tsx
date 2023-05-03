@@ -11,6 +11,51 @@ import monumento from '../../imagenes/monumento.png';
 import interrogacion from '../../imagenes/interrogacion.png';
 import Marker from "../../accesoPods/marker";
 import Comentario from '../../accesoPods/comentario';
+import { Session } from '@inrupt/solid-client-authn-browser';
+
+
+export const crearImgHtml =  (foto:string) =>{
+  let chincheta = document.createElement('img');
+  chincheta.src = foto;
+  chincheta.width = 30; // establecer el ancho en 30 píxeles
+  chincheta.height = 30; // establecer la altura en 30 píxeles
+
+  return chincheta;
+}
+
+export const seleccionarIcono =(tipo:string) =>{
+  if (tipo == "Bar"){
+    return crearImgHtml(bar);
+  }else if(tipo == "Restaurante"){
+    return crearImgHtml(restaurante);
+  }else if(tipo == "Gasolinera"){
+    return crearImgHtml(gasolinera);
+  }else if(tipo == "Tienda"){
+    return crearImgHtml(tienda);
+  }else if(tipo == "Paisaje"){
+    return crearImgHtml(paisaje);
+  }else if(tipo == "Monumento"){
+    return crearImgHtml(monumento);
+  }else{
+    return crearImgHtml(interrogacion);
+  }
+}
+
+
+export function validacionCamposComentario(texto:string, valoracion:string){
+  return (texto.length != 0 && Number(valoracion)>=0 && Number(valoracion)<=10 && Number(valoracion) != null && valoracion.length != 0);
+}
+
+export function guardarComentarioSiEstaEnSesion(texto:string,marker:Marker,valoracion:string,session:Session,user: string){
+  if (session.info.isLoggedIn) {
+    const user2 = session.info.webId;
+    let nombreUsuario = "";
+    if (user2) {
+      nombreUsuario = user2.split('//')[1].split('.')[0];
+    }
+    guardarComentario({session}.session, texto, marker.id, nombreUsuario , valoracion, user);
+  }
+}
 
 export const initMap = (container: HTMLDivElement, { session }: SessionType, user: string) => {
   const marcadoresEnMapa: Array<mapboxgl.Marker> = [];
@@ -26,47 +71,47 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
         
     });
     
-    function crearImgHtml(foto:string){
-      let chincheta = document.createElement('img');
-      chincheta.src = foto;
-      chincheta.width = 30; // establecer el ancho en 30 píxeles
-      chincheta.height = 30; // establecer la altura en 30 píxeles
+    // function crearImgHtml(foto:string){
+    //   let chincheta = document.createElement('img');
+    //   chincheta.src = foto;
+    //   chincheta.width = 30; // establecer el ancho en 30 píxeles
+    //   chincheta.height = 30; // establecer la altura en 30 píxeles
 
-      return chincheta;
-    }
+    //   return chincheta;
+    // }
+    
+    // function validacionCamposComentario(texto:string, valoracion:string){
+    //   return (texto.length != 0 && Number(valoracion)>=0 && Number(valoracion)<=10 && Number(valoracion) != null && valoracion.length != 0);
+    // }
 
-    function validacionCamposComentario(texto:string, valoracion:string){
-      return (texto.length != 0 && Number(valoracion)>=0 && Number(valoracion)<=10 && Number(valoracion) != null && valoracion.length != 0);
-    }
+    // function seleccionarIcono(tipo:string){
+    //   if (tipo == "Bar"){
+    //     return crearImgHtml(bar);
+    //   }else if(tipo == "Restaurante"){
+    //     return crearImgHtml(restaurante);
+    //   }else if(tipo == "Gasolinera"){
+    //     return crearImgHtml(gasolinera);
+    //   }else if(tipo == "Tienda"){
+    //     return crearImgHtml(tienda);
+    //   }else if(tipo == "Paisaje"){
+    //     return crearImgHtml(paisaje);
+    //   }else if(tipo == "Monumento"){
+    //     return crearImgHtml(monumento);
+    //   }else{
+    //     return crearImgHtml(interrogacion);
+    //   }
+    // }
 
-    function seleccionarIcono(tipo:string){
-      if (tipo == "Bar"){
-        return crearImgHtml(bar);
-      }else if(tipo == "Restaurante"){
-        return crearImgHtml(restaurante);
-      }else if(tipo == "Gasolinera"){
-        return crearImgHtml(gasolinera);
-      }else if(tipo == "Tienda"){
-        return crearImgHtml(tienda);
-      }else if(tipo == "Paisaje"){
-        return crearImgHtml(paisaje);
-      }else if(tipo == "Monumento"){
-        return crearImgHtml(monumento);
-      }else{
-        return crearImgHtml(interrogacion);
-      }
-    }
-
-    function guardarComentarioSiEstaEnSesion(texto:string,marker:Marker,valoracion:string){
-      if (session.info.isLoggedIn) {
-        const user2 = session.info.webId;
-        let nombreUsuario = "";
-        if (user2) {
-          nombreUsuario = user2.split('//')[1].split('.')[0];
-        }
-        guardarComentario({session}.session, texto, marker.id, nombreUsuario , valoracion, user);
-      }
-    }
+    // function guardarComentarioSiEstaEnSesion(texto:string,marker:Marker,valoracion:string){
+    //   if (session.info.isLoggedIn) {
+    //     const user2 = session.info.webId;
+    //     let nombreUsuario = "";
+    //     if (user2) {
+    //       nombreUsuario = user2.split('//')[1].split('.')[0];
+    //     }
+    //     guardarComentario({session}.session, texto, marker.id, nombreUsuario , valoracion, user);
+    //   }
+    // }
 
     navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
@@ -121,7 +166,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
                         let valoracion = (miInputValoracion  as HTMLInputElement).value
                         if (validacionCamposComentario(texto,valoracion)){
                           
-                          guardarComentarioSiEstaEnSesion(texto, market, valoracion);
+                          guardarComentarioSiEstaEnSesion(texto, market, valoracion,session,user);
 
                           (miInput as HTMLInputElement).value = "";
                           (miInputValoracion  as HTMLInputElement).value = "";
