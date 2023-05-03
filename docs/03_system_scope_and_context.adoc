@@ -1,14 +1,23 @@
 [[section-system-scope-and-context]]
-== System Scope and Context 
+== Alcance y contexto del sistema
 
-=== Business Context
+=== Contexto empresarial
+El objetivo del proyecto es desarrollar un sistema de software llamado “LoMap” donde los ciudadanos puedan tener mapas personalizados sobre lugares y negocios locales en su ciudad.
+Por otro lado, en esta aplicación los usuarios pueden agregar ubicaciones en diferentes categorías como:
 
+* Tiendas
+
+*	Barras
+
+* Restaurantes
+
+* Lugares de interés
+
+* Monumentos
+Los usuarios también pueden agregar puntajes de revisión, comentarios, imágenes, etc. sobre los lugares agregados.
 
 Nustra app es una red social con la infraestructura "dispersa" en pods que pertenecen al usuario(uno por usuario) en vez de una base de datos centralizada en los servidores de la empresa
 se sigue teniendo una base de datos central pero solo se usa para guardar informacion basica del usuario tambien la app hara uso de apis externas
-
-:imagesdir: images/
-image:3.1Diagrama.png[Punto3:DCE]
 
 === Contexto tecnico
 
@@ -17,8 +26,13 @@ El front-end se desarrolla utilizando el framework React, el cual implementa com
 Para el back-end, usando Node.js express, hacemos todas las transacciones con la base de datos.  
 La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usaremos una API externa.  
 
+[options="header",cols="1,2"]
+|===
+| Technology         | Description
+| SOLID    | The architecture of the application
+| PODs    | Store the personal data
+| TYPESCRIPT     | Main programing lenguage
+| REACT     | The library to make the GUI
+| Mapbox    | Map api
 
-El siguiente diagrama muestra los componentes de la aplicación afectados por cada tecnología.
-
-:imagesdir: images/
-image:03-documentacion2.png[Punto 3:DT]
+|===
