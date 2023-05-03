@@ -239,7 +239,6 @@ function Formulario({ session }: SessionType) {
     }
   }
   };
-  
   return (
     
     <>
@@ -320,7 +319,7 @@ function Formulario({ session }: SessionType) {
           <button type="submit">Añadir</button>
         </form>
 
-        <Filtro marcadoresEnMapa={marcadores} marcadoresObjetoEnMapa={marcadoresObjeto}/>
+        <Filtro marcadores={marcadores} marcadoresObjeto={marcadoresObjeto}/>
       </div>
     </div>
     </>
