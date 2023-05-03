@@ -9,6 +9,7 @@ import Comentario from "../accesoPods/comentario";
 import mapboxgl from 'mapbox-gl'
 import { SessionProvider } from "@inrupt/solid-ui-react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { click } from "@testing-library/user-event/dist/click";
 //import Map from '@/components/modules/Home/Map/Map'
 
 jest.mock('mapbox-gl/dist/mapbox-gl', () => ({
@@ -65,35 +66,41 @@ jest.mock('mapbox-gl', () => ({
 const session = new Session();
 session.info.isLoggedIn = true;
 session.info.webId = "https://testasw.inrupt.net/profile/card#me";
+const marcador1 = new Marker("1","MasYMas","Supermercado",1,1,"Tienda");
+const marcador2 = new Marker("2","MasYMas","Supermercado",1,1,"Tienda");
+const marcador3 = new Marker("3","Alimerka","Supermercado",2,2,"Tienda");
+const marcador4 = new Marker("4","Carrefour","Supermercado",3,3,"Tienda");
+const comentario1 = new Comentario("Muy buena","3","uo282944","9");
+const comentario2 = new Comentario("Muy guapa","3","uo282944","8");
+beforeAll(()=>{
+  jest.spyOn(adaptador, "guardarMarcador").mockImplementation(
+    (session: Session, nombre: string, descripcion:string, lat: number, lng: number, tipo: string,imagen:string): Marker | null => marcador1
+);
+
+jest.spyOn(adaptador, "guardarMarcadorSinImagen").mockImplementation(
+    (session: Session, nombre: string, descripcion:string, lat: number, lng: number, tipo: string): Marker | null => marcador2
+);
+
+jest.spyOn(adaptador, "guardarComentario").mockImplementation(
+    (session: Session, texto: string, idmarker: string, autor: string, valoracion: string, user: string): Comentario | null => comentario1
+);
+
+jest.spyOn(adaptador, "recuperarMarcador").mockImplementation(
+    (session: Session, user: string): Promise<Marker[] | null> => Promise.resolve([marcador3, marcador4])
+);
+
+jest.spyOn(adaptador, "recuperarComentario").mockImplementation(
+    (session: Session, idmarker: String, user: string): Promise<Comentario[] | null> => Promise.resolve([comentario1, comentario2])
+);
+
+
+})
+
 
 test('renders Form component without crashing', async () => {
-    const marcador1 = new Marker("1","MasYMas","Supermercado",1,1,"Tienda");
-    const marcador2 = new Marker("2","MasYMas","Supermercado",1,1,"Tienda");
-    const marcador3 = new Marker("3","Alimerka","Supermercado",2,2,"Tienda");
-    const marcador4 = new Marker("4","Carrefour","Supermercado",3,3,"Tienda");
-    const comentario1 = new Comentario("Muy buena","3","uo282944","9");
-    const comentario2 = new Comentario("Muy guapa","3","uo282944","8");
 
-    jest.spyOn(adaptador, "guardarMarcador").mockImplementation(
-        (session: Session, nombre: string, descripcion:string, lat: number, lng: number, tipo: string,imagen:string): Marker | null => marcador1
-    );
 
-    jest.spyOn(adaptador, "guardarMarcadorSinImagen").mockImplementation(
-        (session: Session, nombre: string, descripcion:string, lat: number, lng: number, tipo: string): Marker | null => marcador2
-    );
-
-    jest.spyOn(adaptador, "guardarComentario").mockImplementation(
-        (session: Session, texto: string, idmarker: string, autor: string, valoracion: string, user: string): Comentario | null => comentario1
-    );
-
-    jest.spyOn(adaptador, "recuperarMarcador").mockImplementation(
-        (session: Session, user: string): Promise<Marker[] | null> => Promise.resolve([marcador3, marcador4])
-    );
-
-    jest.spyOn(adaptador, "recuperarComentario").mockImplementation(
-        (session: Session, idmarker: String, user: string): Promise<Comentario[] | null> => Promise.resolve([comentario1, comentario2])
-    );
-
+    
     render( <>
         <SessionProvider sessionId="logIn">
           <Router>
@@ -132,3 +139,56 @@ test('renders Form component without crashing', async () => {
     expect(screen.getByLabelText("Restaurante")).toBeInTheDocument();
     
 });
+
+test('testing form validators', async () =>{
+  
+  render( <>
+    <SessionProvider sessionId="logIn">
+      <Router>
+          <div className='contenedor-rutas'>
+          <Form session={session} modo={false}/>
+          </div>
+          
+        </Router>
+          </SessionProvider>
+          </> ) ;
+
+  //Testeo nombre
+
+  var nombre = screen.getByLabelText("form-nombre")
+  expect(nombre).toBeInTheDocument();
+
+  fireEvent.change(nombre,{target: {value:""}})
+  fireEvent.click(screen.getByText("Añadir"))
+  expect(screen.getByText("El campo Nombre es obligatorio")).toBeInTheDocument();
+
+  fireEvent.change(nombre,{target: {value:"qwertyuiopasdfghjklñzxcvbnmqwertyuuiiopàsdfghjklñzxcvbnmm"}})
+  fireEvent.click(screen.getByText("Añadir"))
+  expect(screen.getByText("Nombre no debe ser superior a 20")).toBeInTheDocument();
+
+  //Testeo descipcion
+
+  var descripcion = screen.getByLabelText("form-descripcion")
+  expect(descripcion).toBeInTheDocument();
+
+  fireEvent.change(descripcion,{target: {value:""}})
+  fireEvent.click(screen.getByText("Añadir"))
+  expect(screen.getByText("El campo Descripción es obligatorio")).toBeInTheDocument();
+
+  fireEvent.change(descripcion,{target: {value:"qwertyuiopasdfghjklñzxcvbnmqwertyuuiiopàsdfghjklñzxcvbnmm"+
+  "qwertyuiopasdfghjklñzxcvbnmqwertyuuiiopàsdfghjklñzxcvbnmmqwertyuiopasdfghjklñzxcvbnmqwertyuuiiopàsdfghjklñzxcvbnmm"
+  +
+  "qwertyuiopasdfghjklñzxcvbnmqwertyuuiiopàsdfghjklñzxcvbnmmqwertyuiopasdfghjklñzxcvbnmqwertyuuiiopàsdfghjklñzxcvbnmm"
+  +
+  "qwertyuiopasdfghjklñzxcvbnmqwertyuuiiopàsdfghjklñzxcvbnmmqwertyuiopasdfghjklñzxcvbnmqwertyuuiiopàsdfghjklñzxcvbnmm"}})
+  fireEvent.click(screen.getByText("Añadir"))
+  expect(screen.getByText("Descripción no debe ser superior a 100")).toBeInTheDocument();
+          //   fireEvent.change(screen.getByPlaceholderText("Username"),{
+        //     target: {value: 'testASW'},
+        //   });
+        //   fireEvent.change(screen.getByPlaceholderText("Password"),{
+        //     target: {value: '1234567890ABCabc.'},
+        //   });
+
+
+})

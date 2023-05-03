@@ -137,7 +137,7 @@ function Formulario({ session, modo }: Props) {
       erroresFormulario.descripcion = "El campo Descripción es obligatorio";
     }
 
-    if (nombre.trim().length > 100) {
+    if (descripcion.trim().length > 100) {
       erroresFormulario.descripcion = "Descripción no debe ser superior a 100";
     }
     if (Number(longitud) < -180 || Number(longitud) > 180 || longitud.trim().length == 0) {
@@ -256,18 +256,19 @@ function Formulario({ session, modo }: Props) {
           <h2>Añadir Marcador</h2>
           <label>
             Nombre:
-            <input
+            <input aria-label='form-nombre'
               type="text"
               value={nombre}
               placeholder='Escribe el nombre del lugar'
               onChange={handleNombreChange}
+              
             />
             {errores.nombre && <div className="error">{errores.nombre}</div>}
           </label>
           <br />
           <label>
             Descripcion:
-            <textarea
+            <textarea aria-label='form-descripcion'
               style={{ resize: "none" }}
               value={descripcion}
               placeholder='Escribe la descripción del lugar'
