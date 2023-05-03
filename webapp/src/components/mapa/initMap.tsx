@@ -70,7 +70,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
 
     navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
-      
+       // position.coords.
         // Centra el mapa en la ubicación del usuario
         mapa.setCenter([longitude, latitude]);
       

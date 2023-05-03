@@ -14,5 +14,12 @@ module.exports = class CustomTestEnvironment extends Environment {
             const { TextDecoder } = require('util');
             this.global.TextDecoder = TextDecoder;
         }
+        if (typeof this.global.performance.mark === 'undefined') {
+            const { performance } = require('perf_hooks');
+            this.global.performance.mark = performance.mark;
+           
+        }
+       // this.global.webgl
+        
     }
 }
