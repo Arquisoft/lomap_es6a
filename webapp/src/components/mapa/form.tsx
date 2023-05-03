@@ -13,6 +13,15 @@ import { initMap } from './initMap';
 import mapboxgl ,{Popup} from 'mapbox-gl';
 import Filtro from './filtro';
 import Marker from "../../accesoPods/marker";
+import { rejects } from 'assert';
+
+interface ErroresFormulario {
+  nombre: string | null;
+  descripcion: string | null;
+  longitud: string | null;
+  latitud: string | null;
+  tipo: string | null;
+}
 
 interface Props {
   session: Session;
@@ -27,6 +36,14 @@ function Formulario({ session, modo }: Props) {
   const [longitud, setLongitud] = useState("");
   const [tipo, setTipo] = useState("");
   const [imagen, setImagen] = useState("");
+
+  const [errores, setErrores] = useState<ErroresFormulario>({
+    nombre: null,
+    descripcion: null,
+    longitud: null,
+    latitud: null,
+    tipo: null,
+  });
 
   const barMarker = document.createElement('img');
   barMarker.src = bar;
@@ -101,44 +118,99 @@ function Formulario({ session, modo }: Props) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (imagen.length > 0){
-      guardarMarcador({session}.session, nombre, descripcion, Number(latitud),Number(longitud), tipo,imagen);
-    }else{
-      guardarMarcadorSinImagen({session}.session, nombre, descripcion, Number(latitud),Number(longitud), tipo);
+
+    const erroresFormulario: ErroresFormulario = {
+      nombre: null,
+      descripcion: null,
+      longitud: null,
+      latitud: null,
+      tipo: null,
+    };
+    if (!nombre) {
+      erroresFormulario.nombre = "El campo Nombre es obligatorio";
     }
-    setNombre("");
-    setLatitud("");
-    setLongitud("");
-    setTipo("");
-    setDescripcion("");
-    
-    //Añadir marcador
-    let iconMarker;
-    if (tipo == "Bar"){
-      iconMarker = barMarker;
-    }else if(tipo == "Restaurante"){
-      iconMarker = restauranteMarker;
-    }else if(tipo == "Gasolinera"){
-      iconMarker = gasolineraMarker;
-    }else if(tipo == "Tienda"){
-      iconMarker = tiendaMarker;
-    }else if(tipo == "Paisaje"){
-      iconMarker = paisajeMarker;
-    }else if(tipo == "Monumento"){
-      iconMarker = monumentoMarker;
-    }else{
-      iconMarker = interrogacionMarker;
+
+    if (nombre.trim().length > 20) {
+      erroresFormulario.nombre = "Nombre no debe ser superior a 20";
     }
-      new mapboxgl.Marker({ element: iconMarker })
-      .setLngLat([Number(latitud), Number(longitud)])
-      .setPopup(new Popup({ closeButton: false, anchor: 'left' })
-      .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${latitud}, ${longitud}]</div>`))
-      .addTo(mapa);
+
+    if (!descripcion) {
+      erroresFormulario.descripcion = "El campo Descripción es obligatorio";
+    }
+
+    if (nombre.trim().length > 100) {
+      erroresFormulario.descripcion = "Descripción no debe ser superior a 100";
+    }
+    if (Number(longitud) < -180 || Number(longitud) > 180 || longitud.trim().length == 0) {
+      erroresFormulario.longitud =
+        "Longitud debe estar entre -180 y 180";
+    }
+    if (longitud.trim().length == 0) {
+      erroresFormulario.longitud =
+        "Longitud es obligatoria";
+    }
+    if (Number(latitud) < -90 || Number(latitud) > 90) {
+      erroresFormulario.latitud =
+        "Latitud debe estar entre -90 y 90";
+    }
+
+    if (latitud.trim().length == 0) {
+      erroresFormulario.latitud =
+        "Latitud es obligatoria";
+    }
+
+    if (!tipo) {
+      erroresFormulario.tipo = "Debe elegir un Tipo de marcador";
+    }
+    if (Object.values(erroresFormulario).some((value) => value !== null)) {
+      setErrores(erroresFormulario);
+    } else {
+      setErrores({
+        nombre: null,
+        descripcion: null,
+        longitud: null,
+        latitud: null,
+        tipo: null,
+      });
+      if (imagen.length > 0){
+        guardarMarcador({session}.session, nombre, descripcion, Number(latitud),Number(longitud), tipo,imagen);
+      }else{
+        guardarMarcadorSinImagen({session}.session, nombre, descripcion, Number(latitud),Number(longitud), tipo);
+      }
+      setNombre("");
+      setLatitud("");
+      setLongitud("");
+      setTipo("");
+      setDescripcion("");
+      
+      //Añadir marcador
+      let iconMarker;
+      if (tipo == "Bar"){
+        iconMarker = barMarker;
+      }else if(tipo == "Restaurante"){
+        iconMarker = restauranteMarker;
+      }else if(tipo == "Gasolinera"){
+        iconMarker = gasolineraMarker;
+      }else if(tipo == "Tienda"){
+        iconMarker = tiendaMarker;
+      }else if(tipo == "Paisaje"){
+        iconMarker = paisajeMarker;
+      }else if(tipo == "Monumento"){
+        iconMarker = monumentoMarker;
+      }else{
+        iconMarker = interrogacionMarker;
+      }
+        new mapboxgl.Marker({ element: iconMarker })
+        .setLngLat([Number(latitud), Number(longitud)])
+        .setPopup(new Popup({ closeButton: false, anchor: 'left' })
+        .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${latitud}, ${longitud}]</div>`))
+        .addTo(mapa);
 
 
-    console.log(`Nombre: ${nombre}, Latitud: ${latitud}, Longitud: ${longitud}, Tipo: ${tipo}`);
-    // Aquí podrías hacer algo con los datos del formulario, como enviarlos a un servidor
-    setCount(count+1);
+      console.log(`Nombre: ${nombre}, Latitud: ${latitud}, Longitud: ${longitud}, Tipo: ${tipo}`);
+      // Aquí podrías hacer algo con los datos del formulario, como enviarlos a un servidor
+      setCount(count+1);
+    }
   };
 
   const handleNombreChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -182,30 +254,60 @@ function Formulario({ session, modo }: Props) {
         
       <div className='panel'>
         <form onSubmit={handleSubmit} className="formulario">
-        <h2>Añadir Marcador</h2>
+          <h2>Añadir Marcador</h2>
           <label>
             Nombre:
-            <input type="text" value={nombre} onChange={handleNombreChange} required />
+            <input
+              type="text"
+              value={nombre}
+              placeholder='Escribe el nombre del lugar'
+              onChange={handleNombreChange}
+            />
+            {errores.nombre && <div className="error">{errores.nombre}</div>}
           </label>
           <br />
           <label>
             Descripcion:
-            <textarea style={{resize:"none"}} value={descripcion} onChange={handleDescripcionChange} required ></textarea>
+            <textarea
+              style={{ resize: "none" }}
+              value={descripcion}
+              placeholder='Escribe la descripción del lugar'
+              onChange={handleDescripcionChange}
+            ></textarea>
+            {errores.descripcion && (
+              <div className="error">{errores.descripcion}</div>
+            )}
           </label>
           <br />
           <label>
             Longitud:
-            <input type="number" name="longitud" min="-180" max="180" step="0.000000000000001" value={longitud} onChange={handleLongitudChange} required />
+            <input
+              type="number"
+              name="longitud"
+              step="0.000000000000001"
+              value={longitud}
+              placeholder='Doble click en el mapa'
+              onChange={handleLongitudChange}
+            />
+            {errores.longitud && <div className="error">{errores.longitud}</div>}
           </label>
           <br />
           <label>
             Latitud:
-            <input type="number" name="latitud" min="-90" max="90" step="0.000000000000001" value={latitud} onChange={handleLatitudChange} required />
+            <input
+              type="number"
+              name="latitud"
+              step="0.000000000000001"
+              value={latitud}
+              placeholder='Doble click en el mapa'
+              onChange={handleLatitudChange}
+            />
+            {errores.latitud && <div className="error">{errores.latitud}</div>}
           </label>
           <br />
           <label>
             Tipo:
-            <select value={tipo} onChange={handleTipoChange} required>
+            <select value={tipo} onChange={handleTipoChange}>
               <option value="">Elija un tipo</option>
               <option value="Gasolinera">Gasolinera</option>
               <option value="Restaurante">Restaurante</option>
@@ -214,15 +316,16 @@ function Formulario({ session, modo }: Props) {
               <option value="Paisaje">Paisaje</option>
               <option value="Monumento">Monumento</option>
             </select>
+            {errores.tipo && <div className="error">{errores.tipo}</div>}
           </label>
           <label>
             Añade una imagen
-          <input id="imageUploader" type="file" accept="image/*" onChange={handleImageChange}/>
+            <input id="imageUploader" type="file" accept="image/*" onChange={handleImageChange}/>
           </label>
           <br />
           <button type="submit">Añadir</button>
         </form>
-      
+
         <Filtro marcadoresEnMapa={marcadores} marcadoresObjetoEnMapa={marcadoresObjeto}/>
       </div>
     </div>
