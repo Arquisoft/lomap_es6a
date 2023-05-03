@@ -451,26 +451,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_arquitectura">2. Arquitectura</a>
 <ul class="sectlevel2">
-<li><a href="#_explicación_sobre_la_arquitectura">2.1. Explicación sobre la Arquitectura</a></li>
+<li><a href="#_explicación_sobre_la_pila_tecnológica">2.1. Explicación sobre la Pila Tecnológica</a></li>
 <li><a href="#_organización_del_equipo">2.2. Organización del equipo</a></li>
 <li><a href="#_puntos_a_tener_en_cuenta">2.3. Puntos a tener en cuenta</a></li>
 </ul>
 </li>
-<li><a href="#section-system-scope-and-context">3. System Scope and Context</a>
+<li><a href="#section-system-scope-and-context">3. Alcance y contexto del sistema</a>
 <ul class="sectlevel2">
-<li><a href="#_business_context">3.1. Business Context</a></li>
-<li><a href="#_contexto_tecnico">3.2. Contexto tecnico</a></li>
+<li><a href="#_contexto_empresarial">3.1. Contexto empresarial</a></li>
+<li><a href="#_contexto_técnico">3.2. Contexto técnico</a></li>
 </ul>
 </li>
 <li><a href="#section-solution-strategy">4. Soluciones Estratégicas</a></li>
-<li><a href="#section-building-block-view">5. Vista de bloques</a>
+<li><a href="#section-building-block-view">5. Vista de bloque de creación</a>
 <ul class="sectlevel2">
-<li><a href="#_sistema_general">5.1. Sistema general</a></li>
-<li><a href="#_nivel_2">5.2. Nivel 2</a></li>
-<li><a href="#_nivel_3">5.3. Nivel 3</a></li>
+<li><a href="#_nivel_0_vista_general_del_sistema">5.1. Nivel 0: Vista general del sistema</a></li>
+<li><a href="#_nivel_1">5.2. Nivel 1</a></li>
+<li><a href="#_nivel_2">5.3. Nivel 2</a></li>
 </ul>
 </li>
-<li><a href="#section-runtime-view">6. Runtime View</a>
+<li><a href="#section-runtime-view">6. Vista de tiempo de ejecución</a>
 <ul class="sectlevel2">
 <li><a href="#_escenario_de_ejecución_1_registro_de_nuevo_usuario">6.1. Escenario de ejecución 1. Registro de nuevo usuario</a></li>
 <li><a href="#_escenario_de_ejecución_2_inicio_de_sesion_de_usuario">6.2. Escenario de ejecución 2. Inicio de sesion de usuario</a></li>
@@ -479,9 +479,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_escenario_de_ejecución_5_usuario_visualiza_una_de_sus_localizaciones">6.5. Escenario de ejecución 5. Usuario visualiza una de sus localizaciones.</a></li>
 </ul>
 </li>
-<li><a href="#section-deployment-view">7. Deployment View</a>
+<li><a href="#section-deployment-view">7. Vista de Despliegue</a>
 <ul class="sectlevel2">
-<li><a href="#_infrastructure">7.1. Infrastructure</a></li>
+<li><a href="#_infraestructura">7.1. Infraestructura</a></li>
 </ul>
 </li>
 <li><a href="#section-concepts">8. Conceptos Transversales</a>
@@ -491,20 +491,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_arquitectura_y_patrones_de_diseño">8.3. Arquitectura y patrones de diseño</a></li>
 <li><a href="#_experiencia_usuario">8.4. Experiencia usuario</a></li>
 <li><a href="#_conceptos_de_desarrollo">8.5. Conceptos de desarrollo</a></li>
-<li><a href="#_coceptos_operacionales">8.6. Coceptos operacionales</a></li>
+<li><a href="#_conceptos_operacionales">8.6. Conceptos operacionales</a></li>
 </ul>
 </li>
-<li><a href="#section-design-decisions">9. Design Decisions</a></li>
-<li><a href="#section-quality-scenarios">10. Quality Requirements</a>
+<li><a href="#section-design-decisions">9. Decisiones de diseño</a></li>
+<li><a href="#section-quality-scenarios">10. Requerimientos de calidad</a>
 <ul class="sectlevel2">
-<li><a href="#_quality_tree">10.1. Quality Tree</a></li>
-<li><a href="#_quality_scenarios">10.2. Quality Scenarios</a></li>
+<li><a href="#_árbol_de_calidad">10.1. Árbol de calidad</a></li>
+<li><a href="#_escenarios_de_calidad">10.2. Escenarios de calidad</a></li>
 </ul>
 </li>
 <li><a href="#section-technical-risks">11. Riesgos y Deudas Técnicas</a>
 <ul class="sectlevel2">
-<li><a href="#_tabla_de_riesgos">11.1. Tabla de riesgos</a></li>
-<li><a href="#_tabla_deuda_técnica">11.2. Tabla deuda técnica</a></li>
+<li><a href="#_riesgos">11.1. Riesgos</a></li>
+<li><a href="#_deuda_técnica">11.2. Deuda técnica</a></li>
 </ul>
 </li>
 <li><a href="#section-glossary">12. Glosario</a></li>
@@ -737,8 +737,11 @@ Lo interesante de LoMap son las amplias posibilidades que te ofrece como usuario
 <div class="sect1">
 <h2 id="_arquitectura">2. Arquitectura</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Usamos el MVC(modelo vista-controlador). MVC es un patrón de arquitectura de software que separa una aplicación en tres componentes: Modelo, Vista y Controlador. El Modelo maneja los datos y la lógica de negocio, la Vista se encarga de la presentación de la información al usuario, y el Controlador actúa como intermediario entre los dos, gestionando las interacciones del usuario y actualizando el Modelo y la Vista según sea necesario.</p>
+</div>
 <div class="sect2">
-<h3 id="_explicación_sobre_la_arquitectura">2.1. Explicación sobre la Arquitectura</h3>
+<h3 id="_explicación_sobre_la_pila_tecnológica">2.1. Explicación sobre la Pila Tecnológica</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -761,10 +764,6 @@ Lo interesante de LoMap son las amplias posibilidades que te ofrece como usuario
 <td class="tableblock halign-left valign-top"><p class="tableblock">TypeScrypt</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript para escribir el back-end, TS es una evolución de javascript con tipos.</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Node.js</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Framework de javascript usado para el back-end.</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -783,7 +782,7 @@ Lo interesante de LoMap son las amplias posibilidades que te ofrece como usuario
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reuniones</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Es la primera vez que trabajamos juntos en un proyecto de estas dimensiones, tanto por complejidad en el software como por sus tecnologías.
-Somos un equipo de 5 personas.</p></td>
+Somos un equipo de 5 personas y hemos seguido una metodología ágil.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo</p></td>
@@ -813,10 +812,6 @@ Somos un equipo de 5 personas.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usamos Arc42 para la documentación.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Solid</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación sigue los principios SOLID.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usamos los lenguajes TypeScript/JavaScript y alguno de sus frameworks.</p></td>
 </tr>
@@ -835,32 +830,80 @@ Somos un equipo de 5 personas.</p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-system-scope-and-context">3. System Scope and Context</h2>
+<h2 id="section-system-scope-and-context">3. Alcance y contexto del sistema</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_business_context">3.1. Business Context</h3>
+<h3 id="_contexto_empresarial">3.1. Contexto empresarial</h3>
+<div class="paragraph">
+<p>El objetivo del proyecto es desarrollar un sistema de software llamado “LoMap” donde los ciudadanos puedan tener mapas personalizados sobre lugares y negocios locales en su ciudad.
+Por otro lado, en esta aplicación los usuarios pueden agregar ubicaciones en diferentes categorías como:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tiendas</p>
+</li>
+<li>
+<p>Barras</p>
+</li>
+<li>
+<p>Restaurantes</p>
+</li>
+<li>
+<p>Lugares de interés</p>
+</li>
+<li>
+<p>Monumentos
+Los usuarios también pueden agregar puntajes de revisión, comentarios, imágenes, etc. sobre los lugares agregados.</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>Nustra app es una red social con la infraestructura "dispersa" en pods que pertenecen al usuario(uno por usuario) en vez de una base de datos centralizada en los servidores de la empresa
 se sigue teniendo una base de datos central pero solo se usa para guardar informacion basica del usuario tambien la app hara uso de apis externas</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/3.1Diagrama.png" alt="Punto3:DCE"></span></p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="_contexto_tecnico">3.2. Contexto tecnico</h3>
+<h3 id="_contexto_técnico">3.2. Contexto técnico</h3>
 <div class="paragraph">
 <p>Nuestra aplicación LoMap sigue los principios de descentralización de datos personales SOLID al almacenar datos personales en el POD independiente de cada usuario.
 El front-end se desarrolla utilizando el framework React, el cual implementa componentes propios diseñados o creados, el lenguaje utilizado para desarrollar diversas funciones en pantalla es TypeScript.
-Para el back-end, usando Node.js express, hacemos todas las transacciones con la base de datos.
-La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usaremos una API externa.</p>
+No usamos nada de Back-End ya que el Front-End se comunica directamente con los PODs de inrupt.</p>
 </div>
-<div class="paragraph">
-<p>El siguiente diagrama muestra los componentes de la aplicación afectados por cada tecnología.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/03-documentacion2.png" alt="Punto 3:DT"></span></p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Tecnología</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Principios de descentralización de la aplicación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PODs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Para guardar los datos de los usuarios.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TYPESCRIPT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lenguaje principal de la aplicación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REACT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework usado para el Front-End.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapbox</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Api que usamos para los mapas.</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -869,7 +912,7 @@ La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usare
 <h2 id="section-solution-strategy">4. Soluciones Estratégicas</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Para la reaalización de LoMap hemos tomado la decisión de desarrollarlo en TypeScript. TypeScript es un superconjunto de JavaScript cuyo punto más resaltable es el uso de tipado.</p>
+<p>Para la realización de LoMap hemos tomado la decisión de desarrollarlo en TypeScript, usando el framework React y el proovedor de pods de inrupt. TypeScript es un superconjunto de JavaScript cuyo punto más resaltable es el uso de tipado.</p>
 </div>
 <div class="ulist arc42help">
 <div class="title">Restricciones tecnológicas</div>
@@ -883,13 +926,10 @@ La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usare
 <div class="title">Tecnologías y motivación</div>
 <ul>
 <li>
-<p>React: React es una biblioteca de código abierto concebida para crear interfaces de usuario. Hemos elegido React por su sencillez y las númerosas posibilidades que proporciona.</p>
+<p>React: Framework de código abierto concebida para crear interfaces de usuario. Hemos elegido React por su sencillez y las númerosas posibilidades que proporciona, entre ellas desarrollar aplicaciones web multiplataforma.</p>
 </li>
 <li>
-<p>Node.js: Node.js, es un entorno en tiempo de ejecución multiplataforma para la capa del servidor (en el lado del servidor) basado en JavaScript.</p>
-</li>
-<li>
-<p>Docker: es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.</p>
+<p>Docker: es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción.</p>
 </li>
 </ul>
 </div>
@@ -897,19 +937,16 @@ La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usare
 <div class="title">Forma</div>
 <ul>
 <li>
-<p>Seguridad y privacidad: se conservará la seguridad y privacidad de los datos del usuarios e introducidos por el propio usuario mediante el uso de PODs.</p>
+<p>Seguridad y privacidad: se mejorará la seguridad del usuario debido a que sus datos serán almacenados de forma descentralizada en los PODs.</p>
 </li>
 <li>
 <p>Diseño: vamos a utilizar el MVC (Modelo Vista Controlador)para facilitar el desarrollo, la limpieza de código y la organización del mismo.</p>
 </li>
 <li>
-<p>Desarrollo y reparto: dividiremos el desarrollo y el equipo en 2 partes diferenciadas: front-end y back-end.</p>
+<p>Desarrollo y reparto: Dividimos el trabajo por partes de la aplicación. Por ejemplo 2 integrantes del equipo se encargan del login, otros 2 del mapa y asi hasta cubrir todos los componentes de la aplicación.</p>
 </li>
 <li>
-<p>Usabilidad: trataremos de crear una aplicación simple y fácil de usar para cualquier nivel informático.</p>
-</li>
-<li>
-<p>Accesibilidad: intentaremos hacer la aplicación lo más accesible posible para facilitar en la medida de lo posible el uso de la aplicación para personas con alguna discapacidad.</p>
+<p>Usabilidad-Accesibilidad: intentaremos hacer la aplicación lo más accesible posible para facilitar en la medida de lo posible el uso de la aplicación para personas con alguna discapacidad.</p>
 </li>
 </ul>
 </div>
@@ -917,117 +954,149 @@ La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usare
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-building-block-view">5. Vista de bloques</h2>
+<h2 id="section-building-block-view">5. Vista de bloque de creación</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_sistema_general">5.1. Sistema general</h3>
+<h3 id="_nivel_0_vista_general_del_sistema">5.1. Nivel 0: Vista general del sistema</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/whitebox-overall-system.png" alt="whitebox overall system" width="682" height="138">
+</div>
+</div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Motivacion</dt>
+<dt class="hdlist1">Motivación</dt>
 <dd>
-<p>Describimos el alcance y contexto de nuestra aplicación.</p>
+<p>LoMap es la estructura principal de un sistema en el que el usuario interactúa con su mapa, personalizándolo con los lugares que le interesan.
+Además, el usuario puede añadir a sus amigos a la aplicación y compartir con ellos sus marcadores.
+La información personal del usuario se almacena de forma descentralizada en PODs.</p>
 </dd>
 <dt class="hdlist1">Bloques de construcción contenidos</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>LoMap</strong>: Nuestra aplicacion que gestiona lugares interesantes para los usuarios</p>
-</li>
-<li>
-<p><strong>POD</strong>: Lugar donde se almacenará la informacion de los usuarios, de forma mas personal(lugares o sitios de summo interes).</p>
-</li>
-</ul>
-</div>
-</dd>
-<dt class="hdlist1">Interfaces importantes</dt>
-<dd>
-<p>-Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox).</p>
-</dd>
 </dl>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Nombre</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsabildad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usuario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interactúa con la aplicación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LoMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sistema con el que interactúa el usuario. Se comunica con el proveedor de PODs para obtener/almacenar información del usuario.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">inrupt.net/solidcommunity.net</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sistema encargado de almacenar la información de cada usuario en un POD de forma descentralizada.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
-<h3 id="_nivel_2">5.2. Nivel 2</h3>
+<h3 id="_nivel_1">5.2. Nivel 1</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/level-1.png" alt="level 1" width="306" height="236">
+</div>
+</div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Motivacion</dt>
+<dt class="hdlist1">Motivación</dt>
 <dd>
-<p>A continuación mostramos como ira implementada nuestra aplicacion</p>
+<p>Muestra como funcionan los distintos componentes de LoMap, a grandes rasgos.</p>
 </dd>
 <dt class="hdlist1">Bloques de construcción contenidos</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Front-End</strong>: Para la interfaz de usuario, como tecnología usaremos React.</p>
-</li>
-</ul>
-</div>
-</dd>
-<dt class="hdlist1">Interfaces importantes</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p>Con las diferentes apis conectaremos el front-end y el back-end.</p>
-</li>
-</ul>
-</div>
-</dd>
 </dl>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Nombre</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsabildad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WebApp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parte del sistema con la que interactúa el usuario (Frontend). Además, es la parte encargada de comunicarse con los pods de los usuarios.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
-<h3 id="_nivel_3">5.3. Nivel 3</h3>
+<h3 id="_nivel_2">5.3. Nivel 2</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/level-2.png" alt="level 2" width="634" height="479">
+</div>
+</div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Motivacion</dt>
+<dt class="hdlist1">Motivación</dt>
 <dd>
-<p>A continuación mostramos los modulos del back-end</p>
+<p>Muestra como funcionan los distintos componentes de LoMap, con mas detalle que el nivel anterior. Se profundiza en los distintos componentes de la aplicación que forman parte de WebApp.</p>
 </dd>
 <dt class="hdlist1">Bloques de construcción contenidos</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Main</strong>: Con él comunicamos como forma principal el front-end y los pods.</p>
-</li>
-<li>
-<p><strong>Solid</strong>: Interactuará con el Pod(los pods seran de inrupt) del usuario.</p>
-</li>
-<li>
-<p><strong>MapBox</strong>: Api que se usara para los mapas.</p>
-</li>
-</ul>
-</div>
-</dd>
-<dt class="hdlist1">Interfaces importantes</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p>Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox).</p>
-</li>
-<li>
-<p>Para conectarnos a los pods usaremos como proveedor de los mismos a inrupt.</p>
-</li>
-</ul>
-</div>
-</dd>
 </dl>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Nombre</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsabildad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log in</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parte del sistema encargada de redirigir al usuario al proveedor Solid seleccionado para llevar a cabo su autenticación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapa</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Muestra un mapa en el que se sitúan los puntos almacenados del usuario. Permite filtrar los puntos a mostrar por su categoría.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">About Us</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario ver los desarrolladores de la aplicación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Amigos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario llevar a cabo la gestión de sus amigos (añadirlos/eliminarlos).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Home</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario ver una introducción sobre LoMap.</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-runtime-view">6. Runtime View</h2>
+<h2 id="section-runtime-view">6. Vista de tiempo de ejecución</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
-<div class="title">Contents</div>
+<div class="title">Contenidos</div>
 <p>The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:</p>
 </div>
 <div class="ulist">
@@ -1050,12 +1119,12 @@ La mayoría de las solicitudes se realizan mediante el protocolo web HTTP. Usare
 <p>Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their <strong>architectural relevance</strong>. It is <strong>not</strong> important to describe a large number of scenarios. You should rather document a representative selection.</p>
 </div>
 <div class="paragraph">
-<div class="title">Motivation</div>
+<div class="title">Motivación</div>
 <p>You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
 You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).</p>
 </div>
 <div class="paragraph">
-<div class="title">Form</div>
+<div class="title">Forma</div>
 <p>There are many notations for describing scenarios, e.g.</p>
 </div>
 <div class="ulist">
@@ -1084,31 +1153,85 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 <div class="sect2">
 <h3 id="_escenario_de_ejecución_1_registro_de_nuevo_usuario">6.1. Escenario de ejecución 1. Registro de nuevo usuario</h3>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="777" height="335">
+<pre>Failed to generate image: PlantUML preprocessing failed: [From &lt;input&gt; (line 3) ]
+
+@startuml
+actor User
+entity Front-End
+^^^^^
+ Syntax Error?
+
+actor User
+entity Front-End
+entity LoMap
+database POD
+
+User -&gt; LoMap: El usuario introduce sus credenciales y dirección de su pod
+Front-End -&gt; Api_Rest: Se envía el formulario
+LoMap -&gt; POD: Almacena datos del usuario
+Front-End &lt;- LoMap: Devuelve la confirmación del registro
+User -&gt; Front-End: Muestra un mensaje de confirmación</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_escenario_de_ejecución_2_inicio_de_sesion_de_usuario">6.2. Escenario de ejecución 2. Inicio de sesion de usuario</h3>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="./images/Sequence%20diagram1.png" alt="Sequence diagram1" width="538" height="335">
+<pre>Failed to generate image: PlantUML preprocessing failed: [From &lt;input&gt; (line 3) ]
+
+@startuml
+actor User
+entity Front-End
+^^^^^
+ Syntax Error?
+
+actor User
+entity Front-End
+entity LoMap
+database POD
+
+User -&gt; LoMap: Introduce su POD
+Front-End -&gt; LoMap: envía el POD
+LoMap &lt;- POD: Extrae datos del usuario
+Front-End &lt;- LoMap: Devuelve localizaciones
+User -&gt; Front-End: Muestra localizaciones</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_escenario_de_ejecución_3_añadir_localización">6.3. Escenario de ejecución 3. Añadir localización</h3>
 <div class="paragraph">
+<p>El login ante el provedor de PODs ya está hecho en este escenario.</p>
+</div>
+<div class="paragraph">
 <p>Las ubicaciones guardadas pueden ser vistas más tarde por el usuario y sus amigos a través de la aplicación web.</p>
 </div>
 <div class="paragraph">
 <p>El usuario puede agregar una ubicación a su mapa.</p>
 </div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="./images/Sequence%20diagram%20-%20Saving%20Locations%20-%20mobileapp.png" alt="Sequence diagram   Saving Locations   mobileapp" width="646" height="378">
+<pre>Failed to generate image: PlantUML preprocessing failed: [From &lt;input&gt; (line 3) ]
+
+@startuml
+actor User
+entity Front-End
+^^^^^
+ Syntax Error?
+
+actor User
+entity Front-End
+database POD
+
+User-&gt; Api_Rest: El usuario hace clic en el mapa para agregar un nuevo marcador
+Front-End -&gt;POD: Preguntar ubicaciones JSON
+POD-&gt; Front-End: Ubicaciones de retorno JSON
+Front-End -&gt; Front-End: Agregar la nueva ubicación
+Front-End -&gt;POD: Envía el nuevo JSON
+Front-End -&gt;User: Muestra el mapa con la nueva ubicación</pre>
 </div>
 </div>
 </div>
@@ -1117,17 +1240,54 @@ You will mainly capture scenarios in your documentation to communicate your arch
 <div class="paragraph">
 <p>Las ubicaciones agregadas al mapa luego serán eliminadas por el usuario a través de la aplicación.</p>
 </div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="./images/Sequence%20diagram%20-%20Editing%20Saved%20Locations.png" alt="Sequence diagram   Editing Saved Locations" width="809" height="422">
+<pre>Failed to generate image: PlantUML preprocessing failed: [From &lt;input&gt; (line 3) ]
+
+@startuml
+actor User
+entity Front-End
+^^^^^
+ Syntax Error?
+
+actor User
+entity Front-End
+database POD
+
+User-&gt; Front-End: El usuario hace clic en el mapa en una ubicación de marca
+
+Front-End -&gt; Front-End: Usando la ID de ubicación, la aplicación conoce el archivo JSON
+Front-End -&gt;POD: Preguntar ubicaciones JSON
+POD-&gt; Front-End: Return locations JSON
+Front-End -&gt; Api_Rest: Ubicaciones de retorno JSON
+Front-End -&gt;POD: Envía el nuevo JSON
+Front-End -&gt;User: Muestra el mapa con la nueva ubicación</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_escenario_de_ejecución_5_usuario_visualiza_una_de_sus_localizaciones">6.5. Escenario de ejecución 5. Usuario visualiza una de sus localizaciones.</h3>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="./images/Sequence%20diagram2.png" alt="Sequence diagram2" width="801" height="365">
+<pre>Failed to generate image: PlantUML preprocessing failed: [From &lt;input&gt; (line 4) ]
+
+@startuml
+actor User
+entity LoMap
+entity Front-End
+^^^^^
+ Syntax Error?
+
+actor User
+entity LoMap
+entity Front-End
+database POD
+
+User -&gt; Front-End: Selecciona la localización
+LoMap -&gt; POD: Busca datos sobre la localización
+LoMap &lt;- POD: Devuelve los datos encontrados
+Front-End &lt;- LoMap: Devuelve la información que encontro
+User -&gt; Front-End: Muestra esa información</pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1135,70 +1295,21 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-deployment-view">7. Deployment View</h2>
+<h2 id="section-deployment-view">7. Vista de Despliegue</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Content</div>
-<p>The deployment view describes:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>the technical infrastructure used to execute your system, with infrastructure elements like geographical locations, environments, computers, processors, channels and net topologies as well as other infrastructure elements and</p>
-</li>
-<li>
-<p>the mapping of (software) building blocks to that infrastructure elements.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Often systems are executed in different environments, e.g. development environment, test environment, production environment. In such cases you should document all relevant environments.</p>
-</div>
-<div class="paragraph">
-<p>Especially document the deployment view when your software is executed as distributed system with more then one computer, processor, server or container or when you design and construct your own hardware processors and chips.</p>
-</div>
-<div class="paragraph">
-<p>From a software perspective it is sufficient to capture those elements of the infrastructure that are needed to show the deployment of your building blocks. Hardware architects can go beyond that and describe the infrastructure to any level of detail they need to capture.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Software does not run without hardware.
-This underlying infrastructure can and will influence your system and/or some
-cross-cutting concepts. Therefore, you need to know the infrastructure.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Maybe the highest level deployment diagram is already contained in section 3.2. as
-technical context with your own infrastructure as ONE black box. In this section you will
-zoom into this black box using additional deployment diagrams:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>UML offers deployment diagrams to express that view. Use it, probably with nested diagrams,
-when your infrastructure is more complex.</p>
-</li>
-<li>
-<p>When your (hardware) stakeholders prefer other kinds of diagrams rather than the deployment diagram, let them use any kind that is able to show nodes and channels of the infrastructure.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 <div class="sect2">
-<h3 id="_infrastructure">7.1. Infrastructure</h3>
+<h3 id="_infraestructura">7.1. Infraestructura</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Motivacion</dt>
 <dd>
 <p>Se ha intentado plantear el sistema de la manera más descentralizada posible y mantener la privacidad del usuario de
-manera más optima posible.</p>
+manera más optima posible.
+Como provedor de PODs usamos inrupt ya que nos facilita mucho el desarrollo del proyecto y tiene una fácil comunicación con la aplicación.</p>
 </dd>
 <dt class="hdlist1">Caracteristicas de calidad y/o rendimiento</dt>
 <dd>
-<p>Como nuestro objetivo es tener un sistema optimo tanto en cuanto a rendimiento como seguridad y otras características, se ha
+<p>Como nuestro objetivo es tener un sistema con alto rendimiento,seguridad y mantenible con el tiempo se ha
 intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 </dd>
 <dt class="hdlist1">Mapeo de Bloques de Construccion a Infraestructura</dt>
@@ -1217,10 +1328,6 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">RestAPI</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interfaz entre sistemas para el intercambio de peticiones.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">WebApp</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">La parte donde el usuario podra interactuar, el cual ejecuta el navegador web.</p></td>
 </tr>
@@ -1232,11 +1339,20 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">POD</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Almacenes" para guardar los datos de los usuarios de forma segura. el provedor de pods sera inrupt</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Servidor Inrupt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Servicio descentralizado para almacenas los PODS de los usuarios que se registren en él. Cada POD contiene información única de cada usuario.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Servicio de control de versiones, donde se almacena el código fuente de la aplicación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub Pages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Servicio de hosting de GitHub, donde se almacena el código compilado de la aplicación.</p></td>
+</tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><span class="image"><img src="./images/7Diagrama.png" alt="Punto7:DesplDig"></span></p>
-</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1260,6 +1376,9 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 <li>
 <p>Seguridad: los datos serán completamente seguros, siendo almacenado en PODs individuales y no en una base de datos centralizada.</p>
 </li>
+<li>
+<p>Gobernanza del dato: La calidad y confiabilidad de los datos es muy alta ya que usamos PODs para almacenarlos de forma totalmente descentralizada.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -1271,7 +1390,7 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 <p>Patrón fachada: para facilitar el desarrollo del proyecto por parte del equipo, haremos uso del patrón fachada para conectar el back con el front.</p>
 </li>
 <li>
-<p>Pods: uso de pods para guardar la información personal de cada usuario.</p>
+<p>Pods: para guardar la información personal de cada usuario.</p>
 </li>
 <li>
 <p>Interoperabilidad entre proyectos: el proyecto se intentará hacer de tal forma que la información alamacenada pueda ser usada de un proyecto a otro.</p>
@@ -1315,7 +1434,7 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_coceptos_operacionales">8.6. Coceptos operacionales</h3>
+<h3 id="_conceptos_operacionales">8.6. Conceptos operacionales</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1328,58 +1447,22 @@ intentado buscar y comenzar a usar la mejor infraestructura posible.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-design-decisions">9. Design Decisions</h2>
+<h2 id="section-design-decisions">9. Decisiones de diseño</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Important, expensive, large scale or risky architecture decisions including rationals.
-With "decisions" we mean selecting one alternative based on given criteria.</p>
-</div>
-<div class="paragraph">
-<p>Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).</p>
-</div>
-<div class="paragraph">
-<p>Avoid redundancy. Refer to section 4, where you already captured the most important decisions of your architecture.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Stakeholders of your system should be able to comprehend and retrace your decisions.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Various options:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>List or table, ordered by importance and consequences or:</p>
-</li>
-<li>
-<p>more detailed in form of separate sections per decision</p>
-</li>
-<li>
-<p>ADR (architecture decision record) for every important decision</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Decisión Arquitectónica</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ventajas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Desventajas</p></td>
+<th class="tableblock halign-left valign-top">Decisión Arquitectónica</th>
+<th class="tableblock halign-left valign-top">Ventajas</th>
+<th class="tableblock halign-left valign-top">Desventajas</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simplifica y mejora JavaScript al cual extiende agregando tipado de tipos</p></td>
@@ -1391,11 +1474,6 @@ here in this central section or whether you better document it locally
 <td class="tableblock halign-left valign-top"><p class="tableblock">agregaría el problema de que es una tecnología con la que nadie del grupo tiene experiencia y de que probablemente complicaría el desarrollo de la aplicación agregando complejidad al sistema</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB es una base de datos no relacional con mucha flexibilidad que puede ser muy útil para nuestro proyecto</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No se tiene experiencia con ella y habría que aprender</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Una herramienta muy útil para el control de versiones de la aplicación (tiene ramas, issues, etc.)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Si no se gestionan bien los merges pueden ser muy problemáticos</p></td>
@@ -1405,124 +1483,36 @@ here in this central section or whether you better document it locally
 <td class="tableblock halign-left valign-top"><p class="tableblock">Teniendo en cuenta la aplicación que se va a hacer usar React es muy conveniente, puesto que está diseñada principalmente para hacer aplicaciones de una sola página con JavaScript</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Puede agregar complejidad al proyecto</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Express</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Es un framework de node.js minimalista, lo cual simplificaría el desarrollo de la aplicación</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">puede llegar a ser "demasiado minimalista" lo cual haría más difícil agregar funcionalidades complejas y nadie del grupo tiene experiencia con este framework con lo que habría que aprender a usarlo</p></td>
-</tr>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-quality-scenarios">10. Quality Requirements</h2>
+<h2 id="section-quality-scenarios">10. Requerimientos de calidad</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Content</div>
-<p>This section contains all quality requirements as quality tree with scenarios. The most important ones have already been described in section 1.2. (quality goals)</p>
-</div>
-<div class="paragraph">
-<p>Here you can also capture quality requirements with lesser priority,
-which will not create high risks when they are not fully achieved.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Since quality requirements will have a lot of influence on architectural
-decisions you should know for every stakeholder what is really important to them,
-concrete and measurable.</p>
-</div>
-</div>
-</div>
 <div class="sect2">
-<h3 id="_quality_tree">10.1. Quality Tree</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Content</div>
-<p>The quality tree (as defined in ATAM – Architecture Tradeoff Analysis Method) with quality/evaluation scenarios as leafs.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>The tree structure with priorities provides an overview for a sometimes large number of quality requirements.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>The quality tree is a high-level overview of the quality goals and requirements:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>tree-like refinement of the term "quality". Use "quality" or "usefulness" as a root</p>
-</li>
-<li>
-<p>a mind map with quality categories as main branches</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>In any case the tree should include links to the scenarios of the following section.</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
+<h3 id="_árbol_de_calidad">10.1. Árbol de calidad</h3>
+<div class="paragraph arc42help">
 <p><span class="image"><img src="./images/ArbolDeCalidad.png" alt="Punto10:ADC"></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_quality_scenarios">10.2. Quality Scenarios</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Concretization of (sometimes vague or implicit) quality requirements using (quality) scenarios.</p>
-</div>
-<div class="paragraph">
-<p>These scenarios describe what should happen when a stimulus arrives at the system.</p>
-</div>
-<div class="paragraph">
-<p>For architects, two kinds of scenarios are important:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Usage scenarios (also called application scenarios or use case scenarios) describe the system’s runtime reaction to a certain stimulus. This also includes scenarios that describe the system’s efficiency or performance. Example: The system reacts to a user’s request within one second.</p>
-</li>
-<li>
-<p>Change scenarios describe a modification of the system or of its immediate environment. Example: Additional functionality is implemented or requirements for a quality attribute change.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Scenarios make quality requirements concrete and allow to
-more easily measure or decide whether they are fulfilled.</p>
-</div>
-<div class="paragraph">
-<p>Especially when you want to assess your architecture using methods like
-ATAM you need to describe your quality goals (from section 1.2)
-more precisely down to a level of scenarios that can be discussed and evaluated.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Tabular or free form text.</p>
-</div>
-</div>
-</div>
+<h3 id="_escenarios_de_calidad">10.2. Escenarios de calidad</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivos de calidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Motivación</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Importancia</p></td>
+<th class="tableblock halign-left valign-top">Objetivos de calidad</th>
+<th class="tableblock halign-left valign-top">Motivación</th>
+<th class="tableblock halign-left valign-top">Importancia</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Privacidad</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Uno de los principales objetivos es hacer una aplicación que respete la privacidad de los usuarios recogiendo
@@ -1536,7 +1526,7 @@ la menor información posible de estos</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Robustez</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Buen manejo de excepciones para mejorar la experiencia del usuario y el uso de pods para aumentar la robustez de los servers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Buen manejo de excepciones para mejorar la experiencia del usuario y el uso de pods para aumentar la robustez de los servers, alta disponibilidad y tolerancia a fallos software</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
 </tr>
 <tr>
@@ -1545,18 +1535,13 @@ la menor información posible de estos</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Autogestión</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permitir a los usuarios crearse sus propios pods o que puedan elegir ellos qué servicio de pods usar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Media-Alta</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Eficiencia</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación será lo más eficiente posible usando los menores recursos posibles</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Media</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Transparencia</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Todo el proyecto será visible</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Todo el proyecto será de codigo abierto, disponible en el repositorio de github para su modificación</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Bajo</p></td>
 </tr>
 </tbody>
@@ -1569,52 +1554,7 @@ la menor información posible de estos</p></td>
 <h2 id="section-technical-risks">11. Riesgos y Deudas Técnicas</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_tabla_de_riesgos">11.1. Tabla de riesgos</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Prioridad</th>
-<th class="tableblock halign-left valign-top">Riesgo</th>
-<th class="tableblock halign-left valign-top">Explicación</th>
-<th class="tableblock halign-left valign-top">Solución</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nadie del equipo ha utilizado SOLID, por lo que todos carecemos de conocimiento sobre este framework.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Verse videos tutoriales en youtube para orientarnos en el funcionamiento de SOLID.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nadie tiene experiencia con REACT y algunos miembros del equipo no conocen bien JavaScript.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adaptar el conocimiento de los miembros que si conocen JavaScript a TypeScript y los que no lo conocen informarse un poco a cerca de este lenguaje.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PODs</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ningun miembro del equipo ha usado PODs antes ni sabemos como utilizarlos e incorporarlos en el proyecto.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Buscar videos en youtube y mirar la documentacion de SOLID.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Aunque todo el equipo trabaja bien con GitHub falta soltura a la hora de realizar ciertas acciones como commits etc&#8230;&#8203;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Esto no supone un gran inconveniente, se resolverá a medida que nos vayan saliendo los problemas y haciendo alguna prueba con la documentacion.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_tabla_deuda_técnica">11.2. Tabla deuda técnica</h3>
+<h3 id="_riesgos">11.1. Riesgos</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1630,24 +1570,62 @@ la menor información posible de estos</p></td>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Conflictos en gitHub</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A la hora de mergear puede dar fallos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Hacer reuniones para solucionar los conflictos para asegurarse no cometer errores</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Poco tiempo de trabajo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Debemos de trabajar en equipo y trabajar lo más eficiente posible para no perjudicarnos a lo largo del tiempo, evitando cualquier conflicto innecesario</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Robustez</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Al tener poca experencia en trabajar en este tipo de proyectos en grupo puede darse la situación de que el código no quede robusto</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Realizar multiples reuniones para intentar hacerlo lo mejor posible</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Github</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tenemos poco conocimiento de GitHub</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aprender cosas básicas.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Retardo al hacer login</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Al cargar los datos del POD de inrupt.net se provoca cierto retardo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tener una buena conexión cableada</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nuevas tecnologías</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Para la mayoría del grupo la falta de conocimiento de tecnologías como React o Solid.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Utilizaremos la documentación de cada una, donde podemos encontrar numerosos ejemplos de como empezar,para desenvolvernos y ganar agilidad a corto plazo</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Retardo al cargar imágenes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Al cargar los datos de imagenes del drive del proyecto se provoca cierto retardo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tener una buena conexión cableada</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comunicación del equipo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La comunicación no es inmediata y mucho menos de todos los miembros del grupo al mismo tiempo, cada miembro tiene unos horarios y asignaturas diferentes, luego será un factor añadido en contra para nosotros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Los miembros del equipo deberán hacer un esfuerzo colectivo para colaborar entre todos, facilitando las opciones tanto del horario de cada uno como la disponibilidad, por ello las reuniones en Microsoft Teams agilizarán el proceso ya que nos permite reunirnos virtualmente</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Posible abandono de algún miembro del grupo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Uno o varios miembros podrían abandonar la asignatura debido a la carga de trabajo acumulada a lo largo del semestre</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Intentaremos aliviar la situación reforzando el trabajo en grupo y el apoyo extra en las tareas, en especial a aquellas que son críticas para el proyecto</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_deuda_técnica">11.2. Deuda técnica</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Deuda técnica</th>
+<th class="tableblock halign-left valign-top">Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nos gustaría que la usabilidad fuera uno de nuestros puntos fuertes, logrando que personas reales puedan probar nuestra aplicación, y realizar el número máximo de pruebas posibles</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Código limpio para el desarrollo ágil del software</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El código debe ser claro y refactorizado, sobre todo en la parte del backend; y también el frontend, para hacerlo más conciso y modificable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Investigación</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Una búsqueda amplica de información acerca de cómo trabajar con Typescript, React y Solid facilitará el trabajo una vez iniciado el proyecto. Solo hemos utilizado JavaScript, nunca Typescript, luego supondrá un periodo de adaptación a dicha tecnología</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Toma de decisiones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Es importante decidir con cabeza y con un buen razonamiento la arquitectura del proyecto, hay que evitar improvisar en todo momento, ya que puede afectar negativamente al proyecto en gran medida</p></td>
 </tr>
 </tbody>
 </table>
@@ -1729,7 +1707,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-04-27 09:44:37 +0200
+Last updated 2023-04-27 12:19:58 +0200
 </div>
 </div>
 </body>
