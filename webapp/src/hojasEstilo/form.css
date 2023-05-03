@@ -27,6 +27,7 @@
 .filtro{
   overflow-y: auto;
   max-height: 34%;
+  height: auto;
   width: auto;
   background-color: #ccc;
 }
@@ -63,4 +64,8 @@
 
   .mapaAmigos{
     height: calc(100vh - 113.6px);
+  }
+
+  .error {
+    color: red;
   }

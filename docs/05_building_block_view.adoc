@@ -1,36 +1,97 @@
 [[section-building-block-view]]
 
 
-== Vista de bloques
-=== Sistema general
+== Building Block View
 
-Motivacion::
-Describimos el alcance y contexto de nuestra aplicación.
-Bloques de construcción contenidos::
--  **LoMap**: Nuestra aplicacion que gestiona lugares interesantes para los usuarios
--  **POD**: Lugar donde se almacenará la informacion de los usuarios, de forma mas personal(lugares o sitios de summo interes).
-Interfaces importantes::
--Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox).
+=== Level 0: Whitebox of the Overall System 
 
-=== Nivel 2
+[plantuml, "whitebox-overall-system", png]
+----
+actor Usuario
+Component LoMap
+Component pod as "inrupt.net/solidcommunity.net"
 
-Motivacion::
-A continuación mostramos como ira implementada nuestra aplicacion
-Bloques de construcción contenidos::
--  **Front-End**: Para la interfaz de usuario, como tecnología usaremos React.
+Usuario -right-> LoMap: interactúa
+Usuario -right-> pod: tiene
+LoMap <-right-> pod: obtiene/almacena datos Usuario
+----
 
-Interfaces importantes::
--	Con las diferentes apis conectaremos el front-end y el back-end.
+Motivation::
+LoMap es la estructura principal de un sistema en el que el usuario interactúa con su mapa, personalizándolo con los lugares que le interesan. 
+Además, el usuario puede añadir a sus amigos a la aplicación y compartir con ellos sus marcadores.
+La información personal del usuario se almacena de forma descentralizada en PODs.
 
-=== Nivel 3
+Contained Building Blocks::
 
-Motivacion::
-A continuación mostramos los modulos del back-end
-Bloques de construcción contenidos::
--  **Main**: Con él comunicamos como forma principal el front-end y los pods.
--  **Solid**: Interactuará con el Pod(los pods seran de inrupt) del usuario.
--  **MapBox**: Api que se usara para los mapas.
+[cols="1,2" options="header"]
+|===
+| **Nombre** | **Responsabildad**
+| Usuario | Interactúa con la aplicación.
+| LoMap | Sistema con el que interactúa el usuario. Se comunica con el proveedor de PODs para obtener/almacenar información del usuario.
+| inrupt.net/solidcommunity.net | Sistema encargado de almacenar la información de cada usuario en un POD de forma descentralizada.
+|===
 
-Interfaces importantes::
-- Para conectarnos a los mapas y añadir etiquetas usaremos la api de mapas correspondiente(mapbox).
-- Para conectarnos a los pods usaremos como proveedor de los mismos a inrupt.
+=== Level 1
+
+[plantuml, "level-1", png]
+----
+actor Usuario
+Component LoMap {
+  Component web as "WebApp"
+}
+Component pod as "inrupt.net/solidcommunity.net"
+
+Usuario -right-> web: interactua
+Usuario -right-> pod: tiene
+
+web <-down-> pod: obtiene/almacena datos
+----
+
+Motivation::
+Muestra como funcionan los distintos componentes de LoMap, a grandes rasgos.
+
+Contained Building Blocks::
+
+[cols="1,2" options="header"]
+|===
+| **Nombre** | **Responsabildad**
+| WebApp | Parte del sistema con la que interactúa el usuario (Frontend). Además, es la parte encargada de comunicarse con los pods de los usuarios.
+|===
+
+=== Level 2
+[plantuml, "level-2", png]
+
+----
+actor user as "Usuario"
+
+Component LoMap{
+  Component web as "WebApp" {
+    Component lo as "Log in"
+    Component ini as "Home"
+    Component ed as "Mapa"
+    Component det as "Amigos"
+    Component am as "About Us"
+  } 
+}
+
+Database pod as "Solid pod"
+
+web <-left- user: interactua
+user -up-> pod: tiene
+web -down-> pod: obtiene/almacena datos
+----
+
+Motivation::
+Muestra como funcionan los distintos componentes de LoMap, con mas detalle que el nivel anterior. Se profundiza en los distintos componentes de la aplicación que forman parte de WebApp.
+
+Contained Building Blocks::
+
+[cols="1,2" options="header"]
+|===
+| **Nombre** | **Responsabildad**
+| Log in | Parte del sistema encargada de redirigir al usuario al proveedor Solid seleccionado para llevar a cabo su autenticación.
+| Mapa | Muestra un mapa en el que se sitúan los puntos almacenados del usuario. Permite filtrar los puntos a mostrar por su categoría. 
+| About Us| Permite al usuario ver los desarrolladores de la aplicación.
+| Amigos | Permite al usuario llevar a cabo la gestión de sus amigos (añadirlos/eliminarlos).
+| Home| Permite al usuario ver una introducción sobre LoMap.
+|===

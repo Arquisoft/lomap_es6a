@@ -1,6 +1,6 @@
 [[section-solution-strategy]]
 == Soluciones Estratégicas
-Para la reaalización de LoMap hemos tomado la decisión de desarrollarlo en TypeScript. TypeScript es un superconjunto de JavaScript cuyo punto más resaltable es el uso de tipado.
+Para la reaalización de LoMap hemos tomado la decisión de desarrollarlo en TypeScript, usando el framework React y el proovedor de pods de inrupt. TypeScript es un superconjunto de JavaScript cuyo punto más resaltable es el uso de tipado.
 
 [role="arc42help"]
 .Restricciones tecnológicas
@@ -8,20 +8,16 @@ Para la reaalización de LoMap hemos tomado la decisión de desarrollarlo en Typ
 
 .Tecnologías y motivación
 
-* React: React es una biblioteca de código abierto concebida para crear interfaces de usuario. Hemos elegido React por su sencillez y las númerosas posibilidades que proporciona.
+* React: React es una biblioteca de código abierto concebida para crear interfaces de usuario. Hemos elegido React por su sencillez y las númerosas posibilidades que proporciona, entre ellas desarrollar aplicaciones web multiplataforma.
 
-* Node.js: Node.js, es un entorno en tiempo de ejecución multiplataforma para la capa del servidor (en el lado del servidor) basado en JavaScript.
-
-* Docker: es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
+* Docker: es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción.
 
 .Forma
-* Seguridad y privacidad: se conservará la seguridad y privacidad de los datos del usuarios e introducidos por el propio usuario mediante el uso de PODs.
+* Seguridad y privacidad: se mejorará la seguridad del usuario debido a que sus datos serán almacenados de forma descentralizada en los PODs.
 
 * Diseño: vamos a utilizar el MVC (Modelo Vista Controlador)para facilitar el desarrollo, la limpieza de código y la organización del mismo.
 
-* Desarrollo y reparto: dividiremos el desarrollo y el equipo en 2 partes diferenciadas: front-end y back-end.
+* Desarrollo y reparto: Dividimos el trabajo por partes de la aplicación. Por ejemplo 2 integrantes del equipo se encargan del login, otros 2 del mapa y asi hasta cubrir todos los componentes de la aplicación.
 
-* Usabilidad: trataremos de crear una aplicación simple y fácil de usar para cualquier nivel informático.
-
-* Accesibilidad: intentaremos hacer la aplicación lo más accesible posible para facilitar en la medida de lo posible el uso de la aplicación para personas con alguna discapacidad.
+* Usabilidad-Accesibilidad: intentaremos hacer la aplicación lo más accesible posible para facilitar en la medida de lo posible el uso de la aplicación para personas con alguna discapacidad.
 

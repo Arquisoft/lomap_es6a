@@ -1,41 +1,53 @@
 [[section-technical-risks]]
-== Riesgos y Deudas Técnicas
+== Risks and Technical Debts
 
-=== Tabla de riesgos
-[options="header",cols="1,1,1,1"]
-|=========================================================
-|Prioridad | Riesgo | Explicación | Solución
+=== Risks
 
-|1
-| SOLID
-| Nadie del equipo ha utilizado SOLID, por lo que todos carecemos de conocimiento sobre este framework.
-| Verse videos tutoriales en youtube para orientarnos en el funcionamiento de SOLID.
+[%header, cols=3]
+|===
+|Riesgo
+|Explicación
+|Solución
 
-|2
-| React
-| Nadie tiene experiencia con REACT y algunos miembros del equipo no conocen bien JavaScript.
-| Adaptar el conocimiento de los miembros que si conocen JavaScript a TypeScript y los que no lo conocen informarse un poco a cerca de este lenguaje.
+|Tiempo
+|Poco tiempo de trabajo
+|Debemos de trabajar en equipo y trabajar lo más eficiente posible para no perjudicarnos a lo largo del tiempo, evitando cualquier conflicto innecesario
 
-|3
-| PODs
-| Ningun miembro del equipo ha usado PODs antes ni sabemos como utilizarlos e incorporarlos en el proyecto.
-| Buscar videos en youtube y mirar la documentacion de SOLID.
+|Github
+|Tenemos poco conocimiento de GitHub
 
-|4
-| GitHub
-| Aunque todo el equipo trabaja bien con GitHub falta soltura a la hora de realizar ciertas acciones como commits etc...
-| Esto no supone un gran inconveniente, se resolverá a medida que nos vayan saliendo los problemas y haciendo alguna prueba con la documentacion.
+|Aprender cosas básicas.
 
+|Nuevas tecnologías
+|Para la mayoría del grupo la falta de conocimiento de tecnologías como React o Solid.
+|Utilizaremos la documentación de cada una, donde podemos encontrar numerosos ejemplos de como empezar,para desenvolvernos y ganar agilidad a corto plazo
 
+|Comunicación del equipo
+|La comunicación no es inmediata y mucho menos de todos los miembros del grupo al mismo tiempo, cada miembro tiene unos horarios y asignaturas diferentes, luego será un factor añadido en contra para nosotros
+|Los miembros del equipo deberán hacer un esfuerzo colectivo para colaborar entre todos, facilitando las opciones tanto del horario de cada uno como la disponibilidad, por ello las reuniones en Microsoft Teams agilizarán el proceso ya que nos permite reunirnos virtualmente
 
-|=========================================================
-=== Tabla deuda técnica
-[options="header",cols="1,1,1"]
-|=========================================================
-| Riesgo | Explicación | Solución
-|Conflictos en gitHub | A la hora de mergear puede dar fallos | Hacer reuniones para solucionar los conflictos para asegurarse no cometer errores
-|Robustez| Al tener poca experencia en trabajar en este tipo de proyectos en grupo puede darse la situación de que el código no quede robusto   | Realizar multiples reuniones para intentar hacerlo lo mejor posible
-|Retardo al hacer login| Al cargar los datos del POD de inrupt.net se provoca cierto retardo   | Tener una buena conexión cableada
-|Retardo al cargar imágenes| Al cargar los datos de imagenes del drive del proyecto se provoca cierto retardo   | Tener una buena conexión cableada
+|Posible abandono de algún miembro del grupo
+|Uno o varios miembros podrían abandonar la asignatura debido a la carga de trabajo acumulada a lo largo del semestre
+|Intentaremos aliviar la situación reforzando el trabajo en grupo y el apoyo extra en las tareas, en especial a aquellas que son críticas para el proyecto
 
-|=========================================================
+|===
+
+=== Technical Debts
+[%header, cols=2]
+|===
+|Deuda técnica
+|Explicación
+
+|Usabilidad
+|Nos gustaría que la usabilidad fuera uno de nuestros puntos fuertes, logrando que personas reales puedan probar nuestra aplicación, y realizar el número máximo de pruebas posibles
+
+|Código limpio para el desarrollo ágil del software
+|El código debe ser claro y refactorizado, sobre todo en la parte del backend; y también el frontend, para hacerlo más conciso y modificable.
+
+|Investigación
+|Una búsqueda amplica de información acerca de cómo trabajar con Typescript, React y Solid facilitará el trabajo una vez iniciado el proyecto. Solo hemos utilizado JavaScript, nunca Typescript, luego supondrá un periodo de adaptación a dicha tecnología
+
+|Toma de decisiones
+|Es importante decidir con cabeza y con un buen razonamiento la arquitectura del proyecto, hay que evitar improvisar en todo momento, ya que puede afectar negativamente al proyecto en gran medida
+
+|===

@@ -13,8 +13,6 @@ function MapaAmigos({ session }: SessionType): JSX.Element {
   let mapa: mapboxgl.Map;
   useEffect(() => {
     if (mapRef.current) {
-
-
         if (user){
             initMap(
             mapRef.current, {session}, user
@@ -23,7 +21,6 @@ function MapaAmigos({ session }: SessionType): JSX.Element {
           initMap(
             mapRef.current, {session}, "")
         }
-
     }
   }, []);
   

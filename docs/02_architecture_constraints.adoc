@@ -1,11 +1,11 @@
 == Arquitectura
-=== Explicación sobre la Arquitectura
+Usamos el MVC(modelo vista-controlador). MVC es un patrón de arquitectura de software que separa una aplicación en tres componentes: Modelo, Vista y Controlador. El Modelo maneja los datos y la lógica de negocio, la Vista se encarga de la presentación de la información al usuario, y el Controlador actúa como intermediario entre los dos, gestionando las interacciones del usuario y actualizando el Modelo y la Vista según sea necesario.
+=== Explicación sobre la Pila Tecnológica
 |===
 |React|Usamos React para el front-end, para la interfaz gráfica de usuario.
 |SOLID|Con SOLID,este es un requisito sobre las tecnologías que usar, los usuarios guardaran su información usando PODs. De esta forma, pueden permitir o rechazar la solicitud de acceso a los datos.
 |GitHub|Usaremos github para el control de versiones y comunicarnos.
 |TypeScrypt|TypeScript para escribir el back-end, TS es una evolución de javascript con tipos.
-|Node.js|Framework de javascript usado para el back-end.
 |===
 
 === Organización del equipo
@@ -13,7 +13,7 @@
 |===
 |Organización|Explicación
 |Reuniones|Es la primera vez que trabajamos juntos en un proyecto de estas dimensiones, tanto por complejidad en el software como por sus tecnologías.
-Somos un equipo de 5 personas.
+Somos un equipo de 5 personas y hemos seguido una metodología ágil.
 |Tiempo|Tiene un tiempo de entrega corto, ya que el desarrollo completo debe hacerse en unos 4 meses.
 |Fechas Límite|Dependiendo el mes y la semana, debemos ir entregando versiones del producto final, hasta que la entrega final llegue.
 |===
@@ -23,7 +23,6 @@ Somos un equipo de 5 personas.
 |===
 |Estetica y uso|La interfaz gráfica debe ser facil de usar, ademas de tener un alto grado de accesibilidad y usabilidad.
 |Documentación|Usamos Arc42 para la documentación.
-|Solid|La aplicación sigue los principios SOLID.
 |TypeScript|Usamos los lenguajes TypeScript/JavaScript y alguno de sus frameworks.
 |MVC|Usaremos el modelo vista-controlador.
 |W3C AAA|Nuestra aplicación seguira el convenio del W3C triple AAA, es decir, será tanto accesible como usable para cualquier tipo de público.
