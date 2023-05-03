@@ -9,7 +9,7 @@ import { SessionProvider } from "@inrupt/solid-ui-react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { click } from "@testing-library/user-event/dist/click";
 import { createElement } from "react";
-import {validacionCamposComentario,crearImgHtml,seleccionarIcono} from "../components/mapa/initMap";
+import {validacionCamposComentario,crearImgHtml,seleccionarIcono, initMap} from "../components/mapa/initMap";
 import React from 'react';
 import { equal } from "assert";
 import casa from '../imagenes/marcador.png';
@@ -26,6 +26,9 @@ const marcador3 = new Marker("3","Alimerka","Supermercado",2,2,"Tienda");
 const marcador4 = new Marker("4","Carrefour","Supermercado",3,3,"Tienda");
 const comentario1 = new Comentario("Muy buena","3","uo282944","9");
 const comentario2 = new Comentario("Muy guapa","3","uo282944","8");
+
+const session = new Session();
+session.info.isLoggedIn = true;
 beforeAll(()=>{
     
     jest.spyOn(adaptador, "guardarMarcador").mockImplementation(
@@ -109,3 +112,42 @@ test("check icon selection",() =>{
 
 
 })
+// jest.mock('mapbox-gl/dist/mapbox-gl', () => ({
+//     Map: () => ({})
+//  }));
+// test("render initMap test",()=>{
+      
+//   const mapRef = document.createElement("HTMLDivElement") as HTMLDivElement
+//   let tupla: [mapboxgl.Map,Array<mapboxgl.Marker>,Array<Marker>];
+//   //const [marcadores, setMarcadores] = useState(Array<mapboxgl.Marker>);
+//  // const [marcadoresObjeto, setMarcadoresObjeto] = useState(Array<Marker>);
+//   let mapa: mapboxgl.Map;
+
+//   let nombreUsuario = "";
+//   if (session.info.isLoggedIn) {
+//     const user = session.info.webId;
+    
+//     if (user) {
+//       nombreUsuario = user.split('//')[1].split('.')[0];
+//     }
+//      }
+
+     
+//     tupla = initMap(mapRef, {session}, nombreUsuario);
+      
+    
+//     // render(<div className="map mapboxgl-map">
+//     //     <initMap container = {mapRef}/>
+//     // </div>)
+//     render(<>
+//         <SessionProvider sessionId="logIn">
+//           <Router>
+//               <div className='contenedor-rutas'>
+//               <Form session={session} modo={false}/>
+//               </div>
+              
+//             </Router>
+//               </SessionProvider>
+//               </>)
+//     //render(<initMap session={session} modo={false}/>)
+// })
