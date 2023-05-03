@@ -116,11 +116,13 @@ function BuscarAmigo({ session }: SessionType) {
   }
 
   async function addFriend() {
-    
-    const nuevosAmigosUrl = await addAmigo({session},WebID);
-    if (nuevosAmigosUrl !== undefined){
-      const nuevosAmigos = await obtenerNombresDeAmigos(nuevosAmigosUrl);
-      if (nuevosAmigos !== undefined){setAmigos(nuevosAmigos);}}
+    let nodef = undefined;
+    let nuevosAmigosUrl;
+    nuevosAmigosUrl = await addAmigo({session},WebID);
+    if (nuevosAmigosUrl !== nodef){
+      let nuevosAmigos;
+      nuevosAmigos = await obtenerNombresDeAmigos(nuevosAmigosUrl);
+      if (nuevosAmigos !== nodef){setAmigos(nuevosAmigos);}}
   }
 
   async function deleteFriend(amigoNombre: string) {
