@@ -158,7 +158,7 @@ function Formulario({ session, modo }: Props) {
         "Latitud es obligatoria";
     }
 
-    if (!tipo) {
+    if (!tipo || tipo =="Elija un tipo" || tipo.trim() !in ["Bar","Restaurante","Gasolinera","Tienda","Paisaje","Monumento"]) {
       erroresFormulario.tipo = "Debe elegir un Tipo de marcador";
     }
     if (Object.values(erroresFormulario).some((value) => value !== null)) {

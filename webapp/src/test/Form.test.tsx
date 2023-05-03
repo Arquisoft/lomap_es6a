@@ -1,6 +1,6 @@
 import Form from "../components/mapa/form";
 import { Session } from "@inrupt/solid-client-authn-browser";
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
 import * as adaptador from "../accesoPods/adaptador";
 import Marker from "../accesoPods/marker";
 import Comentario from "../accesoPods/comentario";
@@ -8,6 +8,7 @@ import mapboxgl from 'mapbox-gl'
 import { SessionProvider } from "@inrupt/solid-ui-react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { click } from "@testing-library/user-event/dist/click";
+import { createElement } from "react";
 //import Map from '@/components/modules/Home/Map/Map'
 
 jest.mock('mapbox-gl/dist/mapbox-gl', () => ({
@@ -242,12 +243,65 @@ test('testing form validators', async () =>{
 
   //Testeo tipo
 
-  var tipo = screen.getByLabelText("form-tipo")
+  var tipo = screen.getByLabelText("form-tipo")  as HTMLSelectElement;
   expect(tipo).toBeInTheDocument();
 
   fireEvent.change(tipo,{target: {value:""}})
   fireEvent.click(screen.getByText("Añadir"))
+  var tmp =screen.getByText("Debe elegir un Tipo de marcador")
   expect(screen.getByText("Debe elegir un Tipo de marcador")).toBeInTheDocument();
+
+  // var tmp = within(tipo).getByLabelText("tipo-Gasolinera")
+  // fireEvent.mouseDown(tmp)
+  // fireEvent.keyDown(await screen.findByLabelText("tipo-Gasolinera"), {key: 'Enter'})
+  //fireEvent.change(tipo,{target: {value:""}})
+  //fireEvent.click(tipo)
+  //fireEvent.select(screen.getByLabelText("tipo-Gasolinera"))
+  //fireEvent.click(screen.getByLabelText("tipo-Gasolinera"))
+  fireEvent.change(tipo, { target: { value: "Gasolinera" } })
+  //let options = screen.getAllByTestId('select-option')
+ // expect(options[0]).toBeFalsy();
+ // expect(options[1]).toBeTruthy();
+ // expect(options[2]).toBeFalsy();
+
+
+  // fireEvent.click(screen.getByText("Añadir"))
+  // const elem = document.createElement('div');
+  // elem.classList.add('error');
+  // elem.textContent = 'Debe elegir un Tipo de marcador';
+  
+
+  //var t =createElement({<div className="error">Debe elegir un Tipo de marcador</div>})
+  //expect(screen.getByText("Debe elegir un Tipo de marcador")).not.toBeInTheDocument();
+  fireEvent.click(screen.getByText("Añadir"))
+  expect(screen.queryByText("Debe elegir un Tipo de marcador")).not.toBeInTheDocument();
+  expect(tipo.value).toBe("Gasolinera");
+  //in ["Bar","Restaurante","Gasolinera","Tienda","Paisaje","Monumento"]
+  
+  fireEvent.change(tipo, { target: { value: "Restaurante" } })
+  fireEvent.click(screen.getByText("Añadir"))
+  expect(screen.queryByText("Debe elegir un Tipo de marcador")).not.toBeInTheDocument();
+  expect(tipo.value).toBe("Restaurante");
+
+  fireEvent.change(tipo, { target: { value: "Bar" } })
+  fireEvent.click(screen.getByText("Añadir"))
+  expect(screen.queryByText("Debe elegir un Tipo de marcador")).not.toBeInTheDocument();
+  expect(tipo.value).toBe("Bar");
+
+  fireEvent.change(tipo, { target: { value: "Tienda" } })
+  fireEvent.click(screen.getByText("Añadir"))
+  expect(screen.queryByText("Debe elegir un Tipo de marcador")).not.toBeInTheDocument();
+  expect(tipo.value).toBe("Tienda");
+
+  fireEvent.change(tipo, { target: { value: "Paisaje" } })
+  fireEvent.click(screen.getByText("Añadir"))
+  expect(screen.queryByText("Debe elegir un Tipo de marcador")).not.toBeInTheDocument();
+  expect(tipo.value).toBe("Paisaje");
+
+  fireEvent.change(tipo, { target: { value: "Monumento" } })
+  fireEvent.click(screen.getByText("Añadir"))
+  expect(screen.queryByText("Debe elegir un Tipo de marcador")).not.toBeInTheDocument();
+  expect(tipo.value).toBe("Monumento");
 
   //Testeo todo bien
 
