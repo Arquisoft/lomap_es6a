@@ -98,7 +98,7 @@ test('renders Form component without crashing', async () => {
         <SessionProvider sessionId="logIn">
           <Router>
               <div className='contenedor-rutas'>
-              <Form session={session}/>
+              <Form session={session} modo={false}/>
               </div>
               
             </Router>
@@ -110,6 +110,25 @@ test('renders Form component without crashing', async () => {
     expect(screen.getByText(/Longitud:/i)).toBeInTheDocument();
     expect(screen.getByText(/Latitud:/i)).toBeInTheDocument();
     expect(screen.getByText(/Tipo:/i)).toBeInTheDocument();
-    expect(screen.getByText(/Añade una imagen:/i)).toBeInTheDocument();
+
+    expect(screen.getByLabelText("tipo-Gasolinera")).toBeInTheDocument();
+    expect(screen.getByLabelText("tipo-Bar")).toBeInTheDocument();
+    expect(screen.getByLabelText("tipo-Tienda")).toBeInTheDocument();
+    expect(screen.getByLabelText("tipo-Paisaje")).toBeInTheDocument();
+    expect(screen.getByLabelText("tipo-Monumento")).toBeInTheDocument();
+    expect(screen.getByLabelText("tipo-Restaurante")).toBeInTheDocument();
+
+
+    expect(screen.getByText(/Añade una imagen/i)).toBeInTheDocument();
+    expect(screen.getByText("Añadir")).toBeInTheDocument();
+
+    expect(screen.getByText(/Filtros/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Todos/i)).toBeInTheDocument();
+    expect(screen.getByLabelText("Bar")).toBeInTheDocument();
+    expect(screen.getByLabelText("Tienda")).toBeInTheDocument();
+    expect(screen.getByLabelText("Gasolinera")).toBeInTheDocument();
+    expect(screen.getByLabelText("Paisaje")).toBeInTheDocument();
+    expect(screen.getByLabelText("Monumento")).toBeInTheDocument();
+    expect(screen.getByLabelText("Restaurante")).toBeInTheDocument();
     
 });

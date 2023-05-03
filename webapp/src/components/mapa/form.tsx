@@ -308,12 +308,12 @@ function Formulario({ session, modo }: Props) {
             Tipo:
             <select value={tipo} onChange={handleTipoChange}>
               <option value="">Elija un tipo</option>
-              <option value="Gasolinera">Gasolinera</option>
-              <option value="Restaurante">Restaurante</option>
-              <option value="Bar">Bar</option>
-              <option value="Tienda">Tienda</option>
-              <option value="Paisaje">Paisaje</option>
-              <option value="Monumento">Monumento</option>
+              <option aria-label='tipo-Gasolinera' value="Gasolinera">Gasolinera</option>
+              <option aria-label='tipo-Restaurante' value="Restaurante">Restaurante</option>
+              <option aria-label='tipo-Bar' value="Bar">Bar</option>
+              <option aria-label='tipo-Tienda' value="Tienda">Tienda</option>
+              <option aria-label='tipo-Paisaje' value="Paisaje">Paisaje</option>
+              <option aria-label='tipo-Monumento' value="Monumento">Monumento</option>
             </select>
             {errores.tipo && <div className="error">{errores.tipo}</div>}
           </label>
