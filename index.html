@@ -1093,111 +1093,19 @@ La información personal del usuario se almacena de forma descentralizada en POD
 <div class="sect1">
 <h2 id="section-runtime-view">6. Vista de tiempo de ejecución</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contenidos</div>
-<p>The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>important use cases or features: how do building blocks execute them?</p>
-</li>
-<li>
-<p>interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?</p>
-</li>
-<li>
-<p>operation and administration: launch, start-up, stop</p>
-</li>
-<li>
-<p>error and exception scenarios</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their <strong>architectural relevance</strong>. It is <strong>not</strong> important to describe a large number of scenarios. You should rather document a representative selection.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivación</div>
-<p>You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).</p>
-</div>
-<div class="paragraph">
-<div class="title">Forma</div>
-<p>There are many notations for describing scenarios, e.g.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>numbered list of steps (in natural language)</p>
-</li>
-<li>
-<p>activity diagrams or flow charts</p>
-</li>
-<li>
-<p>sequence diagrams</p>
-</li>
-<li>
-<p>BPMN or EPCs (event process chains)</p>
-</li>
-<li>
-<p>state machines</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
+<div class="sect2 arc42help">
 <h3 id="_escenario_de_ejecución_1_registro_de_nuevo_usuario">6.1. Escenario de ejecución 1. Registro de nuevo usuario</h3>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: PlantUML preprocessing failed: [From &lt;input&gt; (line 3) ]
-
-@startuml
-actor User
-entity Front-End
-^^^^^
- Syntax Error?
-
-actor User
-entity Front-End
-entity LoMap
-database POD
-
-User -&gt; LoMap: El usuario introduce sus credenciales y dirección de su pod
-Front-End -&gt; Api_Rest: Se envía el formulario
-LoMap -&gt; POD: Almacena datos del usuario
-Front-End &lt;- LoMap: Devuelve la confirmación del registro
-User -&gt; Front-End: Muestra un mensaje de confirmación</pre>
+<img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="711" height="335">
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_escenario_de_ejecución_2_inicio_de_sesion_de_usuario">6.2. Escenario de ejecución 2. Inicio de sesion de usuario</h3>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: PlantUML preprocessing failed: [From &lt;input&gt; (line 3) ]
-
-@startuml
-actor User
-entity Front-End
-^^^^^
- Syntax Error?
-
-actor User
-entity Front-End
-entity LoMap
-database POD
-
-User -&gt; LoMap: Introduce su POD
-Front-End -&gt; LoMap: envía el POD
-LoMap &lt;- POD: Extrae datos del usuario
-Front-End &lt;- LoMap: Devuelve localizaciones
-User -&gt; Front-End: Muestra localizaciones</pre>
+<img src="./images/Sequence%20diagram1.png" alt="Sequence diagram1" width="538" height="335">
 </div>
 </div>
 </div>
@@ -1212,26 +1120,9 @@ User -&gt; Front-End: Muestra localizaciones</pre>
 <div class="paragraph">
 <p>El usuario puede agregar una ubicación a su mapa.</p>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: PlantUML preprocessing failed: [From &lt;input&gt; (line 3) ]
-
-@startuml
-actor User
-entity Front-End
-^^^^^
- Syntax Error?
-
-actor User
-entity Front-End
-database POD
-
-User-&gt; Api_Rest: El usuario hace clic en el mapa para agregar un nuevo marcador
-Front-End -&gt;POD: Preguntar ubicaciones JSON
-POD-&gt; Front-End: Ubicaciones de retorno JSON
-Front-End -&gt; Front-End: Agregar la nueva ubicación
-Front-End -&gt;POD: Envía el nuevo JSON
-Front-End -&gt;User: Muestra el mapa con la nueva ubicación</pre>
+<img src="./images/Sequence%20diagram%20-%20Saving%20Locations%20-%20mobileapp.png" alt="Sequence diagram   Saving Locations   mobileapp" width="577" height="378">
 </div>
 </div>
 </div>
@@ -1240,54 +1131,17 @@ Front-End -&gt;User: Muestra el mapa con la nueva ubicación</pre>
 <div class="paragraph">
 <p>Las ubicaciones agregadas al mapa luego serán eliminadas por el usuario a través de la aplicación.</p>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: PlantUML preprocessing failed: [From &lt;input&gt; (line 3) ]
-
-@startuml
-actor User
-entity Front-End
-^^^^^
- Syntax Error?
-
-actor User
-entity Front-End
-database POD
-
-User-&gt; Front-End: El usuario hace clic en el mapa en una ubicación de marca
-
-Front-End -&gt; Front-End: Usando la ID de ubicación, la aplicación conoce el archivo JSON
-Front-End -&gt;POD: Preguntar ubicaciones JSON
-POD-&gt; Front-End: Return locations JSON
-Front-End -&gt; Api_Rest: Ubicaciones de retorno JSON
-Front-End -&gt;POD: Envía el nuevo JSON
-Front-End -&gt;User: Muestra el mapa con la nueva ubicación</pre>
+<img src="./images/Sequence%20diagram%20-%20Editing%20Saved%20Locations.png" alt="Sequence diagram   Editing Saved Locations" width="809" height="422">
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_escenario_de_ejecución_5_usuario_visualiza_una_de_sus_localizaciones">6.5. Escenario de ejecución 5. Usuario visualiza una de sus localizaciones.</h3>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: PlantUML preprocessing failed: [From &lt;input&gt; (line 4) ]
-
-@startuml
-actor User
-entity LoMap
-entity Front-End
-^^^^^
- Syntax Error?
-
-actor User
-entity LoMap
-entity Front-End
-database POD
-
-User -&gt; Front-End: Selecciona la localización
-LoMap -&gt; POD: Busca datos sobre la localización
-LoMap &lt;- POD: Devuelve los datos encontrados
-Front-End &lt;- LoMap: Devuelve la información que encontro
-User -&gt; Front-End: Muestra esa información</pre>
+<img src="./images/Sequence%20diagram2.png" alt="Sequence diagram2" width="406" height="335">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
