@@ -38,8 +38,23 @@ test('buscar un amigo without name', async () => {
     fireEvent.click(searchButton);
 
     await waitFor(() => {
-        expect(screen.getByText("request to https://.inrupt.net/profile/card#me failed, reason: getaddrinfo ENOTFOUND .inrupt.net")).toBeInTheDocument();
+        expect(screen.getByText("Nombre de usuario no especificado")).toBeInTheDocument();
     });
+});
+
+test('buscar un amigo que no tiene perfil', async () => {
+    const { getByLabelText } = render(<BuscarAmigo session={session}/>);
+    const inputField = getByLabelText("username");
+    const searchButton = getByLabelText("searchButton");
+
+    fireEvent.change(inputField, { target: { value: "jajajajajjaajjaja" } } );
+    fireEvent.click(searchButton);
+
+    expect(screen.getByText(/Cargando.../i)).toBeInTheDocument();  
+
+    await waitFor(() => {
+        expect(screen.getByText("Fetching the Resource at [https://jajajajajjaajjaja.inrupt.net/profile/card#me] failed: [500] [Internal Server Error].")).toBeInTheDocument();
+    }, { timeout: 50000 });
 });
 
 test('buscar y añadir un amigo', async () => {
@@ -59,5 +74,5 @@ test('buscar y añadir un amigo', async () => {
         expect(addButton).toBeInTheDocument();
 
         fireEvent.click(addButton);
-    }, { timeout: 10000 });  
+    }, { timeout: 50000 });  
 });

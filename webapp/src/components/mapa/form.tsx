@@ -13,7 +13,6 @@ import { initMap } from './initMap';
 import mapboxgl ,{Popup} from 'mapbox-gl';
 import Filtro from './filtro';
 import Marker from "../../accesoPods/marker";
-import { rejects } from 'assert';
 
 interface ErroresFormulario {
   nombre: string | null;
