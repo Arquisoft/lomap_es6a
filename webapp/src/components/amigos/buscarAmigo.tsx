@@ -4,7 +4,7 @@ import { FOAF } from '@inrupt/vocab-common-rdf';
 import {SessionType} from "../../shared/shareddtypes";
 import { Link } from 'react-router-dom';
 import '../../hojasEstilo/amigos.css';
-import {addAmigo} from "../../accesoPods/adaptador";
+import {addAmigo,obtenerNombresDeAmigos} from "../../accesoPods/adaptador";
 
 function BuscarAmigo({ session }: SessionType) {
   const [nombre, setNombre] = useState('');
@@ -119,19 +119,8 @@ function BuscarAmigo({ session }: SessionType) {
     
     const nuevosAmigosUrl = await addAmigo({session},WebID);
     if (nuevosAmigosUrl !== undefined){
-    const nuevosAmigos = await Promise.all(nuevosAmigosUrl.map(async (url) => {
-      const amigoDataset = await getSolidDataset(url);
-      const amigoPerfil = getThing(amigoDataset, url);
-  
-      if (!amigoPerfil) {
-        throw new Error(`No se pudo encontrar la cosa del amigo en ${url}`);
-      }
-  
-      return getStringNoLocale(amigoPerfil, FOAF.name) ?? url;
-    }));
-  
-    setAmigos(nuevosAmigos);
-    }
+      const nuevosAmigos = await obtenerNombresDeAmigos(nuevosAmigosUrl);
+      if (nuevosAmigos !== undefined){setAmigos(nuevosAmigos);}}
   }
 
   async function deleteFriend(amigoNombre: string) {

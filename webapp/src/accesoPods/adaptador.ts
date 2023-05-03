@@ -2,9 +2,10 @@ import Marker from './marker';
 import Comentario from './comentario';
 import {Session} from "@inrupt/solid-client-authn-browser";
 import {escribir, buscarArchivos} from "./acceso";
-import { addIri, getSolidDataset, getThing, getUrlAll, saveSolidDatasetAt, setThing } from '@inrupt/solid-client';
+import { addIri, getSolidDataset, getStringNoLocale, getThing, getUrlAll, saveSolidDatasetAt, setThing } from '@inrupt/solid-client';
 import { SessionType } from '../shared/shareddtypes';
 import { FOAF } from '@inrupt/vocab-common-rdf';
+import { resolve } from 'path';
 
 export function guardarMarcador(session: Session, nombre: string, descripcion:string, lat: number, lng: number, tipo: string,imagen:string): Marker | null {
     let marker = new Marker("",nombre, descripcion, lat, lng, tipo,imagen);
@@ -187,6 +188,26 @@ export async function addAmigo({session}: SessionType, WebID:string): Promise<st
 
       return getUrlAll(updatedThing, FOAF.knows);
 }
+
+export async function obtenerNombresDeAmigos(nuevosAmigosUrl: string[]):Promise<string[] | undefined> {
+    const nombresDeAmigos: string[] = [];
+  
+    await Promise.all(
+      nuevosAmigosUrl.map(async (url) => {
+        const amigoDataset = await getSolidDataset(url);
+        const amigoPerfil = getThing(amigoDataset, url);
+  
+        if (!amigoPerfil) {
+          throw new Error(`No se pudo encontrar la cosa del amigo en ${url}`);
+        }
+  
+        const nombreDeAmigo = getStringNoLocale(amigoPerfil, FOAF.name) ?? url;
+        nombresDeAmigos.push(nombreDeAmigo);
+      })
+    );
+  
+    return nombresDeAmigos;
+  }
 
 export async function delAmigo({session}: SessionType, WebID:string): Promise<string[] | undefined>{
     const { webId } = session.info;

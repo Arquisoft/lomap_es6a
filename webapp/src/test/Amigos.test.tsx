@@ -64,6 +64,12 @@ test('buscar y añadir un amigo', async () => {
         ({session}: SessionType, WebID:string): Promise<string[] | undefined> => Promise.resolve(["https://prueba.inrupt.net/profile/card#me"])
     );
 
+    /*
+    jest.spyOn(adaptador, "obtenerNombresDeAmigos").mockImplementation(
+        (nuevosAmigosUrl: string[]):Promise<string[] | undefined> => Promise.resolve(["Prueba"])
+    );
+    */
+
     const { getByLabelText } = render(<BuscarAmigo session={session}/>);
     const inputField = getByLabelText("username");
     const searchButton = getByLabelText("searchButton");
