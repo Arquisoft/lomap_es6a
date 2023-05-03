@@ -1,8 +1,8 @@
 [[section-deployment-view]]
 
-== Deployment View
+== Vista de Despliegue
 
-=== Infrastructure
+=== Infraestructura
 
 Motivacion::
 
@@ -27,6 +27,3 @@ Mapeo de Bloques de Construccion a Infraestructura::
 | GitHub | Servicio de control de versiones, donde se almacena el código fuente de la aplicación.
 | GitHub Pages| Servicio de hosting de GitHub, donde se almacena el código compilado de la aplicación.
 |===
-
-:imagesdir: images/
-image:7Diagrama.png[Punto7:DesplDig]
