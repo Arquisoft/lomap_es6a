@@ -4,8 +4,7 @@
 [role="arc42help"]
 
 === Escenario de ejecución 1. Registro de nuevo usuario
-
-[plantuml,"Sequence diagram",png]
+[plantuml,"Sequence diagram0",png]
 ----
 actor User
 entity FrontEnd
@@ -41,13 +40,13 @@ Las ubicaciones guardadas pueden ser vistas más tarde por el usuario y sus amig
 
 El usuario puede agregar una ubicación a su mapa. 
 
-[plantuml,"Sequence diagram - Saving Locations - mobileapp",png] 
+[plantuml,"Sequence diagram3",png]
 ----
 actor User 
 entity FrontEnd
 database POD 
  
-User-> Api_Rest: El usuario hace clic en el mapa para agregar un nuevo marcador 
+User-> MapBox: El usuario hace clic en el mapa para agregar un nuevo marcador 
 FrontEnd ->POD: Preguntar ubicaciones JSON 
 POD-> FrontEnd: Ubicaciones de retorno JSON
 FrontEnd -> FrontEnd: Agregar la nueva ubicación
@@ -58,7 +57,7 @@ FrontEnd ->User: Muestra el mapa con la nueva ubicación
 
 Las ubicaciones agregadas al mapa luego serán eliminadas por el usuario a través de la aplicación.
 
-[plantuml,"Sequence diagram - Editing Saved Locations",png] 
+[plantuml,"Sequence diagram4",png]
 ---- 
 actor User 
 entity FrontEnd
@@ -66,7 +65,7 @@ database POD
  
 User-> FrontEnd: El usuario hace clic en el mapa en una ubicación de marca 
 
-FrontEnd -> Front-End: Usando la ID de ubicación, la aplicación conoce el archivo JSON 
+FrontEnd -> FrontEnd: Usando la ID de ubicación, la aplicación conoce el archivo JSON 
 FrontEnd ->POD: Preguntar ubicaciones JSON
 POD-> FrontEnd: Return locations JSON 
 FrontEnd-> FrontEnd: Ubicaciones de retorno JSON
@@ -75,7 +74,7 @@ FrontEnd ->User: Muestra el mapa con la nueva ubicación
 
 ---- 
 === Escenario de ejecución 5. Usuario visualiza una de sus localizaciones.
-[plantuml,"Sequence diagram2",png]
+[plantuml,"Sequence diagram5",png]
 ----
 actor User
 entity LoMap
