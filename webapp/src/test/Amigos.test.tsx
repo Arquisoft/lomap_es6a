@@ -5,6 +5,8 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Session } from "@inrupt/solid-client-authn-browser";
 import Amigos from "../components/amigos/amigos";
 import BuscarAmigo from "../components/amigos/buscarAmigo";
+import * as adaptador from "../accesoPods/adaptador";
+import { SessionType } from "../shared/shareddtypes";
 
 jest.setTimeout(100000);
 
@@ -58,6 +60,16 @@ test('buscar un amigo que no tiene perfil', async () => {
 });
 
 test('buscar y añadir un amigo', async () => {
+    jest.spyOn(adaptador, "obtenerUrlDeAmigos").mockImplementation(
+        ({session}: SessionType, WebID:string): Promise<string[] | undefined> => Promise.resolve(["https://prueba.inrupt.net/profile/card#me"])
+    );
+
+    /*
+    jest.spyOn(adaptador, "obtenerNombresDeAmigos").mockImplementation(
+        (nuevosAmigosUrl: string[]):Promise<string[] | undefined> => Promise.resolve(["Prueba"])
+    );
+    */
+
     const { getByLabelText } = render(<BuscarAmigo session={session}/>);
     const inputField = getByLabelText("username");
     const searchButton = getByLabelText("searchButton");
@@ -66,13 +78,14 @@ test('buscar y añadir un amigo', async () => {
     fireEvent.click(searchButton);
 
     expect(screen.getByText(/Cargando.../i)).toBeInTheDocument();  
-
+    let addButton = inputField;
     await waitFor(() => {
-        const addButton = getByLabelText("addButton");
+        addButton = getByLabelText("addButton");
 
         expect(screen.getByText(/Nombre: testASW/i)).toBeInTheDocument();
         expect(addButton).toBeInTheDocument();
 
-        fireEvent.click(addButton);
+        
     }, { timeout: 50000 });  
+    fireEvent.click(addButton);
 });
