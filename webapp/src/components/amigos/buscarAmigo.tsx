@@ -4,7 +4,7 @@ import { FOAF } from '@inrupt/vocab-common-rdf';
 import {SessionType} from "../../shared/shareddtypes";
 import { Link } from 'react-router-dom';
 import '../../hojasEstilo/amigos.css';
-import {addAmigo,obtenerNombresDeAmigos} from "../../accesoPods/adaptador";
+import {obtenerUrlDeAmigos,obtenerNombresDeAmigos,delAmigos} from "../../accesoPods/adaptador";
 
 function BuscarAmigo({ session }: SessionType) {
   const [nombre, setNombre] = useState('');
@@ -118,7 +118,7 @@ function BuscarAmigo({ session }: SessionType) {
   async function addFriend() {
     let nodef = undefined;
     let nuevosAmigosUrl;
-    nuevosAmigosUrl = await addAmigo({session},WebID);
+    nuevosAmigosUrl = await obtenerUrlDeAmigos({session},WebID);
     if (nuevosAmigosUrl !== nodef){
       let nuevosAmigos;
       nuevosAmigos = await obtenerNombresDeAmigos(nuevosAmigosUrl);
@@ -126,72 +126,12 @@ function BuscarAmigo({ session }: SessionType) {
   }
 
   async function deleteFriend(amigoNombre: string) {
-    const { webId } = session.info;
-  
-    if (!webId) {
-      throw new Error('Nombre de usuario no especificado');
-    }
-  
-    const profileDataset = await getSolidDataset(webId);
-  
-    if (!profileDataset) {
-      throw new Error('Perfil no encontrado');
-    }
-  
-    const profileThing = getThing(profileDataset, webId);
-  
-    if (!profileThing) {
-      throw new Error('Perfil no encontrado');
-    }
-  
-    const amigosUrl = getUrlAll(profileThing, FOAF.knows);
-  
-    // Buscar la URL del amigo correspondiente a partir de su nombre
-    let amigoUrl: string | undefined;
-    for (const url of amigosUrl) {
-      const amigoDataset = await getSolidDataset(url);
-  
-      if (!amigoDataset) {
-        throw new Error(`No se pudo cargar el perfil del amigo en ${url}`);
-      }
-  
-      const amigoPerfil = getThing(amigoDataset, url);
-  
-      if (!amigoPerfil) {
-        throw new Error(`No se pudo encontrar la cosa del amigo en ${url}`);
-      }
-  
-      const amigoNombreActual = getStringNoLocale(amigoPerfil, FOAF.name);
-      if (amigoNombreActual === amigoNombre) {
-        amigoUrl = url;
-        break;
-      }
-    }
-  
-    if (!amigoUrl) {
-      throw new Error(`No se pudo encontrar el amigo con el nombre ${amigoNombre}`);
-    }
-  
-    const updatedThing = removeIri(profileThing, FOAF.knows, amigoUrl);
-    const updatedProfileDataset = setThing(profileDataset, updatedThing);
-    await saveSolidDatasetAt(webId, updatedProfileDataset, {
-      fetch: session.fetch,
-    });
-  
     // Actualizar la lista de amigos
-    const nuevosAmigosUrl = getUrlAll(updatedThing, FOAF.knows);
-    const nuevosAmigos = await Promise.all(nuevosAmigosUrl.map(async (url) => {
-      const amigoDataset = await getSolidDataset(url);
-      const amigoPerfil = getThing(amigoDataset, url);
-  
-      if (!amigoPerfil) {
-        throw new Error(`No se pudo encontrar la cosa del amigo en ${url}`);
-      }
-  
-      return getStringNoLocale(amigoPerfil, FOAF.name) ?? url;
-    }));
-  
-    setAmigos(nuevosAmigos);
+    const nuevosAmigosUrl = await delAmigos({session},amigoNombre);
+    if (nuevosAmigosUrl !== undefined){
+      const nuevosAmigos = await obtenerNombresDeAmigos(nuevosAmigosUrl);
+      if (nuevosAmigos !== undefined){setAmigos(nuevosAmigos);}
+    }
   }
   
   return (

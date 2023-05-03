@@ -2,7 +2,7 @@ import Marker from './marker';
 import Comentario from './comentario';
 import {Session} from "@inrupt/solid-client-authn-browser";
 import {escribir, buscarArchivos} from "./acceso";
-import { addIri, getSolidDataset, getStringNoLocale, getThing, getUrlAll, saveSolidDatasetAt, setThing } from '@inrupt/solid-client';
+import { addIri, getSolidDataset, getStringNoLocale, getThing, getUrlAll, removeIri, saveSolidDatasetAt, setThing } from '@inrupt/solid-client';
 import { SessionType } from '../shared/shareddtypes';
 import { FOAF } from '@inrupt/vocab-common-rdf';
 import { resolve } from 'path';
@@ -165,7 +165,7 @@ export async function recuperarComentario(session: Session, idmarker: String, us
     return comentarios;
 }
 
-export async function addAmigo({session}: SessionType, WebID:string): Promise<string[] | undefined>{
+export async function obtenerUrlDeAmigos({session}: SessionType, WebID:string): Promise<string[] | undefined>{
     const { webId } = session.info;
     if(!webId) {
         throw new Error('Nombre de usuario no especificado');
@@ -209,7 +209,7 @@ export async function obtenerNombresDeAmigos(nuevosAmigosUrl: string[]):Promise<
     return nombresDeAmigos;
   }
 
-export async function delAmigo({session}: SessionType, WebID:string): Promise<string[] | undefined>{
+export async function delAmigos({session}: SessionType, amigoNombre:string): Promise<string[] | undefined>{
     const { webId } = session.info;
   
     if (!webId) {
@@ -227,5 +227,40 @@ export async function delAmigo({session}: SessionType, WebID:string): Promise<st
     if (!profileThing) {
       throw new Error('Perfil no encontrado');
     }
-    return getUrlAll(profileThing, FOAF.knows);
+  
+    const amigosUrl = getUrlAll(profileThing, FOAF.knows);
+  
+    // Buscar la URL del amigo correspondiente a partir de su nombre
+    let amigoUrl: string | undefined;
+    for (const url of amigosUrl) {
+      const amigoDataset = await getSolidDataset(url);
+  
+      if (!amigoDataset) {
+        throw new Error(`No se pudo cargar el perfil del amigo en ${url}`);
+      }
+  
+      const amigoPerfil = getThing(amigoDataset, url);
+  
+      if (!amigoPerfil) {
+        throw new Error(`No se pudo encontrar la cosa del amigo en ${url}`);
+      }
+  
+      const amigoNombreActual = getStringNoLocale(amigoPerfil, FOAF.name);
+      if (amigoNombreActual === amigoNombre) {
+        amigoUrl = url;
+        break;
+      }
+    }
+  
+    if (!amigoUrl) {
+      throw new Error(`No se pudo encontrar el amigo con el nombre ${amigoNombre}`);
+    }
+  
+    const updatedThing = removeIri(profileThing, FOAF.knows, amigoUrl);
+    const updatedProfileDataset = setThing(profileDataset, updatedThing);
+    await saveSolidDatasetAt(webId, updatedProfileDataset, {
+      fetch: session.fetch,
+    });
+
+    return getUrlAll(updatedThing, FOAF.knows);
 }

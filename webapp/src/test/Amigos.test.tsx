@@ -60,7 +60,7 @@ test('buscar un amigo que no tiene perfil', async () => {
 });
 
 test('buscar y añadir un amigo', async () => {
-    jest.spyOn(adaptador, "addAmigo").mockImplementation(
+    jest.spyOn(adaptador, "obtenerUrlDeAmigos").mockImplementation(
         ({session}: SessionType, WebID:string): Promise<string[] | undefined> => Promise.resolve(["https://prueba.inrupt.net/profile/card#me"])
     );
 
