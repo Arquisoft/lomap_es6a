@@ -281,7 +281,7 @@ function Formulario({ session, modo }: Props) {
           <br />
           <label>
             Longitud:
-            <input
+            <input aria-label='form-longitud'
               type="number"
               name="longitud"
               step="0.000000000000001"
@@ -294,7 +294,7 @@ function Formulario({ session, modo }: Props) {
           <br />
           <label>
             Latitud:
-            <input
+            <input aria-label='form-latitud'
               type="number"
               name="latitud"
               step="0.000000000000001"
@@ -307,7 +307,7 @@ function Formulario({ session, modo }: Props) {
           <br />
           <label>
             Tipo:
-            <select value={tipo} onChange={handleTipoChange}>
+            <select value={tipo} onChange={handleTipoChange} aria-label='form-tipo'>
               <option value="">Elija un tipo</option>
               <option aria-label='tipo-Gasolinera' value="Gasolinera">Gasolinera</option>
               <option aria-label='tipo-Restaurante' value="Restaurante">Restaurante</option>
@@ -320,7 +320,7 @@ function Formulario({ session, modo }: Props) {
           </label>
           <label>
             Añade una imagen
-            <input id="imageUploader" type="file" accept="image/*" onChange={handleImageChange}/>
+            <input id="imageUploader" type="file" accept="image/*" onChange={handleImageChange} aria-label='form-imagen'/>
           </label>
           <br />
           <button type="submit">Añadir</button>
