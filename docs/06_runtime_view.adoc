@@ -2,62 +2,36 @@
 == Vista de tiempo de ejecución
 
 [role="arc42help"]
-****
-.Contenidos
-The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
-
-* important use cases or features: how do building blocks execute them?
-* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
-* operation and administration: launch, start-up, stop
-* error and exception scenarios
-
-Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their *architectural relevance*. It is *not* important to describe a large number of scenarios. You should rather document a representative selection.
-
-.Motivación
-You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
-
-.Forma
-There are many notations for describing scenarios, e.g.
-
-* numbered list of steps (in natural language)
-* activity diagrams or flow charts
-* sequence diagrams
-* BPMN or EPCs (event process chains)
-* state machines
-* ...
-
-****
 
 === Escenario de ejecución 1. Registro de nuevo usuario
 
 [plantuml,"Sequence diagram",png]
 ----
 actor User
-entity Front-End
+entity FrontEnd
 entity LoMap
 database POD
 
 User -> LoMap: El usuario introduce sus credenciales y dirección de su pod
-Front-End -> Api_Rest: Se envía el formulario
+FrontEnd -> LoMap: Se envía el formulario
 LoMap -> POD: Almacena datos del usuario
-Front-End <- LoMap: Devuelve la confirmación del registro
-User -> Front-End: Muestra un mensaje de confirmación
+FrontEnd <- LoMap: Devuelve la confirmación del registro
+User -> FrontEnd: Muestra un mensaje de confirmación
 
 ----
 === Escenario de ejecución 2. Inicio de sesion de usuario
 [plantuml,"Sequence diagram1",png]
 ----
 actor User
-entity Front-End
+entity FrontEnd
 entity LoMap
 database POD
 
 User -> LoMap: Introduce su POD 
-Front-End -> LoMap: envía el POD
+FrontEnd -> LoMap: envía el POD
 LoMap <- POD: Extrae datos del usuario
-Front-End <- LoMap: Devuelve localizaciones
-User -> Front-End: Muestra localizaciones
+FrontEnd <- LoMap: Devuelve localizaciones
+User -> FrontEnd: Muestra localizaciones
 ----
 === Escenario de ejecución 3. Añadir localización
 
@@ -70,15 +44,15 @@ El usuario puede agregar una ubicación a su mapa.
 [plantuml,"Sequence diagram - Saving Locations - mobileapp",png] 
 ----
 actor User 
-entity Front-End
+entity FrontEnd
 database POD 
  
 User-> Api_Rest: El usuario hace clic en el mapa para agregar un nuevo marcador 
-Front-End ->POD: Preguntar ubicaciones JSON 
-POD-> Front-End: Ubicaciones de retorno JSON
-Front-End -> Front-End: Agregar la nueva ubicación
-Front-End ->POD: Envía el nuevo JSON
-Front-End ->User: Muestra el mapa con la nueva ubicación
+FrontEnd ->POD: Preguntar ubicaciones JSON 
+POD-> FrontEnd: Ubicaciones de retorno JSON
+FrontEnd -> FrontEnd: Agregar la nueva ubicación
+FrontEnd ->POD: Envía el nuevo JSON
+FrontEnd ->User: Muestra el mapa con la nueva ubicación
 ----  
 === Escenario de ejecución 4. Eliminar localización 
 
@@ -87,17 +61,17 @@ Las ubicaciones agregadas al mapa luego serán eliminadas por el usuario a trav�
 [plantuml,"Sequence diagram - Editing Saved Locations",png] 
 ---- 
 actor User 
-entity Front-End
+entity FrontEnd
 database POD 
  
-User-> Front-End: El usuario hace clic en el mapa en una ubicación de marca 
+User-> FrontEnd: El usuario hace clic en el mapa en una ubicación de marca 
 
-Front-End -> Front-End: Usando la ID de ubicación, la aplicación conoce el archivo JSON 
-Front-End ->POD: Preguntar ubicaciones JSON
-POD-> Front-End: Return locations JSON 
-Front-End -> Api_Rest: Ubicaciones de retorno JSON
-Front-End ->POD: Envía el nuevo JSON
-Front-End ->User: Muestra el mapa con la nueva ubicación
+FrontEnd -> Front-End: Usando la ID de ubicación, la aplicación conoce el archivo JSON 
+FrontEnd ->POD: Preguntar ubicaciones JSON
+POD-> FrontEnd: Return locations JSON 
+FrontEnd-> FrontEnd: Ubicaciones de retorno JSON
+FrontEnd->POD: Envía el nuevo JSON
+FrontEnd ->User: Muestra el mapa con la nueva ubicación
 
 ---- 
 === Escenario de ejecución 5. Usuario visualiza una de sus localizaciones.
@@ -105,12 +79,12 @@ Front-End ->User: Muestra el mapa con la nueva ubicación
 ----
 actor User
 entity LoMap
-entity Front-End
+entity FrontEnd
 database POD
 
-User -> Front-End: Selecciona la localización
+User -> FrontEnd: Selecciona la localización
 LoMap -> POD: Busca datos sobre la localización
 LoMap <- POD: Devuelve los datos encontrados
-Front-End <- LoMap: Devuelve la información que encontro
-User -> Front-End: Muestra esa información
+FrontEnd <- LoMap: Devuelve la información que encontro
+User -> FrontEnd: Muestra esa información
 ----
