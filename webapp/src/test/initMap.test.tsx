@@ -257,6 +257,7 @@ test("click on marker",async ()=>{
         if (markers != null) {
             onMarkerClick(marker,popupElement,session,user,markers[1])
         }
+        
     
 })
 
