@@ -21,6 +21,7 @@ import paisaje from '../imagenes/paisaje.png';
 import monumento from '../imagenes/monumento.png';
 import interrogacion from '../imagenes/interrogacion.png';
 import { setupJestCanvasMock } from 'jest-webgl-canvas-mock';
+import { Check } from "@material-ui/icons";
 const WorkerPlugin = require('worker-plugin');
 const WorkerPlugin2 = require('worker-loader');
 const WorkerPlugin3 = require('worker_threads');
@@ -64,13 +65,13 @@ const { Worker } = require('worker_threads');
       (session: Session, texto: string, idmarker: string, autor: string, valoracion: string, user: string): Comentario | null => comentario1
   );
   
-  jest.spyOn(adaptador, "recuperarMarcador").mockImplementation(
-      (session: Session, user: string): Promise<Marker[] | null> => Promise.resolve([marcador3, marcador4])
-  );
+//   jest.spyOn(adaptador, "recuperarMarcador").mockImplementation(
+//       (session: Session, user: string): Promise<Marker[] | null> => Promise.resolve([marcador3, marcador4])
+//   );
   
-  jest.spyOn(adaptador, "recuperarComentario").mockImplementation(
-      (session: Session, idmarker: String, user: string): Promise<Comentario[] | null> => Promise.resolve([comentario1, comentario2])
-  );
+//   jest.spyOn(adaptador, "recuperarComentario").mockImplementation(
+//       (session: Session, idmarker: String, user: string): Promise<Comentario[] | null> => Promise.resolve([comentario1, comentario2])
+//   );
   
   
   })
@@ -225,7 +226,7 @@ test("click on marker",async ()=>{
       userMarkers = [];
     var container =  document.createElement('div');
     var popupElement:Popup = new mapboxgl.Popup;
-    var markers = await adaptador.recuperarMarcador({session}.session,user)
+    var markers = [marcador3, marcador4]//await adaptador.recuperarMarcador({session}.session,user)
     var market =markers ? markers[0] : new Marker("","","",0,0,"");
         let iconMarker :HTMLImageElement;
         iconMarker = seleccionarIcono(market.tipo);
@@ -241,7 +242,16 @@ test("click on marker",async ()=>{
         if (markers != null) {
             onMarkerClick(marker,popupElement,session,user,markers[0])
         }
-        
+        // var tmp = render(marker.getElement())
+        // expect( tmp.getByLabelText("marcadorForm")).toBeInTheDocument();
+       // marker.getPopup().setHTML
+        // const html = marker.getElement().innerHTML;
+        // const element = <div dangerouslySetInnerHTML={{ __html: html }} />;
+        // onMarkerClick(marker,popupElement,session,user,markers[0])
+        // const { getByLabelText } = render(element);
+        //expect(getByLabelText('marcadorForm')).toBeInTheDocument();
+
+
         var market =markers ? markers[1] : new Marker("","","",0,0,"");
         
         iconMarker = seleccionarIcono(market.tipo);

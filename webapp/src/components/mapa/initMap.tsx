@@ -99,7 +99,7 @@ export const onMarkerClick= (marker: mapboxgl.Marker, popupElement: mapboxgl.Pop
   let html = '<img style="width: 250px; height: 150px;"src ='+img +'>'+
   '<h1>'+ market.nombre+'</h1>'+
   '<p>'+ market.descripcion+'</p>'+
-  '<form id="comment-form">'+
+  '<form id="comment-form" aria-label="marcadorForm">'+
     '<input type="text" id="comentario" name="comentario" placeholder="Escribe un comentario" required>'+
     '<input type="number" id="valoracion" min="0" max="10" step="1" placeholder="Valora del 1 al 10" required>'+
     '<button type="submit" id="btnenviar" >Enviar</button>'+
