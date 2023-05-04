@@ -12,7 +12,7 @@
 |    Sergio Moro Muñiz     | UO284622@uniovi.es |  <a href="https://github.com/UO284622"><img alt="Sergio" src="https://img.shields.io/badge/UO284622-Sergio Moro-success"></a>  |
 |    Javier Novella Tomás     | UO282944@uniovi.es |   <a href="https://github.com/UO282944"><img alt="Javier" src="https://img.shields.io/badge/UO282944-Javier Novella-blue"></a>   |
 |    Alonso Antuña Gomez    | UO282834@uniovi.es |    <a href="https://github.com/UO282834"><img alt="Omar" src="https://img.shields.io/badge/UO282834-Alonso Antuña-red"></a>     |
-| Pablo Fernandez Diaz | UO271116@uniovi.es | <a href="https://github.com/PabloFernandezDiaz"><img alt="Pablo" src="https://img.shields.io/badge/UO278968-Pablo Fernandez-purple"></a> |
+| Pablo Fernandez Diaz | UO271116@uniovi.es | <a href="https://github.com/PabloFernandezDiaz"><img alt="Pablo" src="https://img.shields.io/badge/UO271116-Pablo Fernandez-purple"></a> |
 | Ruben Diaz Zapico | UO283204@uniovi.es | <a href="https://github.com/UO283204"><img alt="Ruben" src="https://img.shields.io/badge/UO278968-Ruben Diaz-green"></a> |
 
 
