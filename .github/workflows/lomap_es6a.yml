@@ -99,6 +99,7 @@ jobs:
     - name: Deploy
       uses: cpina/github-action-push-to-another-repository@create-branch-if-needed-arg
       env:
+            API_MAPBOX: ${{ secrets.API_MAPBOX }}
             API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
           source-directory: 'webapp/build'
