@@ -9,44 +9,66 @@
 <img src="https://miro.medium.com/max/1200/0*RbmfNyhuBb8G3LWh.png" height="100">
 <img src="https://miro.medium.com/max/365/1*Jr3NFSKTfQWRUyjblBSKeg.png" height="100">
 </p>
+<p>
+   <a href="https://github.com/Arquisoft/lomap_es6a/wiki/Video-Demo">
+      Demo video
+   </a>
+</p>
 
-Este proyecto es un ejemplo básico de un sitio web utilizando **React** con **Typescript** y un endpoint usando **NodeJS** con **express**
+---
 
-## Guía de inicio rápido
+## 🖥️ Project developers:
 
-<mark>Si tienes instalados node.js y npm, asegúrate de actualizarlos antes de intentar construir las imagenes</mark>
+|       Desarrolladores        |        UOs         |                                                       Perfiles de GitHub                                                       |
+|:----------------------------:|:------------------:|:------------------------------------------------------------------------------------------------------------------------------:|
+|    Rubén Díaz Zapico     | UO283204@uniovi.es |  <a href="https://github.com/uo283204"><img alt="Rubén" src="https://img.shields.io/badge/UO283204-Rubén Díaz-success"></a>  |
+|    Javier Novella Tomás     | UO282944@uniovi.es |   <a href="https://github.com/UO282944"><img alt="Javier" src="https://img.shields.io/badge/UO282944-Javier Novella-blue"></a>   |
+|    Pablo Fernandez Díaz    | UO271116@uniovi.es |    <a href="https://github.com/PabloFernandezDiaz"><img alt="Pablo" src="https://img.shields.io/badge/UO271116-Pablo Fernandez-red"></a>     |
+| Alonso Antuña Gómez | UO282834@uniovi.es | <a href="https://github.com/UO282834"><img alt="Alonso" src="https://img.shields.io/badge/UO282834-Alonso Antuña-purple"></a> |
+| Sergio Moro Muñiz | UO284622@uniovi.es | <a href="https://github.com/UO284622"><img alt="Sergio" src="https://img.shields.io/badge/UO284622-Sergio Moro-green"></a> |
 
-Si quieres ejecutar el proyecto necesitarás [git](https://git-scm.com/downloads), [Node.js and npm](https://www.npmjs.com/get-npm) y [Docker](https://docs.docker.com/get-docker/). Asegúrate de tenerlos instalados en tu equipo. Descarga el proyecto con `git clone https://github.com/arquisoft/lomap_es6a`. La manera más rápida de ejecutar todo es con Docker.
+---
 
-```bash
-docker-compose up --build
-```
-Este comando creará dos imágenes de docker si no existen en tu equipo (la webapp y la restapi) y lanzará un contenedor de mongoDB. Además lanzará contenedores de Prometheus y Grafana para monitorizar el servicio web. Deberías ser capaz de acceder a todo desde aquí:
+## 🗺️ Descripción del proyecto:
 
- - [Webapp - http://localhost:3000](http://localhost:3000)
- - [Ejemplo llamada a RestApi - http://localhost:5000/api/users/list](http://localhost:5000/api/users/list)
- - [Métricas RestApi - http://localhost:5000/metrics](http://localhost:5000/metrics)
- - [Servidor Prometheus - http://localhost:9090](http://localhost:9090)
- - [Servidor Grafana http://localhost:9091](http://localhost:9091)
- 
-Si quieres ejecutar el proyecto sin Docker primero compila y ejecuta la restapi:
+<p align="justify">
+LoMap es una red social en la que sus usuarios pueden compartir fotos de lugares en los que han estado junto con una descripción y valoración de los mismos. Estos lugares apareceran en forma de marcadores en un mapa y puedes catalogar cada marcador por tipo (bar, tienda, paisaje, restaurante) segun el cual aparecera un icono diferente para identificarlo. Asi mismo, tambien pueden buscar a sus amigos para poder ver las fotos que estos compartan en sus mapas y poder dejarles comentarios en ellas.
+</p>
+
+---
+
+## 📑 Instrucciones de despliegue:
+<p align="justify">
+   Para ejecutar el proyecto, será necesario clonarlo primero, por lo que es necesario tener git (accede a través del siguiente <a href="https://git-scm.com/downloads">enlace</a>), y posteriormente, clonar este respositorio en un directorio local, ya sea descargándo el repositoio en formato <em>.zip</em> o de la siguiente manera:
+</p>
+<ol>
+   <li>Dirigirse al directorio local donde clonar el repositorio.</li>
+   <li>Abrir la consola o símbolo del sistema.</li>
+   <li>Escribir el siguiente código:</li>
+</ol>
 
 ```shell
-cd restapi
-npm install
-npm start
+   git clone https://github.com/Arquisoft/lomap_es3a.git
 ```
-a continuación la webapp:
+<p align="justify">
+   Una vez hecho esto, la aplicación puede lanzarse de la siguiente manera.
+</p>
+
+### Despliegue nativo (Node)
+<p align="justify">
+   En primer lugar, se debe instalar <a href="https://nodejs.org/en">Node</a>. En caso de que ya esté instalado, debe asegurarse que se tiene la última versión del mismo. Después, ejecutamos lo siguiente en la consola:
+</p>
+
 ```shell
 cd webapp
 npm install
 npm start
 ```
+<p align="justify">
+Para acceder a esta a la web (una vez realizado el proceso anterior), basta con ir al siguiente <a href="http://localhost:3000">enlace</a>.
+</p>
 
-Deberías ser capaz de acceder a la aplicación en [http://localhost:3000](http://localhost:3000).
+---
 
-## Mas información
-Encontrarás más información sobre el repositorio en los otros archivos README:
-- Documentación: https://github.com/arquisoft/lomap_es6a/tree/master/docs
-- Webapp: https://github.com/arquisoft/lomap_es6a/tree/master/webapp
-- Restapi: https://github.com/arquisoft/lomap_es6a/tree/master/restapi
+## 📑 Más información:
+Encontrarás más información sobre el repositorio en el siguiente <a href="https://arquisoft.github.io/lomap_es6a/">enlace</a>.
