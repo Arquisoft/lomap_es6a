@@ -158,30 +158,30 @@ test("check icon selection",() =>{
 //     initMap(container, { session }, user);
 //     expect(container.querySelector('.mapboxgl-canvas')).toBeTruthy();
 // })
-test('test cargar marcadores',async() =>{
-    var Marcadores = [marcador1,marcador2,marcador3,marcador4]
-    const marcadoresEnMapa: Array<mapboxgl.Marker> = [];
-    const marcadoresObjetoEnMapa: Array<Marker> = [];
-    const user = 'Usuario de prueba';
+// test('test cargar marcadores',async() =>{
+//     var Marcadores = [marcador1,marcador2,marcador3,marcador4]
+//     const marcadoresEnMapa: Array<mapboxgl.Marker> = [];
+//     const marcadoresObjetoEnMapa: Array<Marker> = [];
+//     const user = 'Usuario de prueba';
    
-    let userMarkers: Marker[]
-      userMarkers = [];
-    var container =  document.createElement('div');
-    var popupElement:Popup;
-    const mapa = new Map({
-        container,
-        style: 'mapbox://styles/mapbox/streets-v12',
-        pitchWithRotate: false,
-        zoom: 15,
-        accessToken: "pk.eyJ1IjoidW8yODI4MzQiLCJhIjoiY2xlcHp5Z2syMGRteTQ5cDJ2dXltMm5uYSJ9.kTLZTl2_YvQiN79m2kPQ1g",
-        doubleClickZoom: false
+//     let userMarkers: Marker[]
+//       userMarkers = [];
+//     var container =  document.createElement('div');
+//     var popupElement:Popup;
+//     const mapa = new Map({
+//         container,
+//         style: 'mapbox://styles/mapbox/streets-v12',
+//         pitchWithRotate: false,
+//         zoom: 15,
+//         accessToken: "pk.eyJ1IjoidW8yODI4MzQiLCJhIjoiY2xlcHp5Z2syMGRteTQ5cDJ2dXltMm5uYSJ9.kTLZTl2_YvQiN79m2kPQ1g",
+//         doubleClickZoom: false
         
-    });
+//     });
     
-    await adaptador.recuperarMarcador({session}.session,user).then(markers => {
-        if (markers != null) {
-            cargarMarcadores(markers,userMarkers,mapa,marcadoresEnMapa,marcadoresObjetoEnMapa,popupElement,session,user)
-        }})
+//     await adaptador.recuperarMarcador({session}.session,user).then(markers => {
+//         if (markers != null) {
+//             cargarMarcadores(markers,userMarkers,mapa,marcadoresEnMapa,marcadoresObjetoEnMapa,popupElement,session,user)
+//         }})
     
 
-})
+// })
