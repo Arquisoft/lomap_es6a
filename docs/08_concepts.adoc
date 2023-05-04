@@ -10,11 +10,12 @@ image:ASWDM.png[Punto 8:DM]
 
 * Privacidad: los datos introducidos serán privados y no visibles. Las opiniones y marks creados por el usuario solo podrán ser visualizados por los amigos añadidos.
 * Seguridad: los datos serán completamente seguros, siendo almacenado en PODs individuales y no en una base de datos centralizada.
+* Gobernanza del dato: La calidad y confiabilidad de los datos es muy alta ya que usamos PODs para almacenarlos de forma totalmente descentralizada.
 
 === Arquitectura y patrones de diseño
 
 * Patrón fachada: para facilitar el desarrollo del proyecto por parte del equipo, haremos uso del patrón fachada para conectar el back con el front.
-* Pods: uso de pods para guardar la información personal de cada usuario.
+* Pods: para guardar la información personal de cada usuario.
 * Interoperabilidad entre proyectos: el proyecto se intentará hacer de tal forma que la información alamacenada pueda ser usada de un proyecto a otro.
 
 === Experiencia usuario
@@ -29,5 +30,5 @@ image:ASWDM.png[Punto 8:DM]
 * Back-end: "carece" de este puesto que toda la informacion se hace mediante los pods
 * Testeabilidad: será un proyecto desarrollado en base a la comprobación de test. Estos test pueden ser de funcionalidad o de rendimiento.
 
-=== Coceptos operacionales
+=== Conceptos operacionales
 * Rendimiento: es la medida de la eficacia en que la aplicación usa los recursos del sistema para hacer lo que ha diseñado para hacer. Este parámetro se tratará de mejorar mediante pruebas.

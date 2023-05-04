@@ -1,116 +1,96 @@
 [[section-runtime-view]]
-== Runtime View
+== Vista de tiempo de ejecución
 
 [role="arc42help"]
-****
-.Contents
-The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
-
-* important use cases or features: how do building blocks execute them?
-* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
-* operation and administration: launch, start-up, stop
-* error and exception scenarios
-
-Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their *architectural relevance*. It is *not* important to describe a large number of scenarios. You should rather document a representative selection.
-
-.Motivation
-You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
-
-.Form
-There are many notations for describing scenarios, e.g.
-
-* numbered list of steps (in natural language)
-* activity diagrams or flow charts
-* sequence diagrams
-* BPMN or EPCs (event process chains)
-* state machines
-* ...
-
-****
 
 === Escenario de ejecución 1. Registro de nuevo usuario
 
-[plantuml,"Sequence diagram",png]
+[plantuml,"Sequence diagram0",png]
+
 ----
 actor User
+entity FrontEnd
 entity LoMap
-entity Api_Rest
 database POD
 
-User -> LoMap: El user rellena un formulario e introducir un POD
-LoMap -> Api_Rest: Se envía el formulario
-Api_Rest -> POD: Almacena datos del usuario
-LoMap <- Api_Rest: Devuelve la confirmación del registro
-User -> LoMap: Muestra un mensaje de confirmación
+User -> LoMap: El usuario introduce sus credenciales y dirección de su pod
+FrontEnd -> LoMap: Se envía el formulario
+LoMap -> POD: Almacena datos del usuario
+FrontEnd <- LoMap: Devuelve la confirmación del registro
+User -> FrontEnd: Muestra un mensaje de confirmación
 
 ----
+
 === Escenario de ejecución 2. Inicio de sesion de usuario
+
 [plantuml,"Sequence diagram1",png]
+
 ----
 actor User
+entity FrontEnd
 entity LoMap
-entity Api_Rest
 database POD
 
 User -> LoMap: Introduce su POD 
-LoMap -> Api_Rest: envía el POD
-Api_Rest <- POD: Extrae datos del usuario
-LoMap <- Api_Rest: Devuelve localizaciones
-User -> LoMap: Muestra localizaciones
+FrontEnd -> LoMap: envía el POD
+LoMap <- POD: Extrae datos del usuario
+FrontEnd <- LoMap: Devuelve localizaciones
+User -> FrontEnd: Muestra localizaciones
+
 ----
+
 === Escenario de ejecución 3. Añadir localización
+
+El login ante el provedor de PODs ya está hecho en este escenario.
 
 Las ubicaciones guardadas pueden ser vistas más tarde por el usuario y sus amigos a través de la aplicación web.
 
 El usuario puede agregar una ubicación a su mapa. 
 
-[plantuml,"Sequence diagram - Saving Locations - mobileapp",png] 
+[plantuml,"Sequence diagram3",png]
 ----
 actor User 
-entity Api_Rest
+entity FrontEnd
 database POD 
  
-User-> Api_Rest: El usuario hace clic en el mapa para agregar un nuevo marcador 
-Api_Rest ->POD: Preguntar ubicaciones JSON 
-POD-> Api_Rest: Ubicaciones de retorno JSON
-Api_Rest -> Api_Rest: Agregar la nueva ubicación
-Api_Rest ->POD: Envía el nuevo JSON
-Api_Rest ->User: Muestra el mapa con la nueva ubicación
+User-> MapBox: El usuario hace clic en el mapa para agregar un nuevo marcador 
+FrontEnd ->POD: Preguntar ubicaciones JSON 
+POD-> FrontEnd: Ubicaciones de retorno JSON
+FrontEnd -> FrontEnd: Agregar la nueva ubicación
+FrontEnd ->POD: Envía el nuevo JSON
+FrontEnd ->User: Muestra el mapa con la nueva ubicación
 ----  
 === Escenario de ejecución 4. Eliminar localización 
 
 Las ubicaciones agregadas al mapa luego serán eliminadas por el usuario a través de la aplicación.
 
-[plantuml,"Sequence diagram - Editing Saved Locations",png] 
+[plantuml,"Sequence diagram4",png]
 ---- 
 actor User 
-entity Api_Rest
+entity FrontEnd
 database POD 
  
-User-> Api_Rest: El usuario hace clic en el mapa en una ubicación de marca 
+User-> FrontEnd: El usuario hace clic en el mapa en una ubicación de marca 
 
-Api_Rest -> Api_Rest: Usando la ID de ubicación, la aplicación conoce el archivo JSON 
-Api_Rest ->POD: Preguntar ubicaciones JSON
-POD-> Api_Rest: Return locations JSON 
-Api_Rest -> Api_Rest: Ubicaciones de retorno JSON
-Api_Rest ->POD: Envía el nuevo JSON
-Api_Rest ->User: Muestra el mapa con la nueva ubicación
+FrontEnd -> FrontEnd: Usando la ID de ubicación, la aplicación conoce el archivo JSON 
+FrontEnd ->POD: Preguntar ubicaciones JSON
+POD-> FrontEnd: Return locations JSON 
+FrontEnd-> FrontEnd: Ubicaciones de retorno JSON
+FrontEnd->POD: Envía el nuevo JSON
+FrontEnd ->User: Muestra el mapa con la nueva ubicación
 
 ---- 
 === Escenario de ejecución 5. Usuario visualiza una de sus localizaciones.
-[plantuml,"Sequence diagram2",png]
+[plantuml,"Sequence diagram5",png]
 ----
 actor User
 entity LoMap
-entity Api_Rest
+entity FrontEnd
 database POD
-database BBDD
 
-User -> LoMap: Selecciona la localización
-LoMap -> Restapi: Pide la información sobre esa localización 
-Api_Rest -> POD: Busca datos sobre la localización
-Api_Rest <- POD: Devuelve los datos encontrados
-LoMap <- Api_Rest: Devuelve la información que encontro
-User -> LoMap: Muestra esa información
+User -> FrontEnd: Selecciona la localización
+LoMap -> POD: Busca datos sobre la localización
+LoMap <- POD: Devuelve los datos encontrados
+FrontEnd <- LoMap: Devuelve la información que encontro
+User -> FrontEnd: Muestra esa información
 ----

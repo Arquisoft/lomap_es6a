@@ -1,8 +1,5 @@
 import { getSolidDataset, overwriteFile, getContainedResourceUrlAll, getFile,deleteFile } from "@inrupt/solid-client";
 import {Session,fetch} from "@inrupt/solid-client-authn-browser";
-import { SessionContext } from "@inrupt/solid-ui-react";
-import { useContext } from "react";
-import { ILoginHandler, ILogoutHandler, IIncomingRedirectHandler, ISessionInfo, IIssuerConfigFetcher, ISessionInternalInfo, ILoginOptions } from "@inrupt/solid-client-authn-core";
 
 async function leer(session: Session, url: string): Promise<File | null> {
     let parts = url.split("/");
@@ -16,7 +13,6 @@ async function leer(session: Session, url: string): Promise<File | null> {
     } catch (error) {
         return null;
     }
-    return null;
 }
 
 async function escribir(session:Session, url: string, file: File): Promise<boolean> {
@@ -53,7 +49,6 @@ async function buscarArchivos(session: Session, url: string): Promise<File[] | n
     } catch (error) {
         return null;
     }
-    return null;
 }
 
 async function deleteData(session: Session, url: string): Promise<boolean> {

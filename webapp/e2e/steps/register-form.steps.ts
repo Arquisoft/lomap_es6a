@@ -13,6 +13,7 @@ defineFeature(feature, test => {
       ? await puppeteer.launch()
       : await puppeteer.launch({ headless: false, slowMo: 50 });
     page = await browser.newPage();
+    
 
     await page
       .goto("http://localhost:3000", {

@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThing, saveSolidDatasetAt, removeIri, ThingPersisted } from '@inrupt/solid-client';
+import React, { useState, useEffect} from 'react';
+import { getSolidDataset, getThing, getStringNoLocale, getUrlAll} from '@inrupt/solid-client';
 import { FOAF } from '@inrupt/vocab-common-rdf';
-import { useSession } from '@inrupt/solid-ui-react';
+import {SessionType} from "../../shared/shareddtypes";
 import { Link } from 'react-router-dom';
-import { waitFor } from '@testing-library/react';
+import '../../hojasEstilo/amigos.css';
+import {obtenerUrlDeAmigos,obtenerNombresDeAmigos,delAmigos,encontrarurl} from "../../accesoPods/adaptador";
 
-function BuscarAmigo() {
-  const { session } = useSession();
+function BuscarAmigo({ session }: SessionType) {
   const [nombre, setNombre] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [cargando, setCargando] = useState(false);
@@ -15,20 +15,11 @@ function BuscarAmigo() {
   const [url,setUrl] = useState('');
   const WebID = "https://" + name + ".inrupt.net/profile/card#me";
 
-  let nombreAmigo = "";
-  let nombreUsuario = "";
-  if (session.info.isLoggedIn) {
-    const user = session.info.webId;
-    
-    if (user) {
-      nombreUsuario = user.split('//')[1].split('.')[0];
-    }
-  }
-
   async function buscarAmigo() {
     try {
       setCargando(true);
-      if (!WebID) {
+      setNombre('');
+      if (!name) {
         throw new Error('Nombre de usuario no especificado');
       }
       const dataset = await getSolidDataset(WebID);
@@ -41,97 +32,19 @@ function BuscarAmigo() {
     } catch (error: unknown) {
       if (error instanceof Error) {
         setError(error.message);
-      } else {
-        setError('Ha ocurrido un error desconocido');
       }
     } finally {
       setCargando(false);
     }
   }
 
-  async function obtenerNombre(friendName : string) : Promise<string>{
-      let r;  
-
-      if (!session.info.isLoggedIn) return "";
-
-      const { webId } = session.info;
-      if (!webId) {
-        throw new Error('Nombre de usuario no especificado');
-      }
-      const dataset = await getSolidDataset(webId);
-      const perfil = getThing(dataset, webId);
-      if (!perfil) {
-        throw new Error('Perfil no encontrado');
-      }
-      const amigosUrl = getUrlAll(perfil, FOAF.knows);
-      const nuevosAmigos = await Promise.all(amigosUrl.map(async (url) => {
-        
-        const amigoDataset = await getSolidDataset(url);
-        const amigoPerfil = getThing(amigoDataset, url);
-        if (amigoPerfil){
-          
-          r =amigoPerfil?.url.split("/").slice(2,3).join().split(".").slice(0,1).join();
-        }else{
-          r = nombreUsuario;
-        }
-          
-        }));
-      //nuevosAmigos.forEach(amigo => amigo == friendName)
-      console.log(r);
-
-      return r ? r:"";
-    }
-
-
-    async function encontrarUrl(nombreAmigo : string) : Promise<string>{
-      const { webId } = session.info;
-  
-    if (!webId) {
-      throw new Error('Nombre de usuario no especificado');
-    }
-  
-    const profileDataset = await getSolidDataset(webId);
-  
-    if (!profileDataset) {
-      throw new Error('Perfil no encontrado');
-    }
-  
-    const profileThing = getThing(profileDataset, webId);
-  
-    if (!profileThing) {
-      throw new Error('Perfil no encontrado');
-    }
-  
-    const amigosUrl = getUrlAll(profileThing, FOAF.knows);
-  
-    // Buscar la URL del amigo correspondiente a partir de su nombre
-    let amigoUrl: string ="";
-    for (const url of amigosUrl) {
-      const amigoDataset = await getSolidDataset(url);
-  
-      if (!amigoDataset) {
-        throw new Error(`No se pudo cargar el perfil del amigo en ${url}`);
-      }
-  
-      const amigoPerfil = getThing(amigoDataset, url);
-  
-      if (!amigoPerfil) {
-        throw new Error(`No se pudo encontrar la cosa del amigo en ${url}`);
-      }
-  
-      const amigoNombreActual = getStringNoLocale(amigoPerfil, FOAF.name);
-      if (amigoNombreActual === nombreAmigo) {
-        amigoUrl = url.split("/").slice(2,3).join().split(".").slice(0,1).join();
-        break;
-      }
-    }
-  
-      return amigoUrl;
-    }
+  async function encontrarUrl(nombreAmigo : string) : Promise<string> {
+    let res = await encontrarurl({session},nombreAmigo);
+    return res?res:"";
+  }
 
   useEffect(() => {
     async function cargarAmigos() {
-      let r;
       if (!session.info.isLoggedIn) return;
 
       const { webId } = session.info;
@@ -154,180 +67,66 @@ function BuscarAmigo() {
       }));
       setAmigos(nuevosAmigos);
     }
-    cargarAmigos();
+    cargarAmigos().catch(error=>{throw new Error(error);});
   }, [session]);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    buscarAmigo();
+    buscarAmigo().catch(error=>{throw new Error(error);});
   }
 
   async function addFriend() {
-    const { webId } = session.info;
-
-    if(webId == null) {
-      throw new Error();
-    }
-    const profileDataset = await getSolidDataset(webId);
-
-    if(profileDataset == null) {
-      throw new Error();
-    }
-    const thing = getThing(profileDataset, webId);
-
-    if(thing == null) {
-      throw new Error();
-    }
-    const updatedThing = addIri(thing, FOAF.knows, WebID);
-    const updatedProfileDataset = setThing(profileDataset, updatedThing);
-    const storedProfileDataset = await saveSolidDatasetAt(webId, updatedProfileDataset, {
-        fetch: session.fetch,
-    });
-
-    const nuevosAmigosUrl = getUrlAll(updatedThing, FOAF.knows);
-    const nuevosAmigos = await Promise.all(nuevosAmigosUrl.map(async (url) => {
-      const amigoDataset = await getSolidDataset(url);
-      const amigoPerfil = getThing(amigoDataset, url);
-  
-      if (!amigoPerfil) {
-        throw new Error(`No se pudo encontrar la cosa del amigo en ${url}`);
-      }
-  
-      return getStringNoLocale(amigoPerfil, FOAF.name) ?? url;
-    }));
-  
-    setAmigos(nuevosAmigos);
+    let nodef = undefined;
+    let nuevosAmigosUrl;
+    nuevosAmigosUrl = await obtenerUrlDeAmigos({session},WebID);
+    if (nuevosAmigosUrl !== nodef){
+      let nuevosAmigos;
+      nuevosAmigos = await obtenerNombresDeAmigos(nuevosAmigosUrl);
+      if (nuevosAmigos !== nodef){setAmigos(nuevosAmigos);}}
   }
 
   async function deleteFriend(amigoNombre: string) {
-    const { webId } = session.info;
-  
-    if (!webId) {
-      throw new Error('Nombre de usuario no especificado');
-    }
-  
-    const profileDataset = await getSolidDataset(webId);
-  
-    if (!profileDataset) {
-      throw new Error('Perfil no encontrado');
-    }
-  
-    const profileThing = getThing(profileDataset, webId);
-  
-    if (!profileThing) {
-      throw new Error('Perfil no encontrado');
-    }
-  
-    const amigosUrl = getUrlAll(profileThing, FOAF.knows);
-  
-    // Buscar la URL del amigo correspondiente a partir de su nombre
-    let amigoUrl: string | undefined;
-    for (const url of amigosUrl) {
-      const amigoDataset = await getSolidDataset(url);
-  
-      if (!amigoDataset) {
-        throw new Error(`No se pudo cargar el perfil del amigo en ${url}`);
-      }
-  
-      const amigoPerfil = getThing(amigoDataset, url);
-  
-      if (!amigoPerfil) {
-        throw new Error(`No se pudo encontrar la cosa del amigo en ${url}`);
-      }
-  
-      const amigoNombreActual = getStringNoLocale(amigoPerfil, FOAF.name);
-      if (amigoNombreActual === amigoNombre) {
-        amigoUrl = url;
-        break;
-      }
-    }
-  
-    if (!amigoUrl) {
-      throw new Error(`No se pudo encontrar el amigo con el nombre ${amigoNombre}`);
-    }
-  
-    const updatedThing = removeIri(profileThing, FOAF.knows, amigoUrl);
-    const updatedProfileDataset = setThing(profileDataset, updatedThing);
-    const storedProfileDataset = await saveSolidDatasetAt(webId, updatedProfileDataset, {
-      fetch: session.fetch,
-    });
-  
     // Actualizar la lista de amigos
-    const nuevosAmigosUrl = getUrlAll(updatedThing, FOAF.knows);
-    const nuevosAmigos = await Promise.all(nuevosAmigosUrl.map(async (url) => {
-      const amigoDataset = await getSolidDataset(url);
-      const amigoPerfil = getThing(amigoDataset, url);
-  
-      if (!amigoPerfil) {
-        throw new Error(`No se pudo encontrar la cosa del amigo en ${url}`);
-      }
-  
-      return getStringNoLocale(amigoPerfil, FOAF.name) ?? url;
-    }));
-  
-    setAmigos(nuevosAmigos);
+    const nuevosAmigosUrl = await delAmigos({session},amigoNombre);
+    if (nuevosAmigosUrl !== undefined){
+      const nuevosAmigos = await obtenerNombresDeAmigos(nuevosAmigosUrl);
+      if (nuevosAmigos !== undefined){setAmigos(nuevosAmigos);}
+    }
   }
-
-  function showMap() {
-    
-    
-  }
-
-  // const [s,setTing] = useState(obtenerNombre());
-  // useState()
-
-
   
-  // useEffect(() => { obtenerNombre().then(string =>{
-  //   setUrl( "/mapaAmigo/"+string)
-  // })
-  // })
-
-  // waitFor(async () =>{ await obtenerNombre().then(string =>{
-  //   setUrl( "/mapaAmigo/"+string)
-    
-  // } )
-  //   },{timeout : 50000} )
-  //   //,{timeout : 50000} 
-  //   waitFor(()=>{var i= 10000000
-  //   while(i>0){
-  //     i= i-1;
-  //   }
-  //   console.log("b");
-  //   })
-
-  //   var i= 10000000
-  //   while(i>0){
-  //     i= i-1;
-  //   }
-  //   console.log("a");
-
-   
   return (
-    <div>
-      <h1>Buscar Perfil</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-        Nombre de usuario:
-          <input type="text" value={name} onChange={(event) => setName(event.target.value)} />
-        </label>
-        <button type="submit">Buscar</button>
-      </form>
-      {cargando && <p>Cargando...</p>}
-      {error && <p>{error}</p>}
-      {nombre && <p>Nombre: {nombre} <button type='submit' onClick={addFriend}>Añadir</button></p>}
-      <h2>Mis Amigos:</h2>
-      {amigos.length > 0 ? (
-        <ul>
-          {amigos.map((amigo) => (
-            <p key={amigo}>
-              {amigo} <Link to={url} onClick={(event) => encontrarUrl(amigo).then( string =>{setUrl( "/mapaAmigo/"+string)} )} >Mapa</Link> <button type='submit' onClick={() => deleteFriend(amigo)}>Eliminar</button>
-            </p>
-          ))}
-        </ul>
-      ) : (
-        <p>No tienes amigos aún.</p>
-      )}
+    <div className='contenedor-amigos'>
+      <div className='buscar-amigo'>
+        <h2 className='titulos'>Buscar Perfil</h2>
+        <form onSubmit={handleSubmit}>
+          <label className='titulos'>
+            Nombre de usuario:
+            <input aria-label='username' type="text" value={name} onChange={(event) => setName(event.target.value)} />
+          </label>
+          <button type="submit" aria-label="searchButton">Buscar </button>
+        </form>
+        {cargando && <p style={{ color: 'white' }}>Cargando...</p>}
+        {error && <p className='titulos'>{error}</p>}
+        {nombre && <p className='pconañadir'>Nombre: {nombre} <button type='submit' aria-label="addButton" onClick={addFriend}>Añadir</button></p>}
+      </div>
+      <div className='mis-amigos'>
+        <h2 className='titulos'>Mis Amigos:</h2>
+        <div className='amigos'>
+          {amigos.length > 0 ? (
+            <div>
+              {amigos.map((amigo) => (
+                <div className='amigo' key={amigo}>
+                  <p>{amigo}</p>
+                  <Link aria-label="mapaLink" to={url} onClick={async (event) => {const string = await encontrarUrl(amigo);setUrl("/mapaAmigo/" + string);}}>Mapa</Link>
+                  <button type='submit' aria-label="deleteButton" onClick={() => deleteFriend(amigo)}>Eliminar</button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p style={{ color: 'white' }}>No tienes amigos aún.</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     background-color: #222;
-    padding: 1em;
+    padding: 20px;
     color: #ffffff;
     
 }
@@ -28,22 +28,26 @@
     float: right;
 }
 
-.item{
-    margin-right: 4em;
-    color: #ffffff;
-}
-/*
-.item a:visited{
-    color: #ffffff;
-}
-*/
-
-.item a:hover{
-    color: darkorange;
-}
+.item {
+    display: inline-block;
+    margin-right: 10px;
+    border: 1px solid #ffffff;
+    padding: 0.5em; /* Elimina el relleno */
+    background-color: #130594; /* Establece el color de fondo */
+    box-sizing: border-box;
+  }
+  
+  .item:hover {
+    background-color: #ffffff;
+  }
 .item a{
-    color: lightsalmon;
+    color: #ffffff;
 }
+
+.item:hover a {
+    color: #4000ff;
+}
+
 
 .imagen{
     width: 50px;

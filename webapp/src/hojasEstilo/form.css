@@ -1,20 +1,70 @@
-.contenedor-principal-mapa{
+.mapc{
+  height: calc(100vh - 111.2px);
+  display: flex;
+  flex-direction: column;
+}
+
+.panel{
+  height: calc(100vh - 166.2px);
   display: flex;
 }
 
 .formulario {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: gainsboro;
-  }
+  overflow-y: auto;
+  height: auto;
+  max-width: 20%;
+  grid-area: form;
+  padding: 10px;
+  width: 92%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #164596;
+  color: white;
+}
+.pareja{
+  display: flex;
+  margin: 5px;
+}
+
+.filtro{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 100px;
+  width: auto;
+  background-color: #164596;
+}
+
+.filtro > *{
+  flex: 1;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #555555;
+	background-clip: content-box;
+	padding: 3px;
+  background-color: #d00c0c;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+	background-color: #0ec720;
+}
+
+.map{
+  width: 100%;
+  height: auto;
+}
   
   label {
     display: block;
-    margin-bottom: 10px;
   }
+
   
   input,
   select,
@@ -25,7 +75,6 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-    margin-bottom: 20px;
   }
   
   button[type="submit"] {
@@ -38,7 +87,10 @@
     margin-top: 20px;
   }
 
-  .map{
-    width: 110em;
-    height: 50em;
-}
+  .mapaAmigos{
+    height: calc(100vh - 166.2px);
+  }
+
+  .error {
+    color: red;
+  }

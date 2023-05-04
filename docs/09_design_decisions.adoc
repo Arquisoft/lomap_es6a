@@ -1,36 +1,11 @@
 [[section-design-decisions]]
-== Design Decisions
-
-
-[role="arc42help"]
-****
-.Contents
-Important, expensive, large scale or risky architecture decisions including rationals.
-With "decisions" we mean selecting one alternative based on given criteria.
-
-Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).
-
-Avoid redundancy. Refer to section 4, where you already captured the most important decisions of your architecture.
-
-.Motivation
-Stakeholders of your system should be able to comprehend and retrace your decisions.
-
-.Form
-Various options:
-
-* List or table, ordered by importance and consequences or:
-* more detailed in form of separate sections per decision
-* ADR (architecture decision record) for every important decision
+== Decisiones de diseño
 [options="header",cols="1,2,2"]
-****
+
 |===
 |Decisión Arquitectónica|Ventajas|Desventajas
 | TypeScript | Simplifica y mejora JavaScript al cual extiende agregando tipado de tipos | Nadie ha trabajado con el así que hay que aprender a usarlo
 | Pods | Permiten que la información de los usuarios sea almacenada de forma distribuida en vez de centralizada, lo cual aparte de aumentar la robustez, también abarata costes | agregaría el problema de que es una tecnología con la que nadie del grupo tiene experiencia y de que probablemente complicaría el desarrollo de la aplicación agregando complejidad al sistema
-| MongoDB | MongoDB es una base de datos no relacional con mucha flexibilidad que puede ser muy útil para nuestro proyecto| No se tiene experiencia con ella y habría que aprender
 | GitHub | Una herramienta muy útil para el control de versiones de la aplicación (tiene ramas, issues, etc.) | Si no se gestionan bien los merges pueden ser muy problemáticos
 | React | Teniendo en cuenta la aplicación que se va a hacer usar React es muy conveniente, puesto que está diseñada principalmente para hacer aplicaciones de una sola página con JavaScript | Puede agregar complejidad al proyecto
-| Express | Es un framework de node.js minimalista, lo cual simplificaría el desarrollo de la aplicación | puede llegar a ser "demasiado minimalista" lo cual haría más difícil agregar funcionalidades complejas y nadie del grupo tiene experiencia con este framework con lo que habría que aprender a usarlo
 |===

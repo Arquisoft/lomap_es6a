@@ -1,0 +1,138 @@
+
+.contenedor-amigos {
+    display: flex;
+    font-family: Arial, sans-serif;
+    margin: 10px;
+  }
+  
+  .buscar-amigo{
+    width: 100%;
+    max-width: 50%;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  input[type="text"] {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-top: 0.5rem;
+  }
+  
+  button[type="submit"] {
+    font-size: 1rem;
+    padding: 0.5rem;
+    background-color: #e4109e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #4d053e;
+  }
+
+  .amigos{
+    overflow-y: auto;
+    max-height: calc(70vh - 113.6px);
+  }
+  
+  .mis-amigos {
+    width: 100%;
+    max-width: 50%;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .buscar-amigo .pconañadir{
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0px 1px 5px #00000033;
+    background-color:#0095fb;
+  }
+
+  .buscar-amigo .pconañadir button{
+    margin-left: 10px;
+    background-color: #1d9608;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+  }
+
+  .buscar-amigo .pconañadir button:hover {
+    background-color: #092e03;
+  }
+
+  .amigo {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+    background-color:#0095fb;
+
+  }
+  
+  .amigo p {
+    margin: 0;
+  }
+  
+  .amigo button {
+    margin-left: 10px;
+    background-color: #e20d0d;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+  }
+  
+  .amigo button:hover {
+    background-color: #430707;
+  }
+  
+  .amigo a {
+    color: #f7f7f7;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  .amigo a:hover {
+    text-decoration: underline;
+  }
+
+  .titulos{
+    color: white;
+  }
