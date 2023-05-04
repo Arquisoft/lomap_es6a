@@ -95,10 +95,7 @@ function BuscarAmigo({ session }: SessionType) {
   async function deleteFriend(amigoNombre: string) {
     // Actualizar la lista de amigos
     const nuevosAmigosUrl = await delAmigos({session},amigoNombre);
-    if (nuevosAmigosUrl !== undefined){
-      const nuevosAmigos = await obtenerNombresDeAmigos(nuevosAmigosUrl);
-      if (nuevosAmigos !== undefined){setAmigos(nuevosAmigos);}
-    }
+    if (nuevosAmigosUrl !== undefined){const nuevosAmigos = await obtenerNombresDeAmigos(nuevosAmigosUrl);if (nuevosAmigos !== undefined){setAmigos(nuevosAmigos);}}
   }
   
   return (
