@@ -97,20 +97,20 @@ function BuscarAmigo({ session }: SessionType) {
   return (
     <div className='contenedor-amigos'>
       <div className='buscar-amigo'>
-        <h2>Buscar Perfil</h2>
+        <h2 className='titulos'>Buscar Perfil</h2>
         <form onSubmit={handleSubmit}>
-          <label>
+          <label className='titulos'>
             Nombre de usuario:
             <input aria-label='username' type="text" value={name} onChange={(event) => setName(event.target.value)} />
           </label>
           <button type="submit" aria-label="searchButton">Buscar </button>
         </form>
-        {cargando && <p>Cargando...</p>}
-        {error && <p>{error}</p>}
+        {cargando && <p style={{ color: 'white' }}>Cargando...</p>}
+        {error && <p className='titulos'>{error}</p>}
         {nombre && <p className='pconañadir'>Nombre: {nombre} <button type='submit' aria-label="addButton" onClick={addFriend}>Añadir</button></p>}
       </div>
       <div className='mis-amigos'>
-        <h2>Mis Amigos:</h2>
+        <h2 className='titulos'>Mis Amigos:</h2>
         <div className='amigos'>
           {amigos.length > 0 ? (
             <div>
@@ -123,7 +123,7 @@ function BuscarAmigo({ session }: SessionType) {
               ))}
             </div>
           ) : (
-            <p>No tienes amigos aún.</p>
+            <p style={{ color: 'white' }}>No tienes amigos aún.</p>
           )}
         </div>
       </div>

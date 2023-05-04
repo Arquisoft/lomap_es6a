@@ -10,7 +10,7 @@ function Amigos({ session }: SessionType) {
 
   return (
       <div className="contenedor_amigos_principal">
-          <h1>Bienvenido a Amigos</h1>
+          <h1 className='titulos'>Bienvenido a Amigos</h1>
           <BuscarAmigo session={session}/>
       </div>
   );

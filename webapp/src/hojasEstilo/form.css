@@ -1,12 +1,11 @@
 .mapc{
-  height: calc(100vh - 113.6px);
+  height: calc(100vh - 111.2px);
   display: flex;
 }
 
 .panel{
   display: flex;
   flex-direction: column;
-  background-color: #ccc;
 }
 
 .formulario {
@@ -18,19 +17,37 @@
   width: 92%;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: gainsboro;
+  background-color: #164596;
+  color: white;
 }
 .pareja{
   display: flex;
 }
 
 .filtro{
+  color: white;
   overflow-y: auto;
   max-height: 34%;
   height: auto;
   width: auto;
-  background-color: #ccc;
+  background-color: #164596;
 }
+
+input[type="checkbox"] {
+  appearance: none;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #555555;
+	background-clip: content-box;
+	padding: 3px;
+  background-color: #d00c0c;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+	background-color: #0ec720;
+}
+
 .map{
   width: 100%;
   height: auto;
