@@ -5,6 +5,14 @@ export default {
     testEnvironment: "node"
   
 }
+// testEnvironment: "node",   
+// setupFiles: ["jest-canvas-mock"],
+// plugins: [new WorkerPlugin()],
+// globals: {
+//   window: {
+//     WebGLRenderingContext: {},
+//   },
+// },
 // import { LoginButton} from "@inrupt/solid-ui-react";
 // import { encode } from "punycode";
 // const { TextEncoder } = require('util')

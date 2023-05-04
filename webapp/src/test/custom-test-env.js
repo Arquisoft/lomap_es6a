@@ -1,5 +1,6 @@
 const Environment = require('jest-environment-jsdom');
-
+import {Worker as JestWorker} from 'jest-worker';
+//import {prototype} from 'worker-plugin';
 /**
  * A custom environment to set the TextEncoder that is required by TensorFlow.js.
  */
@@ -19,7 +20,13 @@ module.exports = class CustomTestEnvironment extends Environment {
             this.global.performance.mark = performance.mark;
            
         }
-       // this.global.webgl
+        
+        //const worker = new JestWorker();
+        //this.global.Worker = worker;
+    //     const {Worker } = require('worker-plugin');
+    //    this.global.Worker =  Worker 
+
+
         
     }
 }
