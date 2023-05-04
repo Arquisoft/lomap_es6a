@@ -82,7 +82,7 @@ const { Worker } = require('worker_threads');
     //negativo
     equal(validacionCamposComentario("","-5"),false)
     
-    equal(validacionCamposComentario("","5"),false)
+    equal(validacionCamposComentario("","5"),false) 
     //negativo
     equal(validacionCamposComentario("2","-5"),false)
 
@@ -99,7 +99,7 @@ const { Worker } = require('worker_threads');
 test("check icon selection",() =>{
     
     var icono =seleccionarIcono("Bar")
-    expect(icono.height).toBe(30);
+    expect(icono.height).toBe(30); 
     expect(icono.width).toBe(30);
     expect(icono.src).toBe("http://localhost/"+bar);
     
@@ -154,7 +154,7 @@ test("check icon selection",() =>{
 //       nombreUsuario = user.split('//')[1].split('.')[0];
 //     }
 //      }
-
+ 
      
 //     tupla = initMap(mapRef, {session}, nombreUsuario);
       
