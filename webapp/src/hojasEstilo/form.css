@@ -1,17 +1,18 @@
 .mapc{
   height: calc(100vh - 111.2px);
   display: flex;
+  flex-direction: column;
 }
 
 .panel{
+  height: calc(100vh - 166.2px);
   display: flex;
-  flex-direction: column;
 }
 
 .formulario {
   overflow-y: auto;
-  max-height: 66%;
   height: auto;
+  max-width: 20%;
   grid-area: form;
   padding: 10px;
   width: 92%;
@@ -22,15 +23,22 @@
 }
 .pareja{
   display: flex;
+  margin: 5px;
 }
 
 .filtro{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
   color: white;
-  overflow-y: auto;
-  max-height: 34%;
-  height: auto;
+  height: 100px;
   width: auto;
   background-color: #164596;
+}
+
+.filtro > *{
+  flex: 1;
 }
 
 input[type="checkbox"] {
@@ -80,7 +88,7 @@ input[type="checkbox"]:checked {
   }
 
   .mapaAmigos{
-    height: calc(100vh - 113.6px);
+    height: calc(100vh - 166.2px);
   }
 
   .error {

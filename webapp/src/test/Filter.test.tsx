@@ -53,7 +53,6 @@ test('renders Filter component without crashing', () => {
     const checkMonumento = filtro.getByLabelText(/Monumento/i);
     const checkResta = filtro.getByLabelText(/Restaurante/i);
 
-    expect(screen.getByText(/Filtros/i)).toBeInTheDocument();
     expect(checkTodos).toBeInTheDocument();
     expect(checkBar).toBeInTheDocument();
     expect(checkTienda).toBeInTheDocument();

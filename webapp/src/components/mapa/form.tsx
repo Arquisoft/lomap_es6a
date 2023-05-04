@@ -13,6 +13,7 @@ import {initMap} from './initMap';
 import mapboxgl ,{Popup} from 'mapbox-gl';
 import Filtro from './filtro';
 import Marker from "../../accesoPods/marker";
+import { Navigate } from 'react-router-dom';
 
 interface ErroresFormulario {
   nombre: string | null;
@@ -28,6 +29,7 @@ interface Props {
 }
 
 function Formulario({ session, modo }: Props) {
+  
   const [count, setCount] = useState(0);
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
@@ -235,13 +237,19 @@ function Formulario({ session, modo }: Props) {
     }
   }
   };
+
+  if (!session.info.isLoggedIn){
+    return <Navigate to="/login" replace />;
+  }
   return (
     
     <>
     <div className='mapc'>
+      <Filtro marcadores={marcadores} marcadoresObjeto={marcadoresObjeto}/>
+      <div className='panel'>
       <div ref={mapRef} className='map' />
         
-      <div className='panel'>
+      
         <form onSubmit={handleSubmit} className="formulario">
           <h2>Añadir Marcador</h2>
           <label>
@@ -316,7 +324,7 @@ function Formulario({ session, modo }: Props) {
           <button type="submit">Añadir</button>
         </form>
 
-        <Filtro marcadores={marcadores} marcadoresObjeto={marcadoresObjeto}/>
+        
       </div>
     </div>
     </>
