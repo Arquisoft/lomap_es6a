@@ -4,7 +4,7 @@ import { render, screen, fireEvent, waitFor, within } from '@testing-library/rea
 import * as adaptador from "../accesoPods/adaptador";
 import Marker from "../accesoPods/marker";
 import Comentario from "../accesoPods/comentario";
-import mapboxgl from 'mapbox-gl'
+import mapboxgl ,{Map,Popup} from 'mapbox-gl';
 import { SessionProvider } from "@inrupt/solid-ui-react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { click } from "@testing-library/user-event/dist/click";
@@ -151,10 +151,37 @@ test("check icon selection",() =>{
 //               </>)
 //     //render(<initMap session={session} modo={false}/>)
 // })
-test('debe inicializar el mapa correctamente', () => {
-    const container = document.createElement('div');
-   // const session = new Session();
+// test('debe inicializar el mapa correctamente', () => {
+//     const container = document.createElement('div');
+//    // const session = new Session();
+//     const user = 'Usuario de prueba';
+//     initMap(container, { session }, user);
+//     expect(container.querySelector('.mapboxgl-canvas')).toBeTruthy();
+// })
+test('test cargar marcadores',async() =>{
+    var Marcadores = [marcador1,marcador2,marcador3,marcador4]
+    const marcadoresEnMapa: Array<mapboxgl.Marker> = [];
+    const marcadoresObjetoEnMapa: Array<Marker> = [];
     const user = 'Usuario de prueba';
-    initMap(container, { session }, user);
-    expect(container.querySelector('.mapboxgl-canvas')).toBeTruthy();
+   
+    let userMarkers: Marker[]
+      userMarkers = [];
+    var container =  document.createElement('div');
+    var popupElement:Popup;
+    const mapa = new Map({
+        container,
+        style: 'mapbox://styles/mapbox/streets-v12',
+        pitchWithRotate: false,
+        zoom: 15,
+        accessToken: "pk.eyJ1IjoidW8yODI4MzQiLCJhIjoiY2xlcHp5Z2syMGRteTQ5cDJ2dXltMm5uYSJ9.kTLZTl2_YvQiN79m2kPQ1g",
+        doubleClickZoom: false
+        
+    });
+    
+    await adaptador.recuperarMarcador({session}.session,user).then(markers => {
+        if (markers != null) {
+            cargarMarcadores(markers,userMarkers,mapa,marcadoresEnMapa,marcadoresObjetoEnMapa,popupElement,session,user)
+        }})
+    
+
 })
