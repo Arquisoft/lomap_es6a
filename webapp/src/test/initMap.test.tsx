@@ -9,7 +9,7 @@ import { SessionProvider } from "@inrupt/solid-ui-react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { click } from "@testing-library/user-event/dist/click";
 import { createElement } from "react";
-import {validacionCamposComentario,crearImgHtml,seleccionarIcono, initMap,cargarMarcadores} from "../components/mapa/initMap";
+import {validacionCamposComentario,crearImgHtml,seleccionarIcono, initMap,cargarMarcadores,onMarkerClick} from "../components/mapa/initMap";
 import React from 'react';
 import { equal } from "assert";
 import casa from '../imagenes/marcador.png';
@@ -20,6 +20,15 @@ import tienda from '../imagenes/tienda.png';
 import paisaje from '../imagenes/paisaje.png';
 import monumento from '../imagenes/monumento.png';
 import interrogacion from '../imagenes/interrogacion.png';
+import { setupJestCanvasMock } from 'jest-webgl-canvas-mock';
+import { Check } from "@material-ui/icons";
+const WorkerPlugin = require('worker-plugin');
+const WorkerPlugin2 = require('worker-loader');
+const WorkerPlugin3 = require('worker_threads');
+// En lugar de:
+// const worker = new Worker('./path/to/worker.js');
+
+
 const marcador1 = new Marker("1","MasYMas","Supermercado",1,1,"Tienda");
 const marcador2 = new Marker("2","MasYMas","Supermercado",1,1,"Tienda");
 const marcador3 = new Marker("3","Alimerka","Supermercado",2,2,"Tienda");
@@ -30,8 +39,22 @@ const comentario2 = new Comentario("Muy guapa","3","uo282944","8");
 const session = new Session();
 session.info.isLoggedIn = true;
 beforeAll(()=>{
-    
-    jest.spyOn(adaptador, "guardarMarcador").mockImplementation(
+    jest.resetAllMocks();
+  setupJestCanvasMock();
+//   const workerMock = jest.fn().mockImplementation(() => {
+//     return {
+//       postMessage: jest.fn(),
+//       onmessage: jest.fn(),
+//       onerror: jest.fn(),
+//     };
+//   });
+const { Worker } = require('worker_threads');
+//globalThis.target.addEventListener
+  //globalThis.Worker =  Worker 
+
+//   globalThis.Worker = jest.fn();
+//   globalThis.addEventListener = jest.fn();
+  jest.spyOn(adaptador, "guardarMarcador").mockImplementation(
           (session: Session, nombre: string, descripcion:string, lat: number, lng: number, tipo: string,imagen:string): Marker | null => marcador1
       );
   
@@ -43,13 +66,13 @@ beforeAll(()=>{
       (session: Session, texto: string, idmarker: string, autor: string, valoracion: string, user: string): Comentario | null => comentario1
   );
   
-  jest.spyOn(adaptador, "recuperarMarcador").mockImplementation(
-      (session: Session, user: string): Promise<Marker[] | null> => Promise.resolve([marcador3, marcador4])
-  );
+//   jest.spyOn(adaptador, "recuperarMarcador").mockImplementation(
+//       (session: Session, user: string): Promise<Marker[] | null> => Promise.resolve([marcador3, marcador4])
+//   );
   
-  jest.spyOn(adaptador, "recuperarComentario").mockImplementation(
-      (session: Session, idmarker: String, user: string): Promise<Comentario[] | null> => Promise.resolve([comentario1, comentario2])
-  );
+//   jest.spyOn(adaptador, "recuperarComentario").mockImplementation(
+//       (session: Session, idmarker: String, user: string): Promise<Comentario[] | null> => new Promise(() =>{[comentario1, comentario2]})
+//   );
   
   
   })
@@ -158,6 +181,13 @@ test("check icon selection",() =>{
 //     initMap(container, { session }, user);
 //     expect(container.querySelector('.mapboxgl-canvas')).toBeTruthy();
 // })
+// jest.mock('')
+// this.global.Worker = jest.fn(() => ({
+//     postMessage: () => {},
+//     terminate: () => {}
+//   }));
+
+  
 // test('test cargar marcadores',async() =>{
 //     var Marcadores = [marcador1,marcador2,marcador3,marcador4]
 //     const marcadoresEnMapa: Array<mapboxgl.Marker> = [];
@@ -180,8 +210,74 @@ test("check icon selection",() =>{
     
 //     await adaptador.recuperarMarcador({session}.session,user).then(markers => {
 //         if (markers != null) {
-//             cargarMarcadores(markers,userMarkers,mapa,marcadoresEnMapa,marcadoresObjetoEnMapa,popupElement,session,user)
+//             cargarMarcadores(markers,mapa,marcadoresEnMapa,marcadoresObjetoEnMapa,popupElement,session,user)
 //         }})
     
 
 // })
+
+test("click on marker",async ()=>{
+    const user = 'Usuario de prueba';
+    var Marcadores = [marcador1,marcador2,marcador3,marcador4]
+    const marcadoresEnMapa: Array<mapboxgl.Marker> = [];
+    const marcadoresObjetoEnMapa: Array<Marker> = [];
+    //const user = 'Usuario de prueba';
+   
+    let userMarkers: Marker[]
+      userMarkers = [];
+    var container =  document.createElement('div');
+    var popupElement:Popup = new mapboxgl.Popup;
+    var markers = [marcador3, marcador4]//await adaptador.recuperarMarcador({session}.session,user)
+    var market =markers ? markers[0] : new Marker("","","",0,0,"");
+        let iconMarker :HTMLImageElement;
+        iconMarker = seleccionarIcono(market.tipo);
+       // iconMarker = seleccionarIcono(market.tipo);
+          let marker = new mapboxgl.Marker({ element: iconMarker })
+          .setLngLat([market.latitude, market.longitude])
+          .setPopup(new Popup({ closeButton: false, anchor: 'left', maxWidth: '400px' })
+          .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.longitude}, ${market.latitude}]</div>`))
+          marcadoresEnMapa.push(marker);
+          marcadoresObjetoEnMapa.push(market);     
+
+        var html:string =""
+        if (markers != null) {
+            await onMarkerClick(marker,popupElement,session,user,markers[0],html).then((test)=>{
+                const element = <div dangerouslySetInnerHTML={{ __html: test }} />;
+                //await onMarkerClick(marker,popupElement,session,user,markers[0])
+                var tmp = render(element);
+                expect(tmp.getByLabelText('marcadorForm')).toBeInTheDocument();
+            })
+        }
+        // var tmp = render(marker.getElement())
+        // expect( tmp.getByLabelText("marcadorForm")).toBeInTheDocument();
+       // marker.getPopup().setHTML
+        //const html = marker.getPopup().getElement().innerHTML;
+        //popupElement.getElement().innerText
+        // html = popupElement.getElement().outerHTML;
+      
+
+
+        var market =markers ? markers[1] : new Marker("","","",0,0,"");
+        
+        iconMarker = seleccionarIcono(market.tipo);
+       // iconMarker = seleccionarIcono(market.tipo);
+           marker = new mapboxgl.Marker({ element: iconMarker })
+          .setLngLat([market.latitude, market.longitude])
+          .setPopup(new Popup({ closeButton: false, anchor: 'left', maxWidth: '400px' })
+          .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.longitude}, ${market.latitude}]</div>`))
+          marcadoresEnMapa.push(marker);
+          marcadoresObjetoEnMapa.push(market);     
+
+
+        if (markers != null) {
+            await   onMarkerClick(marker,popupElement,session,user,markers[1]).then(()=>{
+                const element = <div dangerouslySetInnerHTML={{ __html: html }} />;
+                //await onMarkerClick(marker,popupElement,session,user,markers[0])
+                var tmp = render(element);
+                expect(tmp.getByLabelText('marcadorForm')).toBeInTheDocument();
+            })
+        }
+
+    
+})
+
