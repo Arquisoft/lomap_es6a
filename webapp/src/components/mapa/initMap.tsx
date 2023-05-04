@@ -64,20 +64,10 @@ export const onMarkerClick= async (marker: mapboxgl.Marker, popupElement: mapbox
   }
   const handleClick = (event?: MouseEvent) => {
     if(event){
-    event.preventDefault();
-    const miInput = document.getElementById('comentario');
-    const miInputValoracion = document.getElementById('valoracion');
-
-      // Obtener el valor del input de texto
-      let texto = (miInput as HTMLInputElement).value;
-      let valoracion = (miInputValoracion  as HTMLInputElement).value
+      event.preventDefault();const miInput = document.getElementById('comentario');const miInputValoracion = document.getElementById('valoracion');let texto = (miInput as HTMLInputElement).value;let valoracion = (miInputValoracion  as HTMLInputElement).value
       if (validacionCamposComentario(texto,valoracion)){
-        
         guardarComentarioSiEstaEnSesion(texto, market, valoracion,session,user);
-
-        (miInput as HTMLInputElement).value = "";
-        (miInputValoracion  as HTMLInputElement).value = "";
-        popupElement.remove();
+        (miInput as HTMLInputElement).value = "";(miInputValoracion  as HTMLInputElement).value = "";popupElement.remove();
       }
     }
       
@@ -161,11 +151,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
         // Centra el mapa en la ubicación del usuario
         mapa.setCenter([longitude, latitude]);
       
-        // Añade un marcador en la ubicación del usuario
-        const markerElement = document.createElement('img');
-        markerElement.src = casa;
-        markerElement.width = 30; // establecer el ancho en 30 píxeles
-        markerElement.height = 30; // establecer la altura en 30 píxeles
+        const markerElement = document.createElement('img');markerElement.src = casa;markerElement.width = 30;markerElement.height = 30;
 
 
         new mapboxgl.Marker({ element: markerElement })
@@ -182,7 +168,6 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
         }
       }).catch(error=>{throw new Error(error)});
 
-      let tupla: [mapboxgl.Map,Array<mapboxgl.Marker>,Array<Marker>];
-      tupla =[mapa,marcadoresEnMapa,marcadoresObjetoEnMapa];  
+      let tupla: [mapboxgl.Map,Array<mapboxgl.Marker>,Array<Marker>];tupla =[mapa,marcadoresEnMapa,marcadoresObjetoEnMapa];  
     return tupla;
 }
