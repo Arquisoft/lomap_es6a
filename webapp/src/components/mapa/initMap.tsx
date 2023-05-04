@@ -73,15 +73,11 @@ export const onMarkerClick= async (marker: mapboxgl.Marker, popupElement: mapbox
       
     
   };
-
-  let markerComments: Comentario[]
-  markerComments = [];
   let cadena = "<div class='table-container'><table class='table'><tr><th>Usuario</th><th>Comentario</th><th>Valoración</th></tr>";
   return await recuperarComentario({session}.session, market.id, user).then(comentarios => {
     
     if (comentarios != null) {
-      markerComments = comentarios;
-      markerComments.forEach(comentario => {
+      comentarios.forEach(comentario => {
         
         cadena += "<tr><td>"+ comentario.autor +"</td><td>"+ comentario.texto+"</td><td>" + comentario.valoracion +"</td></tr>"
       } )
@@ -103,9 +99,7 @@ export const onMarkerClick= async (marker: mapboxgl.Marker, popupElement: mapbox
 
   const miboton = document.getElementById("btnenviar");
   if (comentarios != null) {
-    (miboton as HTMLButtonElement).addEventListener("click",handleClick);
-
-    popupElement.getElement().addEventListener("click",handleClickPopup);
+    (miboton as HTMLButtonElement).addEventListener("click",handleClick);popupElement.getElement().addEventListener("click",handleClickPopup);
   }
   return html
   }).catch(error=>{throw new Error(error)});
@@ -113,28 +107,21 @@ export const onMarkerClick= async (marker: mapboxgl.Marker, popupElement: mapbox
 
 export function cargarMarcadores(markers:Marker[],mapa:mapboxgl.Map
   ,marcadoresEnMapa:mapboxgl.Marker[],marcadoresObjetoEnMapa:Marker[],popupElement:mapboxgl.Popup,session:Session,user:string){
-  let userMarkers: Marker[]
-  userMarkers = markers;
+  let userMarkers = markers;
   userMarkers.forEach(market => {
       console.log(market);
-      let iconMarker;
-      iconMarker = seleccionarIcono(market.tipo);
+      let iconMarker = seleccionarIcono(market.tipo);
         let marker = new mapboxgl.Marker({ element: iconMarker })
         .setLngLat([market.latitude, market.longitude])
         .setPopup(new Popup({ closeButton: false, anchor: 'left', maxWidth: '400px' })
         .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.longitude}, ${market.latitude}]</div>`))
         .addTo(mapa);
-        marcadoresEnMapa.push(marker);
-        marcadoresObjetoEnMapa.push(market);                               
-        
-        marker.getElement().addEventListener('click',()=>{onMarkerClick(marker,popupElement,session,user,market)});
+        marcadoresEnMapa.push(marker);marcadoresObjetoEnMapa.push(market);marker.getElement().addEventListener('click',()=>{onMarkerClick(marker,popupElement,session,user,market)});
   });
 }
 
 export const initMap = (container: HTMLDivElement, { session }: SessionType, user: string) => {
-  const marcadoresEnMapa: Array<mapboxgl.Marker> = [];
-  const marcadoresObjetoEnMapa: Array<Marker> = [];
-  let popupElement:Popup;
+  const marcadoresEnMapa: Array<mapboxgl.Marker> = [];const marcadoresObjetoEnMapa: Array<Marker> = [];let popupElement:Popup;
   const mapa = new Map({
         container,
         style: 'mapbox://styles/mapbox/streets-v12',
@@ -146,12 +133,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
     });
 
     navigator.geolocation.getCurrentPosition(position => {
-        const { latitude, longitude } = position.coords;
-       // position.coords.
-        // Centra el mapa en la ubicación del usuario
-        mapa.setCenter([longitude, latitude]);
-      
-        const markerElement = document.createElement('img');markerElement.src = casa;markerElement.width = 30;markerElement.height = 30;
+        const { latitude, longitude } = position.coords;mapa.setCenter([longitude, latitude]); const markerElement = document.createElement('img');markerElement.src = casa;markerElement.width = 30;markerElement.height = 30;
 
 
         new mapboxgl.Marker({ element: markerElement })
@@ -167,7 +149,6 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
             cargarMarcadores(markers,mapa,marcadoresEnMapa,marcadoresObjetoEnMapa,popupElement,session,user)
         }
       }).catch(error=>{throw new Error(error)});
-
-      let tupla: [mapboxgl.Map,Array<mapboxgl.Marker>,Array<Marker>];tupla =[mapa,marcadoresEnMapa,marcadoresObjetoEnMapa];  
+      let tupla:[mapboxgl.Map,Array<mapboxgl.Marker>,Array<Marker>];tupla=[mapa,marcadoresEnMapa,marcadoresObjetoEnMapa];
     return tupla;
 }
