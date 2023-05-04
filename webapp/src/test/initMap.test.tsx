@@ -9,7 +9,7 @@ import { SessionProvider } from "@inrupt/solid-ui-react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { click } from "@testing-library/user-event/dist/click";
 import { createElement } from "react";
-import {validacionCamposComentario,crearImgHtml,seleccionarIcono, initMap} from "../components/mapa/initMap";
+import {validacionCamposComentario,crearImgHtml,seleccionarIcono, initMap,cargarMarcadores} from "../components/mapa/initMap";
 import React from 'react';
 import { equal } from "assert";
 import casa from '../imagenes/marcador.png';
@@ -66,7 +66,7 @@ beforeAll(()=>{
 
     //negativo
     equal(validacionCamposComentario("hola","-5"),false)
-    //negativo
+    //positivo
     equal(validacionCamposComentario("hola","4"),true)
 
 
@@ -151,3 +151,10 @@ test("check icon selection",() =>{
 //               </>)
 //     //render(<initMap session={session} modo={false}/>)
 // })
+test('debe inicializar el mapa correctamente', () => {
+    const container = document.createElement('div');
+   // const session = new Session();
+    const user = 'Usuario de prueba';
+    initMap(container, { session }, user);
+    expect(container.querySelector('.mapboxgl-canvas')).toBeTruthy();
+})
