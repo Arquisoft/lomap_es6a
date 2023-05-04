@@ -16,10 +16,10 @@
 | Ruben Diaz Zapico | UO283204@uniovi.es | <a href="https://github.com/UO283204"><img alt="Ruben" src="https://img.shields.io/badge/UO278968-Ruben Diaz-purple"></a> |
 
 
+
 <p float="left">
 <img src="https://blog.wildix.com/wp-content/uploads/2020/06/react-logo.jpg" height="100">
 <img src="https://miro.medium.com/max/1200/0*RbmfNyhuBb8G3LWh.png" height="100">
-<img src="https://miro.medium.com/max/365/1*Jr3NFSKTfQWRUyjblBSKeg.png" height="100">
 </p>
 
 
