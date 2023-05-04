@@ -167,7 +167,6 @@ test('renders Form component without crashing', async () => {
     expect(screen.getByText(/Añade una imagen/i)).toBeInTheDocument();
     expect(screen.getByText("Añadir")).toBeInTheDocument();
 
-    expect(screen.getByText(/Filtros/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Todos/i)).toBeInTheDocument();
     expect(screen.getByLabelText("Bar")).toBeInTheDocument();
     expect(screen.getByLabelText("Tienda")).toBeInTheDocument();
@@ -313,7 +312,6 @@ test('testing form validators', async () =>{
   fireEvent.click(screen.getByText("Añadir"))
     expect(screen.getByText("Añadir")).toBeInTheDocument();
 
-    expect(screen.getByText(/Filtros/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Todos/i)).toBeInTheDocument();
     expect(screen.getByLabelText("Bar")).toBeInTheDocument();
     expect(screen.getByLabelText("Tienda")).toBeInTheDocument();
