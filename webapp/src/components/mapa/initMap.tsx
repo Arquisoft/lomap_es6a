@@ -24,17 +24,17 @@ export const crearImgHtml =  (foto:string) =>{
 }
 
 export const seleccionarIcono =(tipo:string) =>{
-  if (tipo == "Bar"){
+  if (tipo === "Bar"){
     return crearImgHtml(bar);
-  }else if(tipo == "Restaurante"){
+  }else if(tipo === "Restaurante"){
     return crearImgHtml(restaurante);
-  }else if(tipo == "Gasolinera"){
+  }else if(tipo === "Gasolinera"){
     return crearImgHtml(gasolinera);
-  }else if(tipo == "Tienda"){
+  }else if(tipo === "Tienda"){
     return crearImgHtml(tienda);
-  }else if(tipo == "Paisaje"){
+  }else if(tipo === "Paisaje"){
     return crearImgHtml(paisaje);
-  }else if(tipo == "Monumento"){
+  }else if(tipo === "Monumento"){
     return crearImgHtml(monumento);
   }else{
     return crearImgHtml(interrogacion);
@@ -43,7 +43,7 @@ export const seleccionarIcono =(tipo:string) =>{
 
 
 export function validacionCamposComentario(texto:string, valoracion:string){
-  return (texto.length != 0 && Number(valoracion)>=0 && Number(valoracion)<=10 && Number(valoracion) != null && valoracion.length != 0);
+  return (texto.length !== 0 && Number(valoracion)>=0 && Number(valoracion)<=10 && Number(valoracion) !== null && valoracion.length !== 0);
 }
 
 export function guardarComentarioSiEstaEnSesion(texto:string,marker:Marker,valoracion:string,session:Session,user: string){
@@ -112,16 +112,15 @@ export function cargarMarcadores(markers:Marker[],mapa:mapboxgl.Map
           "<style>.table-container { max-height: 200px; overflow-y: auto; } .table { width: 100%; border-collapse: collapse; } .table th, .table td { border: 1px solid #ccc; padding: 10px; text-align: left; } .table th { background-color: #f2f2f2; font-weight: bold; } .table tr:nth-child(even) { background-color: #f9f9f9; } .table tr:hover { background-color: #e6e6e6; } .table td.actions { text-align: center; } .table td.actions a { color: #007bff; text-decoration: none; } .table td.actions a:hover { color: #0056b3; } th { font-weight: bold; } </style>";
           let img = market.imagen;
 
-          let html = `<img style="width: 250px; height: 150px;"src =`+img +`>`+`
-          <h1>`+ market.nombre+`</h1>
-          <p>`+ market.descripcion+`</p>
-          <form id="comment-form">
-            <input type="text" id="comentario" name="comentario" placeholder="Escribe un comentario" required>
-            <input type="number" id="valoracion" min="0" max="10" step="1" placeholder="Valora del 1 al 10" required>
-            <button type="submit" id="btnenviar" >Enviar</button>
-          </form>
-          <h2>Comentarios</h2>
-          `+ cadena;
+          let html = '<img style="width: 250px; height: 150px;"src ='+img +'>'+
+          '<h1>'+ market.nombre+'</h1>'+
+          '<p>'+ market.descripcion+'</p>'+
+          '<form id="comment-form">'+
+            '<input type="text" id="comentario" name="comentario" placeholder="Escribe un comentario" required>'+
+            '<input type="number" id="valoracion" min="0" max="10" step="1" placeholder="Valora del 1 al 10" required>'+
+            '<button type="submit" id="btnenviar" >Enviar</button>'+
+          '</form>'+
+          '<h2>Comentarios</h2>'+cadena;
           popupElement = marker.getPopup().setHTML(html);
 
           const miboton = document.getElementById("btnenviar");

@@ -61,7 +61,7 @@ function Filtro({ marcadores, marcadoresObjeto }: FiltroProps){
         setConstador(contador-1);
         c--;
         marcadoresEnMapa.forEach(marcador => {
-          if (marcadoresObjetoEnMapa[i].tipo == tipo){
+          if (marcadoresObjetoEnMapa[i].tipo === tipo){
             marcador.getElement().style.display= 'none';
           }
           i++;
@@ -71,14 +71,14 @@ function Filtro({ marcadores, marcadoresObjeto }: FiltroProps){
         setConstador(contador+1);
         c++;
         marcadoresEnMapa.forEach(marcador => {
-          if (marcadoresObjetoEnMapa[i].tipo == tipo){
+          if (marcadoresObjetoEnMapa[i].tipo === tipo){
             marcador.getElement().style.display= 'block';
           }
           i++;
         });
       }
 
-      c==6?setIsCheckedTodos(true):setIsCheckedTodos(false);
+      c===6?setIsCheckedTodos(true):setIsCheckedTodos(false);
   }
   
 

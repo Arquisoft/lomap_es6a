@@ -5,7 +5,6 @@ import {escribir, buscarArchivos} from "./acceso";
 import { addIri, getSolidDataset, getStringNoLocale, getThing, getUrlAll, removeIri, saveSolidDatasetAt, setThing } from '@inrupt/solid-client';
 import { SessionType } from '../shared/shareddtypes';
 import { FOAF } from '@inrupt/vocab-common-rdf';
-import { resolve } from 'path';
 
 export function guardarMarcador(session: Session, nombre: string, descripcion:string, lat: number, lng: number, tipo: string,imagen:string): Marker | null {
     let marker = new Marker("",nombre, descripcion, lat, lng, tipo,imagen);

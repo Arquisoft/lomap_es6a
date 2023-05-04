@@ -82,7 +82,7 @@ function Formulario({ session, modo }: Props) {
   monumentoMarker.height = 30; // establecer la altura en 30 píxeles
   
   const mapRef = useRef<HTMLDivElement>(null);
-  let tupla: [mapboxgl.Map,Array<mapboxgl.Marker>,Array<Marker>];
+  
   const [marcadores, setMarcadores] = useState(Array<mapboxgl.Marker>);
   const [marcadoresObjeto, setMarcadoresObjeto] = useState(Array<Marker>);
   let mapa: mapboxgl.Map;
@@ -98,7 +98,8 @@ function Formulario({ session, modo }: Props) {
   useEffect(() => {
     if(modo) {
       if (mapRef.current) {
-        tupla = initMap(mapRef.current, {session}, nombreUsuario);mapa = tupla[0];setMarcadores(tupla[1]);setMarcadoresObjeto(tupla[2]);
+        // eslint-disable-next-line
+        let tupla: [mapboxgl.Map,Array<mapboxgl.Marker>,Array<Marker>];tupla = initMap(mapRef.current, {session}, nombreUsuario);mapa = tupla[0];setMarcadores(tupla[1]);setMarcadoresObjeto(tupla[2]);
         mapa.on('dblclick', function (evt) {setLongitud(evt.lngLat.lat+"");setLatitud(evt.lngLat.lng+"");});
       }
     }
@@ -129,11 +130,11 @@ function Formulario({ session, modo }: Props) {
     if (descripcion.trim().length > 100) {
       erroresFormulario.descripcion = "Descripción no debe ser superior a 100";
     }
-    if (Number(longitud) < -180 || Number(longitud) > 180 || longitud.trim().length == 0) {
+    if (Number(longitud) < -180 || Number(longitud) > 180 || longitud.trim().length === 0) {
       erroresFormulario.longitud =
         "Longitud debe estar entre -180 y 180";
     }
-    if (longitud.trim().length == 0) {
+    if (longitud.trim().length === 0) {
       erroresFormulario.longitud =
         "Longitud es obligatoria";
     }
@@ -142,14 +143,14 @@ function Formulario({ session, modo }: Props) {
         "Latitud debe estar entre -90 y 90";
     }
 
-    if (latitud.trim().length == 0) {
+    if (latitud.trim().length === 0) {
       erroresFormulario.latitud =
         "Latitud es obligatoria";
     }
 
     let comprobacionTipo:string;
     comprobacionTipo = tipo.trim()
-    if (!tipo || tipo =="Elija un tipo" || comprobacionTipo !in ["Bar","Restaurante","Gasolinera","Tienda","Paisaje","Monumento"]) {
+    if (!tipo || tipo ==="Elija un tipo" || comprobacionTipo !in ["Bar","Restaurante","Gasolinera","Tienda","Paisaje","Monumento"]) {
       erroresFormulario.tipo = "Debe elegir un Tipo de marcador";
     }
     if (Object.values(erroresFormulario).some((value) => value !== null)) {
@@ -175,17 +176,17 @@ function Formulario({ session, modo }: Props) {
       
       //Añadir marcador
       let iconMarker;
-      if (tipo == "Bar"){
+      if (tipo === "Bar"){
         iconMarker = barMarker;
-      }else if(tipo == "Restaurante"){
+      }else if(tipo === "Restaurante"){
         iconMarker = restauranteMarker;
-      }else if(tipo == "Gasolinera"){
+      }else if(tipo === "Gasolinera"){
         iconMarker = gasolineraMarker;
-      }else if(tipo == "Tienda"){
+      }else if(tipo === "Tienda"){
         iconMarker = tiendaMarker;
-      }else if(tipo == "Paisaje"){
+      }else if(tipo === "Paisaje"){
         iconMarker = paisajeMarker;
-      }else if(tipo == "Monumento"){
+      }else if(tipo === "Monumento"){
         iconMarker = monumentoMarker;
       }else{
         iconMarker = interrogacionMarker;
