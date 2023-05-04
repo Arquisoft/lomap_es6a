@@ -2,8 +2,17 @@ import { Link } from "react-router-dom";
 import '../../hojasEstilo/Navegacion.css';
 import logo from '../../imagenes/icono.png'
 import { useSession } from '@inrupt/solid-ui-react';
-function Nav() {
-  const {session} = useSession();
+import { getDefaultSession} from '@inrupt/solid-client-authn-browser';
+
+interface NavSes {
+  session?: any;
+}
+
+function Nav({session = getDefaultSession()}: NavSes) {
+
+   const tmp = useSession().session
+   if(!session)
+     session = tmp;
 
   return (
     <nav className="navbar">

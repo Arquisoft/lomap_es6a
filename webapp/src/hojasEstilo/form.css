@@ -1,35 +1,61 @@
 .mapc{
-  height: calc(100vh - 113.6px);
+  height: calc(100vh - 111.2px);
   display: flex;
+  flex-direction: column;
 }
 
 .panel{
+  height: calc(100vh - 166.2px);
   display: flex;
-  flex-direction: column;
-  background-color: #ccc;
 }
 
 .formulario {
   overflow-y: auto;
-  max-height: 66%;
   height: auto;
+  max-width: 20%;
   grid-area: form;
   padding: 10px;
   width: 92%;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: gainsboro;
+  background-color: #164596;
+  color: white;
 }
 .pareja{
   display: flex;
+  margin: 5px;
 }
 
 .filtro{
-  overflow-y: auto;
-  max-height: 34%;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 100px;
   width: auto;
-  background-color: #ccc;
+  background-color: #164596;
 }
+
+.filtro > *{
+  flex: 1;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #555555;
+	background-clip: content-box;
+	padding: 3px;
+  background-color: #d00c0c;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+	background-color: #0ec720;
+}
+
 .map{
   width: 100%;
   height: auto;
@@ -62,5 +88,9 @@
   }
 
   .mapaAmigos{
-    height: calc(100vh - 113.6px);
+    height: calc(100vh - 166.2px);
+  }
+
+  .error {
+    color: red;
   }

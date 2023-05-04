@@ -5,8 +5,14 @@ import logoruben from '../../imagenes/fotopruben.png';
 import logoalonso from '../../imagenes/fotopalonso.png';
 import logopablo from '../../imagenes/fotoppablo.png';
 import logosergio from '../../imagenes/fotopsergio.png';
+import {Navigate } from 'react-router-dom';
+import {SessionType} from "../../shared/shareddtypes";
 
-const AboutUs = () => {
+function AboutUs({ session }: SessionType) {
+  if (!session.info.isLoggedIn){
+    return <Navigate to="/login" replace />;
+  }
+
   const teamMembers = [
     {
         name: 'Javier Novella',
@@ -42,7 +48,7 @@ const AboutUs = () => {
 
   return (
     <div className="about-us">
-      <h2>About Us</h2>
+      <h2 style={{ color: 'white' }}>About Us</h2>
       <div className="team-members">
         {teamMembers.map(member => (
           <div className="member" key={member.name}>

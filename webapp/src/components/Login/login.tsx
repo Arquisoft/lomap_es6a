@@ -1,18 +1,10 @@
 import '../../hojasEstilo/home.css'
-import { useSession, SessionProvider } from "@inrupt/solid-ui-react";
+import { SessionProvider } from "@inrupt/solid-ui-react";
 import LoginForm from './LoginForm';
 import ProfileViewer from "./ProfileViewer";
-import { Session } from '@inrupt/solid-client-authn-browser';
-const setUserSession = (session :Session) => {
-  localStorage.setItem("userSession", JSON.stringify(session));
-};
+import { SessionType } from '../../shared/shareddtypes';
 
-function Login() {
-  const { session } = useSession();
-
-  console.log(session);
-  if(!session.info.isLoggedIn)
-      setUserSession(session)
+function Login({ session }: SessionType) {
 
   return(
     <SessionProvider sessionId="">

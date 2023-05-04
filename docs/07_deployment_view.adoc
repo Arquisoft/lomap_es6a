@@ -1,50 +1,18 @@
 [[section-deployment-view]]
 
+== Vista de Despliegue
 
-== Deployment View
-
-[role="arc42help"]
-****
-.Content
-The deployment view describes:
-
- 1. the technical infrastructure used to execute your system, with infrastructure elements like geographical locations, environments, computers, processors, channels and net topologies as well as other infrastructure elements and
-
-2. the mapping of (software) building blocks to that infrastructure elements.
-
-Often systems are executed in different environments, e.g. development environment, test environment, production environment. In such cases you should document all relevant environments.
-
-Especially document the deployment view when your software is executed as distributed system with more then one computer, processor, server or container or when you design and construct your own hardware processors and chips.
-
-From a software perspective it is sufficient to capture those elements of the infrastructure that are needed to show the deployment of your building blocks. Hardware architects can go beyond that and describe the infrastructure to any level of detail they need to capture.
-
-.Motivation
-Software does not run without hardware.
-This underlying infrastructure can and will influence your system and/or some
-cross-cutting concepts. Therefore, you need to know the infrastructure.
-
-.Form
-
-Maybe the highest level deployment diagram is already contained in section 3.2. as
-technical context with your own infrastructure as ONE black box. In this section you will
-zoom into this black box using additional deployment diagrams:
-
-* UML offers deployment diagrams to express that view. Use it, probably with nested diagrams,
-when your infrastructure is more complex.
-* When your (hardware) stakeholders prefer other kinds of diagrams rather than the deployment diagram, let them use any kind that is able to show nodes and channels of the infrastructure.
-****
-
-
-=== Infrastructure
+=== Infraestructura
 
 Motivacion::
 
 Se ha intentado plantear el sistema de la manera más descentralizada posible y mantener la privacidad del usuario de 
 manera más optima posible.
+Como provedor de PODs usamos inrupt ya que nos facilita mucho el desarrollo del proyecto y tiene una fácil comunicación con la aplicación.
 
 Caracteristicas de calidad y/o rendimiento::
 
-Como nuestro objetivo es tener un sistema optimo tanto en cuanto a rendimiento como seguridad y otras características, se ha 
+Como nuestro objetivo es tener un sistema con alto rendimiento,seguridad y mantenible con el tiempo se ha 
 intentado buscar y comenzar a usar la mejor infraestructura posible.
 
 Mapeo de Bloques de Construccion a Infraestructura::
@@ -52,11 +20,10 @@ Mapeo de Bloques de Construccion a Infraestructura::
 [options="header",cols="1,2"]
 |===
 |Building Block|Mapping
-| RestAPI| Interfaz entre sistemas para el intercambio de peticiones.
 | WebApp| La parte donde el usuario podra interactuar, el cual ejecuta el navegador web.
 | Web browser| Depende de la eleccion del usuario, y unica forma de acceder a la aplicacion.
 | POD| "Almacenes" para guardar los datos de los usuarios de forma segura. el provedor de pods sera inrupt
+| Servidor Inrupt| Servicio descentralizado para almacenas los PODS de los usuarios que se registren en él. Cada POD contiene información única de cada usuario.
+| GitHub | Servicio de control de versiones, donde se almacena el código fuente de la aplicación.
+| GitHub Pages| Servicio de hosting de GitHub, donde se almacena el código compilado de la aplicación.
 |===
-
-:imagesdir: images/
-image:7Diagrama.png[Punto7:DesplDig]

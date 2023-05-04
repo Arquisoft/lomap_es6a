@@ -1,62 +1,91 @@
-import { Session, getDefaultSession } from "@inrupt/solid-client-authn-browser";
-import Amigos from '../components/amigos/amigos';
-import { render, screen } from '@testing-library/react';
-import { Navigate } from 'react-router-dom';
-import Home from "../components/home/home";
-import { MemoryRouter } from 'react-router-dom';
+import React from "react";
+import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThing, saveSolidDatasetAt, removeIri} from '@inrupt/solid-client';
+import { FOAF } from '@inrupt/vocab-common-rdf';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { Session } from "@inrupt/solid-client-authn-browser";
+import Amigos from "../components/amigos/amigos";
+import BuscarAmigo from "../components/amigos/buscarAmigo";
+import * as adaptador from "../accesoPods/adaptador";
+import { SessionType } from "../shared/shareddtypes";
 
-test('prueba login',()=>{
-  const session = new Session();
-  session.login({
-    // 2. Use the authenticated credentials to log in the session.
-    clientId: "https://testASW.inrupt.net/profile/card#me",
-    clientSecret: "1234567890ABCabc.",
-    oidcIssuer: "https://inrupt.net",
-    //redirectUrl : "" ,
-    redirectUrl: window.location.protocol + '//' + window.location.host + "/Home"
-  }).then(() => {
-    if (session.info.isLoggedIn) {
-      // 3. Your session should now be logged in, and able to make authenticated requests.
-     // session
-      //console.log(`Logged in with WebID [${session.info.webId}]`);
-      session.handleIncomingRedirect(window.location.protocol + '//' + window.location.host + "/Home");
-      var home = render(<Home/>);
+jest.setTimeout(100000);
 
-      home.findAllByText("Amigos").then((tmp) => (
-          expect(tmp).toBeInTheDocument()
-      ));
-      home.findByLabelText("nav-Amigos").then((tmp) => (
-          expect(tmp).toBeInTheDocument()
-      ));
+const session = new Session();
+session.info.isLoggedIn = true;
+session.info.webId = "https://testasw.inrupt.net/profile/card#me";
 
-      }
-      else
-          fail();
-      session.logout();
-  });
-})
+test('renders Amigos component without log in fail', () => {
+    expect(() => render(<Amigos session={new Session()}/>)).toThrow();
+});
 
-describe('Amigos', () => {
-  const session = new Session();
-  session.login({
-    // 2. Use the authenticated credentials to log in the session.
-    clientId: "https://testASW.inrupt.net/profile/card#me",
-    clientSecret: "1234567890ABCabc.",
-    oidcIssuer: "https://inrupt.net",
-    //redirectUrl : "" ,
-    redirectUrl: window.location.protocol + '//' + window.location.host + "/Home",
+test('renders Amigos component without crashing', () => {
+    render(<Amigos session={session}/>);
+    expect(screen.getByText(/Bienvenido a Amigos/i)).toBeInTheDocument();
+});
 
-  }).then(() => {
-    if (session.info.isLoggedIn) {
-      session.logout();
-      session.handleIncomingRedirect(window.location.protocol + '//' + window.location.host + "/amigos");
-      test("comprueba que redirige a /login", async () => {
-        render(<Amigos/>);
-        expect(screen.findByLabelText("loginButton")).toBeInTheDocument()
-      })
-    }
-    else
-      fail();
-  });      
+test('renders BuscarAmigo component without crashing with WebId', () => {
+    render(<BuscarAmigo session={session}/>);
 
+    expect(screen.getByText(/Buscar Perfil/i)).toBeInTheDocument();
+    expect(screen.getByText(/Mis Amigos:/i)).toBeInTheDocument();
+    expect(screen.getByLabelText("username")).toBeInTheDocument();
+    expect(screen.getByLabelText("searchButton")).toBeInTheDocument();
+    expect(screen.getByText(/No tienes amigos aún./i)).toBeInTheDocument();
+});
+
+test('buscar un amigo without name', async () => {
+    const { getByLabelText } = render(<BuscarAmigo session={session}/>);;
+    const searchButton = getByLabelText("searchButton");
+
+    fireEvent.click(searchButton);
+
+    await waitFor(() => {
+        expect(screen.getByText("Nombre de usuario no especificado")).toBeInTheDocument();
+    });
+});
+
+test('buscar un amigo que no tiene perfil', async () => {
+    const { getByLabelText } = render(<BuscarAmigo session={session}/>);
+    const inputField = getByLabelText("username");
+    const searchButton = getByLabelText("searchButton");
+
+    fireEvent.change(inputField, { target: { value: "jajajajajjaajjaja" } } );
+    fireEvent.click(searchButton);
+
+    expect(screen.getByText(/Cargando.../i)).toBeInTheDocument();  
+
+    await waitFor(() => {
+        expect(screen.getByText("Fetching the Resource at [https://jajajajajjaajjaja.inrupt.net/profile/card#me] failed: [500] [Internal Server Error].")).toBeInTheDocument();
+    }, { timeout: 50000 });
+});
+
+test('buscar y añadir un amigo', async () => {
+    jest.spyOn(adaptador, "obtenerUrlDeAmigos").mockImplementation(
+        ({session}: SessionType, WebID:string): Promise<string[] | undefined> => Promise.resolve(["https://prueba.inrupt.net/profile/card#me"])
+    );
+
+    /*
+    jest.spyOn(adaptador, "obtenerNombresDeAmigos").mockImplementation(
+        (nuevosAmigosUrl: string[]):Promise<string[] | undefined> => Promise.resolve(["Prueba"])
+    );
+    */
+
+    const { getByLabelText } = render(<BuscarAmigo session={session}/>);
+    const inputField = getByLabelText("username");
+    const searchButton = getByLabelText("searchButton");
+
+    fireEvent.change(inputField, { target: { value: "testasw" } } );
+    fireEvent.click(searchButton);
+
+    expect(screen.getByText(/Cargando.../i)).toBeInTheDocument();  
+    let addButton = inputField;
+    await waitFor(() => {
+        addButton = getByLabelText("addButton");
+
+        expect(screen.getByText(/Nombre: testASW/i)).toBeInTheDocument();
+        expect(addButton).toBeInTheDocument();
+
+        
+    }, { timeout: 50000 });  
+    fireEvent.click(addButton);
 });

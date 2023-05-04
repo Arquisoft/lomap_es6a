@@ -16,9 +16,6 @@
 | Github
 | Repositorio en github para alojar proyectos utilizando el sistema de versiones Git.
 
-| MongoDB
-| Sistema de base de datos NoSQL, orientado a documentos y de código abierto.
-
 | REACT
 | Biblioteca Javascript de código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de aplicaciones en una sola página.
 

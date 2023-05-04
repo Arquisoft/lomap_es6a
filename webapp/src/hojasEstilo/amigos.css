@@ -19,7 +19,6 @@
   form {
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
   }
   
   label {
@@ -40,7 +39,7 @@
   button[type="submit"] {
     font-size: 1rem;
     padding: 0.5rem;
-    background-color: #2b0fcb;
+    background-color: #e4109e;
     color: white;
     border: none;
     border-radius: 5px;
@@ -49,7 +48,7 @@
   }
   
   button[type="submit"]:hover {
-    background-color: #050444;
+    background-color: #4d053e;
   }
 
   .amigos{
@@ -67,11 +66,12 @@
     margin-bottom: 1rem;
   }
   .buscar-amigo .pconañadir{
+    color: white;
     border-radius: 5px;
     padding: 10px;
     margin: 10px;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
-    background-color:#dddcdc;
+    box-shadow: 0px 1px 5px #00000033;
+    background-color:#0095fb;
   }
 
   .buscar-amigo .pconañadir button{
@@ -99,7 +99,7 @@
     padding: 10px;
     margin: 10px;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
-    background-color:#dddcdc;
+    background-color:#0095fb;
 
   }
   
@@ -124,11 +124,15 @@
   }
   
   .amigo a {
-    color: #2196F3;
+    color: #f7f7f7;
     text-decoration: none;
     margin-right: 10px;
   }
   
   .amigo a:hover {
     text-decoration: underline;
+  }
+
+  .titulos{
+    color: white;
   }

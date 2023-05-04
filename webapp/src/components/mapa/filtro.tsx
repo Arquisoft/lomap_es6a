@@ -1,9 +1,15 @@
 import { useState } from "react";
 import Marker from "../../accesoPods/marker";
+import mapboxgl from "mapbox-gl";
 
-function Filtro(props: any){
+interface FiltroProps {
+  marcadores: Array<mapboxgl.Marker>;
+  marcadoresObjeto: Array<Marker>;
+}
 
-  const { marcadoresEnMapa, marcadoresObjetoEnMapa } = props;
+function Filtro({ marcadores, marcadoresObjeto }: FiltroProps){
+  const marcadoresEnMapa:Array<mapboxgl.Marker> = marcadores;
+  const marcadoresObjetoEnMapa = marcadoresObjeto;
 
     //######################################Eventos Filtros###########################################
 
@@ -17,73 +23,69 @@ function Filtro(props: any){
     const [isCheckedTodos, setIsCheckedTodos] = useState(true);
   
   function handleCheckboxTodos(){
-    if (marcadoresEnMapa instanceof Array<mapboxgl.Marker> && marcadoresObjetoEnMapa instanceof Array<Array<Marker>>){
-      setIsCheckedTodos(!isCheckedTodos);
-      
-      if (!isCheckedTodos){
-        marcadoresEnMapa.forEach(marcador => {
-          marcador.getElement().style.display= 'block';
-        });
-        setConstador(6);
-        setIsCheckedBar(true);
-        setIsCheckedPaisaje(true);
-        setIsCheckedGasolinera(true);
-        setIsCheckedTienda(true);
-        setIsCheckedMonumento(true);
-        setIsCheckedRestaurante(true);
-      }else{
-        marcadoresEnMapa.forEach(marcador => {
-          marcador.getElement().style.display= 'none';
-        });
-        setConstador(0);
-        setIsCheckedBar(false);
-        setIsCheckedPaisaje(false);
-        setIsCheckedGasolinera(false);
-        setIsCheckedTienda(false);
-        setIsCheckedMonumento(false);
-        setIsCheckedRestaurante(false);
-      }
+    setIsCheckedTodos(!isCheckedTodos);
+    
+    if (!isCheckedTodos){
+      marcadoresEnMapa.forEach(marcador => {
+        marcador.getElement().style.display= 'block';
+      });
+      setConstador(6);
+      setIsCheckedBar(true);
+      setIsCheckedPaisaje(true);
+      setIsCheckedGasolinera(true);
+      setIsCheckedTienda(true);
+      setIsCheckedMonumento(true);
+      setIsCheckedRestaurante(true);
+    }else{
+      marcadoresEnMapa.forEach(marcador => {
+        marcador.getElement().style.display= 'none';
+      });
+      setConstador(0);
+      setIsCheckedBar(false);
+      setIsCheckedPaisaje(false);
+      setIsCheckedGasolinera(false);
+      setIsCheckedTienda(false);
+      setIsCheckedMonumento(false);
+      setIsCheckedRestaurante(false);
     }
   }
 
   function handleCheckboxChange(tipo:string, checked:boolean, func:React.Dispatch<React.SetStateAction<boolean>>,
     event: React.ChangeEvent<HTMLInputElement>): void{
       let c = contador;
-      if (marcadoresEnMapa instanceof Array<mapboxgl.Marker> && marcadoresObjetoEnMapa instanceof Array<Array<Marker>>){
-        func(!checked);
-        let i: number = 0;
-        setIsCheckedTodos(false);
-        //Si esta desactivado
-        if (checked){
-          setConstador(contador-1);
-          c--;
-          marcadoresEnMapa.forEach(marcador => {
-            if (marcadoresObjetoEnMapa[i].tipo == tipo){
-              marcador.getElement().style.display= 'none';
-            }
-            i++;
-          });
-        //Si esta activado
-        }else{
-          setConstador(contador+1);
-          c++;
-          marcadoresEnMapa.forEach(marcador => {
-            if (marcadoresObjetoEnMapa[i].tipo == tipo){
-              marcador.getElement().style.display= 'block';
-            }
-            i++;
-          });
-        }
-
-        c==6?setIsCheckedTodos(true):setIsCheckedTodos(false);
+      func(!checked);
+      let i: number = 0;
+      setIsCheckedTodos(false);
+      //Si esta desactivado
+      if (checked){
+        setConstador(contador-1);
+        c--;
+        marcadoresEnMapa.forEach(marcador => {
+          if (marcadoresObjetoEnMapa[i].tipo === tipo){
+            marcador.getElement().style.display= 'none';
+          }
+          i++;
+        });
+      //Si esta activado
+      }else{
+        setConstador(contador+1);
+        c++;
+        marcadoresEnMapa.forEach(marcador => {
+          if (marcadoresObjetoEnMapa[i].tipo === tipo){
+            marcador.getElement().style.display= 'block';
+          }
+          i++;
+        });
       }
+
+      c===6?setIsCheckedTodos(true):setIsCheckedTodos(false);
   }
   
 
   return (
   <>
   <div className='filtro'>
-    <h2>Filtros</h2>
+    <span className='prueba_contador_filtro' style={{ display: 'none' }}>{contador}</span>
     <div className='pareja'>
       
       <label htmlFor='Todos'>Todos  </label>
@@ -147,4 +149,4 @@ function Filtro(props: any){
   );
 }
 
-  export default Filtro;
+export default Filtro;
