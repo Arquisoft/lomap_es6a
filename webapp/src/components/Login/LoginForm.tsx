@@ -57,7 +57,7 @@ return (
                 value={idp}
                 InputProps={{
                   endAdornment: (
-                    <LoginButton  oidcIssuer={idp} redirectUrl={"https://uo282944.github.io/Login"}>
+                    <LoginButton  oidcIssuer={idp} redirectUrl={window.location.protocol + '//' + window.location.host + '/ProfileViewer'}>
                       <Button variant="contained" color="primary" aria-label="loginButton">
                         Login
                       </Button>
