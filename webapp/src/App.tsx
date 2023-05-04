@@ -23,13 +23,13 @@ function App(): JSX.Element {
             <div className='contenedor-rutas'>
             <Routes>
               <Route  path={"/"} element={<Home/>} />
-              <Route  path="lomap_6a_despliegue/Mapa" element={<Mapa session={session} modo={true}/>}/>
-              <Route  path="lomap_6a_despliegue/MapaAmigo/:user" element={<MapaAmigo session={session}/>}/>
-              <Route  path="lomap_6a_despliegue/Amigos" element={<Amigos session={session}/>}/>
-              <Route  path="lomap_6a_despliegue/Aboutus" element={<AboutUs session={session}/>}/>
-              <Route  path="lomap_6a_despliegue/Login" element={<Login session={session}/>}/>
-              <Route  path="lomap_6a_despliegue/LoginForm" element={<LoginForm/>}/>
-              <Route  path="lomap_6a_despliegue/ProfileViewer" element={<ProfileViewer/>}/>
+              <Route  path="/lomap_6a_despliegue/Mapa" element={<Mapa session={session} modo={true}/>}/>
+              <Route  path="/lomap_6a_despliegue/MapaAmigo/:user" element={<MapaAmigo session={session}/>}/>
+              <Route  path="/lomap_6a_despliegue/Amigos" element={<Amigos session={session}/>}/>
+              <Route  path="/lomap_6a_despliegue/Aboutus" element={<AboutUs session={session}/>}/>
+              <Route  path="/lomap_6a_despliegue/Login" element={<Login session={session}/>}/>
+              <Route  path="/lomap_6a_despliegue/LoginForm" element={<LoginForm/>}/>
+              <Route  path="/lomap_6a_despliegue/ProfileViewer" element={<ProfileViewer/>}/>
             </Routes>
             </div>
         </Router>
