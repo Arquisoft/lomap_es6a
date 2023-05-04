@@ -117,7 +117,7 @@ function BuscarAmigo({ session }: SessionType) {
               {amigos.map((amigo) => (
                 <div className='amigo' key={amigo}>
                   <p>{amigo}</p>
-                  <Link aria-label="mapaLink" to={url} onClick={(event) => encontrarUrl(amigo).then( string =>{setUrl( "/mapaAmigo/"+string)} )}>Mapa</Link>
+                  <Link aria-label="mapaLink" to={url} onClick={async (event) => {const string = await encontrarUrl(amigo);setUrl("/mapaAmigo/" + string);}}>Mapa</Link>
                   <button type='submit' aria-label="deleteButton" onClick={() => deleteFriend(amigo)}>Eliminar</button>
                 </div>
               ))}
