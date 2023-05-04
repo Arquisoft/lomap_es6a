@@ -23,8 +23,8 @@ module.exports = class CustomTestEnvironment extends Environment {
         
         //const worker = new JestWorker();
         //this.global.Worker = worker;
-        const {Worker } = require('worker-plugin');
-       this.global.Worker =  Worker 
+    //     const {Worker } = require('worker-plugin');
+    //    this.global.Worker =  Worker 
 
 
         

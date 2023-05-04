@@ -50,8 +50,8 @@ const { Worker } = require('worker_threads');
 //globalThis.target.addEventListener
   //globalThis.Worker =  Worker 
 
-  globalThis.Worker = jest.fn();
-  globalThis.addEventListener = jest.fn();
+//   globalThis.Worker = jest.fn();
+//   globalThis.addEventListener = jest.fn();
   jest.spyOn(adaptador, "guardarMarcador").mockImplementation(
           (session: Session, nombre: string, descripcion:string, lat: number, lng: number, tipo: string,imagen:string): Marker | null => marcador1
       );
@@ -257,7 +257,7 @@ test("click on marker",async ()=>{
         if (markers != null) {
             onMarkerClick(marker,popupElement,session,user,markers[1])
         }
-        
+
     
 })
 
