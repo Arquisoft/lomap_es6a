@@ -57,7 +57,7 @@ return (
                 value={idp}
                 InputProps={{
                   endAdornment: (
-                    <LoginButton  oidcIssuer={idp} redirectUrl={"https://uo282944.github.io/lomap_6a_despliegue/"}>
+                    <LoginButton  oidcIssuer={idp} redirectUrl={"https://uo282944.github.io/Login"}>
                       <Button variant="contained" color="primary" aria-label="loginButton">
                         Login
                       </Button>
