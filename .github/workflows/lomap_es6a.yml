@@ -1,6 +1,9 @@
 name: CI for LOMAP ES6A
 
 on: [push, pull_request]
+
+env:
+  API_MAPBOX: ${{ secrets.API_MAPBOX }}
   
 jobs:
   unit-test-webapp:
@@ -10,6 +13,8 @@ jobs:
         working-directory: webapp
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -93,6 +98,8 @@ jobs:
     - run: PUBLIC_URL=https://uo282944.github.io/lomap_6a_despliegue/ npm --prefix webapp run build
     - name: Deploy
       uses: cpina/github-action-push-to-another-repository@create-branch-if-needed-arg
+      env:
+            API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
           source-directory: 'webapp/build'
           destination-github-username: 'uo282944'
