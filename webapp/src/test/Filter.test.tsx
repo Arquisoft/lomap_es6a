@@ -9,7 +9,7 @@ import mapboxgl from "mapbox-gl";
 
 const session = new Session();
 session.info.isLoggedIn = true;
-session.info.webId = "https://testasw.inrupt.net/profile/card#me";
+session.info.webId = "https://testasw.inrupt.net/profile/card#me"; 
 
 test('renders Filter component without crashing', () => {
     const marcador3 = new Marker("3","Alimerka","Supermercado",2,2,"Tienda");
@@ -55,7 +55,7 @@ test('renders Filter component without crashing', () => {
 
     expect(checkTodos).toBeInTheDocument();
     expect(checkBar).toBeInTheDocument();
-    expect(checkTienda).toBeInTheDocument();
+    expect(checkTienda).toBeInTheDocument(); 
     expect(checkGas).toBeInTheDocument();
     expect(checkPaisaje).toBeInTheDocument();
     expect(checkMonumento).toBeInTheDocument();
@@ -104,7 +104,7 @@ test('renders Filter component without crashing', () => {
     fireEvent.click(checkTienda);
     expect(container.querySelector('.prueba_contador_filtro')?.textContent).toBe('2');
     fireEvent.click(checkGas);
-    expect(container.querySelector('.prueba_contador_filtro')?.textContent).toBe('3');
+    expect(container.querySelector('.prueba_contador_filtro')?.textContent).toBe('3'); 
     fireEvent.click(checkResta);
     expect(container.querySelector('.prueba_contador_filtro')?.textContent).toBe('4');
     fireEvent.click(checkPaisaje);
