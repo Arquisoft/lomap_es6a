@@ -22,14 +22,14 @@ function App(): JSX.Element {
           </div>
             <div className='contenedor-rutas'>
             <Routes>
-              <Route  path={"https://uo282944.github.io/lomap_6a_despliegue/"} element={<Home/>} />
-              <Route  path="https://uo282944.github.io/lomap_6a_despliegue/Mapa" element={<Mapa session={session} modo={true}/>}/>
-              <Route  path="https://uo282944.github.io/lomap_6a_despliegue/MapaAmigo/:user" element={<MapaAmigo session={session}/>}/>
-              <Route  path="https://uo282944.github.io/lomap_6a_despliegue/Amigos" element={<Amigos session={session}/>}/>
-              <Route  path="https://uo282944.github.io/lomap_6a_despliegue/Aboutus" element={<AboutUs session={session}/>}/>
-              <Route  path="https://uo282944.github.io/lomap_6a_despliegue/Login" element={<Login session={session}/>}/>
-              <Route  path="https://uo282944.github.io/lomap_6a_despliegue/LoginForm" element={<LoginForm/>}/>
-              <Route  path="https://uo282944.github.io/lomap_6a_despliegue/ProfileViewer" element={<ProfileViewer/>}/>
+              <Route  path={"/"} element={<Home/>} />
+              <Route  path="/Mapa" element={<Mapa session={session} modo={true}/>}/>
+              <Route  path="/MapaAmigo/:user" element={<MapaAmigo session={session}/>}/>
+              <Route  path="/Amigos" element={<Amigos session={session}/>}/>
+              <Route  path="/Aboutus" element={<AboutUs session={session}/>}/>
+              <Route  path="/Login" element={<Login session={session}/>}/>
+              <Route  path="/LoginForm" element={<LoginForm/>}/>
+              <Route  path="/ProfileViewer" element={<ProfileViewer/>}/>
             </Routes>
             </div>
         </Router>
