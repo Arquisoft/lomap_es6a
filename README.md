@@ -67,4 +67,4 @@ To access this to the web (once the previous process has been done), just go to 
 ---
 
 ## 📑 More information:
-You can find more information about the repository in the following <a href="https://github.com/arquisoft/lomap_es6a/tree/master/docs">link</a>.
+You can find more information about the repository in the following <a href="https://arquisoft.github.io/lomap_es6a/">link</a>.
