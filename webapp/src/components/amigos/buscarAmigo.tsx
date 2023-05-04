@@ -82,7 +82,14 @@ function BuscarAmigo({ session }: SessionType) {
     if (nuevosAmigosUrl !== nodef){
       let nuevosAmigos;
       nuevosAmigos = await obtenerNombresDeAmigos(nuevosAmigosUrl);
-      if (nuevosAmigos !== nodef){setAmigos(nuevosAmigos);}}
+      if (nuevosAmigos !== nodef && Array.isArray(nuevosAmigos)) {
+        const nuevosAmigosSinRepetidos = nuevosAmigos.filter(amigo => !amigos.includes(amigo));
+        if (nuevosAmigosSinRepetidos.length > 0) {
+          const amigosAgregados = [...amigos, ...nuevosAmigosSinRepetidos];
+          setAmigos(amigosAgregados);
+        }
+      }
+    }
   }
 
   async function deleteFriend(amigoNombre: string) {
