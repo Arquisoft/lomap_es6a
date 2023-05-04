@@ -309,18 +309,50 @@ test("check handleClick",()=>{
     '<h1>'+ market.nombre+'</h1>'+
     '<p>'+ market.descripcion+'</p>'+
     '<form id="comment-form" aria-label="marcadorForm">'+
-      '<input type="text" id="comentario" name="comentario" placeholder="Escribe un comentario" required>'+
-      '<input type="number" id="valoracion" min="0" max="10" step="1" placeholder="Valora del 1 al 10" required>'+
+      '<input type="text" aria-label="comentario" id="comentario" name="comentario" placeholder="Escribe un comentario" required>'+
+      '<input type="number" aria-label="valoracion" id="valoracion" min="0" max="10" step="1" placeholder="Valora del 1 al 10" required>'+
       '<button type="submit" id="btnenviar" >Enviar</button>'+
     '</form>'+
     '<h2>Comentarios</h2>'+cadena;
-    const element = <div dangerouslySetInnerHTML={{ __html: html }} />;
-    var coment = render(element);
+    var element = <div dangerouslySetInnerHTML={{ __html: html }} />;
+    //caso positivo
+    var form = render(element);
+    //expect(coment.findByLabelText("comentario")).toBeInTheDocument();
+    var coment=form.getByLabelText("comentario")
+    expect(form.getByLabelText("comentario")).toBeInTheDocument();
 
-    popupElement = marker.getPopup().setHTML(html);
+    fireEvent.change(coment,{target: {value:"hola soy un comentario"}})
+
+    var coment=form.getByLabelText("valoracion")
+    expect(form.getByLabelText("valoracion")).toBeInTheDocument();
+    fireEvent.change(coment,{target: {value:5}})
+    
+    popupElement = marker.getPopup().setHTML(form.container.innerHTML);
+
+    var mouse = new MouseEvent("click")
+    var  handler=   handleClick(markers[0],session,user,popupElement)
+    handler(mouse);
+
+    //caso negativo
+    //element = <div dangerouslySetInnerHTML={{ __html: html }} />;
+    //var form = render(element);
+    //expect(coment.findByLabelText("comentario")).toBeInTheDocument();
+    var coment=form.getByLabelText("comentario")
+    expect(form.getByLabelText("comentario")).toBeInTheDocument();
+
+    fireEvent.change(coment,{target: {value:""}})
+
+    var coment=form.getByLabelText("valoracion")
+    expect(form.getByLabelText("valoracion")).toBeInTheDocument();
+    fireEvent.change(coment,{target: {value:-50}})
+    
+    popupElement = marker.getPopup().setHTML(form.container.innerHTML);
 
     var mouse = new MouseEvent("click")
     var  handler=   handleClick(markers[0],session,user,popupElement)
     handler(mouse);
 })
 
+// expect(screen.getByText("El campo Nombre es obligatorio")).toBeInTheDocument();
+
+// fireEvent.change(nombre,{target: {value:"qwertyuiopasdfghjklñzxcvbnmqwertyuuiiopàsdfghjklñzxcvbnmm"}})
