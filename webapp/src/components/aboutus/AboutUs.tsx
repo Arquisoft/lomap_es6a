@@ -48,7 +48,7 @@ function AboutUs({ session }: SessionType) {
 
   return (
     <div className="about-us">
-      <h2>About Us</h2>
+      <h2 style={{ color: 'white' }}>About Us</h2>
       <div className="team-members">
         {teamMembers.map(member => (
           <div className="member" key={member.name}>

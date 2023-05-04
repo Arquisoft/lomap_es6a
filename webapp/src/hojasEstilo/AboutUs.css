@@ -14,8 +14,8 @@
     width: 30%;
     margin-bottom: 30px;
     padding: 20px;
-    background-color: #f7f7f7;
-    border: 1px solid #ccc;
+    background-color: #6780e7;
+    border: 3px solid #100e58;
     border-radius: 5px;
     text-align: center;
   }
@@ -37,5 +37,5 @@
     margin-bottom: 10px;
     font-size: 1.2rem;
     line-height: 1.5;
-    color: #555;
+    color: #000000;
   }
