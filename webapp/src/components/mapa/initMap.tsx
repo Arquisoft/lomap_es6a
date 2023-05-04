@@ -56,33 +56,58 @@ export function guardarComentarioSiEstaEnSesion(texto:string,marker:Marker,valor
     guardarComentario({session}.session, texto, marker.id, nombreUsuario , valoracion, user);
   }
 }
+
+export const handleClick = (market?: Marker,session?:Session,user?:string,popupElement?:mapboxgl.Popup) => { //,market?: Marker,session?:Session,user?:string,popupElement?:mapboxgl.Popup
+  
+  return function curried_func(event?: MouseEvent){
+  if(event &&market&&session&&user &&popupElement){
+      event.preventDefault();
+      const miInput = document.getElementById('comentario');
+      const miInputValoracion = document.getElementById('valoracion');
+
+        // Obtener el valor del input de texto
+        let texto = (miInput as HTMLInputElement).value;
+        let valoracion = (miInputValoracion  as HTMLInputElement).value
+        if (validacionCamposComentario(texto,valoracion)){
+          
+          guardarComentarioSiEstaEnSesion(texto, market, valoracion,session,user);
+
+          (miInput as HTMLInputElement).value = "";
+          (miInputValoracion  as HTMLInputElement).value = "";
+          popupElement.remove();
+        }
+      }
+    
+  }
+};
+
 export const onMarkerClick= async (marker: mapboxgl.Marker, popupElement: mapboxgl.Popup, session: Session
   , user: string,market:Marker, html:string ="")=>{
   const handleClickPopup = (event?: MouseEvent) => {
     if(event)
         event.preventDefault();
   }
-  const handleClick = (event?: MouseEvent) => {
-    if(event){
-    event.preventDefault();
-    const miInput = document.getElementById('comentario');
-    const miInputValoracion = document.getElementById('valoracion');
+  // const handleClick = (event?: MouseEvent) => {
+  //   if(event){
+  //   event.preventDefault();
+  //   const miInput = document.getElementById('comentario');
+  //   const miInputValoracion = document.getElementById('valoracion');
 
-      // Obtener el valor del input de texto
-      let texto = (miInput as HTMLInputElement).value;
-      let valoracion = (miInputValoracion  as HTMLInputElement).value
-      if (validacionCamposComentario(texto,valoracion)){
+  //     // Obtener el valor del input de texto
+  //     let texto = (miInput as HTMLInputElement).value;
+  //     let valoracion = (miInputValoracion  as HTMLInputElement).value
+  //     if (validacionCamposComentario(texto,valoracion)){
         
-        guardarComentarioSiEstaEnSesion(texto, market, valoracion,session,user);
+  //       guardarComentarioSiEstaEnSesion(texto, market, valoracion,session,user);
 
-        (miInput as HTMLInputElement).value = "";
-        (miInputValoracion  as HTMLInputElement).value = "";
-        popupElement.remove();
-      }
-    }
+  //       (miInput as HTMLInputElement).value = "";
+  //       (miInputValoracion  as HTMLInputElement).value = "";
+  //       popupElement.remove();
+  //     }
+  //   }
       
     
-  };
+  // };
 
   let markerComments: Comentario[]
   markerComments = [];
@@ -113,7 +138,7 @@ export const onMarkerClick= async (marker: mapboxgl.Marker, popupElement: mapbox
 
   const miboton = document.getElementById("btnenviar");
   if (comentarios != null) {
-    (miboton as HTMLButtonElement).addEventListener("click",handleClick);
+    (miboton as HTMLButtonElement).addEventListener("click",handleClick(market,session,user,popupElement)); //.arguments(market,session,user,popupElement)//.arguments({marker:marker,session:session,user:user,popupElement:popupElement})
 
     popupElement.getElement().addEventListener("click",handleClickPopup);
   }
