@@ -89,8 +89,8 @@ function Filtro({ marcadores, marcadoresObjeto }: FiltroProps){
     <span className='prueba_contador_filtro' style={{ display: 'none' }}>{contador}</span>
     <div className='pareja'>
       
-      <label>Todos  </label>
-        <input id='Todos'
+      <label htmlFor='Todos'>Todos  </label>
+        <input id='Todos' className="checks"
           type="checkbox"
           checked={isCheckedTodos}
           onChange={() => handleCheckboxTodos()}
