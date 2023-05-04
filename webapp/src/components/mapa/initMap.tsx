@@ -56,11 +56,14 @@ export function guardarComentarioSiEstaEnSesion(texto:string,marker:Marker,valor
     guardarComentario({session}.session, texto, marker.id, nombreUsuario , valoracion, user);
   }
 }
-export const onMarkerClick= (marker: mapboxgl.Marker, popupElement: mapboxgl.Popup, session: Session, user: string,market:Marker)=>{
-  const handleClickPopup = (event: MouseEvent) => {
-    event.preventDefault();
+export const onMarkerClick= async (marker: mapboxgl.Marker, popupElement: mapboxgl.Popup, session: Session
+  , user: string,market:Marker, html:string ="")=>{
+  const handleClickPopup = (event?: MouseEvent) => {
+    if(event)
+        event.preventDefault();
   }
-  const handleClick = (event: MouseEvent) => {
+  const handleClick = (event?: MouseEvent) => {
+    if(event){
     event.preventDefault();
     const miInput = document.getElementById('comentario');
     const miInputValoracion = document.getElementById('valoracion');
@@ -76,6 +79,7 @@ export const onMarkerClick= (marker: mapboxgl.Marker, popupElement: mapboxgl.Pop
         (miInputValoracion  as HTMLInputElement).value = "";
         popupElement.remove();
       }
+    }
       
     
   };
@@ -83,20 +87,20 @@ export const onMarkerClick= (marker: mapboxgl.Marker, popupElement: mapboxgl.Pop
   let markerComments: Comentario[]
   markerComments = [];
   let cadena = "<div class='table-container'><table class='table'><tr><th>Usuario</th><th>Comentario</th><th>Valoración</th></tr>";
-  recuperarComentario({session}.session, market.id, user).then(comentarios => {
+  return await recuperarComentario({session}.session, market.id, user).then(comentarios => {
     
     if (comentarios != null) {
       markerComments = comentarios;
       markerComments.forEach(comentario => {
         
         cadena += "<tr><td>"+ comentario.autor +"</td><td>"+ comentario.texto+"</td><td>" + comentario.valoracion +"</td></tr>"
-      }
-  )
+      } )
+    }
   cadena += "</table></div>"+
   "<style>.table-container { max-height: 200px; overflow-y: auto; } .table { width: 100%; border-collapse: collapse; } .table th, .table td { border: 1px solid #ccc; padding: 10px; text-align: left; } .table th { background-color: #f2f2f2; font-weight: bold; } .table tr:nth-child(even) { background-color: #f9f9f9; } .table tr:hover { background-color: #e6e6e6; } .table td.actions { text-align: center; } .table td.actions a { color: #007bff; text-decoration: none; } .table td.actions a:hover { color: #0056b3; } th { font-weight: bold; } </style>";
   let img = market.imagen;
 
-  let html = '<img style="width: 250px; height: 150px;"src ='+img +'>'+
+   html = '<img style="width: 250px; height: 150px;"src ='+img +'>'+
   '<h1>'+ market.nombre+'</h1>'+
   '<p>'+ market.descripcion+'</p>'+
   '<form id="comment-form" aria-label="marcadorForm">'+
@@ -108,11 +112,12 @@ export const onMarkerClick= (marker: mapboxgl.Marker, popupElement: mapboxgl.Pop
   popupElement = marker.getPopup().setHTML(html);
 
   const miboton = document.getElementById("btnenviar");
-  
-  (miboton as HTMLButtonElement).addEventListener("click",handleClick);
+  if (comentarios != null) {
+    (miboton as HTMLButtonElement).addEventListener("click",handleClick);
 
-  popupElement.getElement().addEventListener("click",handleClickPopup);
-}
+    popupElement.getElement().addEventListener("click",handleClickPopup);
+  }
+  return html
   }).catch(error=>{throw new Error(error)});
 }
 

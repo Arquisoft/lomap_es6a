@@ -39,6 +39,7 @@ const comentario2 = new Comentario("Muy guapa","3","uo282944","8");
 const session = new Session();
 session.info.isLoggedIn = true;
 beforeAll(()=>{
+    jest.resetAllMocks();
   setupJestCanvasMock();
 //   const workerMock = jest.fn().mockImplementation(() => {
 //     return {
@@ -70,7 +71,7 @@ const { Worker } = require('worker_threads');
 //   );
   
 //   jest.spyOn(adaptador, "recuperarComentario").mockImplementation(
-//       (session: Session, idmarker: String, user: string): Promise<Comentario[] | null> => Promise.resolve([comentario1, comentario2])
+//       (session: Session, idmarker: String, user: string): Promise<Comentario[] | null> => new Promise(() =>{[comentario1, comentario2]})
 //   );
   
   
@@ -238,18 +239,22 @@ test("click on marker",async ()=>{
           marcadoresEnMapa.push(marker);
           marcadoresObjetoEnMapa.push(market);     
 
-
+        var html:string =""
         if (markers != null) {
-            onMarkerClick(marker,popupElement,session,user,markers[0])
+            await onMarkerClick(marker,popupElement,session,user,markers[0],html).then((test)=>{
+                const element = <div dangerouslySetInnerHTML={{ __html: test }} />;
+                //await onMarkerClick(marker,popupElement,session,user,markers[0])
+                var tmp = render(element);
+                expect(tmp.getByLabelText('marcadorForm')).toBeInTheDocument();
+            })
         }
         // var tmp = render(marker.getElement())
         // expect( tmp.getByLabelText("marcadorForm")).toBeInTheDocument();
        // marker.getPopup().setHTML
-        // const html = marker.getElement().innerHTML;
-        // const element = <div dangerouslySetInnerHTML={{ __html: html }} />;
-        // onMarkerClick(marker,popupElement,session,user,markers[0])
-        // const { getByLabelText } = render(element);
-        //expect(getByLabelText('marcadorForm')).toBeInTheDocument();
+        //const html = marker.getPopup().getElement().innerHTML;
+        //popupElement.getElement().innerText
+        // html = popupElement.getElement().outerHTML;
+      
 
 
         var market =markers ? markers[1] : new Marker("","","",0,0,"");
@@ -265,7 +270,12 @@ test("click on marker",async ()=>{
 
 
         if (markers != null) {
-            onMarkerClick(marker,popupElement,session,user,markers[1])
+            await   onMarkerClick(marker,popupElement,session,user,markers[1]).then(()=>{
+                const element = <div dangerouslySetInnerHTML={{ __html: html }} />;
+                //await onMarkerClick(marker,popupElement,session,user,markers[0])
+                var tmp = render(element);
+                expect(tmp.getByLabelText('marcadorForm')).toBeInTheDocument();
+            })
         }
 
     
