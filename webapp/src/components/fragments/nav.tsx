@@ -16,17 +16,17 @@ function Nav({session = getDefaultSession()}: NavSes) {
 
   return (
     <nav className="navbar">
-        <Link to='lomap_6a_despliegue/'>
+        <Link to='/'>
           <img className="imagen" src={logo} alt='logo'></img>
         </Link>
         <ul className="list">
           {(!session.info.isLoggedIn) ?
             <div className="nav_sin_login">
               <li className="item" aria-label='nav-Home'>
-                <Link to={'lomap_6a_despliegue/'}>Home</Link>
+                <Link to={'/'}>Home</Link>
               </li>
               <li className="item" aria-label='nav-Login'>
-                <Link to={'lomap_6a_despliegue/Login'}>Login</Link>
+                <Link to={'/Login'}>Login</Link>
               </li>
             </div>
             :
@@ -35,16 +35,16 @@ function Nav({session = getDefaultSession()}: NavSes) {
                 <Link to={'/'}>Home</Link>
               </li>
               <li className="item" aria-label='nav-Mapa'>
-                <Link to={'lomap_6a_despliegue/mapa'}>Mapa</Link>
+                <Link to={'/mapa'}>Mapa</Link>
               </li>
               <li className="item" aria-label='nav-Amigos'>
-                <Link to={'lomap_6a_despliegue/amigos'}>Amigos</Link>
+                <Link to={'/amigos'}>Amigos</Link>
               </li>
               <li className="item" aria-label='nav-AboutUs'>
-                <Link to={'lomap_6a_despliegue/aboutus'}>About us</Link>
+                <Link to={'/aboutus'}>About us</Link>
               </li>
               <li className="item" aria-label='nav-Login'>
-                <Link to={'lomap_6a_despliegue/Login'}>Login</Link>
+                <Link to={'/Login'}>Login</Link>
               </li>
             </div>
             }
