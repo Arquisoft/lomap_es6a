@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThing, saveSolidDatasetAt, removeIri} from '@inrupt/solid-client';
+import { getSolidDataset, getThing, getStringNoLocale, getUrlAll} from '@inrupt/solid-client';
 import { FOAF } from '@inrupt/vocab-common-rdf';
 import {SessionType} from "../../shared/shareddtypes";
 import { Link } from 'react-router-dom';
@@ -67,12 +67,12 @@ function BuscarAmigo({ session }: SessionType) {
       }));
       setAmigos(nuevosAmigos);
     }
-    cargarAmigos();
+    cargarAmigos().catch(error=>{throw new Error(error);});
   }, [session]);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    buscarAmigo();
+    buscarAmigo().catch(error=>{throw new Error(error);});
   }
 
   async function addFriend() {
