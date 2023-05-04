@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, addIri, setThing, saveSolidDatasetAt, removeIri} from '@inrupt/solid-client';
+import { getSolidDataset, getThing, getStringNoLocale, getUrlAll} from '@inrupt/solid-client';
 import { FOAF } from '@inrupt/vocab-common-rdf';
 import {SessionType} from "../../shared/shareddtypes";
 import { Link } from 'react-router-dom';
@@ -67,12 +67,12 @@ function BuscarAmigo({ session }: SessionType) {
       }));
       setAmigos(nuevosAmigos);
     }
-    cargarAmigos();
+    cargarAmigos().catch(error=>{throw new Error(error);});
   }, [session]);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    buscarAmigo();
+    buscarAmigo().catch(error=>{throw new Error(error);});
   }
 
   async function addFriend() {
@@ -117,7 +117,7 @@ function BuscarAmigo({ session }: SessionType) {
               {amigos.map((amigo) => (
                 <div className='amigo' key={amigo}>
                   <p>{amigo}</p>
-                  <Link aria-label="mapaLink" to={url} onClick={(event) => encontrarUrl(amigo).then( string =>{setUrl( "/mapaAmigo/"+string)} )}>Mapa</Link>
+                  <Link aria-label="mapaLink" to={url} onClick={async (event) => {const string = await encontrarUrl(amigo);setUrl("/mapaAmigo/" + string);}}>Mapa</Link>
                   <button type='submit' aria-label="deleteButton" onClick={() => deleteFriend(amigo)}>Eliminar</button>
                 </div>
               ))}

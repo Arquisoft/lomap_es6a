@@ -85,7 +85,6 @@ function Filtro({ marcadores, marcadoresObjeto }: FiltroProps){
   return (
   <>
   <div className='filtro'>
-    <h2>Filtros</h2>
     <span className='prueba_contador_filtro' style={{ display: 'none' }}>{contador}</span>
     <div className='pareja'>
       
