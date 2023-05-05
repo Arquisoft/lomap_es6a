@@ -10,7 +10,6 @@ import paisaje from '../../imagenes/paisaje.png';
 import monumento from '../../imagenes/monumento.png';
 import interrogacion from '../../imagenes/interrogacion.png';
 import Marker from "../../accesoPods/marker";
-import Comentario from '../../accesoPods/comentario';
 import { Session } from '@inrupt/solid-client-authn-browser';
 
 
