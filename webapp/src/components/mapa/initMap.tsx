@@ -81,9 +81,7 @@ export const handleClick = (market?: Marker,session?:Session,user?:string,popupE
 export const onMarkerClick= async (marker: mapboxgl.Marker, popupElement: mapboxgl.Popup, session: Session
   , user: string,market:Marker, html:string ="")=>{
   const handleClickPopup = (event?: MouseEvent) => {
-    if(event)
-        event.preventDefault();
-  }
+    if(event)event.preventDefault()}
   let cadena = "<div class='table-container'><table class='table'><tr><th>Usuario</th><th>Comentario</th><th>Valoración</th></tr>";
   return await recuperarComentario({session}.session, market.id, user).then(comentarios => {
     
@@ -143,8 +141,7 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
         
     });
 
-    navigator.geolocation.getCurrentPosition(position => {
-        const { latitude, longitude } = position.coords;mapa.setCenter([longitude, latitude]); const markerElement = document.createElement('img');markerElement.src = casa;markerElement.width = 30;markerElement.height = 30;
+    navigator.geolocation.getCurrentPosition(position => {const { latitude, longitude } = position.coords;mapa.setCenter([longitude, latitude]); const markerElement = document.createElement('img');markerElement.src = casa;markerElement.width = 30;markerElement.height = 30;
 
 
         new mapboxgl.Marker({ element: markerElement })
@@ -156,10 +153,8 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
       });
 
       recuperarMarcador({session}.session,user).then(markers => {
-        if (markers != null) {
-            cargarMarcadores(markers,mapa,marcadoresEnMapa,marcadoresObjetoEnMapa,popupElement,session,user)
-        }
-      }).catch(error=>{throw new Error(error)});
+        if (markers != null){cargarMarcadores(markers,mapa,marcadoresEnMapa,marcadoresObjetoEnMapa,popupElement,session,user)}
+        }).catch(error=>{throw new Error(error)});
       let tupla:[mapboxgl.Map,Array<mapboxgl.Marker>,Array<Marker>];tupla=[mapa,marcadoresEnMapa,marcadoresObjetoEnMapa];
     return tupla;
 }
