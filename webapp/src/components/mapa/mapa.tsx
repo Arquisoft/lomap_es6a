@@ -23,7 +23,7 @@ function MapaAmigos({ session }: SessionType): JSX.Element {
   }, []);
   
   if (!session.info.isLoggedIn){
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/lomap_6a_despliegue/login" replace />;
   }
   return (
   <>
