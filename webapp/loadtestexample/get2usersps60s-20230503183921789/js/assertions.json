@@ -1,0 +1,10 @@
+{
+  "simulation": "Get2UsersPs60s",
+  "simulationId": "get2usersps60s-20230503183921789",
+  "start": 1683139162797,
+  "description": "",
+  "scenarios": ["Get2UsersPs60s"],
+  "assertions": [
+
+  ]
+}

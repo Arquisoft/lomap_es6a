@@ -1,0 +1,10 @@
+{
+  "simulation": "GetMap",
+  "simulationId": "getmap-20230503184747349",
+  "start": 1683139667886,
+  "description": "",
+  "scenarios": ["GetMap"],
+  "assertions": [
+
+  ]
+}
