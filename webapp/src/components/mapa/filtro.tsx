@@ -12,15 +12,18 @@ function Filtro({ marcadores, marcadoresObjeto }: FiltroProps){
   const marcadoresObjetoEnMapa = marcadoresObjeto;
 
     //######################################Eventos Filtros###########################################
-
-    const [contador,setConstador] = useState(6);
-    const [isCheckedBar, setIsCheckedBar] = useState(true);
-    const [isCheckedPaisaje, setIsCheckedPaisaje] = useState(true);
-    const [isCheckedGasolinera, setIsCheckedGasolinera] = useState(true);
-    const [isCheckedTienda, setIsCheckedTienda] = useState(true);
-    const [isCheckedMonumento, setIsCheckedMonumento] = useState(true);
-    const [isCheckedRestaurante, setIsCheckedRestaurante] = useState(true);
-    const [isCheckedTodos, setIsCheckedTodos] = useState(true);
+    let valorContadorIncial;
+    valorContadorIncial = 6;
+    let valor;
+    valor = true;
+    const [contador,setConstador] = useState(valorContadorIncial);
+    const [isCheckedBar, setIsCheckedBar] = useState(valor);
+    const [isCheckedPaisaje, setIsCheckedPaisaje] = useState(valor);
+    const [isCheckedGasolinera, setIsCheckedGasolinera] = useState(valor);
+    const [isCheckedTienda, setIsCheckedTienda] = useState(valor);
+    const [isCheckedMonumento, setIsCheckedMonumento] = useState(valor);
+    const [isCheckedRestaurante, setIsCheckedRestaurante] = useState(valor);
+    const [isCheckedTodos, setIsCheckedTodos] = useState(valor);
   
   function handleCheckboxTodos(){
     setIsCheckedTodos(!isCheckedTodos);
@@ -29,24 +32,32 @@ function Filtro({ marcadores, marcadoresObjeto }: FiltroProps){
       marcadoresEnMapa.forEach(marcador => {
         marcador.getElement().style.display= 'block';
       });
-      setConstador(6);
-      setIsCheckedBar(true);
-      setIsCheckedPaisaje(true);
-      setIsCheckedGasolinera(true);
-      setIsCheckedTienda(true);
-      setIsCheckedMonumento(true);
-      setIsCheckedRestaurante(true);
+      let cambioContador;
+      cambioContador = 6;
+      let cambio;
+      cambio = true;
+      setConstador(cambioContador);
+      setIsCheckedBar(cambio);
+      setIsCheckedPaisaje(cambio);
+      setIsCheckedGasolinera(cambio);
+      setIsCheckedTienda(cambio);
+      setIsCheckedMonumento(cambio);
+      setIsCheckedRestaurante(cambio);
     }else{
       marcadoresEnMapa.forEach(marcador => {
         marcador.getElement().style.display= 'none';
       });
-      setConstador(0);
-      setIsCheckedBar(false);
-      setIsCheckedPaisaje(false);
-      setIsCheckedGasolinera(false);
-      setIsCheckedTienda(false);
-      setIsCheckedMonumento(false);
-      setIsCheckedRestaurante(false);
+      let cambioContador;
+      cambioContador = 0;
+      let cambio;
+      cambio = false;
+      setConstador(cambioContador);
+      setIsCheckedBar(cambio);
+      setIsCheckedPaisaje(cambio);
+      setIsCheckedGasolinera(cambio);
+      setIsCheckedTienda(cambio);
+      setIsCheckedMonumento(cambio);
+      setIsCheckedRestaurante(cambio);
     }
   }
 
@@ -58,7 +69,9 @@ function Filtro({ marcadores, marcadoresObjeto }: FiltroProps){
       setIsCheckedTodos(false);
       //Si esta desactivado
       if (checked){
-        setConstador(contador-1);
+        let nuevoValor;
+        nuevoValor = contador-1;
+        setConstador(nuevoValor);
         c--;
         marcadoresEnMapa.forEach(marcador => {
           if (marcadoresObjetoEnMapa[i].tipo === tipo){

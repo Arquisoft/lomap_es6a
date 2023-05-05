@@ -10,7 +10,7 @@ import {SessionType} from "../../shared/shareddtypes";
 
 function AboutUs({ session }: SessionType) {
   if (!session.info.isLoggedIn){
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/lomap_6a_despliegue/" replace />;
   }
 
   const teamMembers = [

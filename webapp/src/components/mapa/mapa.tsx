@@ -15,17 +15,15 @@ function MapaAmigos({ session }: SessionType): JSX.Element {
   useEffect(() => {
     if (mapRef.current) {
         let tupla: [mapboxgl.Map,Array<mapboxgl.Marker>,Array<Marker>];
-        if (user){
-          tupla = initMap(mapRef.current, {session}, user );setMarcadores(tupla[1]);setMarcadoresObjeto(tupla[2]);
-        }else{
-          tupla = initMap( mapRef.current, {session}, "");setMarcadores(tupla[1]);setMarcadoresObjeto(tupla[2]);
+        if (user){tupla = initMap(mapRef.current, {session}, user );setMarcadores(tupla[1]);setMarcadoresObjeto(tupla[2]);
+        }else{tupla = initMap( mapRef.current, {session}, "");setMarcadores(tupla[1]);setMarcadoresObjeto(tupla[2]);
         }
     }
     // eslint-disable-next-line
   }, []);
   
   if (!session.info.isLoggedIn){
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/lomap_6a_despliegue/" replace />;
   }
   return (
   <>

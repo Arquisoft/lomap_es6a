@@ -5,7 +5,7 @@ import {SessionType} from "../../shared/shareddtypes";
 
 function Amigos({ session }: SessionType) {
   if (!session.info.isLoggedIn) {
-      return <Navigate to="/login" replace />;
+      return <Navigate to="/lomap_6a_despliegue/" replace />;
   }
 
   return (

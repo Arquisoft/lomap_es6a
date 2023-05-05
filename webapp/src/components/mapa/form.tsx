@@ -227,20 +227,13 @@ function Formulario({ session, modo }: Props) {
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
   if (files && files.length > 0) {
-    const file = files[0];
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function(){
-      let base64 = reader.result;
-      if (typeof base64 === "string"){
-        setImagen(base64);
-      }
-    }
+    const file = files[0];let reader = new FileReader();reader.readAsDataURL(file);
+    reader.onload = function(){let base64 = reader.result;if (typeof base64 === "string"){setImagen(base64);}}
   }
   };
 
   if (!session.info.isLoggedIn){
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/lomap_6a_despliegue/" replace />;
   }
   return (
     
