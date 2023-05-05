@@ -5,7 +5,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
 
-class GetUsersList extends Simulation {
+class Get2UsersPs60s extends Simulation {
 
   private val httpProtocol = http
     .baseUrl("http://localhost:3000")
@@ -26,17 +26,25 @@ class GetUsersList extends Simulation {
   		"If-None-Match" -> """W/"9edb68-Vg0zB/vlNGUIYntEEOMxjzZE8os""""
   )
   
+  private val headers_2 = Map("If-None-Match" -> """W/"1d188-0y745tgEbgfvHTIziU4fGTsIkvY"""")
+  
   private val headers_3 = Map("If-None-Match" -> """W/"119c06-TvSpNUFis8Ea9vfa18vN2rkwiFo"""")
   
   private val headers_4 = Map(
+  		"Accept" -> "*/*",
+  		"Cache-Control" -> "no-cache",
+  		"Content-Type" -> "application/ocsp-request",
+  		"Pragma" -> "no-cache"
+  )
+  
+  private val headers_5 = Map(
   		"Accept" -> "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
   		"Upgrade-Insecure-Requests" -> "1"
   )
   
-  private val headers_5 = Map("If-None-Match" -> """W/"1d188-0y745tgEbgfvHTIziU4fGTsIkvY"""")
+  private val uri2 = "http://r3.o.lencr.org"
 
-
-  private val scn = scenario("GetUsersList")
+  private val scn = scenario("Get2UsersPs60s")
     .exec(
       http("request_0")
         .get("/")
@@ -47,24 +55,32 @@ class GetUsersList extends Simulation {
             .headers(headers_1),
           http("request_2")
             .get("/static/media/icono.09c0a0411923c3de503a.png")
-            .check(bodyBytes.is(RawFileBody("getuserslist/0002_response.png"))),
+            .headers(headers_2),
           http("request_3")
             .get("/static/media/fotohome14.04cacf15d6b58f3fbf20.png")
             .headers(headers_3)
         )
     )
-    .pause(12)
+    .pause(5)
     .exec(
       http("request_4")
-        .get("/ProfileViewer?code=d5f6a58e95795cc6db8ee6454e7a65b0&state=5000106c8b634e9bb3ac6383a3202bcd")
+        .post(uri2 + "/")
         .headers(headers_4)
-        .check(bodyBytes.is(RawFileBody("getuserslist/0004_response.html")))
+        .body(RawFileBody("get2usersps60s/0004_request.dat"))
+        .check(bodyBytes.is(RawFileBody("get2usersps60s/0004_response.dat")))
+    )
+    .pause(1)
+    .exec(
+      http("request_5")
+        .get("/ProfileViewer?code=1f4881605b526fea3e93556ac7adad13&state=a7e51b5c86e545d3a5d0d9690edb016f")
+        .headers(headers_5)
+        .check(bodyBytes.is(RawFileBody("get2usersps60s/0005_response.html")))
         .resources(
-          http("request_5")
+          http("request_6")
             .get("/static/media/icono.09c0a0411923c3de503a.png")
-            .headers(headers_5)
+            .headers(headers_2)
         )
     )
 
-	setUp(scn.inject(constantUsersPerSec(3).during(15))).protocols(httpProtocol)
+	setUp(scn.inject(constantUsersPerSec(2) during (60 seconds) randomized)).protocols(httpProtocol)
 }
