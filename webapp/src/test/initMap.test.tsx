@@ -9,7 +9,7 @@ import { SessionProvider } from "@inrupt/solid-ui-react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { click } from "@testing-library/user-event/dist/click";
 import { createElement } from "react";
-import {validacionCamposComentario,crearImgHtml,seleccionarIcono, initMap,cargarMarcadores,onMarkerClick} from "../components/mapa/initMap";
+import {validacionCamposComentario,crearImgHtml,seleccionarIcono, initMap,cargarMarcadores,onMarkerClick,handleClick} from "../components/mapa/initMap";
 import React from 'react';
 import { equal } from "assert";
 import casa from '../imagenes/marcador.png';
@@ -277,7 +277,82 @@ test("click on marker",async ()=>{
                 expect(tmp.getByLabelText('marcadorForm')).toBeInTheDocument();
             })
         }
-
     
 })
+test("check handleClick",()=>{
+    const user = 'testasw';
+    var Marcadores = [marcador1,marcador2,marcador3,marcador4]
+    const marcadoresEnMapa: Array<mapboxgl.Marker> = [];
+    const marcadoresObjetoEnMapa: Array<Marker> = [];
+    //const user = 'Usuario de prueba';
+   
+    let userMarkers: Marker[]
+      userMarkers = [];
+    var container =  document.createElement('div');
+    var popupElement:Popup = new mapboxgl.Popup;
+    var markers = [marcador3, marcador4]//await adaptador.recuperarMarcador({session}.session,user)
+    var market =markers ? markers[0] : new Marker("","","",0,0,"");
 
+    let iconMarker :HTMLImageElement;
+    iconMarker = seleccionarIcono(market.tipo);
+   // iconMarker = seleccionarIcono(market.tipo);
+      let marker = new mapboxgl.Marker({ element: iconMarker })
+      .setLngLat([market.latitude, market.longitude])
+      .setPopup(new Popup({ closeButton: false, anchor: 'left', maxWidth: '400px' })
+      .setHTML(`<div class="popup">Chincheta añadida aquí: <br/>[${market.longitude}, ${market.latitude}]</div>`))
+    let cadena = "<div class='table-container'><table class='table'><tr><th>Usuario</th><th>Comentario</th><th>Valoración</th></tr>";
+    cadena += "</table></div>"+
+    "<style>.table-container { max-height: 200px; overflow-y: auto; } .table { width: 100%; border-collapse: collapse; } .table th, .table td { border: 1px solid #ccc; padding: 10px; text-align: left; } .table th { background-color: #f2f2f2; font-weight: bold; } .table tr:nth-child(even) { background-color: #f9f9f9; } .table tr:hover { background-color: #e6e6e6; } .table td.actions { text-align: center; } .table td.actions a { color: #007bff; text-decoration: none; } .table td.actions a:hover { color: #0056b3; } th { font-weight: bold; } </style>";
+    let img = market.imagen;
+  
+    var html = '<img style="width: 250px; height: 150px;"src ='+img +'>'+
+    '<h1>'+ market.nombre+'</h1>'+
+    '<p>'+ market.descripcion+'</p>'+
+    '<form id="comment-form" aria-label="marcadorForm">'+
+      '<input type="text" aria-label="comentario" id="comentario" name="comentario" placeholder="Escribe un comentario" required>'+
+      '<input type="number" aria-label="valoracion" id="valoracion" min="0" max="10" step="1" placeholder="Valora del 1 al 10" required>'+
+      '<button type="submit" id="btnenviar" >Enviar</button>'+
+    '</form>'+
+    '<h2>Comentarios</h2>'+cadena;
+    var element = <div dangerouslySetInnerHTML={{ __html: html }} />;
+    //caso positivo
+    var form = render(element);
+    //expect(coment.findByLabelText("comentario")).toBeInTheDocument();
+    var coment=form.getByLabelText("comentario")
+    expect(form.getByLabelText("comentario")).toBeInTheDocument();
+
+    fireEvent.change(coment,{target: {value:"hola soy un comentario"}})
+
+    var coment=form.getByLabelText("valoracion")
+    expect(form.getByLabelText("valoracion")).toBeInTheDocument();
+    fireEvent.change(coment,{target: {value:5}})
+    
+    popupElement = marker.getPopup().setHTML(form.container.innerHTML);
+
+    var mouse = new MouseEvent("click")
+    var  handler=   handleClick(markers[0],session,user,popupElement)
+    handler(mouse);
+
+    //caso negativo
+    //element = <div dangerouslySetInnerHTML={{ __html: html }} />;
+    //var form = render(element);
+    //expect(coment.findByLabelText("comentario")).toBeInTheDocument();
+    var coment=form.getByLabelText("comentario")
+    expect(form.getByLabelText("comentario")).toBeInTheDocument();
+
+    fireEvent.change(coment,{target: {value:""}})
+
+    var coment=form.getByLabelText("valoracion")
+    expect(form.getByLabelText("valoracion")).toBeInTheDocument();
+    fireEvent.change(coment,{target: {value:-50}})
+    
+    popupElement = marker.getPopup().setHTML(form.container.innerHTML);
+
+    var mouse = new MouseEvent("click")
+    var  handler=   handleClick(markers[0],session,user,popupElement)
+    handler(mouse);
+})
+
+// expect(screen.getByText("El campo Nombre es obligatorio")).toBeInTheDocument();
+
+// fireEvent.change(nombre,{target: {value:"qwertyuiopasdfghjklñzxcvbnmqwertyuuiiopàsdfghjklñzxcvbnmm"}})

@@ -10,7 +10,6 @@ import paisaje from '../../imagenes/paisaje.png';
 import monumento from '../../imagenes/monumento.png';
 import interrogacion from '../../imagenes/interrogacion.png';
 import Marker from "../../accesoPods/marker";
-import Comentario from '../../accesoPods/comentario';
 import { Session } from '@inrupt/solid-client-authn-browser';
 
 
@@ -56,23 +55,35 @@ export function guardarComentarioSiEstaEnSesion(texto:string,marker:Marker,valor
     guardarComentario({session}.session, texto, marker.id, nombreUsuario , valoracion, user);
   }
 }
+export const handleClick = (market?: Marker,session?:Session,user?:string,popupElement?:mapboxgl.Popup) => { //,market?: Marker,session?:Session,user?:string,popupElement?:mapboxgl.Popup
+  
+  return function curried_func(event?: MouseEvent){
+  if(event &&market&&session&&user &&popupElement){
+      event.preventDefault();
+      const miInput = document.getElementById('comentario');
+      const miInputValoracion = document.getElementById('valoracion');
+
+        // Obtener el valor del input de texto
+        let texto = (miInput as HTMLInputElement).value;
+        let valoracion = (miInputValoracion  as HTMLInputElement).value
+        if (validacionCamposComentario(texto,valoracion)){
+          
+          guardarComentarioSiEstaEnSesion(texto, market, valoracion,session,user);
+
+          (miInput as HTMLInputElement).value = "";
+          (miInputValoracion  as HTMLInputElement).value = "";
+          popupElement.remove();
+        }
+      }
+    
+  }
+};
 export const onMarkerClick= async (marker: mapboxgl.Marker, popupElement: mapboxgl.Popup, session: Session
   , user: string,market:Marker, html:string ="")=>{
   const handleClickPopup = (event?: MouseEvent) => {
     if(event)
         event.preventDefault();
   }
-  const handleClick = (event?: MouseEvent) => {
-    if(event){
-      event.preventDefault();const miInput = document.getElementById('comentario');const miInputValoracion = document.getElementById('valoracion');let texto = (miInput as HTMLInputElement).value;let valoracion = (miInputValoracion  as HTMLInputElement).value
-      if (validacionCamposComentario(texto,valoracion)){
-        guardarComentarioSiEstaEnSesion(texto, market, valoracion,session,user);
-        (miInput as HTMLInputElement).value = "";(miInputValoracion  as HTMLInputElement).value = "";popupElement.remove();
-      }
-    }
-      
-    
-  };
   let cadena = "<div class='table-container'><table class='table'><tr><th>Usuario</th><th>Comentario</th><th>Valoración</th></tr>";
   return await recuperarComentario({session}.session, market.id, user).then(comentarios => {
     
@@ -99,7 +110,7 @@ export const onMarkerClick= async (marker: mapboxgl.Marker, popupElement: mapbox
 
   const miboton = document.getElementById("btnenviar");
   if (comentarios != null) {
-    (miboton as HTMLButtonElement).addEventListener("click",handleClick);popupElement.getElement().addEventListener("click",handleClickPopup);
+    (miboton as HTMLButtonElement).addEventListener("click",handleClick(market,session,user,popupElement));popupElement.getElement().addEventListener("click",handleClickPopup);
   }
   return html
   }).catch(error=>{throw new Error(error)});
