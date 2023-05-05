@@ -3,7 +3,7 @@ name: CI for LOMAP ES6A
 on: [push, pull_request]
 
 env:
-  API_MAPBOX: ${{ secrets.API_MAPBOX }}
+  REACT_APP_MAPBOX_KEY: ${{ secrets.REACT_APP_MAPBOX_KEY }}
   
 jobs:
   unit-test-webapp:
@@ -81,13 +81,13 @@ jobs:
     - name: Deploy
       uses: cpina/github-action-push-to-another-repository@create-branch-if-needed-arg
       env:
-            API_MAPBOX: ${{ secrets.API_MAPBOX }}
+            REACT_APP_MAPBOX_KEY: ${{ secrets.REACT_APP_MAPBOX_KEY }}
             API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
           source-directory: 'webapp/build'
           destination-github-username: 'uo282944'
           destination-repository-name: 'lomap_6a_despliegue'
-          user-email: uo282944@uniovi.es
+          user-email: 'uo282944@uniovi.es'
           commit-message: See ORIGIN_COMMIT from $GITHUB_REF
           target-branch: gh-pages
     - name: Test get variable exported by push-to-another-repository
