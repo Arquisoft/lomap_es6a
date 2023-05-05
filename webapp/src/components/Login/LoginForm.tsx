@@ -41,7 +41,7 @@ const LoginForm = () => {
   useEffect(() => {
     setCurrentUrl(window.location.href);
   }, [currentUrl]);
-  
+
 return (
   <>
   <form className={classes.container} noValidate autoComplete="on">

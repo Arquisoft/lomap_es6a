@@ -3,6 +3,7 @@ name: CI for LOMAP ES6A
 on: [push, pull_request]
 
 env:
+  CI: true
   API_MAPBOX: ${{ secrets.API_MAPBOX }}
   
 jobs:
@@ -23,8 +24,10 @@ jobs:
       - name: Analyze with SonarCloud
         uses: sonarsource/sonarcloud-github-action@master
         env:
+          CI: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          API_KEY: ${{ secrets.API_MAPBOX }}
   e2e-tests:
     needs: [unit-test-webapp]
     runs-on: ubuntu-latest

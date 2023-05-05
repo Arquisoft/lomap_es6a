@@ -136,11 +136,11 @@ export const initMap = (container: HTMLDivElement, { session }: SessionType, use
         style: 'mapbox://styles/mapbox/streets-v12',
         pitchWithRotate: false,
         zoom: 15,
-        accessToken: "pk.eyJ1IjoidW8yODI4MzQiLCJhIjoiY2xlcHp5Z2syMGRteTQ5cDJ2dXltMm5uYSJ9.kTLZTl2_YvQiN79m2kPQ1g",
+        accessToken: process.env.API_MAPBOX,
         doubleClickZoom: false
         
     });
-
+      //"pk.eyJ1IjoidW8yODI4MzQiLCJhIjoiY2xlcHp5Z2syMGRteTQ5cDJ2dXltMm5uYSJ9.kTLZTl2_YvQiN79m2kPQ1g"
     navigator.geolocation.getCurrentPosition(position => {const { latitude, longitude } = position.coords;mapa.setCenter([longitude, latitude]); const markerElement = document.createElement('img');markerElement.src = casa;markerElement.width = 30;markerElement.height = 30;
 
 

@@ -33,7 +33,7 @@ defineFeature(feature, test => {
     });
 
     then('The pods provider login page should be shown in the screen', async () => {
-      // await expect(page).toMatch('Login', {timeout: 1000}); // TODO: Revisar funcionamiento
+       await expect(page).toMatch('Login', {timeout: 1000}); // TODO: Revisar funcionamiento
     });
   });
 
