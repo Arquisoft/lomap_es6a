@@ -7,6 +7,7 @@ env:
   API_MAPBOX: ${{ secrets.API_MAPBOX }}
   
 jobs:
+  default-env-variables:
   unit-test-webapp:
     runs-on: ubuntu-latest
     defaults:
