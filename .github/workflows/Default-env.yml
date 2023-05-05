@@ -1,0 +1,25 @@
+name: Default Environment
+
+on: 
+    workflow_dispatch:
+  
+jobs:
+  default-env-variables:
+    runs-on: ubuntu-latest
+    defaults:
+      steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Install Dependencies (prod)
+        run: npm install 
+      - name: Start
+        run: npm start
+        env:
+          CI: true
+          API_KEY: ${{ secrets.API_KEY }}
