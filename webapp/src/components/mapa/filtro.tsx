@@ -35,7 +35,7 @@ function Filtro({ marcadores, marcadoresObjeto }: FiltroProps){
       let cambioContador;
       cambioContador = 6;
       let cambio;
-      cambio = false;
+      cambio = true;
       setConstador(cambioContador);
       setIsCheckedBar(cambio);
       setIsCheckedPaisaje(cambio);
