@@ -14,6 +14,11 @@
       Demo video
    </a>
 </p>
+<p>
+   <a href="https://uo282944.github.io/lomap_6a_despliegue/">
+      Link proyecto desplegado
+   </a>
+</p>
 
 ---
 
