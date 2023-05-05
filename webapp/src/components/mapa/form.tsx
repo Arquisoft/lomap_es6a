@@ -233,7 +233,7 @@ function Formulario({ session, modo }: Props) {
   };
 
   if (!session.info.isLoggedIn){
-    return <Navigate to="/lomap_6a_despliegue/login" replace />;
+    return <Navigate to="/lomap_6a_despliegue/" replace />;
   }
   return (
     
