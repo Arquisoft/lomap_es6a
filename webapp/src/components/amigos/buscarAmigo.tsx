@@ -24,9 +24,7 @@ function BuscarAmigo({ session }: SessionType) {
       }
       const dataset = await getSolidDataset(WebID);
       const perfil = getThing(dataset, WebID);
-      if (!perfil) {
-        throw new Error('Perfil no encontrado');
-      }
+      if (!perfil) {throw new Error('Perfil no encontrado');}
       setNombre(getStringNoLocale(perfil, FOAF.name) ?? '');
       setError(null);
     } catch (error: unknown) {
@@ -39,8 +37,7 @@ function BuscarAmigo({ session }: SessionType) {
   }
 
   async function encontrarUrl(nombreAmigo : string) : Promise<string> {
-    let res = await encontrarurl({session},nombreAmigo);
-    return res?res:"";
+    let res = await encontrarurl({session},nombreAmigo);return res?res:"";
   }
 
   useEffect(() => {
@@ -48,21 +45,15 @@ function BuscarAmigo({ session }: SessionType) {
       if (!session.info.isLoggedIn) return;
 
       const { webId } = session.info;
-      if (!webId) {
-        throw new Error('Nombre de usuario no especificado');
-      }
+      if (!webId) { throw new Error('Nombre de usuario no especificado');}
       const dataset = await getSolidDataset(webId);
       const perfil = getThing(dataset, webId);
-      if (!perfil) {
-        throw new Error('Perfil no encontrado');
-      }
+      if (!perfil) {throw new Error('Perfil no encontrado');}
       const amigosUrl = getUrlAll(perfil, FOAF.knows);
       const nuevosAmigos = await Promise.all(amigosUrl.map(async (url) => {
         const amigoDataset = await getSolidDataset(url);
         const amigoPerfil = getThing(amigoDataset, url);
-        if (!amigoPerfil) {
-          throw new Error('Perfil de amigo no encontrado');
-        }
+        if (!amigoPerfil) {throw new Error('Perfil de amigo no encontrado');}
         return getStringNoLocale(amigoPerfil, FOAF.name) ?? url;
       }));
       setAmigos(nuevosAmigos);
