@@ -67,7 +67,7 @@ const ProfileViewer = () => {
           </CombinedDataProvider>
         ) : null}
         <LogoutButton>
-          <Button style={{ marginTop: 20 }} variant="contained" color="primary" href="/LoginForm">
+          <Button style={{ marginTop: 20 }} variant="contained" color="primary" href="https://uo282944.github.io/lomap_6a_despliegue/">
             Logout
           </Button>
         </LogoutButton>
